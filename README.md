@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="" target="_blank">
+  <a href="https://main--632a01c394385880b3383063.chromatic.com" target="_blank">
     <img src="https://digital3.nyc3.cdn.digitaloceanspaces.com/mui-storybook.gif" alt="storybook gif" align="center" />
     <h1 align="center">MUI Storybook</h1>
   </a>
@@ -8,7 +8,7 @@
 </br>
 
 <p align="center">
-  <a href="">
+  <a href="https://main--632a01c394385880b3383063.chromatic.com">
     <img src="https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg" alt="Storybook" />
   </a>
    <a href="https://github.com/laststance/mui-storybook/actions/workflows/chromatic.yml">
