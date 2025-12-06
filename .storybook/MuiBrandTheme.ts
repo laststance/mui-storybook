@@ -1,5 +1,3 @@
-// .storybook/YourTheme.js
-
 import { create } from '@storybook/theming'
 
 export default create({
@@ -15,7 +13,8 @@ export default create({
   appBorderRadius: 10,
 
   // Typography
-  fontBase: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+  fontBase:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
   fontCode: 'Consolas,Menlo,Monaco,Andale Mono,Ubuntu Mono,monospace',
 
   // Text colors
@@ -35,5 +34,5 @@ export default create({
 
   brandTitle: 'MUI Storybook',
   brandUrl: 'https://mui.com/',
-  brandImage: 'https://pbs.twimg.com/media/E_aj11YVcA4uZOT?format=jpg'
+  brandImage: 'https://pbs.twimg.com/media/E_aj11YVcA4uZOT?format=jpg',
 })

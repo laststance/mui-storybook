@@ -1,13 +1,16 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Switch from './Switch'
 
-export default {
+const meta = {
   title: 'Components/Switch',
   component: Switch,
-} as ComponentMeta<typeof Switch>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Switch>
 
-export const Default: ComponentStory<typeof Switch> = (props) => (
-  <Switch {...props} />
-)
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {},
+}

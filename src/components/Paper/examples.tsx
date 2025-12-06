@@ -2,7 +2,6 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles'
-import * as React from 'react'
 
 export function SimplePaper() {
   return (
@@ -57,7 +56,7 @@ export function Elevation() {
   return (
     <Grid container spacing={2}>
       {[lightTheme, darkTheme].map((theme, index) => (
-        <Grid item xs={6} key={index}>
+        <Grid size={6} key={index}>
           <ThemeProvider theme={theme}>
             <Box
               sx={{

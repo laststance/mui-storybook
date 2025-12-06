@@ -8,19 +8,27 @@ import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
 import Alert from './Alert'
 
-export default {
+const meta = {
   title: 'Components/Alert',
   component: Alert,
-} as ComponentMeta<typeof Alert>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Alert>
 
-export const Default: ComponentStory<typeof Alert> = (props) => (
-  <Alert {...props} />
-)
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {
+    severity: 'success',
+    variant: 'standard',
+  },
+  render: (args) => <Alert {...args}>This is an alert — check it out!</Alert>,
+}
 
 export function BasicAlerts1() {
   return (

@@ -4,26 +4,34 @@ import TagFacesIcon from '@mui/icons-material/TagFaces'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
 import Chip from './Chip'
 
-export default {
+const meta = {
   title: 'Components/Chip',
   component: Chip,
-} as ComponentMeta<typeof Chip>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Chip>
 
-export const Default: ComponentStory<typeof Chip> = (props) => (
-  <Chip {...props} />
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const BasicChip = () => (
-  <Stack direction="row" spacing={1}>
-    <Chip label="Chip Filled" />
-    <Chip label="Chip Outlined" variant="outlined" />
-  </Stack>
-)
+export const Default: Story = {
+  args: {
+    label: 'Default Chip',
+  },
+}
+
+export const BasicChip: Story = {
+  render: () => (
+    <Stack direction="row" spacing={1}>
+      <Chip label="Chip Filled" />
+      <Chip label="Chip Outlined" variant="outlined" />
+    </Stack>
+  ),
+}
 
 export function ColorChips() {
   return (
@@ -40,19 +48,21 @@ export function ColorChips() {
   )
 }
 
-export const Clickable = () => {
-  const handleClick = () => {
-    alert('You clicked the Chip.')
-  }
+export const Clickable: Story = {
+  render: () => {
+    const handleClick = () => {
+      alert('You clicked the Chip.')
+    }
 
-  return (
-    <Stack direction="row" spacing={1}>
-      {/* @ts-ignore */}
-      <Chip label="Clickable" onClick={handleClick} />
-      {/* @ts-ignore */}
-      <Chip label="Clickable" variant="outlined" onClick={handleClick} />
-    </Stack>
-  )
+    return (
+      <Stack direction="row" spacing={1}>
+        {/* @ts-ignore */}
+        <Chip label="Clickable" onClick={handleClick} />
+        {/* @ts-ignore */}
+        <Chip label="Clickable" variant="outlined" onClick={handleClick} />
+      </Stack>
+    )
+  },
 }
 
 export function Deletable() {
@@ -101,13 +111,11 @@ export function ClickableAndDeletable() {
 export function ClickableLink() {
   return (
     <Stack direction="row" spacing={1}>
-      {/* @ts-ignore TS2322: Type '{ label: string; component: string; href: string; clickable: true; }' is not assignable to type 'IntrinsicAttributes & { avatar?: ReactElement<any, string | JSXElementConstructor<any>>; children?: null; classes?: Partial<...>; ... 9 more ...; variant?: "outlined" | "filled"; } & CommonProps & Omit<...> & { ...; }'. */}
-      <Chip label="Clickable Link" component="a" href="#basic-chip" clickable />
+      <Chip label="Clickable Link" component={'a' as const} {...{ href: '#basic-chip' }} clickable />
       <Chip
         label="Clickable Link"
-        /* @ts-ignore TS2322: Type '{ label: string; component: string; href: string; clickable: true; }' is not assignable to type 'IntrinsicAttributes & { avatar?: ReactElement<any, string | JSXElementConstructor<any>>; children?: null; classes?: Partial<...>; ... 9 more ...; variant?: "outlined" | "filled"; } & CommonProps & Omit<...> & { ...; }'. */
-        component="a"
-        href="#basic-chip"
+        component={'a' as const}
+        {...{ href: '#basic-chip' }}
         variant="outlined"
         clickable
       />

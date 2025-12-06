@@ -1,0 +1,110 @@
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import MUIAppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import type { Meta, StoryObj } from '@storybook/react'
+
+import AppBar from './AppBar'
+
+const meta = {
+  title: 'Components/AppBar',
+  component: AppBar,
+  tags: ['autodocs'],
+} satisfies Meta<typeof AppBar>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <MUIAppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          App Title
+        </Typography>
+      </Toolbar>
+    </MUIAppBar>
+  ),
+}
+
+export function Basic() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <MUIAppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            My Application
+          </Typography>
+        </Toolbar>
+      </MUIAppBar>
+    </Box>
+  )
+}
+
+export function WithMenuAndSearch() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <MUIAppBar position="static">
+        <Toolbar>
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            News
+          </Typography>
+          <IconButton size="large" color="inherit" aria-label="search">
+            <SearchIcon />
+          </IconButton>
+        </Toolbar>
+      </MUIAppBar>
+    </Box>
+  )
+}
+
+export function SecondaryColor() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <MUIAppBar position="static" color="secondary">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Secondary Color
+          </Typography>
+        </Toolbar>
+      </MUIAppBar>
+    </Box>
+  )
+}
+
+export function Transparent() {
+  return (
+    <Box sx={{ flexGrow: 1, backgroundColor: 'grey.200', p: 2 }}>
+      <MUIAppBar position="static" color="transparent" elevation={0}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Transparent AppBar
+          </Typography>
+        </Toolbar>
+      </MUIAppBar>
+    </Box>
+  )
+}
+
+export function Dense() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <MUIAppBar position="static">
+        <Toolbar variant="dense">
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" component="div">
+            Dense Toolbar
+          </Typography>
+        </Toolbar>
+      </MUIAppBar>
+    </Box>
+  )
+}

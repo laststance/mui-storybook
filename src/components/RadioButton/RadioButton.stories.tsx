@@ -8,13 +8,21 @@ import type { RadioProps } from '@mui/material/Radio'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import { styled } from '@mui/material/styles'
-import type { ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-export default {
+const meta = {
   title: 'Components/RadioButton',
   component: Radio,
-} as ComponentMeta<typeof Radio>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Radio>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {},
+}
 
 export function RadioButtonsGroup() {
   return (

@@ -1,15 +1,18 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Paper from './Paper'
 
-export default {
+const meta = {
   title: 'Components/Paper',
   component: Paper,
-} as ComponentMeta<typeof Paper>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Paper>
 
-export const Default: ComponentStory<typeof Paper> = (props) => (
-  <Paper {...props} />
-)
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {},
+}
 
 export { SimplePaper, Variants, Elevation } from './examples'

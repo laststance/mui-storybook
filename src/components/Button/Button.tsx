@@ -3,6 +3,10 @@ import React from 'react'
 
 interface ButtonProps {
   /**
+   * The content of the button.
+   */
+  children?: React.ReactNode
+  /**
    * The variant to use.
    * @default 'text'
    */
@@ -45,6 +49,10 @@ interface ButtonProps {
    * If defined, an `a` element will be used as the root node.
    */
   href?: string
+  /**
+   * Callback fired when the button is clicked.
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

@@ -1,25 +1,8 @@
 import Autocomplete from '@mui/material/Autocomplete'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-
-export default {
-  title: 'Components/Autocomplete',
-  component: Autocomplete,
-} as ComponentMeta<typeof Autocomplete>
-
-export const ComboBox: ComponentStory<typeof Autocomplete> = () => {
-  return (
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
-    />
-  )
-}
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
@@ -150,6 +133,33 @@ const top100Films = [
   { label: 'Monty Python and the Holy Grail', year: 1975 },
 ]
 
+interface FilmOptionType {
+  label: string
+  year: number
+}
+
+const meta = {
+  title: 'Components/Autocomplete',
+  component: Autocomplete<FilmOptionType, false, false, false>,
+  tags: ['autodocs'],
+} satisfies Meta<typeof Autocomplete<FilmOptionType, false, false, false>>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const ComboBox: Story = {
+  args: {} as never,
+  render: () => (
+    <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
+    />
+  ),
+}
+
 export function Playground() {
   const defaultProps = {
     options: top100Films,
@@ -213,7 +223,7 @@ export function Playground() {
         {...defaultProps}
         id="controlled-demo"
         value={value}
-        onChange={(event: any, newValue: FilmOptionType | null) => {
+        onChange={(_event: unknown, newValue: FilmOptionType | null) => {
           setValue(newValue)
         }}
         renderInput={(params) => (
@@ -312,9 +322,4 @@ export function Playground() {
       />
     </Stack>
   )
-}
-
-interface FilmOptionType {
-  label: string
-  year: number
 }

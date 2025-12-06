@@ -4,14 +4,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import NavigationIcon from '@mui/icons-material/Navigation'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-import React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-export default {
+const meta = {
   title: 'Components/FloatingActionButton',
-}
+  component: Fab,
+  tags: ['autodocs'],
+} satisfies Meta<typeof Fab>
 
-export function FloatingActionButtons() {
-  return (
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const FloatingActionButtons: Story = {
+  render: () => (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab color="primary" aria-label="add">
         <AddIcon />
@@ -27,5 +32,5 @@ export function FloatingActionButtons() {
         <FavoriteIcon />
       </Fab>
     </Box>
-  )
+  ),
 }

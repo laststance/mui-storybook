@@ -8,24 +8,30 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuList from '@mui/material/MenuList'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-export default {
+const meta = {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
-} as ComponentMeta<typeof ButtonGroup>
+  tags: ['autodocs'],
+} satisfies Meta<typeof ButtonGroup>
 
-export const Default: ComponentStory<typeof ButtonGroup> = () => (
-  <ButtonGroup variant="contained" aria-label="outlined primary button group">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </ButtonGroup>
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const VariantButtonGroup: ComponentStory<typeof ButtonGroup> = () => {
-  return (
+export const Default: Story = {
+  render: () => (
+    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </ButtonGroup>
+  ),
+}
+
+export const VariantButtonGroup: Story = {
+  render: () => (
     <Box
       sx={{
         display: 'flex',
@@ -47,7 +53,7 @@ export const VariantButtonGroup: ComponentStory<typeof ButtonGroup> = () => {
         <Button>Three</Button>
       </ButtonGroup>
     </Box>
-  )
+  ),
 }
 
 const buttons = [
@@ -131,7 +137,7 @@ export function SplitButton() {
   }
 
   const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    _event: React.MouseEvent<HTMLLIElement, MouseEvent>,
     index: number
   ) => {
     setSelectedIndex(index)
