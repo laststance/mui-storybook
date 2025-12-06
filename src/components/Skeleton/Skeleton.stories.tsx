@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import MUISkeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Skeleton from './Skeleton'
 

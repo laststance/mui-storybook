@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import NavigationIcon from '@mui/icons-material/Navigation'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/FloatingActionButton',

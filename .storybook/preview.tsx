@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-vite'
 import { CssBaseline } from '@mui/material'
 import { DesignTokenProvider, designToken } from '../src/designToken'
 import muiBrandTheme from './MuiBrandTheme'
@@ -14,27 +14,30 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: 'light',
-      values: [
-        {
+      options: {
+        light: {
           name: 'light',
           value: '#fff',
         },
-        {
+
+        dark: {
           name: 'dark',
           value: 'rgb(10, 25, 41)',
         },
-        {
+
+        twitter: {
           name: 'twitter',
           value: '#00aced',
         },
-        {
+
+        facebook: {
           name: 'facebook',
           value: '#3b5998',
-        },
-      ],
+        }
+      }
     },
   },
+
   decorators: [
     (Story) => (
       <DesignTokenProvider theme={designToken}>
@@ -43,6 +46,12 @@ const preview: Preview = {
       </DesignTokenProvider>
     ),
   ],
+
+  initialGlobals: {
+    backgrounds: {
+      value: 'light'
+    }
+  }
 }
 
 export default preview

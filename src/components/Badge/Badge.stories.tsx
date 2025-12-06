@@ -3,7 +3,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import MUIBadge from '@mui/material/Badge'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Badge from './Badge'
 

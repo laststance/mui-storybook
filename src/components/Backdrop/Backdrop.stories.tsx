@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import MUIBackdrop from '@mui/material/Backdrop'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Backdrop from './Backdrop'

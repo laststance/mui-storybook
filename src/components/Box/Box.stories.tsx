@@ -1,6 +1,6 @@
 import MUIBox from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Box from './Box'
 

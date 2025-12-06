@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'

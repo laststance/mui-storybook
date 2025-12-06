@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MUISnackbar from '@mui/material/Snackbar'
 import CloseIcon from '@mui/icons-material/Close'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Snackbar from './Snackbar'

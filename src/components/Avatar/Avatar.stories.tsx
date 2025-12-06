@@ -2,7 +2,7 @@ import FolderIcon from '@mui/icons-material/Folder'
 import MUIAvatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Avatar from './Avatar'
 

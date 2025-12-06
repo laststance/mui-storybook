@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import Fade from '@mui/material/Fade'
 import MUIModal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Modal from './Modal'

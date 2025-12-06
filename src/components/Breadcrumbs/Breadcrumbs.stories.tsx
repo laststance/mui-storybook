@@ -5,7 +5,7 @@ import WhatshotIcon from '@mui/icons-material/Whatshot'
 import MUIBreadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Breadcrumbs from './Breadcrumbs'
 

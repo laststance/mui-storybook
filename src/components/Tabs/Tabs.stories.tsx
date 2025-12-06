@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import MUITabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Tabs from './Tabs'

@@ -1,44 +1,301 @@
-[01:46:06.427] [INFO] Storybook upgrade - v10.1.1
-[01:46:06.429] [INFO] Detecting projects...
-[01:46:06.429] [DEBUG] Finding Storybook projects...
-[01:46:06.733] [DEBUG] Found 1 Storybook projects
-[01:46:06.733] [INFO] Detecting projects: 1 projects
-[01:46:06.733] [DEBUG] Getting Storybook data...
-[01:46:06.733] [DEBUG] Getting Storybook info...
-[01:46:06.765] [DEBUG] Loading main config...
-[01:46:06.765] [DEBUG] Getting stories paths...
-[01:46:06.773] [DEBUG] Getting package manager...
-[01:46:06.936] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
-[01:46:06.936] [DEBUG] Getting Storybook version...
-[01:46:06.936] [DEBUG] /.storybook - Validating before version... undefined
-[01:46:06.936] [DEBUG] SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+[23:56:35.797] [INFO] Storybook upgrade - v10.1.4
+[23:56:35.798] [INFO] Detecting projects...
+[23:56:35.798] [DEBUG] Finding Storybook projects...
+[23:56:35.898] [DEBUG] Found 1 Storybook projects
+[23:56:35.899] [INFO] Detecting projects: 1 projects
+[23:56:35.899] [DEBUG] Getting Storybook data...
+[23:56:35.899] [DEBUG] Getting Storybook info...
+[23:56:35.953] [DEBUG] Loading main config...
+[23:56:35.953] [DEBUG] Getting stories paths...
+[23:56:35.960] [DEBUG] Getting package manager...
+[23:56:36.064] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:36.064] [DEBUG] Getting Storybook version...
+[23:56:36.064] [DEBUG] /.storybook - Validating before version... 8.6.14
+[23:56:36.064] [DEBUG] /.storybook - Validating upgrade compatibility...
+[23:56:36.065] [DEBUG] /.storybook - Fetching NPM version information...
+[23:56:36.065] [DEBUG] Getting CLI versions from NPM for storybook...
+[23:56:36.065] [DEBUG] Executing command: yarn npm info storybook --fields version --json
+[23:56:36.066] [DEBUG] Getting CLI versions from NPM for storybook@next...
+[23:56:36.066] [DEBUG] Executing command: yarn npm info storybook@next --fields version --json
+[23:56:36.817] [DEBUG] /.storybook - Evaluating blockers...
+[23:56:36.823] [DEBUG] Getting installed version for @storybook/experimental-addon-test...
+[23:56:36.823] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/experimental-addon-test
+[23:56:37.083] [INFO] 1 project detected
+[23:56:37.083] [DEBUG] Found 1 valid projects and 0 error projects
+[23:56:37.083] [INFO] Upgrading from 8.6.14 to 10.1.4
+[23:56:37.084] [DEBUG] Updating dependencies in /.storybook...
+[23:56:37.084] [INFO] /package.json
+[23:56:37.084] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:37.084] [DEBUG] Getting CLI versions from NPM for @storybook/test-runner...
+[23:56:37.084] [DEBUG] Executing command: yarn npm info @storybook/test-runner --fields version --json
+[23:56:38.690] [DEBUG] {
+  "upgradedDependencies": []
+}
+[23:56:38.690] [DEBUG] {
+  "upgradedDevDependencies": [
+    "@storybook/addon-a11y@^10.1.4",
+    "@storybook/react@^10.1.4",
+    "@storybook/react-vite@^10.1.4",
+    "eslint-plugin-storybook@^10.1.4",
+    "storybook@^10.1.4",
+    "@storybook/test-runner@^0.24.2"
+  ]
+}
+[23:56:38.690] [DEBUG] {
+  "upgradedPeerDependencies": []
+}
+[23:56:38.690] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:38.690] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:38.690] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:38.690] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:38.690] [DEBUG] Getting CLI versions from NPM for @storybook/addon-a11y...
+[23:56:38.690] [DEBUG] Executing command: yarn npm info @storybook/addon-a11y --fields version --json
+[23:56:40.886] [DEBUG] Getting CLI versions from NPM for @storybook/react...
+[23:56:40.886] [DEBUG] Executing command: yarn npm info @storybook/react --fields version --json
+[23:56:41.606] [DEBUG] Getting CLI versions from NPM for @storybook/react-vite...
+[23:56:41.606] [DEBUG] Executing command: yarn npm info @storybook/react-vite --fields version --json
+[23:56:43.284] [DEBUG] Getting CLI versions from NPM for eslint-plugin-storybook...
+[23:56:43.285] [DEBUG] Executing command: yarn npm info eslint-plugin-storybook --fields version --json
+[23:56:44.171] [DEBUG] Using cached version for storybook...
+[23:56:44.171] [DEBUG] Using cached version for @storybook/test-runner...
+[23:56:44.171] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.171] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.172] [INFO] Updated package versions in package.json files
+[23:56:44.172] [DEBUG] Starting automigration collection across 1 projects and 19 fixes...
+[23:56:44.172] [INFO] Checking automigrations for /.storybook...
+[23:56:44.172] [DEBUG] Processing project: /.storybook
+[23:56:44.172] [DEBUG] Checking fix eslintPlugin for project /.storybook...
+[23:56:44.172] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.172] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.172] [DEBUG] Checking fix addon-mdx-gfm-remove for project /.storybook...
+[23:56:44.172] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.172] [DEBUG] Checking fix addon-storysource-code-panel for project /.storybook...
+[23:56:44.172] [DEBUG] Checking fix upgrade-storybook-related-dependencies for project /.storybook...
+[23:56:44.172] [DEBUG] Checking for incompatible storybook packages...
+[23:56:44.172] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.173] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:44.173] [DEBUG] Getting installed version for @storybook/addon-essentials...
+[23:56:44.173] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/addon-essentials
+[23:56:44.175] [DEBUG] Getting installed version for @storybook/addon-interactions...
+[23:56:44.175] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/addon-interactions
+[23:56:44.176] [DEBUG] Getting installed version for @storybook/manager-api...
+[23:56:44.176] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/manager-api
+[23:56:44.177] [DEBUG] Getting installed version for @storybook/test...
+[23:56:44.177] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/test
+[23:56:44.178] [DEBUG] Getting installed version for @storybook/theming...
+[23:56:44.178] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/theming
+[23:56:44.498] [DEBUG] Getting CLI versions from NPM for @storybook/addon-interactions...
+[23:56:44.498] [DEBUG] Executing command: yarn npm info @storybook/addon-interactions --fields version --json
+[23:56:44.499] [DEBUG] Getting CLI versions from NPM for @storybook/test...
+[23:56:44.499] [DEBUG] Executing command: yarn npm info @storybook/test --fields version --json
+[23:56:44.506] [DEBUG] Getting CLI versions from NPM for @storybook/addon-essentials...
+[23:56:44.506] [DEBUG] Executing command: yarn npm info @storybook/addon-essentials --fields version --json
+[23:56:44.508] [DEBUG] Getting CLI versions from NPM for @storybook/manager-api...
+[23:56:44.508] [DEBUG] Executing command: yarn npm info @storybook/manager-api --fields version --json
+[23:56:44.514] [DEBUG] Getting CLI versions from NPM for @storybook/theming...
+[23:56:44.514] [DEBUG] Executing command: yarn npm info @storybook/theming --fields version --json
+[23:56:46.208] [DEBUG] Checking fix initial-globals for project /.storybook...
+[23:56:46.215] [DEBUG] Checking fix addon-globals-api for project /.storybook...
+[23:56:46.219] [DEBUG] Checking fix addon-a11y-addon-test for project /.storybook...
+[23:56:46.219] [DEBUG] Checking fix consolidated-imports for project /.storybook...
+[23:56:46.219] [DEBUG] Checking fix addon-experimental-test for project /.storybook...
+[23:56:46.219] [DEBUG] Using cached installed version for @storybook/experimental-addon-test...
+[23:56:46.219] [DEBUG] Checking fix rnstorybook-config for project /.storybook...
+[23:56:46.219] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.219] [DEBUG] Checking fix migrate-addon-console for project /.storybook...
+[23:56:46.219] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.219] [DEBUG] Checking fix nextjs-to-nextjs-vite for project /.storybook...
+[23:56:46.219] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.219] [DEBUG] Checking fix remove-addon-interactions for project /.storybook...
+[23:56:46.219] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.219] [DEBUG] Checking fix renderer-to-framework for project /.storybook...
+[23:56:46.221] [DEBUG] Checking fix remove-essential-addons for project /.storybook...
+[23:56:46.221] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.221] [DEBUG] Checking fix addon-a11y-parameters for project /.storybook...
+[23:56:46.222] [DEBUG] Checking fix remove-docs-autodocs for project /.storybook...
+[23:56:46.223] [DEBUG] Checking fix wrap-getAbsolutePath for project /.storybook...
+[23:56:46.224] [DEBUG] Checking fix fix-faux-esm-require for project /.storybook...
+[23:56:46.224] [INFO] 
+Automigrations detected:
+[23:56:46.225] [INFO] ✔ addon-globals-api
+[23:56:46.225] [INFO] ✔ consolidated-imports
+[23:56:46.225] [INFO] ✔ remove-addon-interactions
+[23:56:46.225] [INFO] ✔ renderer-to-framework
+[23:56:46.225] [INFO] ✔ remove-essential-addons
+[23:56:46.225] [INFO] ✔ remove-docs-autodocs
+[23:56:46.225] [INFO] 6 automigration(s) detected
+[23:56:46.225] [INFO] Running all detected automigrations:
+[23:56:46.225] [INFO]   - addon-globals-api (/.storybook)
+[23:56:46.225] [INFO]   - consolidated-imports (/.storybook)
+[23:56:46.225] [INFO]   - remove-addon-interactions (/.storybook)
+[23:56:46.225] [INFO]   - renderer-to-framework (/.storybook)
+[23:56:46.226] [INFO]   - remove-essential-addons (/.storybook)
+[23:56:46.226] [INFO]   - remove-docs-autodocs (/.storybook)
+[23:56:46.337] [INFO] ✔ addon-globals-api
+[23:56:46.345] [INFO] ✔ consolidated-imports
+[23:56:46.346] [DEBUG] Uninstalling @storybook/addon-interactions
+[23:56:46.346] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.346] [DEBUG] Removing '@storybook/addon-interactions' from main.js addons field.
+[23:56:46.346] [INFO] ✔ remove-addon-interactions
+[23:56:46.347] [DEBUG] 
+Migrating @storybook/react to @storybook/react-vite
+[23:56:46.350] [DEBUG] Updating package.json files...
+[23:56:46.350] [INFO] ✔ renderer-to-framework
+[23:56:46.351] [DEBUG] Uninstalling @storybook/addon-essentials
+[23:56:46.351] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.351] [DEBUG] Removing '@storybook/addon-essentials' from main.js addons field.
+[23:56:46.353] [DEBUG] Getting Storybook info...
+[23:56:46.354] [DEBUG] Loading main config...
+[23:56:46.354] [DEBUG] Getting stories paths...
+[23:56:46.354] [DEBUG] Getting package manager...
+[23:56:46.357] [DEBUG] Getting package.json info for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.357] [DEBUG] Getting Storybook version...
+[23:56:46.358] [INFO] Verifying @storybook/addon-docs
+[23:56:46.358] [DEBUG] Getting dependency version for storybook...
+[23:56:46.358] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.358] [INFO] Installing @storybook/addon-docs@^10.1.4
+[23:56:46.358] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:56:46.358] [DEBUG] Getting CLI versions from NPM for @storybook/addon-docs...
+[23:56:46.358] [DEBUG] Executing command: yarn npm info @storybook/addon-docs --fields version --json
+[23:56:47.057] [INFO] Adding '@storybook/addon-docs' to the "addons" field in /Users/ryotamurakami/laststance/mui-storybook/.storybook/main.ts
+[23:56:47.099] [INFO] ✔ remove-essential-addons
+[23:56:47.100] [INFO] ✔ remove-docs-autodocs
+[23:56:47.100] [INFO] Completed automigrations for /.storybook
+[23:56:47.100] [INFO] Installing dependencies...
+[23:56:47.100] [INFO] Installing dependencies...
+[23:56:47.100] [DEBUG] Executing command: yarn install
+[23:56:47.235] [INFO] Installing dependencies...: ➤ YN0087: Migrated your project to the latest Yarn version 🚀
 
-Are you running the Storybook CLI in a project without Storybook?
-It might help if you specify your Storybook config directory with the --config-dir flag.
-[01:46:06.936] [INFO] 1 project detected
-[01:46:06.936] [DEBUG] Found 0 valid projects and 1 error projects
-[01:46:06.937] [ERROR] Failed to get projects
-[01:46:06.937] [ERROR] [38;2;241;97;97mError: ❌ Storybook found errors while collecting data for the following projects:
-/.storybook:
-SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+[23:56:47.235] [INFO] Installing dependencies...: ➤ YN0087: Migrated your p
+[23:56:47.235] [INFO] Installing dependencies...: 
 
-Are you running the Storybook CLI in a project without Storybook?
-It might help if you specify your Storybook config directory with the --config-dir flag.
-    at validateVersion (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/chunk-ZL2W4QN7.js:252:11)
-    at processProject (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/chunk-ZL2W4QN7.js:297:82)
-Please fix the errors and run the upgrade command again.[39m
-    at getProjects (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/chunk-ZL2W4QN7.js:468:13)
-    at async upgrade (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/run-CFLHKUTN.js:9351:24)
-    at async file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/run-CFLHKUTN.js:9541:70
-    at async withTelemetry (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/storybook/dist/_node-chunks/chunk-HS7MLKJ7.js:205:12)
-    at async Command.<anonymous> (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/run-CFLHKUTN.js:9537:3)
-[01:46:06.939] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
-[01:46:07.689] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
-/.storybook:
-SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+[23:56:47.235] [INFO] Installing dependencies...: 
+[23:56:47.235] [INFO] Installing dependencies...: ➤ YN0000: · Yarn 4.9.4
 
-Are you running the Storybook CLI in a project without Storybook?
-It might help if you specify your Storybook config directory with the --config-dir flag.
-    at validateVersion (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/chunk-ZL2W4QN7.js:252:11)
-    at processProject (file:///Users/ryotamurakami/.npm/_npx/6aa94bfab26a8417/node_modules/@storybook/cli/dist/_node-chunks/chunk-ZL2W4QN7.js:297:82)
-Please fix the errors and run the upgrade command again.
+[23:56:47.235] [INFO] Installing dependencies...: ➤ YN0000: · Yarn 4.9.4
+[23:56:47.239] [INFO] Installing dependencies...: ➤ YN0000: ┌ Resolution step
+
+[23:56:47.239] [INFO] Installing dependencies...: ➤ YN0000: ┌ Resolution st
+[23:56:51.413] [INFO] Installing dependencies...: ➤ YN0085: │ + @mui/icons-material@npm:7.3.6, @mui/material@npm:7.3.6, @mui/styled-engine-sc@npm:5.6.1, @mui/system@npm:7.3.6, @mui/types@npm:7.4.9, and 1064 more.
+
+[23:56:51.413] [INFO] Installing dependencies...: ➤ YN0085: │ + @mui/icons-
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 4s 184ms
+
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: ┌ Post-resolution validation
+
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: ┌ Post-resoluti
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0060: │ eslint is listed by your project with version 8.17.0 (pa36702), which doesn't satisfy what @typescript-eslint/utils (via eslint-plugin-storybook) and other dependencies request (^8.57.0).
+➤ YN0060: │ storybook is listed by your project with version 10.1.4 (pad4994), which doesn't satisfy what @storybook/manager-api and other dependencies request (but they have non-overlapping ranges!).
+➤ YN0060: │ styled-components is listed by your project with version 6.1.19 (p904002), which doesn't satisfy what @mui/styled-engine-sc requests (^5.3.1).
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0086: │ Some peer dependencies are incorrectly met by dependencies; run yarn explain peer-requirements for details.
+
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0060: │ eslint is lis
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+
+[23:56:51.423] [INFO] Installing dependencies...: ➤ YN0000: └ Completed
+➤ Y
+[23:56:53.876] [INFO] Installing dependencies...: ➤ YN0013: │ 971 packages were added to the project (+ 337.04 MiB).
+
+[23:56:53.876] [INFO] Installing dependencies...: ➤ YN0013: │ 971 packages 
+[23:56:53.877] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 2s 453ms
+
+[23:56:53.877] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 
+[23:56:53.890] [INFO] Installing dependencies...: ➤ YN0000: ┌ Link step
+
+[23:56:53.890] [INFO] Installing dependencies...: ➤ YN0000: ┌ Link step
+[23:57:06.049] [INFO] Installing dependencies...: ➤ YN0007: │ esbuild@npm:0.25.12 must be built because it never has been before or the last one failed
+
+[23:57:06.049] [INFO] Installing dependencies...: ➤ YN0007: │ esbuild@npm:0
+[23:57:06.050] [INFO] Installing dependencies...: ➤ YN0007: │ esbuild@npm:0.27.1 must be built because it never has been before or the last one failed
+➤ YN0007: │ @swc/core@npm:1.15.3 [6d5c7] must be built because it never has been before or the last one failed
+➤ YN0007: │ core-js-pure@npm:3.22.4 must be built because it never has been before or the last one failed
+➤ YN0007: │ unrs-resolver@npm:1.11.1 must be built because it never has been before or the last one failed
+
+[23:57:06.050] [INFO] Installing dependencies...: ➤ YN0007: │ esbuild@npm:0
+[23:57:06.145] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 12s 255ms
+
+[23:57:06.145] [INFO] Installing dependencies...: ➤ YN0000: └ Completed in 
+[23:57:06.186] [INFO] Installing dependencies...: ➤ YN0000: · Done with warnings in 18s 950ms
+
+[23:57:06.186] [INFO] Installing dependencies...: ➤ YN0000: · Done with war
+[23:57:06.323] [INFO] Dependencies installed
+[23:57:06.323] [INFO] Dependencies installed
+[23:57:06.324] [INFO] Checking the health of your project(s)..
+[23:57:06.324] [DEBUG] Using cached package.json for /Users/ryotamurakami/laststance/mui-storybook/package.json...
+[23:57:06.324] [DEBUG] Executing command: yarn info --name-only --recursive @storybook/* storybook
+[23:57:06.483] [DEBUG] Installation found for @storybook/*, storybook: ├─ @storybook/addon-a11y@npm:10.1.4
+├─ @storybook/addon-docs@npm:10.1.4
+├─ @storybook/builder-vite@npm:10.1.4
+├─ @storybook/csf-plugin@npm:10.1.4
+├─ @storybook/global@npm:5.0.0
+├─ @storybook/icons@npm:2.0.1
+├─ @storybook/instrumenter@npm:8.6.14
+├─ @storybook/manager-api@npm:8.6.14
+├─ @storybook/react-dom-shim@npm:10.1.4
+├─ @storybook/react-vite@npm:10.1.4
+├─ @storybook/react@npm:10.1.4
+├─ @storybook/test-runner@npm:0.24.2
+├─ @storybook/test@npm:8.6.14
+├─ @storybook/theming@npm:8.6.14
+└─ storybook@npm:10.1.4
+[23:57:06.483] [DEBUG] Processing package ├─ @storybook/addon-a11y@npm:10.1.4
+[23:57:06.483] [DEBUG] Package @storybook/addon-a11y found with version 10.1.4
+[23:57:06.483] [DEBUG] Processing package ├─ @storybook/addon-docs@npm:10.1.4
+[23:57:06.483] [DEBUG] Package @storybook/addon-docs found with version 10.1.4
+[23:57:06.483] [DEBUG] Processing package ├─ @storybook/builder-vite@npm:10.1.4
+[23:57:06.483] [DEBUG] Package @storybook/builder-vite found with version 10.1.4
+[23:57:06.483] [DEBUG] Processing package ├─ @storybook/csf-plugin@npm:10.1.4
+[23:57:06.483] [DEBUG] Package @storybook/csf-plugin found with version 10.1.4
+[23:57:06.483] [DEBUG] Processing package ├─ @storybook/global@npm:5.0.0
+[23:57:06.484] [DEBUG] Package @storybook/global found with version 5.0.0
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/icons@npm:2.0.1
+[23:57:06.484] [DEBUG] Package @storybook/icons found with version 2.0.1
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/instrumenter@npm:8.6.14
+[23:57:06.484] [DEBUG] Package @storybook/instrumenter found with version 8.6.14
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/manager-api@npm:8.6.14
+[23:57:06.484] [DEBUG] Package @storybook/manager-api found with version 8.6.14
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/react-dom-shim@npm:10.1.4
+[23:57:06.484] [DEBUG] Package @storybook/react-dom-shim found with version 10.1.4
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/react-vite@npm:10.1.4
+[23:57:06.484] [DEBUG] Package @storybook/react-vite found with version 10.1.4
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/react@npm:10.1.4
+[23:57:06.484] [DEBUG] Package @storybook/react found with version 10.1.4
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/test-runner@npm:0.24.2
+[23:57:06.484] [DEBUG] Package @storybook/test-runner found with version 0.24.2
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/test@npm:8.6.14
+[23:57:06.484] [DEBUG] Package @storybook/test found with version 8.6.14
+[23:57:06.484] [DEBUG] Processing package ├─ @storybook/theming@npm:8.6.14
+[23:57:06.484] [DEBUG] Package @storybook/theming found with version 8.6.14
+[23:57:06.484] [DEBUG] Processing package └─ storybook@npm:10.1.4
+[23:57:06.484] [DEBUG] Package storybook found with version 10.1.4
+[23:57:06.484] [WARN] /.storybook: 1 issue found
+[23:57:06.484] [INFO] You are currently using Storybook 10.1.4 but you have packages which are incompatible with it:
+
+- @storybook/manager-api@8.6.14 which depends on ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/manager-api
+- @storybook/test@8.6.14 which depends on 8.6.14
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/test
+- @storybook/theming@8.6.14 which depends on ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/theming
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more details on compatibility guidance, see:
+https://github.com/storybookjs/storybook/issues/32836
+[23:57:06.485] [INFO] Storybook doctor is complete!
+[23:57:06.485] [INFO] You can always recheck the health of your project(s) by running:
+npx storybook doctor
+[23:57:06.485] [INFO] Your project(s) have been upgraded successfully, but some issues were found which need your attention, please check Storybook doctor logs above.
+[23:57:06.485] [INFO] If you want to learn more about the automigrations that executed in your project(s), please check the following links:
+• addon-globals-api: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#viewportbackgrounds-addon-synchronized-configuration-and-globals-usage
+• consolidated-imports: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#dropped-support-for-legacy-packages
+• remove-addon-interactions: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#essentials-addon-viewport-controls-interactions-and-actions-moved-to-core
+• renderer-to-framework: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#moving-from-renderer-based-to-framework-based-configuration
+• remove-essential-addons: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#essentials-addon-viewport-controls-interactions-and-actions-moved-to-core
+• remove-docs-autodocs: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#mainjs-docsautodocs-is-deprecated
+[23:57:06.486] [INFO] For a full list of changes, please check our migration guide: https://storybook.js.org/docs/releases/migration-guide?ref=upgrade
+[23:57:06.486] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
+[23:57:08.440] [INFO] Storybook upgrade completed!

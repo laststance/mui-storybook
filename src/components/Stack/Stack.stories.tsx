@@ -2,7 +2,7 @@ import Divider from '@mui/material/Divider'
 import Paper from '@mui/material/Paper'
 import MUIStack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Stack from './Stack'
 
