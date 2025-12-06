@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react-vite'
-import { CssBaseline } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { withThemeFromJSXProvider } from '@storybook/addon-themes'
+import { lightTheme, darkTheme } from '../src/themes'
 import { DesignTokenProvider, designToken } from '../src/designToken'
 import muiBrandTheme from './MuiBrandTheme'
 
@@ -13,45 +15,24 @@ const preview: Preview = {
         order: ['Default'],
       },
     },
-    backgrounds: {
-      options: {
-        light: {
-          name: 'light',
-          value: '#fff',
-        },
-
-        dark: {
-          name: 'dark',
-          value: 'rgb(10, 25, 41)',
-        },
-
-        twitter: {
-          name: 'twitter',
-          value: '#00aced',
-        },
-
-        facebook: {
-          name: 'facebook',
-          value: '#3b5998',
-        }
-      }
-    },
   },
 
   decorators: [
     (Story) => (
       <DesignTokenProvider theme={designToken}>
-        <CssBaseline />
         <Story />
       </DesignTokenProvider>
     ),
+    withThemeFromJSXProvider({
+      themes: {
+        light: lightTheme,
+        dark: darkTheme,
+      },
+      defaultTheme: 'light',
+      Provider: ThemeProvider,
+      GlobalStyles: CssBaseline,
+    }),
   ],
-
-  initialGlobals: {
-    backgrounds: {
-      value: 'light'
-    }
-  }
 }
 
 export default preview
