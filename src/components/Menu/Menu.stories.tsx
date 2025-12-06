@@ -9,6 +9,7 @@ import MUIMenu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect, userEvent, within } from 'storybook/test'
 
 import Menu from './Menu'
 
@@ -115,4 +116,37 @@ export function Dense() {
       </MUIMenu>
     </div>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const open = Boolean(anchorEl)
+
+    return (
+      <div>
+        <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
+          Open Menu
+        </Button>
+        <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+          <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+          <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
+          <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
+        </MUIMenu>
+      </div>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const menuButton = canvas.getByRole('button', { name: /open menu/i })
+
+    await userEvent.click(menuButton)
+
+    const menu = await within(document.body).findByRole('menu')
+    await expect(menu).toBeInTheDocument()
+
+    const profileItem = within(menu).getByRole('menuitem', { name: /profile/i })
+    await userEvent.click(profileItem)
+  },
 }

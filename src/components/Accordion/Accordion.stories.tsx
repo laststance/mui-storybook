@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import Typography from '@mui/material/Typography'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect, userEvent, within } from 'storybook/test'
 
 import Accordion from './Accordion'
 
@@ -32,6 +33,31 @@ export const Default: Story = {
       </AccordionDetails>
     </MuiAccordion>
   ),
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => (
+    <MuiAccordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel-content">
+        <Typography>Click to Expand</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>Accordion content is now visible.</Typography>
+      </AccordionDetails>
+    </MuiAccordion>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const accordionButton = canvas.getByRole('button', { name: /click to expand/i })
+
+    await expect(accordionButton).toHaveAttribute('aria-expanded', 'false')
+    await userEvent.click(accordionButton)
+    await expect(accordionButton).toHaveAttribute('aria-expanded', 'true')
+
+    const content = canvas.getByText(/accordion content is now visible/i)
+    await expect(content).toBeVisible()
+  },
 }
 
 export function Basic() {

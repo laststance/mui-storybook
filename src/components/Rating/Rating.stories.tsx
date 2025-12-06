@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect, userEvent, within } from 'storybook/test'
 
 import Rating from './Rating'
 
@@ -22,6 +23,20 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     defaultValue: 2,
+  },
+}
+
+export const InteractionTest: Story = {
+  args: {
+    defaultValue: 0,
+    'aria-label': 'Rating',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const rating = canvas.getByRole('radio', { name: '3 Stars' })
+
+    await userEvent.click(rating)
+    await expect(rating).toBeChecked()
   },
 }
 

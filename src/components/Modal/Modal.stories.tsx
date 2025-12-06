@@ -5,6 +5,7 @@ import MUIModal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect, userEvent, within } from 'storybook/test'
 
 import Modal from './Modal'
 
@@ -130,6 +131,38 @@ export function TransitionsModal() {
       </MUIModal>
     </div>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Modal
+        </Button>
+        <MUIModal open={open} onClose={() => setOpen(false)}>
+          <Box sx={style}>
+            <Typography variant="h6">Test Modal</Typography>
+            <Button onClick={() => setOpen(false)}>Close</Button>
+          </Box>
+        </MUIModal>
+      </div>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const openButton = canvas.getByRole('button', { name: /open modal/i })
+
+    await userEvent.click(openButton)
+
+    const modalContent = await within(document.body).findByText('Test Modal')
+    await expect(modalContent).toBeInTheDocument()
+
+    const closeButton = within(document.body).getByRole('button', { name: /close/i })
+    await userEvent.click(closeButton)
+  },
 }
 
 export function NestedModals() {

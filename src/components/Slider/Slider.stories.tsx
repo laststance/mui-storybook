@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect, within } from 'storybook/test'
 
 import Slider from './Slider'
 
@@ -20,6 +21,20 @@ export const Default: Story = {
   args: {
     defaultValue: 30,
     'aria-label': 'Default slider',
+  },
+}
+
+export const InteractionTest: Story = {
+  args: {
+    defaultValue: 50,
+    'aria-label': 'Test slider',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const slider = canvas.getByRole('slider')
+
+    await expect(slider).toBeInTheDocument()
+    await expect(slider).toHaveAttribute('aria-valuenow', '50')
   },
 }
 
