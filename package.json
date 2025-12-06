@@ -39,6 +39,7 @@
     "all-contributors-cli": "^6.20.0",
     "axe-playwright": "^2.2.2",
     "chromatic": "^11.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-typescript": "^3.0.0",
@@ -47,6 +48,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-storybook": "^10.1.4",
+    "http-server": "^14.1.1",
     "playwright": "^1.57.0",
     "plop": "^3.1.0",
     "prettier": "^2.6.2",
@@ -57,6 +59,7 @@
     "storybook": "^10.1.4",
     "styled-components": "^6.1.19",
     "typescript": "^5.9.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "wait-on": "^9.0.3"
   }
 }
