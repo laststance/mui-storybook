@@ -1,3 +1,4 @@
+import type { Color } from '@mui/material'
 import type {
   Theme,
   ThemeOptions,
@@ -16,7 +17,6 @@ import type {
   Direction,
 } from '@mui/material/styles'
 import type { Spacing, SpacingOptions } from '@mui/system'
-import type { Color } from '@mui/material'
 
 export function assertCast<T>(_v: unknown): asserts _v is T {}
 

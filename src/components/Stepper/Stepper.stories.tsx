@@ -5,10 +5,11 @@ import StepContent from '@mui/material/StepContent'
 import StepLabel from '@mui/material/StepLabel'
 import MUIStepper from '@mui/material/Stepper'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Stepper from './Stepper'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Stepper',
@@ -34,10 +35,17 @@ export const Default: Story = {
           ))}
         </MUIStepper>
         <Box sx={{ mt: 2 }}>
-          <Button disabled={activeStep === 0} onClick={() => setActiveStep((prev) => prev - 1)}>
+          <Button
+            disabled={activeStep === 0}
+            onClick={() => setActiveStep((prev) => prev - 1)}
+          >
             Back
           </Button>
-          <Button variant="contained" onClick={() => setActiveStep((prev) => prev + 1)} sx={{ ml: 1 }}>
+          <Button
+            variant="contained"
+            onClick={() => setActiveStep((prev) => prev + 1)}
+            sx={{ ml: 1 }}
+          >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
           </Button>
         </Box>
@@ -49,8 +57,14 @@ export const Default: Story = {
 export function Vertical() {
   const [activeStep, setActiveStep] = React.useState(0)
   const verticalSteps = [
-    { label: 'Select campaign settings', description: 'Select your campaign settings and options' },
-    { label: 'Create an ad group', description: 'An ad group contains one or more ads' },
+    {
+      label: 'Select campaign settings',
+      description: 'Select your campaign settings and options',
+    },
+    {
+      label: 'Create an ad group',
+      description: 'An ad group contains one or more ads',
+    },
     { label: 'Create an ad', description: 'Create your first ad' },
   ]
 
@@ -63,10 +77,18 @@ export function Vertical() {
             <StepContent>
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
-                <Button variant="contained" onClick={() => setActiveStep((prev) => prev + 1)} sx={{ mt: 1, mr: 1 }}>
+                <Button
+                  variant="contained"
+                  onClick={() => setActiveStep((prev) => prev + 1)}
+                  sx={{ mt: 1, mr: 1 }}
+                >
                   {index === verticalSteps.length - 1 ? 'Finish' : 'Continue'}
                 </Button>
-                <Button disabled={index === 0} onClick={() => setActiveStep((prev) => prev - 1)} sx={{ mt: 1, mr: 1 }}>
+                <Button
+                  disabled={index === 0}
+                  onClick={() => setActiveStep((prev) => prev - 1)}
+                  sx={{ mt: 1, mr: 1 }}
+                >
                   Back
                 </Button>
               </Box>

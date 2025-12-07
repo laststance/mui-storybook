@@ -11,8 +11,9 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
 import Box from '@mui/material/Box'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/ToggleButton',
@@ -35,7 +36,7 @@ export function SingleSelection() {
 
   const handleAlignment = (
     _event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null
+    newAlignment: string | null,
   ) => {
     setAlignment(newAlignment)
   }
@@ -68,7 +69,7 @@ export function MultipleSelection() {
 
   const handleFormat = (
     _event: React.MouseEvent<HTMLElement>,
-    newFormats: string[]
+    newFormats: string[],
   ) => {
     setFormats(newFormats)
   }
@@ -97,7 +98,7 @@ export function Sizes() {
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
-    newAlignment: string
+    newAlignment: string,
   ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment)
@@ -166,7 +167,7 @@ export function Vertical() {
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
-    nextView: string
+    nextView: string,
   ) => {
     if (nextView !== null) {
       setView(nextView)
@@ -198,7 +199,7 @@ export function Colors() {
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
-    newAlignment: string
+    newAlignment: string,
   ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment)

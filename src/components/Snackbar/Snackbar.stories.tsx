@@ -1,12 +1,13 @@
+import CloseIcon from '@mui/icons-material/Close'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MUISnackbar from '@mui/material/Snackbar'
-import CloseIcon from '@mui/icons-material/Close'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Snackbar from './Snackbar'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Snackbar',
@@ -50,8 +51,16 @@ export function WithSuccessAlert() {
       <Button variant="contained" color="success" onClick={() => setOpen(true)}>
         Show Success
       </Button>
-      <MUISnackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+      <MUISnackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
           This is a success message!
         </Alert>
       </MUISnackbar>
@@ -67,8 +76,16 @@ export function WithErrorAlert() {
       <Button variant="contained" color="error" onClick={() => setOpen(true)}>
         Show Error
       </Button>
-      <MUISnackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity="error" sx={{ width: '100%' }}>
+      <MUISnackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity="error"
+          sx={{ width: '100%' }}
+        >
           This is an error message!
         </Alert>
       </MUISnackbar>
@@ -103,7 +120,12 @@ export function WithAction() {
       <Button color="secondary" size="small" onClick={() => setOpen(false)}>
         UNDO
       </Button>
-      <IconButton size="small" aria-label="close" color="inherit" onClick={() => setOpen(false)}>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={() => setOpen(false)}
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
     </React.Fragment>

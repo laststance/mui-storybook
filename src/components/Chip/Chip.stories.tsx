@@ -4,10 +4,11 @@ import TagFacesIcon from '@mui/icons-material/TagFaces'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Chip from './Chip'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Chip',
@@ -111,7 +112,12 @@ export function ClickableAndDeletable() {
 export function ClickableLink() {
   return (
     <Stack direction="row" spacing={1}>
-      <Chip label="Clickable Link" component={'a' as const} {...{ href: '#basic-chip' }} clickable />
+      <Chip
+        label="Clickable Link"
+        component={'a' as const}
+        {...{ href: '#basic-chip' }}
+        clickable
+      />
       <Chip
         label="Clickable Link"
         component={'a' as const}
@@ -177,7 +183,7 @@ export function ChipsArray() {
 
   const handleDelete = (chipToDelete: { key: any; label?: string }) => () => {
     setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
+      chips.filter((chip) => chip.key !== chipToDelete.key),
     )
   }
 

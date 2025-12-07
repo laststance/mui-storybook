@@ -2,9 +2,10 @@ import FolderIcon from '@mui/icons-material/Folder'
 import MUIAvatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Avatar from './Avatar'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Avatar',
@@ -24,9 +25,18 @@ export const Default: Story = {
 export function ImageAvatar() {
   return (
     <Stack direction="row" spacing={2}>
-      <MUIAvatar alt="Avatar 1" src="https://mui.com/static/images/avatar/1.jpg" />
-      <MUIAvatar alt="Avatar 2" src="https://mui.com/static/images/avatar/2.jpg" />
-      <MUIAvatar alt="Avatar 3" src="https://mui.com/static/images/avatar/3.jpg" />
+      <MUIAvatar
+        alt="Avatar 1"
+        src="https://mui.com/static/images/avatar/1.jpg"
+      />
+      <MUIAvatar
+        alt="Avatar 2"
+        src="https://mui.com/static/images/avatar/2.jpg"
+      />
+      <MUIAvatar
+        alt="Avatar 3"
+        src="https://mui.com/static/images/avatar/3.jpg"
+      />
     </Stack>
   )
 }

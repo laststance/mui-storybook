@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Container> = {
   title: 'Layout/Container',
@@ -102,7 +103,9 @@ export const DisableGutters: Story = {
     maxWidth: 'md',
     children: (
       <Box sx={{ bgcolor: 'primary.light', p: 2 }}>
-        <Typography>Container without gutters (no horizontal padding)</Typography>
+        <Typography>
+          Container without gutters (no horizontal padding)
+        </Typography>
       </Box>
     ),
   },

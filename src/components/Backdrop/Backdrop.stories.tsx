@@ -1,12 +1,13 @@
+import MUIBackdrop from '@mui/material/Backdrop'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
-import MUIBackdrop from '@mui/material/Backdrop'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Backdrop from './Backdrop'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Backdrop',

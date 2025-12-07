@@ -8,8 +8,9 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuList from '@mui/material/MenuList'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/ButtonGroup',
@@ -138,7 +139,7 @@ export function SplitButton() {
 
   const handleMenuItemClick = (
     _event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    index: number
+    index: number,
   ) => {
     setSelectedIndex(index)
     setOpen(false)

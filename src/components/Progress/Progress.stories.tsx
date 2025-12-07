@@ -3,10 +3,11 @@ import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Progress from './Progress'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Progress',

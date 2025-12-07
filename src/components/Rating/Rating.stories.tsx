@@ -3,13 +3,14 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Box from '@mui/material/Box'
 import MUIRating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
-import type { Meta, StoryObj } from '@storybook/react-vite'
+import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
 import Rating from './Rating'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Rating',
@@ -33,12 +34,12 @@ export const InteractionTest: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    
+
     // MUI Rating uses radio inputs with accessible names like "3 Stars" or similar
     // Get all radio buttons and click the third one (index 2 = 3 stars)
     const radioButtons = canvas.getAllByRole('radio')
     const thirdStar = radioButtons[2] // 0-indexed: 0=1star, 1=2stars, 2=3stars
-    
+
     await userEvent.click(thirdStar)
     await expect(thirdStar).toBeChecked()
   },
@@ -50,10 +51,7 @@ export function Controlled() {
   return (
     <Box>
       <Typography component="legend">Controlled</Typography>
-      <MUIRating
-        value={value}
-        onChange={(_, newValue) => setValue(newValue)}
-      />
+      <MUIRating value={value} onChange={(_, newValue) => setValue(newValue)} />
     </Box>
   )
 }

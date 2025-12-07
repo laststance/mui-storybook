@@ -7,11 +7,12 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MUIMenu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
 import Menu from './Menu'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Menu',
@@ -33,10 +34,17 @@ export const Default: Story = {
 
     return (
       <div>
-        <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
+        <Button
+          variant="contained"
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+        >
           Open Menu
         </Button>
-        <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+        <MUIMenu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={() => setAnchorEl(null)}
+        >
           <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
@@ -55,7 +63,11 @@ export function Basic() {
       <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
         Dashboard
       </Button>
-      <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+      <MUIMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+      >
         <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
@@ -73,7 +85,11 @@ export function WithIcons() {
       <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
         Edit
       </Button>
-      <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+      <MUIMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+      >
         <MenuItem onClick={() => setAnchorEl(null)}>
           <ListItemIcon>
             <ContentCut fontSize="small" />
@@ -108,11 +124,23 @@ export function Dense() {
       <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
         Dense Menu
       </Button>
-      <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
-        <MenuItem dense onClick={() => setAnchorEl(null)}>Single</MenuItem>
-        <MenuItem dense onClick={() => setAnchorEl(null)}>1.15</MenuItem>
-        <MenuItem dense onClick={() => setAnchorEl(null)}>Double</MenuItem>
-        <MenuItem dense onClick={() => setAnchorEl(null)}>Custom: 1.2</MenuItem>
+      <MUIMenu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Single
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          1.15
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Double
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Custom: 1.2
+        </MenuItem>
       </MUIMenu>
     </div>
   )
@@ -126,10 +154,17 @@ export const InteractionTest: Story = {
 
     return (
       <div>
-        <Button variant="contained" onClick={(e) => setAnchorEl(e.currentTarget)}>
+        <Button
+          variant="contained"
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+        >
           Open Menu
         </Button>
-        <MUIMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+        <MUIMenu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={() => setAnchorEl(null)}
+        >
           <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>

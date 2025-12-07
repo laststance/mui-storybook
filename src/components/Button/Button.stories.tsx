@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Button from './Button'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Button',
@@ -50,16 +51,13 @@ export const AccessibilityDemo: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'This button demonstrates accessibility best practices with proper color contrast and clear labeling.',
+        story:
+          'This button demonstrates accessibility best practices with proper color contrast and clear labeling.',
       },
     },
   },
 }
 
 export function IconButtonAccessible() {
-  return (
-    <Button aria-label="Add item">
-      + Add
-    </Button>
-  )
+  return <Button aria-label="Add item">+ Add</Button>
 }

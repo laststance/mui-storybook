@@ -1,14 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { userEvent, within } from 'storybook/test'
-import { useState } from 'react'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FolderIcon from '@mui/icons-material/Folder'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import RestoreIcon from '@mui/icons-material/Restore'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
-import RestoreIcon from '@mui/icons-material/Restore'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import FolderIcon from '@mui/icons-material/Folder'
-import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import { useState } from 'react'
+import { userEvent, within } from 'storybook/test'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof BottomNavigation> = {
   title: 'Navigation/BottomNavigation',
@@ -77,9 +78,7 @@ export const FixedPosition: Story = {
 
     return (
       <Box sx={{ pb: 7, minHeight: 200 }}>
-        <Box sx={{ p: 2 }}>
-          Scroll down to see the fixed bottom navigation
-        </Box>
+        <Box sx={{ p: 2 }}>Scroll down to see the fixed bottom navigation</Box>
         <Paper
           sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
           elevation={3}

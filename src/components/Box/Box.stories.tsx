@@ -1,8 +1,9 @@
 import MUIBox from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Box from './Box'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Box',
@@ -96,7 +97,9 @@ export function GridLayout() {
       <MUIBox sx={{ p: 2, backgroundColor: 'primary.light', borderRadius: 1 }}>
         Grid Item 1
       </MUIBox>
-      <MUIBox sx={{ p: 2, backgroundColor: 'secondary.light', borderRadius: 1 }}>
+      <MUIBox
+        sx={{ p: 2, backgroundColor: 'secondary.light', borderRadius: 1 }}
+      >
         Grid Item 2
       </MUIBox>
       <MUIBox sx={{ p: 2, backgroundColor: 'success.light', borderRadius: 1 }}>

@@ -2,11 +2,12 @@ import Box from '@mui/material/Box'
 import MUISlider from '@mui/material/Slider'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 import { expect, within } from 'storybook/test'
 
 import Slider from './Slider'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Slider',
@@ -44,7 +45,11 @@ export function Continuous() {
   return (
     <Box sx={{ width: 300 }}>
       <Typography gutterBottom>Volume: {value}</Typography>
-      <MUISlider value={value} onChange={(_, newValue) => setValue(newValue as number)} aria-label="Volume" />
+      <MUISlider
+        value={value}
+        onChange={(_, newValue) => setValue(newValue as number)}
+        aria-label="Volume"
+      />
     </Box>
   )
 }
@@ -54,7 +59,9 @@ export function Range() {
 
   return (
     <Box sx={{ width: 300 }}>
-      <Typography gutterBottom>Range: {value[0]} - {value[1]}</Typography>
+      <Typography gutterBottom>
+        Range: {value[0]} - {value[1]}
+      </Typography>
       <MUISlider
         value={value}
         onChange={(_, newValue) => setValue(newValue as number[])}
@@ -75,7 +82,13 @@ export function DiscreteWithMarks() {
 
   return (
     <Box sx={{ width: 300 }}>
-      <MUISlider defaultValue={37} step={10} marks={marks} valueLabelDisplay="auto" aria-label="Temperature" />
+      <MUISlider
+        defaultValue={37}
+        step={10}
+        marks={marks}
+        valueLabelDisplay="auto"
+        aria-label="Temperature"
+      />
     </Box>
   )
 }
@@ -84,8 +97,16 @@ export function Vertical() {
   return (
     <Box sx={{ height: 300 }}>
       <Stack spacing={1} direction="row" sx={{ height: '100%' }}>
-        <MUISlider orientation="vertical" defaultValue={30} aria-label="Vertical slider" />
-        <MUISlider orientation="vertical" defaultValue={[20, 37]} aria-label="Vertical range slider" />
+        <MUISlider
+          orientation="vertical"
+          defaultValue={30}
+          aria-label="Vertical slider"
+        />
+        <MUISlider
+          orientation="vertical"
+          defaultValue={[20, 37]}
+          aria-label="Vertical range slider"
+        />
       </Stack>
     </Box>
   )

@@ -4,11 +4,12 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
 import { expect, screen, userEvent, within } from 'storybook/test'
 
 import Dialog from './Dialog'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Dialog',
@@ -88,6 +89,7 @@ export const AlertDialog: Story = {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Disagree</Button>
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
             <Button onClick={handleClose} autoFocus>
               Agree
             </Button>
@@ -124,6 +126,7 @@ export const FormDialog: Story = {
               here. We will send updates occasionally.
             </DialogContentText>
             <TextField
+              // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus
               required
               margin="dense"

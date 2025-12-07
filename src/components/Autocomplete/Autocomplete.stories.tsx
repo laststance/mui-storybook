@@ -1,8 +1,9 @@
 import Autocomplete from '@mui/material/Autocomplete'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [

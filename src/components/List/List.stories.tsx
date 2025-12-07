@@ -18,10 +18,11 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import List from './List'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/List',
@@ -163,7 +164,11 @@ export function WithCheckboxes() {
       <MUIList>
         {[0, 1, 2].map((value) => (
           <ListItem key={value} disablePadding>
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+            <ListItemButton
+              role={undefined}
+              onClick={handleToggle(value)}
+              dense
+            >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
@@ -172,7 +177,7 @@ export function WithCheckboxes() {
                   disableRipple
                 />
               </ListItemIcon>
-              <ListItemText primary={"Line item " + (value + 1)} />
+              <ListItemText primary={'Line item ' + (value + 1)} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -199,7 +204,10 @@ export function WithSecondaryActions() {
                 <FolderIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={"Item " + value} secondary="Secondary text" />
+            <ListItemText
+              primary={'Item ' + value}
+              secondary="Secondary text"
+            />
           </ListItem>
         ))}
       </MUIList>

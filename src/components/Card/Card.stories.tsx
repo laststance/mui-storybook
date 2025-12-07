@@ -1,10 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import Card from './Card'
+import Button from '@mui/material/Button'
+import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+
+import Card from './Card'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Card',
@@ -23,8 +25,8 @@ export const Default: Story = {
           Card Title
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          This is a default card with CardContent and Typography. It demonstrates
-          the basic structure of a Material-UI Card component.
+          This is a default card with CardContent and Typography. It
+          demonstrates the basic structure of a Material-UI Card component.
         </Typography>
       </CardContent>
     </Card>

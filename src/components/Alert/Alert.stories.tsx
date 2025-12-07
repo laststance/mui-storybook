@@ -8,10 +8,11 @@ import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Alert from './Alert'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Alert',

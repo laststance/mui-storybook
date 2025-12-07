@@ -1,4 +1,5 @@
 import Pagination from '@mui/material/Pagination'
+import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,11 +8,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import PaginationComponent from './Pagination'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Pagination',
@@ -87,7 +88,12 @@ export function Ranges() {
     <Stack spacing={2}>
       <Pagination count={11} defaultPage={6} siblingCount={0} />
       <Pagination count={11} defaultPage={6} />
-      <Pagination count={11} defaultPage={6} siblingCount={0} boundaryCount={2} />
+      <Pagination
+        count={11}
+        defaultPage={6}
+        siblingCount={0}
+        boundaryCount={2}
+      />
       <Pagination count={11} defaultPage={6} boundaryCount={2} />
     </Stack>
   )

@@ -1,42 +1,43 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useState } from 'react'
-import Box from '@mui/material/Box'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import MenuIcon from '@mui/icons-material/Menu'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import PeopleIcon from '@mui/icons-material/People'
+import SettingsIcon from '@mui/icons-material/Settings'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import TrendingDownIcon from '@mui/icons-material/TrendingDown'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemButton from '@mui/material/ListItemButton'
+import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
+import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
-import Avatar from '@mui/material/Avatar'
 import Chip from '@mui/material/Chip'
+import Divider from '@mui/material/Divider'
+import Drawer from '@mui/material/Drawer'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
 import LinearProgress from '@mui/material/LinearProgress'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import Badge from '@mui/material/Badge'
-import Divider from '@mui/material/Divider'
-import MenuIcon from '@mui/icons-material/Menu'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import PeopleIcon from '@mui/icons-material/People'
-import BarChartIcon from '@mui/icons-material/BarChart'
-import SettingsIcon from '@mui/icons-material/Settings'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
-import TrendingDownIcon from '@mui/icons-material/TrendingDown'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import { useState } from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta = {
   title: 'Examples/Dashboard',
@@ -71,9 +72,7 @@ const StatCard = ({ title, value, change, icon, color }: StatCardProps) => (
             {value}
           </Typography>
         </Box>
-        <Avatar sx={{ bgcolor: color, width: 56, height: 56 }}>
-          {icon}
-        </Avatar>
+        <Avatar sx={{ bgcolor: color, width: 56, height: 56 }}>{icon}</Avatar>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
         {change >= 0 ? (
@@ -85,7 +84,8 @@ const StatCard = ({ title, value, change, icon, color }: StatCardProps) => (
           variant="body2"
           color={change >= 0 ? 'success.main' : 'error.main'}
         >
-          {change >= 0 ? '+' : ''}{change}%
+          {change >= 0 ? '+' : ''}
+          {change}%
         </Typography>
         <Typography variant="body2" color="text.secondary">
           vs last month
@@ -96,11 +96,41 @@ const StatCard = ({ title, value, change, icon, color }: StatCardProps) => (
 )
 
 const recentOrders = [
-  { id: '#ORD-001', customer: 'John Doe', product: 'MacBook Pro', amount: '$2,499', status: 'Completed' },
-  { id: '#ORD-002', customer: 'Jane Smith', product: 'iPhone 15', amount: '$999', status: 'Pending' },
-  { id: '#ORD-003', customer: 'Bob Johnson', product: 'AirPods Pro', amount: '$249', status: 'Completed' },
-  { id: '#ORD-004', customer: 'Alice Brown', product: 'iPad Air', amount: '$599', status: 'Processing' },
-  { id: '#ORD-005', customer: 'Charlie Wilson', product: 'Apple Watch', amount: '$399', status: 'Completed' },
+  {
+    id: '#ORD-001',
+    customer: 'John Doe',
+    product: 'MacBook Pro',
+    amount: '$2,499',
+    status: 'Completed',
+  },
+  {
+    id: '#ORD-002',
+    customer: 'Jane Smith',
+    product: 'iPhone 15',
+    amount: '$999',
+    status: 'Pending',
+  },
+  {
+    id: '#ORD-003',
+    customer: 'Bob Johnson',
+    product: 'AirPods Pro',
+    amount: '$249',
+    status: 'Completed',
+  },
+  {
+    id: '#ORD-004',
+    customer: 'Alice Brown',
+    product: 'iPad Air',
+    amount: '$599',
+    status: 'Processing',
+  },
+  {
+    id: '#ORD-005',
+    customer: 'Charlie Wilson',
+    product: 'Apple Watch',
+    amount: '$399',
+    status: 'Completed',
+  },
 ]
 
 const getStatusColor = (status: string) => {
@@ -136,7 +166,12 @@ export const AdminDashboard: Story = {
     const drawer = (
       <Box>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 'bold' }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ fontWeight: 'bold' }}
+          >
             MUI Admin
           </Typography>
         </Toolbar>
@@ -176,7 +211,12 @@ export const AdminDashboard: Story = {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1 }}
+            >
               Dashboard
             </Typography>
             <IconButton color="inherit">
@@ -202,7 +242,10 @@ export const AdminDashboard: Story = {
             ModalProps={{ keepMounted: true }}
             sx={{
               display: { xs: 'block', sm: 'none' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: drawerWidth,
+              },
             }}
           >
             {drawer}
@@ -211,7 +254,10 @@ export const AdminDashboard: Story = {
             variant="permanent"
             sx={{
               display: { xs: 'none', sm: 'block' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: drawerWidth,
+              },
             }}
             open
           >
@@ -280,25 +326,63 @@ export const AdminDashboard: Story = {
                     Sales Target
                   </Typography>
                   <Box sx={{ mb: 3 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        mb: 1,
+                      }}
+                    >
                       <Typography variant="body2">Monthly Goal</Typography>
-                      <Typography variant="body2" color="primary">75%</Typography>
+                      <Typography variant="body2" color="primary">
+                        75%
+                      </Typography>
                     </Box>
-                    <LinearProgress variant="determinate" value={75} sx={{ height: 8, borderRadius: 4 }} />
+                    <LinearProgress
+                      variant="determinate"
+                      value={75}
+                      sx={{ height: 8, borderRadius: 4 }}
+                    />
                   </Box>
                   <Box sx={{ mb: 3 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        mb: 1,
+                      }}
+                    >
                       <Typography variant="body2">Quarterly Goal</Typography>
-                      <Typography variant="body2" color="success.main">62%</Typography>
+                      <Typography variant="body2" color="success.main">
+                        62%
+                      </Typography>
                     </Box>
-                    <LinearProgress variant="determinate" value={62} color="success" sx={{ height: 8, borderRadius: 4 }} />
+                    <LinearProgress
+                      variant="determinate"
+                      value={62}
+                      color="success"
+                      sx={{ height: 8, borderRadius: 4 }}
+                    />
                   </Box>
                   <Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        mb: 1,
+                      }}
+                    >
                       <Typography variant="body2">Yearly Goal</Typography>
-                      <Typography variant="body2" color="warning.main">48%</Typography>
+                      <Typography variant="body2" color="warning.main">
+                        48%
+                      </Typography>
                     </Box>
-                    <LinearProgress variant="determinate" value={48} color="warning" sx={{ height: 8, borderRadius: 4 }} />
+                    <LinearProgress
+                      variant="determinate"
+                      value={48}
+                      color="warning"
+                      sx={{ height: 8, borderRadius: 4 }}
+                    />
                   </Box>
                 </CardContent>
               </Card>
@@ -369,7 +453,9 @@ export const CompactDashboard: Story = {
                 <AttachMoneyIcon />
               </Avatar>
               <Typography variant="h6">$12.5k</Typography>
-              <Typography variant="caption" color="text.secondary">Revenue</Typography>
+              <Typography variant="caption" color="text.secondary">
+                Revenue
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -380,7 +466,9 @@ export const CompactDashboard: Story = {
                 <ShoppingCartIcon />
               </Avatar>
               <Typography variant="h6">342</Typography>
-              <Typography variant="caption" color="text.secondary">Orders</Typography>
+              <Typography variant="caption" color="text.secondary">
+                Orders
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -391,7 +479,9 @@ export const CompactDashboard: Story = {
                 <PeopleIcon />
               </Avatar>
               <Typography variant="h6">89</Typography>
-              <Typography variant="caption" color="text.secondary">Customers</Typography>
+              <Typography variant="caption" color="text.secondary">
+                Customers
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -402,7 +492,9 @@ export const CompactDashboard: Story = {
                 <BarChartIcon />
               </Avatar>
               <Typography variant="h6">2.4%</Typography>
-              <Typography variant="caption" color="text.secondary">Conversion</Typography>
+              <Typography variant="caption" color="text.secondary">
+                Conversion
+              </Typography>
             </CardContent>
           </Card>
         </Grid>

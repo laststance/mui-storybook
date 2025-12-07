@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useState } from 'react'
-import LoadingButton from '@mui/lab/LoadingButton'
 import SaveIcon from '@mui/icons-material/Save'
 import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import { useState } from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof LoadingButton> = {
   title: 'Inputs/LoadingButton',
@@ -103,11 +104,7 @@ export const LoadingPositions: Story = {
  */
 export const CustomLoadingIndicator: Story = {
   render: () => (
-    <LoadingButton
-      loading
-      loadingIndicator="Loading..."
-      variant="contained"
-    >
+    <LoadingButton loading loadingIndicator="Loading..." variant="contained">
       Fetch data
     </LoadingButton>
   ),

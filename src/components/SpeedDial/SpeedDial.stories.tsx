@@ -6,10 +6,11 @@ import Box from '@mui/material/Box'
 import MUISpeedDial from '@mui/material/SpeedDial'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import SpeedDial from './SpeedDial'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/SpeedDial',
@@ -37,7 +38,11 @@ export const Default: Story = {
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (
-          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+          />
         ))}
       </MUISpeedDial>
     </Box>
@@ -54,7 +59,11 @@ export function DirectionUp() {
         direction="up"
       >
         {actions.map((action) => (
-          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+          />
         ))}
       </MUISpeedDial>
     </Box>
@@ -71,7 +80,11 @@ export function DirectionLeft() {
         direction="left"
       >
         {actions.map((action) => (
-          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+          />
         ))}
       </MUISpeedDial>
     </Box>
@@ -92,7 +105,12 @@ export function Controlled() {
         open={open}
       >
         {actions.map((action) => (
-          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} onClick={() => setOpen(false)} />
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={() => setOpen(false)}
+          />
         ))}
       </MUISpeedDial>
     </Box>
@@ -108,7 +126,12 @@ export function WithTooltips() {
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (
-          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} tooltipOpen />
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            tooltipOpen
+          />
         ))}
       </MUISpeedDial>
     </Box>

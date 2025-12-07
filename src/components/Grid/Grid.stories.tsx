@@ -2,9 +2,10 @@ import Box from '@mui/material/Box'
 import MUIGrid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Grid from './Grid'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Grid',

@@ -5,9 +5,10 @@ import WhatshotIcon from '@mui/icons-material/Whatshot'
 import MUIBreadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Breadcrumbs from './Breadcrumbs'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Breadcrumbs',
@@ -35,15 +36,28 @@ export const Default: Story = {
 export function WithIcons() {
   return (
     <MUIBreadcrumbs aria-label="breadcrumb">
-      <Link underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit" href="/">
+      <Link
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="inherit"
+        href="/"
+      >
         <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Home
       </Link>
-      <Link underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit" href="/">
+      <Link
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="inherit"
+        href="/"
+      >
         <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Trending
       </Link>
-      <Typography sx={{ display: 'flex', alignItems: 'center' }} color="text.primary">
+      <Typography
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="text.primary"
+      >
         <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         Details
       </Typography>
@@ -53,7 +67,10 @@ export function WithIcons() {
 
 export function CustomSeparator() {
   return (
-    <MUIBreadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+    <MUIBreadcrumbs
+      separator={<NavigateNextIcon fontSize="small" />}
+      aria-label="breadcrumb"
+    >
       <Link underline="hover" color="inherit" href="/">
         Home
       </Link>

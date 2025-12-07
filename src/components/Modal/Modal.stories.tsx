@@ -3,11 +3,12 @@ import Button from '@mui/material/Button'
 import Fade from '@mui/material/Fade'
 import MUIModal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
 import Modal from './Modal'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Modal',
@@ -36,9 +37,7 @@ export const Default: Story = {
     children: (
       <Box sx={style}>
         <Typography variant="h6">Default Modal</Typography>
-        <Typography sx={{ mt: 2 }}>
-          This is a basic modal example.
-        </Typography>
+        <Typography sx={{ mt: 2 }}>This is a basic modal example.</Typography>
       </Box>
     ),
   },
@@ -160,7 +159,9 @@ export const InteractionTest: Story = {
     const modalContent = await within(document.body).findByText('Test Modal')
     await expect(modalContent).toBeInTheDocument()
 
-    const closeButton = within(document.body).getByRole('button', { name: /close/i })
+    const closeButton = within(document.body).getByRole('button', {
+      name: /close/i,
+    })
     await userEvent.click(closeButton)
   },
 }

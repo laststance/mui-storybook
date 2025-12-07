@@ -3,9 +3,10 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import MUITooltip from '@mui/material/Tooltip'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Tooltip from './Tooltip'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Tooltip',

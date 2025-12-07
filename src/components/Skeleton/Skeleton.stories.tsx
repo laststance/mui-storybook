@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box'
 import MUISkeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Skeleton from './Skeleton'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Skeleton',
@@ -59,7 +60,12 @@ export function ListExample() {
     <Stack spacing={1}>
       {[1, 2, 3].map((item) => (
         <Box key={item} sx={{ display: 'flex', alignItems: 'center' }}>
-          <MUISkeleton variant="circular" width={40} height={40} sx={{ mr: 2 }} />
+          <MUISkeleton
+            variant="circular"
+            width={40}
+            height={40}
+            sx={{ mr: 2 }}
+          />
           <Box sx={{ width: '100%' }}>
             <MUISkeleton width="80%" />
             <MUISkeleton width="60%" />

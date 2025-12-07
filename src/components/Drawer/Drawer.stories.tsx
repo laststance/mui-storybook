@@ -9,10 +9,11 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import Drawer from './Drawer'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/Drawer',
@@ -146,7 +147,11 @@ export function Permanent() {
         sx={{
           width: 240,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: 240, boxSizing: 'border-box', position: 'relative' },
+          '& .MuiDrawer-paper': {
+            width: 240,
+            boxSizing: 'border-box',
+            position: 'relative',
+          },
         }}
       >
         <DrawerContent />

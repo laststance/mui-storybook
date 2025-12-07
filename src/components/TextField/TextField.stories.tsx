@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import TextField from './TextField'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Components/TextField',
@@ -98,7 +99,8 @@ export const AccessibilityDemo: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates accessible form field with proper label, helper text, and required indicator.',
+        story:
+          'Demonstrates accessible form field with proper label, helper text, and required indicator.',
       },
     },
   },

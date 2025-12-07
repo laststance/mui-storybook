@@ -1,9 +1,10 @@
-import * as React from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import Popover from '@mui/material/Popover'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
+import * as React from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Popover> = {
   title: 'Components/Popover',
@@ -74,7 +75,10 @@ export function AnchorPlayground() {
   })
 
   const handleClick =
-    (vertical: 'top' | 'center' | 'bottom', horizontal: 'left' | 'center' | 'right') =>
+    (
+      vertical: 'top' | 'center' | 'bottom',
+      horizontal: 'left' | 'center' | 'right',
+    ) =>
     (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorOrigin({ vertical, horizontal })
       setAnchorEl(event.currentTarget)
@@ -88,7 +92,14 @@ export function AnchorPlayground() {
   const id = open ? 'anchor-playground-popover' : undefined
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'flex-start' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        alignItems: 'flex-start',
+      }}
+    >
       <Box sx={{ display: 'flex', gap: 1 }}>
         <Button variant="outlined" onClick={handleClick('top', 'left')}>
           Top Left
@@ -183,7 +194,9 @@ export function MouseOverPopover() {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <Typography sx={{ p: 1 }}>I use the mouse to trigger the popover.</Typography>
+        <Typography sx={{ p: 1 }}>
+          I use the mouse to trigger the popover.
+        </Typography>
       </Popover>
     </div>
   )
