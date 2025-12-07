@@ -1,0 +1,82 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as CheckboxStories from './Checkbox.stories'
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+A checkbox input component used for selecting one or more options from multiple choices.
+
+## Overview
+
+The Checkbox component wraps Material-UI's Checkbox and provides the following features:
+
+- **Colors**: `primary`, `secondary`, `success`, `error`, `info`, `warning`, `default`
+- **Sizes**: `small`, `medium`
+- **States**: checked, unchecked, indeterminate
+- **Disabled**: Disable interactions with the disabled property
+- **Custom Icons**: Customizable via checkedIcon and icon properties
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe checkbox behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Checkbox from '@/components/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { useState } from 'react'
+
+// Basic checkbox with label
+<FormControlLabel
+  control={<Checkbox />}
+  label="Accept terms and conditions"
+/>
+
+// Controlled checkbox
+function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+      color="primary"
+    />
+  )
+}
+
+// Indeterminate state
+<Checkbox
+  indeterminate
+  color="secondary"
+/>
+
+// Disabled checkbox
+<FormControlLabel
+  control={<Checkbox disabled />}
+  label="Disabled option"
+/>
+```
+
+## Accessibility
+
+- Always provide a label for checkboxes using `<FormControlLabel>` or use `aria-label`
+- Use `<FormGroup>` and `<FormLabel>` for grouped checkboxes
+- Toggle the checked state by pressing the spacebar on the keyboard
+- Screen readers will announce the current state (checked/unchecked/indeterminate)

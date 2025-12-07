@@ -1,0 +1,66 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as SnackbarStories from './Snackbar.stories'
+
+<Meta of={SnackbarStories} />
+
+# Snackbar
+
+Temporary notification message
+
+## Overview
+
+MUI's Snackbar component temporarily displays feedback and notifications for user actions at the edge of the screen. It can communicate action success, errors, and information to users non-intrusively. When combined with the Alert component, it can provide clearer and more visual feedback. Display position, auto-hide duration, action buttons, and more are customizable.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
+import { useState } from 'react'
+
+function NotificationExample() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>
+        Show Notification
+      </Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert severity="success" onClose={() => setOpen(false)}>
+          Operation completed successfully!
+        </Alert>
+      </Snackbar>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- Automatically announced to screen readers (`role="alert"`)
+- Set `autoHideDuration` to close automatically
+- Provide accessible label for close button
+- Ensure sufficient display time for important notifications

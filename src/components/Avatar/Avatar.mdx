@@ -1,0 +1,96 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as AvatarStories from './Avatar.stories'
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+Avatars representing users or objects
+
+## Overview
+
+The Avatar component is used to visually represent user profiles, contact lists, group members, and more. It can contain images, letters, or icons, and is customizable with various sizes and colors.
+
+Key features:
+- Display images, letters, or icons
+- Customizable size and color
+- AvatarGroup for overlapping multiple avatars
+- Fallback handling (when image loading fails)
+- Circular and rounded variants
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Avatar from '@mui/material/Avatar'
+import AvatarGroup from '@mui/material/AvatarGroup'
+import Stack from '@mui/material/Stack'
+import FolderIcon from '@mui/icons-material/Folder'
+
+function MyAvatars() {
+  return (
+    <Stack direction="row" spacing={2}>
+      {/* Image avatar */}
+      <Avatar
+        alt="User name"
+        src="/path/to/image.jpg"
+      />
+
+      {/* Letter avatar */}
+      <Avatar sx={{ bgcolor: 'primary.main' }}>
+        YM
+      </Avatar>
+
+      {/* Icon avatar */}
+      <Avatar sx={{ bgcolor: 'secondary.main' }}>
+        <FolderIcon />
+      </Avatar>
+
+      {/* Size specification */}
+      <Avatar
+        sx={{ width: 56, height: 56 }}
+        alt="Large avatar"
+        src="/path/to/image.jpg"
+      />
+    </Stack>
+  )
+}
+
+// Avatar group
+function MyAvatarGroup() {
+  return (
+    <AvatarGroup max={4}>
+      <Avatar alt="User 1" src="/images/avatar1.jpg" />
+      <Avatar alt="User 2" src="/images/avatar2.jpg" />
+      <Avatar alt="User 3" src="/images/avatar3.jpg" />
+      <Avatar alt="User 4" src="/images/avatar4.jpg" />
+      <Avatar alt="User 5" src="/images/avatar5.jpg" />
+    </AvatarGroup>
+  )
+}
+```
+
+## Accessibility
+
+- Always set the `alt` attribute for image avatars
+- The `alt` attribute should be the user's name or descriptive text
+- For decorative avatars, set `alt=""`
+- When using AvatarGroup, consider providing a descriptive label for the entire group

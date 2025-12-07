@@ -1,0 +1,65 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+MUI Button component wrapper. Provides interactive elements for users to perform actions.
+
+## Overview
+
+The Button component wraps Material-UI's Button and provides the following features:
+
+- **Variants**: 3 types - `text`, `outlined`, `contained`
+- **Colors**: `primary`, `secondary`, `success`, `error`, `info`, `warning`
+- **Sizes**: `small`, `medium`, `large`
+- **Accessibility**: WCAG AA compliant color contrast
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe button behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Button from '@/components/Button'
+
+// Basic usage
+<Button variant="contained" color="primary">
+  Click Me
+</Button>
+
+// With click handler
+<Button
+  variant="outlined"
+  onClick={() => console.log('clicked')}
+>
+  Submit
+</Button>
+
+// Disabled state
+<Button disabled>
+  Disabled Button
+</Button>
+```
+
+## Accessibility
+
+- Always provide clear and descriptive labels for buttons
+- Use `aria-label` for icon-only buttons
+- Keyboard navigation is supported

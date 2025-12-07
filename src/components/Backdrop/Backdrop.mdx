@@ -1,0 +1,103 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as BackdropStories from './Backdrop.stories'
+
+<Meta of={BackdropStories} />
+
+# Backdrop
+
+Overlay positioned on top of content
+
+## Overview
+
+The Backdrop component displays a semi-transparent overlay over the entire screen or specific elements. Used for displaying loading states, modal dialog backgrounds, or directing user attention to specific elements. Typically used in combination with CircularProgress or messages.
+
+Key features:
+- Customizable transparency and color
+- z-index control
+- Transition effects
+- Click event handling
+- Combination with loading indicators
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Backdrop from '@mui/material/Backdrop'
+import CircularProgress from '@mui/material/CircularProgress'
+import Button from '@mui/material/Button'
+import React from 'react'
+
+function MyBackdrop() {
+  const [open, setOpen] = React.useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  return (
+    <div>
+      <Button variant="contained" onClick={handleOpen}>
+        Show loading
+      </Button>
+
+      <Backdrop
+        sx={{
+          color: '#fff',
+          zIndex: (theme) => theme.zIndex.drawer + 1
+        }}
+        open={open}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </div>
+  )
+}
+
+// Backdrop with custom content
+function CustomBackdrop() {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <Backdrop
+      sx={{ color: '#fff', zIndex: 1300 }}
+      open={open}
+      onClick={() => setOpen(false)}
+    >
+      <Box sx={{ textAlign: 'center' }}>
+        <CircularProgress color="inherit" />
+        <Typography sx={{ mt: 2 }}>Loading...</Typography>
+      </Box>
+    </Backdrop>
+  )
+}
+```
+
+## Accessibility
+
+- While Backdrop is open, focus should be managed appropriately
+- When indicating loading state, consider using the `aria-busy` attribute
+- For important messages, consider including an element with `role="alert"`
+- For keyboard users, consider implementing functionality to close with the Escape key

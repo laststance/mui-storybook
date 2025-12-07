@@ -1,0 +1,73 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as FloatingActionButtonStories from './FloatingActionButton.stories'
+
+<Meta of={FloatingActionButtonStories} />
+
+# FloatingActionButton
+
+A Floating Action Button (FAB) is a circular button component that represents the most important action on the screen.
+
+## Overview
+
+FloatingActionButton is a special button used to promote the primary action of an application. Typically fixed to the bottom right of the screen, it provides immediate access to the action users perform most frequently.
+
+Key features:
+- **Prominent Design**: Circular and elevated design visually distinguishes it from other content
+- **Icon Display**: Places an icon representing the action in the center
+- **Extended Variant**: Can combine icon and text label in extended display
+- **Color Variations**: Supports theme colors like primary, secondary
+- **Disabled State**: Can restrict operation with the disabled property
+
+Common use cases:
+- Create new (email, post, document, etc.)
+- Transition to edit mode
+- Add to favorites
+- Navigation actions
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import AddIcon from '@mui/icons-material/Add'
+import Fab from '@mui/material/Fab'
+
+// Basic usage
+<Fab color="primary" aria-label="add">
+  <AddIcon />
+</Fab>
+
+// Extended variant (icon and text)
+<Fab variant="extended" color="primary">
+  <NavigationIcon sx={{ mr: 1 }} />
+  Navigate
+</Fab>
+
+// Disabled state
+<Fab disabled aria-label="like">
+  <FavoriteIcon />
+</Fab>
+```
+
+## Accessibility
+
+- Always specify the `aria-label` attribute to clarify the button's purpose
+- Particularly important for icon-only buttons (for screen reader users)
+- Supports keyboard operation: Tab key to focus, Enter or Space key to execute
+- When disabled, `aria-disabled="true"` is automatically set

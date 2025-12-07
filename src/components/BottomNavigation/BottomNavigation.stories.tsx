@@ -17,7 +17,7 @@ const meta: Meta<typeof BottomNavigation> = {
   parameters: {
     layout: 'padded',
   },
-  tags: ['autodocs'],
+  tags: [] // autodocs disabled - using custom MDX documentation,
 }
 
 export default meta

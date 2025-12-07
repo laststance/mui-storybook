@@ -1,0 +1,88 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ChipStories from './Chip.stories'
+
+<Meta of={ChipStories} />
+
+# Chip
+
+A chip component for displaying tags or filters. Used for compact information display and visualizing selection states.
+
+## Overview
+
+The Chip component wraps Material-UI's Chip and provides the following features:
+
+- **Variants**: `filled`, `outlined`
+- **Colors**: `default`, `primary`, `secondary`, `success`, `error`, `info`, `warning`
+- **Sizes**: `small`, `medium`
+- **Delete Functionality**: Display delete icon with onDelete handler
+- **Click Functionality**: Make clickable with onClick handler
+- **Icons**: Add icon at the start with icon property
+- **Avatar**: Display avatar with avatar property
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe chip display:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Chip from '@/components/Chip'
+import Avatar from '@mui/material/Avatar'
+import FaceIcon from '@mui/icons-material/Face'
+
+// Basic chip
+<Chip label="Tag" />
+
+// Colored chip with variant
+<Chip label="Primary" color="primary" variant="filled" />
+<Chip label="Success" color="success" variant="outlined" />
+
+// Clickable chip
+<Chip
+  label="Click me"
+  onClick={() => console.log('Chip clicked')}
+  color="primary"
+/>
+
+// Deletable chip
+<Chip
+  label="Deletable"
+  onDelete={() => console.log('Delete clicked')}
+  color="secondary"
+/>
+
+// Chip with icon
+<Chip
+  icon={<FaceIcon />}
+  label="With Icon"
+  color="primary"
+/>
+
+// Chip with avatar
+<Chip
+  avatar={<Avatar>M</Avatar>}
+  label="User Tag"
+  variant="outlined"
+/>
+```
+
+## Accessibility
+
+- Clickable chips are recognized as `role="button"`
+- Deletable chips automatically have appropriate `aria-label` on the delete button
+- Can be clicked using Enter or spacebar on the keyboard
+- Delete button can be operated with Backspace or Delete key

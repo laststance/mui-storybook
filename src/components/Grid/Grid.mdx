@@ -1,0 +1,99 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as GridStories from './Grid.stories'
+
+<Meta of={GridStories} />
+
+# Grid
+
+A responsive grid layout system that enables flexible page layout construction.
+
+## Overview
+
+The Grid component is a responsive layout system based on CSS Flexbox. It adopts a 12-column grid system and makes it easy to achieve different layouts according to breakpoints.
+
+Key features:
+- **12 Column System**: Flexible column-based layout
+- **Responsive Support**: Automatic adjustment according to breakpoints (xs, sm, md, lg, xl)
+- **Flexible Spacing Control**: Control spacing between elements with the spacing property
+- **Nest Support**: Build complex layouts by nesting Grids
+- **Auto Layout**: Automatically distribute available space with `size="grow"`
+
+Breakpoints:
+- xs: 0px and above
+- sm: 600px and above
+- md: 900px and above
+- lg: 1200px and above
+- xl: 1536px and above
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+
+// Basic grid layout
+<Grid container spacing={2}>
+  <Grid size={12}>
+    <Paper>Full width</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>Half</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>Half</Paper>
+  </Grid>
+</Grid>
+
+// Responsive layout
+<Grid container spacing={2}>
+  <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+    <Paper>Responsive item</Paper>
+  </Grid>
+</Grid>
+
+// Auto layout
+<Grid container spacing={2}>
+  <Grid size="grow">
+    <Paper>Auto expand</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>Fixed width</Paper>
+  </Grid>
+</Grid>
+
+// Nested grid
+<Grid container spacing={2}>
+  <Grid size={9}>
+    <Grid container spacing={2}>
+      <Grid size={6}>
+        <Paper>Nested item</Paper>
+      </Grid>
+    </Grid>
+  </Grid>
+</Grid>
+```
+
+## Accessibility
+
+- Grid is a layout-purpose component and has no semantic meaning
+- By maintaining logical content order, information is properly conveyed to screen reader users
+- Be cautious when visual order differs from DOM order
+- Responsive design improves accessibility on different devices

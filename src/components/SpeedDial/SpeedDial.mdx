@@ -1,0 +1,70 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as SpeedDialStories from './SpeedDial.stories'
+
+<Meta of={SpeedDialStories} />
+
+# SpeedDial
+
+Floating menu for multiple actions
+
+## Overview
+
+The MUI SpeedDial component displays multiple related actions grouped within a single floating action button. When the primary action button is clicked, multiple related actions expand, allowing users to select from them. It provides quick access to frequently used actions and efficiently utilizes screen space. Display direction (up, down, left, right) and tooltips can be customized.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import SpeedDial from '@mui/material/SpeedDial'
+import SpeedDialAction from '@mui/material/SpeedDialAction'
+import SpeedDialIcon from '@mui/material/SpeedDialIcon'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
+import SaveIcon from '@mui/icons-material/Save'
+
+const actions = [
+  { icon: <FileCopyIcon />, name: 'Copy' },
+  { icon: <SaveIcon />, name: 'Save' },
+]
+
+function QuickActions() {
+  return (
+    <SpeedDial
+      ariaLabel="Quick actions"
+      icon={<SpeedDialIcon />}
+      direction="up"
+    >
+      {actions.map((action) => (
+        <SpeedDialAction
+          key={action.name}
+          icon={action.icon}
+          tooltipTitle={action.name}
+        />
+      ))}
+    </SpeedDial>
+  )
+}
+```
+
+## Accessibility
+
+- Provide a clear label using the `ariaLabel` property
+- Set descriptive names for each action using `tooltipTitle`
+- Supports keyboard operations (Tab, Enter, Escape)
+- Each action is properly identified by screen readers

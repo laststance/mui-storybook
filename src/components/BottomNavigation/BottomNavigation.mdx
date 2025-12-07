@@ -1,0 +1,94 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as BottomNavigationStories from './BottomNavigation.stories'
+
+<Meta of={BottomNavigationStories} />
+
+# BottomNavigation
+
+Navigation at the bottom of the screen
+
+## Overview
+
+The BottomNavigation component provides a navigation bar positioned at the bottom of mobile applications. It allows quick switching between 3-5 primary destinations. Ideal for mobile-first design, positioning navigation in an easily accessible location for finger interaction.
+
+Key features:
+- 3-5 navigation actions
+- Display icons and labels
+- Visual feedback for active state
+- Fixed position display support
+- Responsive design
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import RestoreIcon from '@mui/icons-material/Restore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import React from 'react'
+
+function MyBottomNavigation() {
+  const [value, setValue] = React.useState(0)
+
+  return (
+    <BottomNavigation
+      showLabels
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue)
+      }}
+    >
+      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+    </BottomNavigation>
+  )
+}
+
+// Fixed position BottomNavigation
+function FixedBottomNavigation() {
+  const [value, setValue] = React.useState(0)
+
+  return (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => setValue(newValue)}
+      >
+        <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      </BottomNavigation>
+    </Paper>
+  )
+}
+```
+
+## Accessibility
+
+- Each BottomNavigationAction has a `button` role
+- The currently selected action has `aria-current="page"` set
+- Provide meaningful `label` for each action
+- Keyboard navigation is fully supported
+- Screen readers properly announce action states

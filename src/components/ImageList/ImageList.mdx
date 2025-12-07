@@ -1,0 +1,105 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ImageListStories from './ImageList.stories'
+
+<Meta of={ImageListStories} />
+
+# ImageList
+
+A component for displaying images in a grid layout, ideal for photo galleries and product listings.
+
+## Overview
+
+The ImageList component displays image collections in a beautifully organized grid layout. Various layout variations allow you to choose the optimal display method for your content.
+
+Key features:
+- **Multiple Layouts**: 4 variations - standard, quilted, woven, masonry
+- **Responsive Support**: Flexibly adjust column count and image sizes
+- **Title Bar**: Can add titles and action buttons to images
+- **Lazy Loading**: Performance optimization with loading="lazy" attribute
+- **Variable Sizes**: Can specify rows and columns per image for special placement
+
+Layout variations:
+- **Standard**: Uniform grid arrangement
+- **Quilted**: Variable grid where images span multiple rows/columns
+- **Woven**: Layout with alternating heights
+- **Masonry**: Pinterest-style variable height layout
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
+import IconButton from '@mui/material/IconButton'
+import InfoIcon from '@mui/icons-material/Info'
+
+// Basic usage
+<ImageList cols={3} rowHeight={164}>
+  {itemData.map((item) => (
+    <ImageListItem key={item.img}>
+      <img
+        src={item.img}
+        alt={item.title}
+        loading="lazy"
+      />
+    </ImageListItem>
+  ))}
+</ImageList>
+
+// Quilted layout (variable sizes)
+<ImageList variant="quilted" cols={4} rowHeight={121}>
+  {itemData.map((item) => (
+    <ImageListItem
+      key={item.img}
+      cols={item.cols || 1}
+      rows={item.rows || 1}
+    >
+      <img src={item.img} alt={item.title} loading="lazy" />
+    </ImageListItem>
+  ))}
+</ImageList>
+
+// With title bar
+<ImageList>
+  {itemData.map((item) => (
+    <ImageListItem key={item.img}>
+      <img src={item.img} alt={item.title} loading="lazy" />
+      <ImageListItemBar
+        title={item.title}
+        subtitle={item.author}
+        actionIcon={
+          <IconButton aria-label={`info about ${item.title}`}>
+            <InfoIcon />
+          </IconButton>
+        }
+      />
+    </ImageListItem>
+  ))}
+</ImageList>
+```
+
+## Accessibility
+
+- Specify appropriate `alt` attributes for all images
+- Set `aria-label` on action buttons to clarify their function
+- Ensure title bar text provides meaningful information
+- Confirm that keyboard navigation is accessible
+- Consider displaying placeholders or skeletons when image loading takes time

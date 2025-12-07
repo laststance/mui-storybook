@@ -1,0 +1,69 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ButtonGroupStories from './ButtonGroup.stories'
+
+<Meta of={ButtonGroupStories} />
+
+# ButtonGroup
+
+Groups related buttons and displays them as a visually unified component set.
+
+## Overview
+
+The ButtonGroup component wraps Material-UI's ButtonGroup and provides the following features:
+
+- **Variants**: 3 types - `text`, `outlined`, `contained`
+- **Orientation**: `horizontal` (horizontal), `vertical` (vertical)
+- **Sizes**: `small`, `medium`, `large`
+- **Colors**: `primary`, `secondary`, `success`, `error`, `info`, `warning`
+- **Grouping**: Visually groups related actions together
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe button group behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import ButtonGroup from '@/components/ButtonGroup'
+import Button from '@/components/Button'
+
+// Basic horizontal group
+<ButtonGroup variant="contained" color="primary">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>
+
+// Vertical group
+<ButtonGroup orientation="vertical" variant="outlined">
+  <Button>Top</Button>
+  <Button>Middle</Button>
+  <Button>Bottom</Button>
+</ButtonGroup>
+
+// Disabled group
+<ButtonGroup disabled>
+  <Button>First</Button>
+  <Button>Second</Button>
+</ButtonGroup>
+```
+
+## Accessibility
+
+- Provide clear labels for each button in the group
+- Keyboard navigation (Tab/Shift+Tab) allows access to each button
+- `aria-label` can be used to describe the purpose of the entire group

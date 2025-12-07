@@ -1,0 +1,69 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as PaperStories from './Paper.stories'
+
+<Meta of={PaperStories} />
+
+# Paper
+
+A surface component with paper-like background that groups content and expresses visual hierarchy.
+
+## Overview
+
+The Paper component wraps Material-UI's Paper and provides the following features:
+
+- **Elevation**: Shadow depth from 0 to 24
+- **Variant**: `elevation` (default) and `outlined`
+- **Border radius**: Customizable border-radius
+- **Background color**: Automatic adjustment based on theme
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Paper from '@mui/material/Paper'
+
+// Basic paper with elevation
+<Paper elevation={3}>
+  <p>Content goes here</p>
+</Paper>
+
+// Outlined variant
+<Paper variant="outlined">
+  <p>Outlined paper</p>
+</Paper>
+
+// Custom styling
+<Paper
+  elevation={6}
+  sx={{
+    p: 2,
+    borderRadius: 2,
+    backgroundColor: 'background.default',
+  }}
+>
+  <p>Custom styled paper</p>
+</Paper>
+```
+
+## Accessibility
+
+- Paper is not a semantic element, so use appropriate headings and labels for content
+- Pay attention to contrast ratio between background and text
+- Set appropriate role attributes for interactive content

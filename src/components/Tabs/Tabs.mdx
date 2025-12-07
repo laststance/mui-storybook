@@ -1,0 +1,72 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TabsStories from './Tabs.stories'
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Tab navigation
+
+## Overview
+
+The MUI Tabs component is a navigation component that switches between and displays multiple tabs of related content. It efficiently organizes content for different views or categories while using screen space effectively. It supports various patterns including horizontal/vertical layouts, scrollable tabs, and tabs with icons. Used in combination with the Tab component.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Box from '@mui/material/Box'
+import { useState } from 'react'
+
+function TabPanel({ children, value, index }) {
+  return (
+    <div role="tabpanel" hidden={value !== index}>
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  )
+}
+
+function BasicTabs() {
+  const [value, setValue] = useState(0)
+
+  return (
+    <>
+      <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
+        <Tab label="Tab One" />
+        <Tab label="Tab Two" />
+        <Tab label="Tab Three" />
+      </Tabs>
+      <TabPanel value={value} index={0}>Content 1</TabPanel>
+      <TabPanel value={value} index={1}>Content 2</TabPanel>
+      <TabPanel value={value} index={2}>Content 3</TabPanel>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- Set `role="tab"` for each tab and `role="tabpanel"` for tab panels
+- Supports keyboard operations (arrow keys, Home, End)
+- Selected tabs are indicated with `aria-selected="true"`
+- Tabs and tab panels are associated using `aria-controls` and `id`
+- Screen readers can understand the current tab and available tabs

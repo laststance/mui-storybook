@@ -17,7 +17,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Pagination',
   component: PaginationComponent,
-  tags: ['autodocs'],
+  tags: [] // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof PaginationComponent>
 
 export default meta

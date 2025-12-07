@@ -1,0 +1,69 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ProgressStories from './Progress.stories'
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+A progress indicator component that visually displays processing status with linear or circular progress bars.
+
+## Overview
+
+The Progress component wraps Material-UI's LinearProgress and CircularProgress and provides the following features:
+
+- **Linear progress**: Horizontal bar progress display
+- **Circular progress**: Circular spinner progress display
+- **Variants**: Indeterminate (`indeterminate`), determinate (`determinate`), buffer (`buffer`)
+- **Colors**: `primary`, `secondary`, `success`, `error`, `warning`, `info`
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import LinearProgress from '@mui/material/LinearProgress'
+import CircularProgress from '@mui/material/CircularProgress'
+
+// Indeterminate linear progress
+<LinearProgress />
+
+// Determinate linear progress
+<LinearProgress variant="determinate" value={50} />
+
+// Buffer variant
+<LinearProgress variant="buffer" value={60} valueBuffer={80} />
+
+// Circular progress
+<CircularProgress />
+
+// Circular with value
+<CircularProgress variant="determinate" value={75} />
+
+// Different sizes
+<CircularProgress size={20} />
+<CircularProgress size={40} />
+<CircularProgress size={60} />
+```
+
+## Accessibility
+
+- Set appropriate `aria-label` or `aria-labelledby` to communicate progress state to screen readers
+- `aria-valuenow` is automatically set for determinate variant
+- Consider setting `aria-busy` on surrounding content to indicate loading
+- Recommend using textual status display in addition to visual progress

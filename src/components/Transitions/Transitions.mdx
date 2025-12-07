@@ -1,0 +1,70 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TransitionsStories from './Transitions.stories'
+
+<Meta of={TransitionsStories} />
+
+# Transitions
+
+Transition animations
+
+## Overview
+
+MUI Transitions are a set of components for smoothly animating the display and hiding of elements. They provide various animation effects including Collapse (height animation), Fade (opacity animation), Grow (scale and fade), Slide (slide), and Zoom (zoom). By applying them to dynamic UI elements such as dialogs, menus, and notifications, you can achieve a polished user experience.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Fade from '@mui/material/Fade'
+import Grow from '@mui/material/Grow'
+import Slide from '@mui/material/Slide'
+import Box from '@mui/material/Box'
+import { useState } from 'react'
+
+function TransitionExample() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>Toggle</button>
+
+      <Fade in={show}>
+        <Box sx={{ mt: 2 }}>Fading content</Box>
+      </Fade>
+
+      <Grow in={show}>
+        <Box sx={{ mt: 2 }}>Growing content</Box>
+      </Grow>
+
+      <Slide direction="up" in={show}>
+        <Box sx={{ mt: 2 }}>Sliding content</Box>
+      </Slide>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- Animations are visual aids and not essential to functionality
+- Respects the `prefers-reduced-motion` media query
+- Content remains accessible during animations
+- Screen readers announce content normally
+- Keyboard focus is managed appropriately

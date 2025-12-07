@@ -1,0 +1,59 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as StackStories from './Stack.stories'
+
+<Meta of={StackStories} />
+
+# Stack
+
+One-dimensional layout component
+
+## Overview
+
+The MUI Stack component is a one-dimensional layout component for arranging child elements vertically or horizontally. Based on Flexbox, it allows you to concisely configure element spacing, direction, dividers, and more. It supports responsive breakpoints, enabling layout changes based on screen size. It can be utilized in various scenarios including forms, button groups, and lists.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+
+function ButtonGroup() {
+  return (
+    <Stack
+      direction="row"
+      spacing={2}
+      divider={<Divider orientation="vertical" flexItem />}
+    >
+      <Button>Button 1</Button>
+      <Button>Button 2</Button>
+      <Button>Button 3</Button>
+    </Stack>
+  )
+}
+```
+
+## Accessibility
+
+- Maintains semantic HTML structure
+- `direction` and `spacing` affect only layout and do not change DOM order
+- Preserves logical content order even with responsive layout changes
+- Screen readers announce content in natural order

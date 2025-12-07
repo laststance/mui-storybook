@@ -1,0 +1,56 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TooltipStories from './Tooltip.stories'
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Tooltip
+
+## Overview
+
+The MUI Tooltip component is a popup component that displays additional information when hovering or focusing on an element. Used to provide supplementary explanations or descriptive text for buttons, icons, links, and more. Display position, arrow presence, and display delay time can be customized. Designed with accessibility in mind, supporting keyboard operations and screen readers.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+
+function DeleteButton() {
+  return (
+    <Tooltip title="Delete item" arrow placement="top">
+      <IconButton aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
+    </Tooltip>
+  )
+}
+```
+
+## Accessibility
+
+- Provide clear tooltip text using the `title` property
+- Displays on both focus and hover
+- Tooltip can be closed with the Escape key
+- Tooltip content is announced by screen readers
+- Important information should be provided in always-visible text, not relying solely on tooltips

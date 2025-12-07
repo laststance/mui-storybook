@@ -1,0 +1,78 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TableStories from './Table.stories'
+
+<Meta of={TableStories} />
+
+# Table
+
+Data table
+
+## Overview
+
+The MUI Table component displays structured data in rows and columns. By combining subcomponents such as TableHead, TableBody, TableRow, and TableCell, you can build accessible and flexible data tables. It can be extended as an advanced data grid by adding features such as sorting, pagination, and selection. Size adjustment and style customization are also possible.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+
+function DataTable() {
+  const rows = [
+    { id: 1, name: 'Item 1', value: 100 },
+    { id: 2, name: 'Item 2', value: 200 },
+  ]
+
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Value</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell align="right">{row.value}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
+}
+```
+
+## Accessibility
+
+- Provide a label for the table using `aria-label` or `aria-labelledby`
+- Properly mark up column headers using TableHead
+- Use the `scope` attribute to clarify relationships between header cells and data cells
+- Enable screen readers to understand table structure
+- Supports keyboard navigation

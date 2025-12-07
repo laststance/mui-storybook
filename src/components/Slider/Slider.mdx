@@ -1,0 +1,59 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as SliderStories from './Slider.stories'
+
+<Meta of={SliderStories} />
+
+# Slider
+
+Slider input
+
+## Overview
+
+MUI's Slider component is an interactive input component that allows users to select or adjust values within a range. It supports various patterns such as single value selection, range selection, and discrete value selection with marks. It can be utilized in scenarios where values are visually selected, such as volume adjustment, price range filters, and setting value adjustments.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Slider from '@mui/material/Slider'
+import { useState } from 'react'
+
+function VolumeControl() {
+  const [value, setValue] = useState(30)
+
+  return (
+    <Slider
+      value={value}
+      onChange={(_, newValue) => setValue(newValue as number)}
+      aria-label="Volume"
+      valueLabelDisplay="auto"
+      min={0}
+      max={100}
+    />
+  )
+}
+```
+
+## Accessibility
+
+- Provide label with `aria-label` or `aria-labelledby`
+- Supports keyboard operations (arrow keys, PageUp/PageDown, Home/End)
+- Screen readers announce current value and range
+- `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` attributes are automatically set

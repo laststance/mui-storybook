@@ -1,0 +1,108 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as DrawerStories from './Drawer.stories'
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+A navigation component that slides from the screen edge. Used for implementing side menus and navigation panels.
+
+## Overview
+
+The Drawer component wraps Material-UI's Drawer and provides the following features:
+
+- **Position**: 4 directions - `left`, `right`, `top`, `bottom`
+- **Variants**: `temporary`, `persistent`, `permanent`
+- **Anchor**: Specify slide direction with anchor property
+- **Overlay**: Display background overlay in temporary mode
+- **Responsive**: Can toggle display/hide according to breakpoints
+- **Slide Animation**: Smooth opening and closing animations
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe drawer behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Drawer from '@/components/Drawer'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Button from '@/components/Button'
+import { useState } from 'react'
+
+// Temporary drawer (default)
+function TemporaryDrawer() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Drawer</Button>
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        anchor="left"
+      >
+        <List sx={{ width: 250 }}>
+          <ListItem button>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="About" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="Contact" />
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
+  )
+}
+
+// Permanent drawer
+<Drawer variant="permanent" anchor="left">
+  <List sx={{ width: 240 }}>
+    <ListItem button>
+      <ListItemText primary="Dashboard" />
+    </ListItem>
+  </List>
+</Drawer>
+
+// Right-side drawer
+<Drawer anchor="right" open={open} onClose={handleClose}>
+  <Box sx={{ width: 300, p: 2 }}>
+    Content from the right
+  </Box>
+</Drawer>
+
+// Bottom drawer
+<Drawer anchor="bottom" open={open} onClose={handleClose}>
+  <Box sx={{ height: 200, p: 2 }}>
+    Content from the bottom
+  </Box>
+</Drawer>
+```
+
+## Accessibility
+
+- In temporary variant, the drawer can be closed with the Esc key
+- Focus automatically moves inside the drawer
+- While the drawer is open, background content is inaccessible due to focus trap
+- `role="presentation"` is automatically assigned
+- When used for navigation purposes, it's recommended to wrap with a `<nav>` element
+- Appropriately notify screen reader users of drawer open/close state

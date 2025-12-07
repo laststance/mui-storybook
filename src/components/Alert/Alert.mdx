@@ -1,0 +1,81 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as AlertStories from './Alert.stories'
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Alerts that display important information to users
+
+## Overview
+
+The Alert component displays feedback messages to communicate success, information, warnings, or errors to users. Clear icons and color coding visually distinguish the importance and type of message.
+
+Key features:
+- 4 severity levels (success, info, warning, error)
+- 3 variants (standard, filled, outlined)
+- Alerts with titles (using AlertTitle)
+- Add close buttons or custom actions
+- Custom icon configuration
+- Transition effect support
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Stack from '@mui/material/Stack'
+
+function MyAlerts() {
+  return (
+    <Stack spacing={2}>
+      <Alert severity="success">
+        Operation completed successfully.
+      </Alert>
+
+      <Alert severity="info">
+        <AlertTitle>Information</AlertTitle>
+        New features are now available.
+      </Alert>
+
+      <Alert severity="warning">
+        This action cannot be undone.
+      </Alert>
+
+      <Alert severity="error" onClose={() => console.log('Closed')}>
+        An error occurred. Please try again.
+      </Alert>
+
+      <Alert variant="outlined" severity="info">
+        This is an outlined style alert.
+      </Alert>
+    </Stack>
+  )
+}
+```
+
+## Accessibility
+
+- Alerts have appropriate ARIA roles and are announced by screen readers
+- The `severity` prop automatically sets the icon and color
+- Close buttons should have an appropriate `aria-label`
+- `role="alert"` is automatically applied for important information

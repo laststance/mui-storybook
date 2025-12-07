@@ -1,0 +1,80 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as CircularProgressStories from './CircularProgress.stories'
+
+<Meta of={CircularProgressStories} />
+
+# CircularProgress
+
+A circular progress indicator component that visually represents loading or processing states.
+
+## Overview
+
+The CircularProgress component wraps Material-UI's CircularProgress and provides the following features:
+
+- **Variants**: `indeterminate`, `determinate`
+- **Colors**: `primary`, `secondary`, `success`, `error`, `info`, `warning`, `inherit`
+- **Size**: Specify size in pixels with the size property
+- **Progress Value**: Display values from 0 to 100 in determinate mode
+- **Thickness**: Adjust circle line thickness with the thickness property
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe progress indicator display:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import CircularProgress from '@/components/CircularProgress'
+import Box from '@mui/material/Box'
+
+// Indeterminate (loading)
+<CircularProgress />
+
+// Colored progress
+<CircularProgress color="secondary" />
+<CircularProgress color="success" />
+
+// Different sizes
+<CircularProgress size={20} />
+<CircularProgress size={40} />
+<CircularProgress size={60} />
+
+// Determinate progress with value
+<CircularProgress
+  variant="determinate"
+  value={75}
+  color="primary"
+/>
+
+// Custom thickness
+<CircularProgress
+  thickness={2}
+  size={50}
+/>
+
+// Centered in container
+<Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
+  <CircularProgress />
+</Box>
+```
+
+## Accessibility
+
+- `role="progressbar"` is automatically assigned
+- In determinate mode, the current progress value is announced via `aria-valuenow`
+- Screen readers appropriately announce states like "loading"
+- For long-running processes, it's recommended to provide textual descriptions along with visual feedback

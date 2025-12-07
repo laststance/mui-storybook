@@ -1,0 +1,99 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as LinkStories from './Link.stories'
+
+<Meta of={LinkStories} />
+
+# Link
+
+A text link component that provides navigation and access to external resources.
+
+## Overview
+
+The Link component is for displaying text-based hyperlinks. It provides theme-integrated styling and flexible customization options.
+
+Key features:
+- **Underline Styles**: 3 variations - always, hover, none
+- **Theme Color Support**: Can apply colors like primary, secondary
+- **Button Behavior**: Functions as button with component="button"
+- **Typography Integration**: Seamlessly placed within text
+- **Flexible Routing**: Can integrate with Next.js, React Router, etc.
+
+Underline styles:
+- **always**: Always display underline
+- **hover**: Display underline only on hover (default)
+- **none**: No underline
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+
+// Basic usage
+<Link href="https://mui.com">
+  Material-UI
+</Link>
+
+// Underline styles
+<Link href="#" underline="always">
+  Always underlined
+</Link>
+<Link href="#" underline="hover">
+  Underline on hover
+</Link>
+<Link href="#" underline="none">
+  No underline
+</Link>
+
+// Color specification
+<Link href="#" color="primary">Primary</Link>
+<Link href="#" color="secondary">Secondary</Link>
+<Link href="#" color="error">Error</Link>
+
+// Use as button
+<Link
+  component="button"
+  variant="body2"
+  onClick={() => console.log('clicked')}
+>
+  Clickable link
+</Link>
+
+// Usage within text
+<Typography>
+  See <Link href="#">here</Link> for details.
+</Typography>
+
+// Integration with Next.js
+import NextLink from 'next/link'
+
+<Link component={NextLink} href="/about">
+  About
+</Link>
+```
+
+## Accessibility
+
+- Use text that clearly conveys the link's purpose (avoid links that only say "here")
+- For external links, inform users that they will open in a new tab
+- Supports keyboard operation (Tab key to focus, Enter key to execute)
+- Ensure sufficient contrast ratio and make it visually clear that it's a link
+- Confirm that a visual indicator is displayed when focused

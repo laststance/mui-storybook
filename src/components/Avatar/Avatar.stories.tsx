@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Avatar',
   component: Avatar,
-  tags: ['autodocs'],
+  tags: [] // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Avatar>
 
 export default meta

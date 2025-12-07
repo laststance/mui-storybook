@@ -1,0 +1,104 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as DialogStories from './Dialog.stories'
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+A modal dialog component that captures user attention to display important information or prompt actions.
+
+## Overview
+
+The Dialog component wraps Material-UI's Dialog and provides the following features:
+
+- **Modal Display**: Displays in front with background overlay
+- **Sizes**: 6 levels - `xs`, `sm`, `md`, `lg`, `xl`, `false`
+- **Full Screen**: Full screen display with fullScreen property
+- **Scrolling**: Choose scroll behavior between `paper` or `body` with scroll property
+- **Close Behavior**: Control closing behavior via backdrop click or Esc key with onClose handler
+- **Animation**: Smooth opening and closing animations
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe dialog behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Dialog from '@/components/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import Button from '@/components/Button'
+import { useState } from 'react'
+
+// Basic dialog
+function BasicDialog() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Dialog Title</DialogTitle>
+        <DialogContent>
+          This is the dialog content.
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={() => setOpen(false)}>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  )
+}
+
+// Full screen dialog
+<Dialog fullScreen open={open} onClose={handleClose}>
+  <DialogTitle>Full Screen Dialog</DialogTitle>
+  <DialogContent>Content...</DialogContent>
+</Dialog>
+
+// Different sizes
+<Dialog maxWidth="sm" open={open} onClose={handleClose}>
+  <DialogTitle>Small Dialog</DialogTitle>
+  <DialogContent>Content...</DialogContent>
+</Dialog>
+
+// Prevent closing on backdrop click
+<Dialog
+  open={open}
+  onClose={(event, reason) => {
+    if (reason !== 'backdropClick') {
+      handleClose()
+    }
+  }}
+>
+  <DialogContent>Must use button to close</DialogContent>
+</Dialog>
+```
+
+## Accessibility
+
+- When the dialog opens, focus automatically moves inside the dialog
+- Dialog can be closed with the Esc key (can be disabled with disableEscapeKeyDown)
+- Focus is trapped within the dialog, preventing access to outside elements
+- `aria-labelledby` and `aria-describedby` are automatically set (when using DialogTitle and DialogContent)
+- Screen readers recognize it as `role="dialog"`
+- Always use the DialogTitle component for the dialog title

@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
-  tags: ['autodocs'],
+  tags: [] // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Tooltip>
 
 export default meta

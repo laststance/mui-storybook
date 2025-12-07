@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/TextField',
   component: TextField,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation
   parameters: {
     a11y: {
       config: {

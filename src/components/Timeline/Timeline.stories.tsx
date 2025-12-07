@@ -19,7 +19,7 @@ const meta: Meta<typeof Timeline> = {
   parameters: {
     layout: 'padded',
   },
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation
   argTypes: {
     position: {
       control: 'select',

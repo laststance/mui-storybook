@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TypographyStories from './Typography.stories'
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+Text display
+
+## Overview
+
+The MUI Typography component applies consistent text styles. It provides various variants based on Material Design's typography scale, including headings (h1-h6), body text (body1, body2), subtitles, and captions. By working with themes, it uniformly manages font family, size, weight, line height, and more, achieving accessible and readable text display.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Typography from '@mui/material/Typography'
+
+function Article() {
+  return (
+    <>
+      <Typography variant="h1" gutterBottom>
+        Main Heading
+      </Typography>
+      <Typography variant="h2" gutterBottom>
+        Section Heading
+      </Typography>
+      <Typography variant="body1" paragraph>
+        This is a paragraph of body text. It uses the body1 variant
+        which is suitable for most text content.
+      </Typography>
+      <Typography variant="caption" color="text.secondary">
+        This is caption text for additional information
+      </Typography>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- Generates semantic HTML elements using the `variant` property
+- Maintains proper hierarchy for heading levels (h1-h6)
+- Controls visual style and HTML elements independently using the `component` property
+- Uses colors with sufficient contrast ratios
+- Enables screen readers to understand document structure

@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as StepperStories from './Stepper.stories'
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+Step-based navigation
+
+## Overview
+
+The MUI Stepper component visually displays the progress of a process consisting of multiple steps. It clearly presents multi-stage tasks to users, such as form input, checkout processes, and setup wizards. It supports various styles and patterns including horizontal or vertical layouts, alternative label placement, and error state display.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import { useState } from 'react'
+
+const steps = ['Select campaign', 'Create ad group', 'Create ad']
+
+function SetupWizard() {
+  const [activeStep, setActiveStep] = useState(0)
+
+  return (
+    <Stepper activeStep={activeStep}>
+      {steps.map((label) => (
+        <Step key={label}>
+          <StepLabel>{label}</StepLabel>
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+```
+
+## Accessibility
+
+- Clearly indicates the current step using the `activeStep` property
+- Provides clear labels for each step
+- Error states are indicated visually and semantically using the `error` property
+- Enables screen readers to understand progress and current position

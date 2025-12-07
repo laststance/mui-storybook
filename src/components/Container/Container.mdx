@@ -1,0 +1,79 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ContainerStories from './Container.stories'
+
+<Meta of={ContainerStories} />
+
+# Container
+
+A container component that limits content maximum width and centers it. Used as the foundation for responsive layouts.
+
+## Overview
+
+The Container component wraps Material-UI's Container and provides the following features:
+
+- **Maximum Width**: 6 levels - `xs`, `sm`, `md`, `lg`, `xl`, `false`
+- **Fixed Width**: Set fixed width per breakpoint with the fixed property
+- **Padding**: Automatically adds left and right padding
+- **Centering**: Horizontally centers content
+- **Responsive**: Maximum width changes according to breakpoints
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe container behavior:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Container from '@/components/Container'
+import Typography from '@mui/material/Typography'
+
+// Default container (maxWidth: lg)
+<Container>
+  <Typography>This content is centered and has a maximum width.</Typography>
+</Container>
+
+// Small container
+<Container maxWidth="sm">
+  <Typography>Narrower content area</Typography>
+</Container>
+
+// Extra large container
+<Container maxWidth="xl">
+  <Typography>Wider content area</Typography>
+</Container>
+
+// Fluid container (no max width)
+<Container maxWidth={false}>
+  <Typography>Full width content</Typography>
+</Container>
+
+// Fixed width container
+<Container fixed>
+  <Typography>Fixed width at each breakpoint</Typography>
+</Container>
+
+// Container with custom styling
+<Container sx={{ bgcolor: 'background.paper', py: 4 }}>
+  <Typography variant="h4">Styled Container</Typography>
+</Container>
+```
+
+## Accessibility
+
+- Use in combination with appropriate HTML tags (`<main>`, `<section>`, `<article>`, etc.) for semantic markup
+- Container itself is a layout-purpose component and doesn't require special accessibility attributes
+- Choose an appropriate maxWidth for content readability (sm or md recommended for long text)

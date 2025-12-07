@@ -1,0 +1,81 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as RatingStories from './Rating.stories'
+
+<Meta of={RatingStories} />
+
+# Rating
+
+A star rating component used for users to input ratings or display existing ratings.
+
+## Overview
+
+The Rating component wraps Material-UI's Rating and provides the following features:
+
+- **Custom icons**: Icons other than stars can be used
+- **Precision**: Ratings in integers or decimals (such as 0.5 increments)
+- **Sizes**: `small`, `medium`, `large`
+- **Read-only**: Display ratings only
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Rating from '@mui/material/Rating'
+
+// Basic rating
+<Rating defaultValue={3} />
+
+// Controlled rating
+function ControlledRating() {
+  const [value, setValue] = React.useState(2)
+
+  return (
+    <Rating
+      value={value}
+      onChange={(event, newValue) => setValue(newValue)}
+    />
+  )
+}
+
+// Read-only rating
+<Rating value={4} readOnly />
+
+// Half-star precision
+<Rating defaultValue={2.5} precision={0.5} />
+
+// Custom icon
+<Rating
+  icon={<FavoriteIcon />}
+  emptyIcon={<FavoriteBorderIcon />}
+/>
+
+// Different sizes
+<Rating size="small" />
+<Rating size="medium" />
+<Rating size="large" />
+```
+
+## Accessibility
+
+- Set appropriate `name` attribute for Rating
+- Use `aria-label` to describe the meaning of the rating
+- Rating can be changed with keyboard navigation (arrow keys)
+- Each star is automatically set with appropriate `aria-label` (e.g., "3 Stars")
+- When using in forms, clearly indicate whether rating is required

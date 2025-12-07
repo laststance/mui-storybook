@@ -12,6 +12,7 @@ const preview: Preview = {
   parameters: {
     docs: {
       theme: muiBrandTheme,
+      autodocs: true,
     },
     options: {
       storySort: {

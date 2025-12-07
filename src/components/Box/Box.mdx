@@ -1,0 +1,114 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as BoxStories from './Box.stories'
+
+<Meta of={BoxStories} />
+
+# Box
+
+Utility component for layouts
+
+## Overview
+
+The Box component is the most fundamental building block of MUI's styling solution. You can apply theme-based styling directly using the `sx` prop. It's a versatile container component used for layouts, spacing, responsive design, and more.
+
+Key features:
+- Powerful styling with the `sx` prop
+- Direct access to theme values
+- Responsive design support
+- Easy implementation of Flexbox and Grid layouts
+- Change element type with the `component` prop
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+function MyBox() {
+  return (
+    <Box
+      sx={{
+        width: 300,
+        height: 200,
+        backgroundColor: 'primary.main',
+        borderRadius: 2,
+        padding: 2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '&:hover': {
+          backgroundColor: 'primary.dark',
+        },
+      }}
+    >
+      <Typography color="white">Box content</Typography>
+    </Box>
+  )
+}
+
+// Flexbox layout
+function FlexboxLayout() {
+  return (
+    <Box sx={{ display: 'flex', gap: 2, p: 2 }}>
+      <Box sx={{ flex: 1, bgcolor: 'primary.light', p: 2 }}>
+        Item 1
+      </Box>
+      <Box sx={{ flex: 2, bgcolor: 'secondary.light', p: 2 }}>
+        Item 2 (flex: 2)
+      </Box>
+      <Box sx={{ flex: 1, bgcolor: 'error.light', p: 2 }}>
+        Item 3
+      </Box>
+    </Box>
+  )
+}
+
+// Responsive design
+function ResponsiveBox() {
+  return (
+    <Box
+      sx={{
+        width: {
+          xs: '100%',  // Mobile
+          sm: '75%',   // Tablet
+          md: '50%',   // Desktop
+        },
+        bgcolor: {
+          xs: 'error.light',
+          sm: 'warning.light',
+          md: 'success.light',
+        },
+        p: 2,
+      }}
+    >
+      Responsive box
+    </Box>
+  )
+}
+```
+
+## Accessibility
+
+- Box renders as a standard `<div>` element
+- Use the `component` prop to give it semantic meaning
+- Example: `<Box component="section">` or `<Box component="article">`
+- When using as an interactive element, add appropriate ARIA attributes

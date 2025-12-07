@@ -1,0 +1,132 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as BreadcrumbsStories from './Breadcrumbs.stories'
+
+<Meta of={BreadcrumbsStories} />
+
+# Breadcrumbs
+
+Breadcrumb navigation
+
+## Overview
+
+The Breadcrumbs component is a navigation element that hierarchically displays the user's current location. It shows the current location within a website or application and provides navigation to higher levels. Also beneficial for SEO, helping convey site structure to crawlers.
+
+Key features:
+- Customizable separators
+- Breadcrumbs with icons
+- Set maximum display items (collapse functionality)
+- Support for link and non-link items
+- Automatic identification of active item
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import HomeIcon from '@mui/icons-material/Home'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+
+function MyBreadcrumbs() {
+  return (
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link underline="hover" color="inherit" href="/">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="/products">
+        Products
+      </Link>
+      <Typography color="text.primary">Details</Typography>
+    </Breadcrumbs>
+  )
+}
+
+// Breadcrumbs with icons
+function IconBreadcrumbs() {
+  return (
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="inherit"
+        href="/"
+      >
+        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        Home
+      </Link>
+      <Typography
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="text.primary"
+      >
+        Products
+      </Typography>
+    </Breadcrumbs>
+  )
+}
+
+// Custom separator
+function CustomSeparator() {
+  return (
+    <Breadcrumbs
+      separator={<NavigateNextIcon fontSize="small" />}
+      aria-label="breadcrumb"
+    >
+      <Link underline="hover" color="inherit" href="/">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="/category">
+        Category
+      </Link>
+      <Typography color="text.primary">Product</Typography>
+    </Breadcrumbs>
+  )
+}
+
+// Collapse functionality
+function CollapsedBreadcrumbs() {
+  return (
+    <Breadcrumbs maxItems={3} aria-label="breadcrumb">
+      <Link underline="hover" color="inherit" href="/">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="/category">
+        Category
+      </Link>
+      <Link underline="hover" color="inherit" href="/subcategory">
+        Subcategory
+      </Link>
+      <Link underline="hover" color="inherit" href="/product">
+        Product
+      </Link>
+      <Typography color="text.primary">Details</Typography>
+    </Breadcrumbs>
+  )
+}
+```
+
+## Accessibility
+
+- Use `aria-label` to describe the purpose of the breadcrumbs
+- The current page (last item) is typically displayed as Typography, not a Link
+- Placing within a `<nav>` element makes it recognized as a navigation landmark
+- Screen readers automatically announce separators
+- Combining with structured data (JSON-LD) improves SEO

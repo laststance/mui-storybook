@@ -1,0 +1,82 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as PopoverStories from './Popover.stories'
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+A popover display component that temporarily shows additional information or options near an anchor element.
+
+## Overview
+
+The Popover component wraps Material-UI's Popover and provides the following features:
+
+- **Anchor position**: Placement based on element or coordinates
+- **Flexible placement**: Detailed position control in vertical and horizontal directions
+- **Transitions**: Customizable animation effects
+- **Event triggers**: Supports various events like click, hover, etc.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Popover from '@mui/material/Popover'
+import Button from '@mui/material/Button'
+
+function BasicPopover() {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  return (
+    <>
+      <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+        Open Popover
+      </Button>
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <div style={{ padding: 16 }}>Popover content</div>
+      </Popover>
+    </>
+  )
+}
+
+// Position-based popover
+<Popover
+  open={open}
+  anchorReference="anchorPosition"
+  anchorPosition={{ top: 200, left: 400 }}
+  onClose={handleClose}
+>
+  <div>Content at specific position</div>
+</Popover>
+```
+
+## Accessibility
+
+- Use `aria-describedby` to associate trigger element with popover
+- Set `pointerEvents: 'none'` when displaying on hover
+- Supports closing with Escape key for keyboard users
+- Pay attention to focus management and use `disableRestoreFocus` when necessary

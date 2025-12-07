@@ -1,0 +1,83 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as DividerStories from './Divider.stories'
+
+<Meta of={DividerStories} />
+
+# Divider
+
+A component that displays dividing lines to separate content. Visually divides sections and clarifies hierarchical structure.
+
+## Overview
+
+The Divider component wraps Material-UI's Divider and provides the following features:
+
+- **Orientation**: `horizontal`, `vertical`
+- **Variants**: `fullWidth`, `inset` (left indent), `middle` (centered)
+- **With Text**: Display text or icons by passing children
+- **Position**: Choose `left`, `center`, `right` with textAlign property
+- **Light Version**: Display thin line with light property
+- **flexItem**: Configuration for proper behavior in Flex containers
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe divider display:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Divider from '@/components/Divider'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+// Basic horizontal divider
+<Box>
+  <Typography>Section 1</Typography>
+  <Divider />
+  <Typography>Section 2</Typography>
+</Box>
+
+// Divider with text
+<Divider>OR</Divider>
+
+// Divider with text alignment
+<Divider textAlign="left">Left</Divider>
+<Divider textAlign="center">Center</Divider>
+<Divider textAlign="right">Right</Divider>
+
+// Vertical divider
+<Box sx={{ display: 'flex', alignItems: 'center', height: 100 }}>
+  <Typography>Left</Typography>
+  <Divider orientation="vertical" flexItem />
+  <Typography>Right</Typography>
+</Box>
+
+// Inset divider (for lists)
+<Divider variant="inset" />
+
+// Middle divider
+<Divider variant="middle" />
+
+// Light divider
+<Divider light />
+```
+
+## Accessibility
+
+- Divider is recognized as `role="separator"`
+- As a decorative divider, it's typically not announced by screen readers
+- Consider using the `<hr>` element for semantic separation
+- When using Divider with text, ensure the text is meaningful

@@ -1,0 +1,73 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as PaginationStories from './Pagination.stories'
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+A pagination component that divides large amounts of content into multiple pages and provides navigation.
+
+## Overview
+
+The Pagination component wraps Material-UI's Pagination and provides the following features:
+
+- **Variants**: Two types: `text` and `outlined`
+- **Colors**: `primary`, `secondary`, `standard`
+- **Sizes**: `small`, `medium`, `large`
+- **Shape**: Default circular or rounded corners with `rounded`
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Pagination from '@mui/material/Pagination'
+
+// Basic pagination
+<Pagination count={10} />
+
+// Controlled pagination
+function ControlledPagination() {
+  const [page, setPage] = React.useState(1)
+
+  return (
+    <Pagination
+      count={10}
+      page={page}
+      onChange={(event, value) => setPage(value)}
+    />
+  )
+}
+
+// Custom styling
+<Pagination
+  count={10}
+  variant="outlined"
+  color="primary"
+  shape="rounded"
+  size="large"
+/>
+```
+
+## Accessibility
+
+- Page number buttons are automatically set with appropriate `aria-label`
+- Supports keyboard navigation (Tab, Enter)
+- Current page is indicated with `aria-current="page"`
+- Disabled buttons are properly marked

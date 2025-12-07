@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as SkeletonStories from './Skeleton.stories'
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+Loading placeholder
+
+## Overview
+
+MUI's Skeleton component provides placeholder animations to display while content is loading. It can represent loading states for various elements such as text, images, and cards, visually communicating to users that content is loading. By combining multiple variations (text, circular, rectangular, rounded) with animation effects, you can achieve a sophisticated loading experience.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
+
+function LoadingState() {
+  return (
+    <Stack spacing={1}>
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      <Skeleton variant="circular" width={40} height={40} />
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rounded" width={210} height={60} />
+    </Stack>
+  )
+}
+```
+
+## Accessibility
+
+- Communicates loading state to screen readers
+- Animation respects `prefers-reduced-motion`
+- Recommend using `aria-busy` attribute to explicitly indicate loading state

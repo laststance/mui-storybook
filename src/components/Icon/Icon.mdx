@@ -1,0 +1,84 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as IconStories from './Icon.stories'
+
+<Meta of={IconStories} />
+
+# Icon
+
+An icon display component that displays Material Icons and custom icons.
+
+## Overview
+
+The Icon component implements Material Design's icon system and displays various icons with a consistent style. Over 2000 icons provided by the @mui/icons-material package are available.
+
+Key features:
+- **Rich Icon Set**: All Material Icons are available
+- **Size Adjustment**: Predefined sizes (small, medium, large) and custom size specification
+- **Theme Color Support**: Can apply theme colors like primary, secondary
+- **Flexible Usage**: Supports various uses including standalone, inside buttons, inside lists
+- **SVG Based**: Scalable and high-quality display
+
+Icon types:
+- Filled (default): Filled style
+- Outlined: Outline style
+- Rounded: Rounded corners style
+- Two-tone: Two-tone color style
+- Sharp: Sharp edge style
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import HomeIcon from '@mui/icons-material/Home'
+import SettingsIcon from '@mui/icons-material/Settings'
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+
+// Basic usage
+<HomeIcon />
+
+// Size specification
+<HomeIcon fontSize="small" />
+<HomeIcon fontSize="medium" />
+<HomeIcon fontSize="large" />
+<HomeIcon sx={{ fontSize: 48 }} />
+
+// Color specification
+<HomeIcon color="primary" />
+<HomeIcon color="secondary" />
+<HomeIcon color="error" />
+
+// Combined with button
+<IconButton aria-label="delete">
+  <DeleteIcon />
+</IconButton>
+
+<IconButton aria-label="settings" color="primary">
+  <SettingsIcon />
+</IconButton>
+```
+
+## Accessibility
+
+- When combining with IconButton, always specify the `aria-label` attribute
+- If the icon alone doesn't convey meaning, add supplementary text or tooltips
+- Consider setting `aria-hidden="true"` for decorative icons
+- Convey meaning through icon shape, not just color
+- Ensure sufficient contrast ratio for visual identification

@@ -1,0 +1,72 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as MenuStories from './Menu.stories'
+
+<Meta of={MenuStories} />
+
+# Menu
+
+A dropdown menu component that provides a temporarily displayed list of options.
+
+## Overview
+
+The Menu component wraps Material-UI's Menu and provides the following features:
+
+- **Anchor element**: Display attached to elements like buttons
+- **Menu items**: Customizable items including text, icons, dividers, etc.
+- **Positioning**: Flexible placement options
+- **Keyboard navigation**: Supports arrow key operation
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Button from '@mui/material/Button'
+
+function BasicMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+
+  return (
+    <>
+      <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+        Open Menu
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
+      </Menu>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- Menu items are automatically set with appropriate `role="menuitem"`
+- Supports keyboard navigation (arrow keys, Enter, Escape)
+- Set `aria-haspopup` and `aria-expanded` attributes on the trigger element
+- Focus management is handled automatically

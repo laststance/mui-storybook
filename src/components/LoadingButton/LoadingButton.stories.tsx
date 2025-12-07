@@ -13,7 +13,7 @@ const meta: Meta<typeof LoadingButton> = {
   parameters: {
     layout: 'padded',
   },
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation
   argTypes: {
     loading: { control: 'boolean' },
     variant: {

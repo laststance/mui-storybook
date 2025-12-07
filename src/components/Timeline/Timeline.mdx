@@ -1,0 +1,76 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as TimelineStories from './Timeline.stories'
+
+<Meta of={TimelineStories} />
+
+# Timeline
+
+Timeline display
+
+## Overview
+
+The MUI Timeline component (@mui/lab) is for visually displaying chronological events or processes. By combining subcomponents such as TimelineItem, TimelineSeparator, TimelineDot, TimelineContent, and TimelineOppositeContent, you can build flexible timelines. Suitable for displaying chronological information such as project progress, history, and step-by-step guides.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Timeline from '@mui/lab/Timeline'
+import TimelineItem from '@mui/lab/TimelineItem'
+import TimelineSeparator from '@mui/lab/TimelineSeparator'
+import TimelineConnector from '@mui/lab/TimelineConnector'
+import TimelineContent from '@mui/lab/TimelineContent'
+import TimelineDot from '@mui/lab/TimelineDot'
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
+
+function EventTimeline() {
+  return (
+    <Timeline position="alternate">
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary">
+          9:30 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="primary" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Event Started</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary">
+          10:00 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="success" />
+        </TimelineSeparator>
+        <TimelineContent>Event Completed</TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  )
+}
+```
+
+## Accessibility
+
+- Uses semantic HTML structure
+- Provides clear content for each TimelineItem
+- Conveys information through text and icons, not relying on color alone
+- Enables screen readers to understand chronological flow
+- Provides additional information using `aria-label` when necessary

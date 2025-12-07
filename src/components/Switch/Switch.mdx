@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as SwitchStories from './Switch.stories'
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+Toggle switch
+
+## Overview
+
+The MUI Switch component is a toggle switch for switching between two states: on and off. While it has similar functionality to a checkbox, it provides a more mobile-friendly and visually clear UI. It is suitable for toggle operations that take effect immediately, such as turning settings on/off and enabling/disabling features. Size, color, and label placement can be customized.
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { useState } from 'react'
+
+function SettingsToggle() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <FormControlLabel
+      control={
+        <Switch
+          checked={checked}
+          onChange={(e) => setChecked(e.target.checked)}
+        />
+      }
+      label="Enable notifications"
+    />
+  )
+}
+```
+
+## Accessibility
+
+- Has the checkbox role (`role="checkbox"`)
+- Supports keyboard operations (Space, Enter)
+- Indicates state using the `aria-checked` attribute
+- Clearly associates with labels when combined with FormControlLabel
+- Screen readers properly announce state changes

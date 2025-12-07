@@ -1,0 +1,86 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as AppBarStories from './AppBar.stories'
+
+<Meta of={AppBarStories} />
+
+# AppBar
+
+Application navigation bar
+
+## Overview
+
+The AppBar component provides a navigation bar positioned at the top of the application. It can include branding, titles, navigation, search, and other actions. Typically used in combination with the Toolbar component.
+
+Key features:
+- Multiple position settings (static, fixed, absolute, sticky, relative)
+- Color variations (primary, secondary, default, transparent)
+- Toolbar density adjustment (standard, dense)
+- Elevation (shadow) customization
+- Responsive design support
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+
+function MyAppBar() {
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          My Application
+        </Typography>
+
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="search"
+        >
+          <SearchIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  )
+}
+```
+
+## Accessibility
+
+- AppBar renders as a `<header>` element with appropriate landmark role
+- Using it with the Toolbar component provides proper navigation structure
+- Icon buttons should have appropriate `aria-label` attributes
+- When using `position="fixed"`, add appropriate padding to main content

@@ -1,0 +1,83 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as AccordionStories from './Accordion.stories'
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Collapsible content panels
+
+## Overview
+
+The Accordion component provides vertically stacked content panels. Each panel can be expanded and collapsed, making it ideal for organizing and displaying large amounts of information. Commonly used for FAQs, settings screens, and detailed information displays.
+
+Key features:
+- Independent expand/collapse of multiple panels
+- Controlled accordion (only one panel expanded at a time)
+- Customizable icons and styles
+- Support for disabled state
+- Configure default expanded panels
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Typography from '@mui/material/Typography'
+
+function MyAccordion() {
+  return (
+    <div>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Section 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Content goes here.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Section 2</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Multiple accordions can be placed.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
+  )
+}
+```
+
+## Accessibility
+
+- AccordionSummary automatically has a `button` role and supports keyboard operation
+- The `aria-expanded` attribute communicates the panel's expansion state to screen readers
+- The `aria-controls` attribute can be used to explicitly associate the summary with its content
+- Panels can be expanded/collapsed using the Enter or Space key

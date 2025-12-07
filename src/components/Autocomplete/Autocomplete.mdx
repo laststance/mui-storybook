@@ -1,0 +1,96 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as AutocompleteStories from './Autocomplete.stories'
+
+<Meta of={AutocompleteStories} />
+
+# Autocomplete
+
+Text input with autocomplete functionality
+
+## Overview
+
+The Autocomplete component is an enhanced text box that displays a panel of suggested options. As users start typing, filtered suggestions appear, enabling efficient selection. Used for search fields, tag input, selection lists, and more.
+
+Key features:
+- Support for single and multiple selection
+- Free solo mode (allows arbitrary value input)
+- Custom filtering and sorting
+- Asynchronous data loading
+- Grouped options
+- Controlled and uncontrolled components
+- Keyboard navigation
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
+
+interface Movie {
+  label: string
+  year: number
+}
+
+const movies: Movie[] = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Dark Knight', year: 2008 },
+]
+
+function MyAutocomplete() {
+  return (
+    <Autocomplete
+      disablePortal
+      options={movies}
+      getOptionLabel={(option) => option.label}
+      sx={{ width: 300 }}
+      renderInput={(params) => (
+        <TextField {...params} label="Select movie" />
+      )}
+    />
+  )
+}
+
+// Controlled Autocomplete
+function ControlledAutocomplete() {
+  const [value, setValue] = React.useState<Movie | null>(null)
+
+  return (
+    <Autocomplete
+      value={value}
+      onChange={(event, newValue) => setValue(newValue)}
+      options={movies}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
+    />
+  )
+}
+```
+
+## Accessibility
+
+- Complies with WAI-ARIA 1.1 combobox pattern
+- Full keyboard operation support:
+  - ↓/↑ keys: Navigate options
+  - Enter key: Select option
+  - Escape key: Close popup
+- ARIA attributes are configured for proper screen reader announcement
+- Provide an appropriate label for the TextField in `renderInput`

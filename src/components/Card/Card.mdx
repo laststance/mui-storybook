@@ -1,0 +1,80 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as CardStories from './Card.stories'
+
+<Meta of={CardStories} />
+
+# Card
+
+Card-style container component for organizing and displaying information, including text, images, and actions.
+
+## Overview
+
+The Card component wraps Material-UI's Card and provides the following features:
+
+- **Elevation**: Set shadow depth from 0 to 24
+- **Variants**: `elevation` (default), `outlined` (border style)
+- **Flexible Layout**: Combine with subcomponents like CardContent, CardActions, CardMedia
+- **Responsive**: Adapts flexibly to screen sizes
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties and observe card display:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Card from '@/components/Card'
+import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
+import Button from '@/components/Button'
+import Typography from '@mui/material/Typography'
+
+// Basic card
+<Card>
+  <CardContent>
+    <Typography variant="h5">Card Title</Typography>
+    <Typography variant="body2" color="text.secondary">
+      This is the card content with some description.
+    </Typography>
+  </CardContent>
+</Card>
+
+// Card with actions
+<Card variant="outlined">
+  <CardContent>
+    <Typography variant="h6">Product</Typography>
+    <Typography>$99.99</Typography>
+  </CardContent>
+  <CardActions>
+    <Button size="small">Learn More</Button>
+    <Button size="small" variant="contained">Buy Now</Button>
+  </CardActions>
+</Card>
+
+// Elevated card
+<Card elevation={8}>
+  <CardContent>
+    <Typography>High elevation card</Typography>
+  </CardContent>
+</Card>
+```
+
+## Accessibility
+
+- Use appropriate heading levels for content within cards
+- Add `role="button"` or appropriate `aria-label` for clickable cards
+- Set `tabIndex` when keyboard operation is required

@@ -14,7 +14,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Dialog',
   component: Dialog,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation
 } satisfies Meta<typeof Dialog>
 
 export default meta

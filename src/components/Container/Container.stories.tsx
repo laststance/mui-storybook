@@ -10,7 +10,7 @@ const meta: Meta<typeof Container> = {
   parameters: {
     layout: 'fullscreen',
   },
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation
   argTypes: {
     maxWidth: {
       control: 'select',

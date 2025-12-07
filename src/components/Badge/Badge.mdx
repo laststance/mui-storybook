@@ -1,0 +1,96 @@
+import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+
+import * as BadgeStories from './Badge.stories'
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Badges displaying notification counts or status
+
+## Overview
+
+The Badge component displays a small badge in the corner of icons or buttons to indicate unread message counts, status, etc. Used for notification systems, shopping cart item counts, status indicators, and more.
+
+Key features:
+- Numeric badges and dot badges
+- Color variations (primary, secondary, error, success, etc.)
+- Maximum value setting (99+, etc.)
+- Badge position adjustment
+- Control badge visibility
+- Custom content support
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import Badge from '@mui/material/Badge'
+import IconButton from '@mui/material/IconButton'
+import MailIcon from '@mui/icons-material/Mail'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import Stack from '@mui/material/Stack'
+
+function MyBadges() {
+  return (
+    <Stack direction="row" spacing={3}>
+      {/* Numeric badge */}
+      <Badge badgeContent={4} color="primary">
+        <MailIcon />
+      </Badge>
+
+      {/* Set maximum value */}
+      <Badge badgeContent={100} max={99} color="secondary">
+        <MailIcon />
+      </Badge>
+
+      {/* Dot badge */}
+      <Badge variant="dot" color="error">
+        <NotificationsIcon />
+      </Badge>
+
+      {/* Combined with icon button */}
+      <IconButton aria-label="17 new notifications">
+        <Badge badgeContent={17} color="error">
+          <NotificationsIcon />
+        </Badge>
+      </IconButton>
+    </Stack>
+  )
+}
+
+// Control badge visibility
+function ControlledBadge() {
+  const [count, setCount] = React.useState(1)
+  const [invisible, setInvisible] = React.useState(false)
+
+  return (
+    <Badge badgeContent={count} invisible={invisible} color="primary">
+      <MailIcon />
+    </Badge>
+  )
+}
+```
+
+## Accessibility
+
+- When combining with IconButton, include the notification count in `aria-label`
+- Example: `aria-label="4 new messages"`
+- If badge content is only displayed visually, provide alternative text for screen reader users
+- For dynamically changing badges, consider using `aria-live` regions

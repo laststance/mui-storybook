@@ -1,0 +1,132 @@
+import { Meta, Primary, Controls, Canvas, ArgTypes, Stories } from '@storybook/addon-docs/blocks'
+import * as ListStories from './List.stories'
+
+<Meta of={ListStories} />
+
+# List
+
+A list display component that arranges items vertically.
+
+## Overview
+
+The List component is for grouping and displaying related items. It supports a wide range of uses, from simple text lists to complex lists containing icons, avatars, and checkboxes.
+
+Key features:
+- **Flexible Composition**: Can combine various elements like text, icons, avatars, checkboxes
+- **Interactive**: Create clickable items with ListItemButton
+- **Nest Support**: Easily implement hierarchical lists
+- **Secondary Actions**: Can place additional action buttons on each item
+- **Dividers**: Add visual separation with Divider
+
+Main subcomponents:
+- **ListItem**: Each item in the list
+- **ListItemButton**: Clickable list item
+- **ListItemIcon**: Icon display area
+- **ListItemAvatar**: Avatar display area
+- **ListItemText**: Primary and secondary text
+- **ListItemSecondaryAction**: Secondary action placement area
+
+## Primary Demo
+
+<Primary />
+
+## Interactive Controls
+
+Use the controls below to modify properties:
+
+<Controls />
+
+## Props
+
+<ArgTypes />
+
+## All Variants
+
+<Stories />
+
+## Usage Example
+
+```tsx
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Avatar from '@mui/material/Avatar'
+import InboxIcon from '@mui/icons-material/Inbox'
+
+// Basic list
+<List>
+  <ListItem>
+    <ListItemText primary="Item 1" />
+  </ListItem>
+  <ListItem>
+    <ListItemText primary="Item 2" />
+  </ListItem>
+</List>
+
+// List with icons
+<List>
+  <ListItem disablePadding>
+    <ListItemButton>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <ListItemText primary="Inbox" />
+    </ListItemButton>
+  </ListItem>
+</List>
+
+// List with avatars
+<List>
+  <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        <FolderIcon />
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText primary="Photos" secondary="Jan 9, 2024" />
+  </ListItem>
+</List>
+
+// Nested list
+<List>
+  <ListItemButton onClick={handleClick}>
+    <ListItemIcon>
+      <InboxIcon />
+    </ListItemIcon>
+    <ListItemText primary="Inbox" />
+    {open ? <ExpandLess /> : <ExpandMore />}
+  </ListItemButton>
+  <Collapse in={open}>
+    <List component="div" disablePadding>
+      <ListItemButton sx={{ pl: 4 }}>
+        <ListItemText primary="Starred" />
+      </ListItemButton>
+    </List>
+  </Collapse>
+</List>
+
+// With secondary action
+<List>
+  <ListItem
+    secondaryAction={
+      <IconButton edge="end" aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
+    }
+  >
+    <ListItemText primary="Item" />
+  </ListItem>
+</List>
+```
+
+## Accessibility
+
+- Appropriate `role` attributes are automatically set for list items
+- Interactive elements (ListItemButton) support keyboard operation
+- Always specify `aria-label` for icon-only buttons
+- Use primary and secondary text hierarchy appropriately
+- For lists with checkboxes, make the selection state clearly visible
+- Express nested list structure with appropriate ARIA attributes
