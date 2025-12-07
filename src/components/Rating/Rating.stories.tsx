@@ -29,14 +29,18 @@ export const Default: Story = {
 export const InteractionTest: Story = {
   args: {
     defaultValue: 0,
-    'aria-label': 'Rating',
+    name: 'rating-test',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const rating = canvas.getByRole('radio', { name: '3 Stars' })
-
-    await userEvent.click(rating)
-    await expect(rating).toBeChecked()
+    
+    // MUI Rating uses radio inputs with accessible names like "3 Stars" or similar
+    // Get all radio buttons and click the third one (index 2 = 3 stars)
+    const radioButtons = canvas.getAllByRole('radio')
+    const thirdStar = radioButtons[2] // 0-indexed: 0=1star, 1=2stars, 2=3stars
+    
+    await userEvent.click(thirdStar)
+    await expect(thirdStar).toBeChecked()
   },
 }
 

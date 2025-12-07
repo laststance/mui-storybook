@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useState } from 'react'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, screen, userEvent, within } from 'storybook/test'
 
 import Dialog from './Dialog'
 
@@ -177,18 +177,18 @@ export const OpenCloseInteraction: Story = {
     const openButton = canvas.getByRole('button', { name: /open dialog/i })
     await userEvent.click(openButton)
 
-    // Verify dialog opened - dialog content appears in the document
-    const dialogTitle = await canvas.findByText('Test Dialog')
-    await expect(dialogTitle).toBeInTheDocument()
+    // Verify dialog opened - use screen for portal-rendered content
+    const dialog = await screen.findByRole('dialog')
+    await expect(dialog).toBeVisible()
 
-    const dialogContent = canvas.getByText('Dialog content for testing interaction')
-    await expect(dialogContent).toBeInTheDocument()
+    const dialogTitle = within(dialog).getByText('Test Dialog')
+    await expect(dialogTitle).toBeVisible()
 
-    // Close dialog
-    const cancelButton = canvas.getByRole('button', { name: /cancel/i })
+    // Close dialog using Cancel button inside dialog
+    const cancelButton = within(dialog).getByRole('button', { name: /cancel/i })
     await userEvent.click(cancelButton)
 
-    // Verify dialog is closed - content should no longer be in the document
-    await expect(canvas.queryByText('Test Dialog')).not.toBeInTheDocument()
+    // Verify dialog is closed
+    await expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   },
 }

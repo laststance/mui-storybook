@@ -17,15 +17,22 @@ export const Default: Story = {
 }
 
 export const InteractionTest: Story = {
-  args: {},
+  args: {
+    defaultChecked: false,
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const switchInput = canvas.getByRole('checkbox')
+    const switchElement = canvas.getByRole('checkbox')
 
-    await expect(switchInput).not.toBeChecked()
-    await userEvent.click(switchInput)
-    await expect(switchInput).toBeChecked()
-    await userEvent.click(switchInput)
-    await expect(switchInput).not.toBeChecked()
+    // Verify initial unchecked state
+    await expect(switchElement).not.toBeChecked()
+
+    // Click to toggle on
+    await userEvent.click(switchElement)
+    await expect(switchElement).toBeChecked()
+
+    // Click to toggle off
+    await userEvent.click(switchElement)
+    await expect(switchElement).not.toBeChecked()
   },
 }
