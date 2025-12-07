@@ -1,38 +1,54 @@
 import { create } from 'storybook/theming'
 
 export default create({
-  base: 'dark',
+  base: 'light',
 
-  colorPrimary: 'rgb(51, 153, 255)',
-  colorSecondary: 'rgb(0, 30, 60)',
+  // Brand colors - Sky/Light Blue palette for fresh, airy aesthetic (2025)
+  colorPrimary: '#0ea5e9', // Sky-500 - vibrant, modern primary
+  colorSecondary: '#0284c7', // Sky-600 - depth and emphasis
 
-  // UI
-  appBg: 'rgb(0, 30, 60)',
-  appContentBg: 'rgb(10, 25, 41)',
-  appBorderColor: 'rgb(19, 47, 76)',
-  appBorderRadius: 10,
+  // UI - Sky-based light theme with fresh, airy feeling
+  appBg: '#f0f9ff', // Sky-50 - very light blue, airy base
+  appContentBg: '#ffffff', // Pure white for maximum content contrast
+  appBorderColor: '#7dd3fc', // Sky-300 - visible but soft borders
+  appBorderRadius: 12, // Modern rounded corners (2025 standard)
 
-  // Typography
+  // Typography - Modern Inter font stack
   fontBase:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
-  fontCode: 'Consolas,Menlo,Monaco,Andale Mono,Ubuntu Mono,monospace',
+    'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  fontCode:
+    '"JetBrains Mono", "Fira Code", Consolas, Monaco, "Andale Mono", monospace',
 
-  // Text colors
-  textColor: '#fff',
-  textInverseColor: '#fff',
+  // Text colors - Balanced contrast for excellent readability
+  textColor: '#0c4a6e', // Sky-900 - deep blue-gray for primary text
+  textInverseColor: '#ffffff',
+  textMutedColor: '#0369a1', // Sky-700 - muted blue for secondary text
 
-  // Toolbar default and active colors
-  barTextColor: '#fff',
-  barSelectedColor: 'rgb(19, 47, 76)',
-  barBg: 'rgb(51 153 255)',
+  // Toolbar - Sky-themed with optimized contrast
+  barTextColor: '#0c4a6e', // Sky-900 - maximum readability on light blue
+  barSelectedColor: '#0ea5e9', // Sky-500 - vibrant selected state
+  barHoverColor: '#bae6fd', // Sky-200 - visible hover feedback
+  barBg: '#e0f2fe', // Sky-100 - light blue toolbar background
 
-  // Form colors
-  inputBg: 'rgb(0, 30, 60)',
-  inputBorder: 'rgb(102, 178, 255)',
-  inputTextColor: 'rgb(125 222 255)',
-  inputBorderRadius: 10,
+  // Form colors - Clean and modern with sky tint
+  inputBg: '#ffffff',
+  inputBorder: '#38bdf8', // Sky-400 - clear, visible borders
+  inputTextColor: '#0c4a6e', // Sky-900 - maximum readability
+  inputBorderRadius: 8,
 
+  // Button colors - Vibrant and cohesive
+  buttonBg: '#0ea5e9', // Sky-500 - vibrant primary action
+  buttonBorder: '#0284c7', // Sky-600 - subtle depth
+
+  // Boolean inputs - Clear and modern
+  booleanBg: '#e0f2fe', // Sky-100 - subtle background
+  booleanSelectedBg: '#0ea5e9', // Sky-500 - consistent with primary
+
+  // Grid colors for canvas
+  gridCellSize: 10,
+
+  // Brand
   brandTitle: 'MUI Storybook',
   brandUrl: 'https://mui.com/',
-  brandImage: 'https://pbs.twimg.com/media/E_aj11YVcA4uZOT?format=jpg',
+  brandTarget: '_blank',
 })
