@@ -13,7 +13,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Modal',
   component: Modal,
-  tags: [] // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Modal>
 
 export default meta

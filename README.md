@@ -5,104 +5,112 @@
   </a>
 </p>
 
-</br>
-
 <p align="center">
   <a href="https://main--632a01c394385880b3383063.chromatic.com">
     <img src="https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg" alt="Storybook" />
   </a>
-   <a href="https://github.com/laststance/mui-storybook/actions/workflows/chromatic.yml">
-    <img src="https://github.com/laststance/mui-storybook/actions/workflows/chromatic.yml/badge.svg" alt="chromatic" />
+  <a href="https://github.com/laststance/mui-storybook/actions/workflows/chromatic.yml">
+    <img src="https://github.com/laststance/mui-storybook/actions/workflows/chromatic.yml/badge.svg" alt="Chromatic" />
   </a>
-  <a href="">
-    <img src="" alt="" />
+  <a href="https://github.com/laststance/mui-storybook/actions/workflows/build.yml">
+    <img src="https://github.com/laststance/mui-storybook/actions/workflows/build.yml/badge.svg" alt="Build" />
   </a>
-   <a href="">
-    <img src="" alt="" />
-  </a>
-  <a href="">
-    <img src="" alt="" />
+  <a href="https://github.com/laststance/mui-storybook/actions/workflows/typecheck.yml">
+    <img src="https://github.com/laststance/mui-storybook/actions/workflows/typecheck.yml/badge.svg" alt="TypeCheck" />
   </a>
 </p>
 
+A comprehensive [Storybook](https://storybook.js.org/) showcase for [MUI v7](https://mui.com/) components with React 19.
 
+## Features
 
-This project is [Storybook](https://storybook.js.org/) for [MUI v5](https://mui.com/) default components.
+| Feature | Description |
+|---------|-------------|
+| **51 Components** | Complete MUI component coverage |
+| **Theme Switching** | Light/dark mode via toolbar |
+| **Interaction Tests** | Automated UI testing with play functions |
+| **A11y Testing** | axe-playwright accessibility checks |
+| **Design Tokens** | Comprehensive token documentation |
+| **Real-World Examples** | Dashboard, Payment, Mobile Landing |
 
-# [Progress](https://github.com/laststance/mui-storybook/issues/61)
-At the time this project progress is not completed.  
-There are many Components that have not yet been added to the Storybook, and the feature of switch between the default Light Theme and Dark Theme has not yet been implemented.  
+## Tech Stack
 
-Please take a look [Progress](https://github.com/laststance/mui-storybook/issues/61) page to track current status, and contribution is really helpful. 😄
+| Technology | Version |
+|------------|---------|
+| React | 19.2.1 |
+| MUI | 7.3.5 |
+| Storybook | 10.1.4 |
+| TypeScript | 5.9.3 |
+| Vite | 6.3.5 |
 
-# Why
+## Installation (Storybook Composition)
 
-This project is being developed to support front-end teams that are MUI users and use Storybook in their workflow.  
+Add to your `.storybook/main.ts`:
 
-Although the official MUI documentation is far more useful as a reference, I started this project because I realized that some teams that using Storybook or Chromatic as part of their development process have a need to make the external UI libraries available to everyone in Storybook.
-
-# Installation
-
-Copy and paste following `refs` field into the your `.storybook/main.js` file.
-
-```js
-// .storybook/main.js
-
-module.exports={
+```ts
+export default {
   refs: {
     'mui-storybook': {
       title: "MUI Storybook",
-      url: "https://61c23f8c33dad8003adc12f6-cwovkuxnql.chromatic.com/",
+      url: "https://main--632a01c394385880b3383063.chromatic.com/",
     }
   },
 }
 ```
-And then start storybook like `yarn storybook` `npm run storybook`, you'll see the mui-storybook in the your storybook.  
+
+Then start your Storybook - MUI Storybook will appear in your sidebar.
 
 <img src="https://digital3.nyc3.cdn.digitaloceanspaces.com/mui-storybook-install.png" alt="installation" />
 
-# Local Development
+## Local Development
 
 ```sh
 git clone https://github.com/laststance/mui-storybook.git
 cd mui-storybook
-yarn
-yarn storybook # launch Storybook dev mode
+pnpm install
+pnpm storybook    # Launch dev server on port 6006
 ```
 
-## Contribute Guide
+## Available Scripts
 
-0. Fork the repository and create your branch from main.
-1. Run `yarn` in the repository root.
-2. Run `yarn srorybook`.
-3. Run `yarn gen <ComponentName>`
-4. Then you got scaffold like this
+| Command | Description |
+|---------|-------------|
+| `pnpm storybook` | Start development server |
+| `pnpm build` | Build static Storybook |
+| `pnpm gen <Name>` | Generate component scaffold |
+| `pnpm lint` | Run ESLint |
+| `pnpm typecheck` | TypeScript validation |
+| `pnpm test-storybook` | Run interaction tests |
+| `pnpm validate` | Run all checks (lint, typecheck, build) |
+
+## Contributing
+
+1. Fork the repository and create your branch from `main`
+2. Run `pnpm install`
+3. Run `pnpm storybook`
+4. Generate new component: `pnpm gen <ComponentName>`
+5. Run `pnpm validate` before submitting PR
+
 ```shell
-ryota.murakami@MacBook-Pro ~/l/mui-storybook (main)> yarn gen Paper
-yarn run v1.22.18
-$ plop Paper
+$ pnpm gen Paper
 ✔  ++ /src/components/Paper/Paper.tsx
 ✔  ++ /src/components/Paper/Paper.stories.tsx
-✨  Done in 0.81s.
 ```
 
-# License
+## License
 
 MIT
 
+## Contributors
 
-## Contributors ✨
-
-
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks to all contributors! ([emoji key](https://allcontributors.org/docs/en/emoji-key))
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://ryota-murakami.github.io/"><img src="https://avatars1.githubusercontent.com/u/5501268?s=400&u=7bf6b1580b95930980af2588ef0057f3e9ec1ff8&v=4?s=100" width="100px;" alt=""/><br /><sub><b>ryota-murakami</b></sub></a><br /><a href="https://github.com/laststance/vite-redux-toolkit-starter/laststance/vite-redux-toolkit-starter/commits?author=ryota-murakami" title="Code">💻</a> <a href="https://github.com/laststance/vite-redux-toolkit-starter/laststance/vite-redux-toolkit-starter/commits?author=ryota-murakami" title="Documentation">📖</a> <a href="https://github.com/laststance/vite-redux-toolkit-starter/laststance/vite-redux-toolkit-starter/commits?author=ryota-murakami" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://ryota-murakami.github.io/"><img src="https://avatars1.githubusercontent.com/u/5501268?s=400&u=7bf6b1580b95930980af2588ef0057f3e9ec1ff8&v=4?s=100" width="100px;" alt=""/><br /><sub><b>ryota-murakami</b></sub></a><br /><a href="https://github.com/laststance/mui-storybook/commits?author=ryota-murakami" title="Code">💻</a> <a href="https://github.com/laststance/mui-storybook/commits?author=ryota-murakami" title="Documentation">📖</a> <a href="https://github.com/laststance/mui-storybook/commits?author=ryota-murakami" title="Tests">⚠️</a></td>
   </tr>
 </table>
 

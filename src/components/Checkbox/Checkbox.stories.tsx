@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  tags: [] // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Checkbox>
 
 export default meta

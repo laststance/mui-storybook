@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Link',
   component: Link,
-  tags: [] // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Link>
 
 export default meta

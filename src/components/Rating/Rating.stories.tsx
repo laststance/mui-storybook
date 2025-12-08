@@ -15,7 +15,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Components/Rating',
   component: Rating,
-  tags: [] // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Rating>
 
 export default meta
