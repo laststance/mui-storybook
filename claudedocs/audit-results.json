@@ -1,0 +1,338 @@
+[
+  {
+    "component": "Button",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-button--default"
+  },
+  {
+    "component": "TextField",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-textfield--default"
+  },
+  {
+    "component": "Select",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-select--default"
+  },
+  {
+    "component": "Checkbox",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-checkbox--default"
+  },
+  {
+    "component": "Switch",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-switch--default"
+  },
+  {
+    "component": "Slider",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-slider--default"
+  },
+  {
+    "component": "Rating",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-rating--default"
+  },
+  {
+    "component": "Autocomplete",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-autocomplete--default"
+  },
+  {
+    "component": "ToggleButton",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-togglebutton--default"
+  },
+  {
+    "component": "RadioButton",
+    "category": "Inputs",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-radiobutton--default"
+  },
+  {
+    "component": "Typography",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-typography--default"
+  },
+  {
+    "component": "Avatar",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-avatar--default"
+  },
+  {
+    "component": "Badge",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-badge--default"
+  },
+  {
+    "component": "Chip",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-chip--default"
+  },
+  {
+    "component": "Divider",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-divider--default"
+  },
+  {
+    "component": "Icon",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-icon--default"
+  },
+  {
+    "component": "List",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-list--default"
+  },
+  {
+    "component": "Table",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-table--default"
+  },
+  {
+    "component": "Tooltip",
+    "category": "Data Display",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-tooltip--default"
+  },
+  {
+    "component": "Alert",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-alert--default"
+  },
+  {
+    "component": "Dialog",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-dialog--default"
+  },
+  {
+    "component": "Progress",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-progress--default"
+  },
+  {
+    "component": "CircularProgress",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-circularprogress--default"
+  },
+  {
+    "component": "Skeleton",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-skeleton--default"
+  },
+  {
+    "component": "Snackbar",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-snackbar--default"
+  },
+  {
+    "component": "Backdrop",
+    "category": "Feedback",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-backdrop--default"
+  },
+  {
+    "component": "Accordion",
+    "category": "Surfaces",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-accordion--default"
+  },
+  {
+    "component": "Card",
+    "category": "Surfaces",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-card--default"
+  },
+  {
+    "component": "Paper",
+    "category": "Surfaces",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-paper--default"
+  },
+  {
+    "component": "AppBar",
+    "category": "Surfaces",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-appbar--default"
+  },
+  {
+    "component": "BottomNavigation",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-bottomnavigation--default"
+  },
+  {
+    "component": "Breadcrumbs",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-breadcrumbs--default"
+  },
+  {
+    "component": "Drawer",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-drawer--default"
+  },
+  {
+    "component": "Link",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.waitForSelector: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('#storybook-root') to be visible\u001b[22m\n",
+    "url": "http://localhost:6006/?path=/story/components-link--default"
+  },
+  {
+    "component": "Menu",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-menu--default"
+  },
+  {
+    "component": "Pagination",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-pagination--default"
+  },
+  {
+    "component": "SpeedDial",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-speeddial--default"
+  },
+  {
+    "component": "Stepper",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-stepper--default"
+  },
+  {
+    "component": "Tabs",
+    "category": "Navigation",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-tabs--default"
+  },
+  {
+    "component": "Box",
+    "category": "Layout",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-box--default"
+  },
+  {
+    "component": "Container",
+    "category": "Layout",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-container--default"
+  },
+  {
+    "component": "Grid",
+    "category": "Layout",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-grid--default"
+  },
+  {
+    "component": "Stack",
+    "category": "Layout",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-stack--default"
+  },
+  {
+    "component": "ImageList",
+    "category": "Layout",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-imagelist--default"
+  },
+  {
+    "component": "Modal",
+    "category": "Utils",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-modal--default"
+  },
+  {
+    "component": "Popover",
+    "category": "Utils",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-popover--default"
+  },
+  {
+    "component": "Transitions",
+    "category": "Utils",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-transitions--default"
+  },
+  {
+    "component": "Timeline",
+    "category": "Utils",
+    "status": "error",
+    "error": "page.goto: Target page, context or browser has been closed",
+    "url": "http://localhost:6006/?path=/story/components-timeline--default"
+  }
+]
