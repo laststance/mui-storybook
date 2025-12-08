@@ -3,7 +3,7 @@ import Paper from './Paper'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Paper',
+  title: 'Surfaces/Paper',
   component: Paper,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Paper>

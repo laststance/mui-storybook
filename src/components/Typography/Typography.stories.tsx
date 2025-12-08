@@ -3,7 +3,7 @@ import Typography from './Typography'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Typography',
+  title: 'Data Display/Typography',
   component: Typography,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Typography>

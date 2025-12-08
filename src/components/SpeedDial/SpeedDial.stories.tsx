@@ -13,7 +13,7 @@ import SpeedDial from './SpeedDial'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/SpeedDial',
+  title: 'Navigation/SpeedDial',
   component: SpeedDial,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof SpeedDial>

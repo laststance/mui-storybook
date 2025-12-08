@@ -11,7 +11,7 @@ import Chip from './Chip'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Chip>

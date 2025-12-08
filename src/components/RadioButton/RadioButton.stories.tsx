@@ -13,7 +13,7 @@ import type { RadioProps } from '@mui/material/Radio'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/RadioButton',
+  title: 'Inputs/RadioButton',
   component: Radio,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Radio>

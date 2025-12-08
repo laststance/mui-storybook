@@ -16,7 +16,7 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/ToggleButton',
+  title: 'Inputs/ToggleButton',
   component: ToggleButton,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof ToggleButton>

@@ -5,7 +5,7 @@ import Button from './Button'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Inputs/Button',
   component: Button,
   tags: [], // autodocs disabled - using custom MDX documentation
   parameters: {

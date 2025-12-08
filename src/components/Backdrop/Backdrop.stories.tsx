@@ -10,7 +10,7 @@ import Backdrop from './Backdrop'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Backdrop',
+  title: 'Feedback/Backdrop',
   component: Backdrop,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Backdrop>

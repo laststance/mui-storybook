@@ -7,7 +7,7 @@ import Link from './Link'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Link',
+  title: 'Navigation/Link',
   component: Link,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Link>

@@ -10,7 +10,7 @@ import Snackbar from './Snackbar'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Snackbar',
+  title: 'Feedback/Snackbar',
   component: Snackbar,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Snackbar>

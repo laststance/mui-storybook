@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Timeline> = {
-  title: 'Components/Timeline',
+  title: 'Utils/Timeline',
   component: Timeline,
   parameters: {
     layout: 'padded',

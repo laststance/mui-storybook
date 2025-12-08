@@ -10,7 +10,7 @@ import Slider from './Slider'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Slider',
+  title: 'Inputs/Slider',
   component: Slider,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Slider>

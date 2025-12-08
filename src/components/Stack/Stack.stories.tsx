@@ -8,7 +8,7 @@ import Stack from './Stack'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Stack',
+  title: 'Layout/Stack',
   component: Stack,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Stack>

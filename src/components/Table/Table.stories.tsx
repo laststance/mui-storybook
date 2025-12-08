@@ -10,7 +10,7 @@ import Table from './Table'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Table',
+  title: 'Data Display/Table',
   component: Table,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Table>

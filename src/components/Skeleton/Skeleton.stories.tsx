@@ -7,7 +7,7 @@ import Skeleton from './Skeleton'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Skeleton',
+  title: 'Feedback/Skeleton',
   component: Skeleton,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Skeleton>

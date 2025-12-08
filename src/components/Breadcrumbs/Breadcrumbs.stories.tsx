@@ -11,7 +11,7 @@ import Breadcrumbs from './Breadcrumbs'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Breadcrumbs',
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Breadcrumbs>

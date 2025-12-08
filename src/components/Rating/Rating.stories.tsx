@@ -13,7 +13,7 @@ import Rating from './Rating'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Rating',
+  title: 'Inputs/Rating',
   component: Rating,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Rating>

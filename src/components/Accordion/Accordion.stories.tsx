@@ -11,7 +11,7 @@ import Accordion from './Accordion'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Surfaces/Accordion',
   component: Accordion,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Accordion>

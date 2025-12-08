@@ -8,7 +8,7 @@ import Fab from '@mui/material/Fab'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/FloatingActionButton',
+  title: 'Inputs/FloatingActionButton',
   component: Fab,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Fab>

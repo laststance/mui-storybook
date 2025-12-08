@@ -25,7 +25,7 @@ import List from './List'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/List',
+  title: 'Data Display/List',
   component: List,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof List>

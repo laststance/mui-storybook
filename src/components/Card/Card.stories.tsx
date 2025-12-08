@@ -9,7 +9,7 @@ import Card from './Card'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Surfaces/Card',
   component: Card,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Card>

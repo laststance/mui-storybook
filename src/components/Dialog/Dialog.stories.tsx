@@ -12,7 +12,7 @@ import Dialog from './Dialog'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Dialog',
+  title: 'Feedback/Dialog',
   component: Dialog,
   tags: [], // autodocs disabled - using custom MDX documentation
 } satisfies Meta<typeof Dialog>

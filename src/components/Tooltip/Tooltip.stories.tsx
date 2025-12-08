@@ -9,7 +9,7 @@ import Tooltip from './Tooltip'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Tooltip',
+  title: 'Data Display/Tooltip',
   component: Tooltip,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Tooltip>

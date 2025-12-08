@@ -7,7 +7,7 @@ import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Popover> = {
-  title: 'Components/Popover',
+  title: 'Utils/Popover',
   component: Popover,
   tags: [], // autodocs disabled - using custom MDX documentation,
 }

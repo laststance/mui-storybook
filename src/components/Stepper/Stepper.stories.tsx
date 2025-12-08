@@ -12,7 +12,7 @@ import Stepper from './Stepper'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Stepper',
+  title: 'Navigation/Stepper',
   component: Stepper,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Stepper>

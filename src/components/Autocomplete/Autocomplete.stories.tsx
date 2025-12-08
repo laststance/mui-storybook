@@ -140,7 +140,7 @@ interface FilmOptionType {
 }
 
 const meta = {
-  title: 'Components/Autocomplete',
+  title: 'Inputs/Autocomplete',
   component: Autocomplete<FilmOptionType, false, false, false>,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Autocomplete<FilmOptionType, false, false, false>>

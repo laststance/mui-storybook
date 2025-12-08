@@ -13,7 +13,7 @@ import Divider from './Divider'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Divider',
+  title: 'Data Display/Divider',
   component: Divider,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Divider>

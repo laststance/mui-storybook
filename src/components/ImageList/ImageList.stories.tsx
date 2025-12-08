@@ -69,7 +69,7 @@ const itemData = [
 ]
 
 const meta: Meta<typeof ImageList> = {
-  title: 'Components/ImageList',
+  title: 'Data Display/ImageList',
   component: ImageList,
   tags: [], // autodocs disabled - using custom MDX documentation,
 }

@@ -16,7 +16,7 @@ import Drawer from './Drawer'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Drawer',
+  title: 'Navigation/Drawer',
   component: Drawer,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Drawer>

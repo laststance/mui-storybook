@@ -15,7 +15,7 @@ import Menu from './Menu'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Menu',
+  title: 'Navigation/Menu',
   component: Menu,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Menu>

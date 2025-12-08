@@ -13,7 +13,7 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/ButtonGroup',
+  title: 'Inputs/ButtonGroup',
   component: ButtonGroup,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof ButtonGroup>

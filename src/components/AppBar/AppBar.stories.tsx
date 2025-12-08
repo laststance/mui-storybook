@@ -11,7 +11,7 @@ import AppBar from './AppBar'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/AppBar',
+  title: 'Surfaces/AppBar',
   component: AppBar,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof AppBar>

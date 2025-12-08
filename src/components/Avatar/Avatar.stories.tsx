@@ -8,7 +8,7 @@ import Avatar from './Avatar'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Data Display/Avatar',
   component: Avatar,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Avatar>

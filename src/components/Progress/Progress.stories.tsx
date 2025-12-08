@@ -10,7 +10,7 @@ import Progress from './Progress'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Progress',
+  title: 'Feedback/Progress',
   component: Progress,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Progress>

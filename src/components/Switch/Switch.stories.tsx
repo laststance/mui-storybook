@@ -5,7 +5,7 @@ import Switch from './Switch'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Switch',
+  title: 'Inputs/Switch',
   component: Switch,
   tags: [], // autodocs disabled - using custom MDX documentation,
 } satisfies Meta<typeof Switch>
