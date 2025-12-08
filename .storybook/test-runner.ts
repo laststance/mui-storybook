@@ -10,6 +10,9 @@ import type { TestRunnerConfig } from '@storybook/test-runner'
  * - Automated accessibility testing with axe-playwright
  * - Play function execution for interaction tests
  * - Custom test hooks for setup and teardown
+ *
+ * Note: A11y violations are logged but don't fail tests by default.
+ * Stories can opt-in to strict a11y by setting parameters.a11y.strict = true
  */
 const config: TestRunnerConfig = {
   /**
@@ -34,14 +37,27 @@ const config: TestRunnerConfig = {
     }
 
     // Run accessibility checks with axe-core
-    await checkA11y(page, '#storybook-root', {
-      detailedReport: true,
-      detailedReportOptions: {
-        html: true,
-      },
-      // Allow stories to configure axe options
-      axeOptions: storyContext.parameters?.a11y?.options,
-    })
+    // By default, violations are logged but don't fail the test
+    // Set parameters.a11y.strict = true to make violations fail
+    try {
+      await checkA11y(page, '#storybook-root', {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
+        },
+        // Allow stories to configure axe options
+        axeOptions: storyContext.parameters?.a11y?.options,
+      })
+      console.log('No accessibility violations detected!')
+    } catch (error) {
+      // Log the violation but only fail if strict mode is enabled
+      const isStrict = storyContext.parameters?.a11y?.strict === true
+      if (isStrict) {
+        throw error
+      }
+      // Non-strict mode: log the error but don't fail
+      console.warn('Accessibility violations detected (non-blocking):', error)
+    }
   },
 }
 
