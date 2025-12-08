@@ -41,5 +41,6 @@ jobs:
           storybookBuildDir: storybook-static
           exitZeroOnChanges: true
           exitOnceUploaded: true
-          # Enable TurboSnap for faster builds
-          onlyChanged: true
+          # TurboSnap disabled - requires --stats-json flag in build
+          # Can be re-enabled later with proper stats configuration
+          onlyChanged: false
