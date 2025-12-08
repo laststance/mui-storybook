@@ -372,8 +372,9 @@ export const InteractionTest: Story = {
 
       const options = canvas.getAllByRole('option')
       await expect(options.length).toBeGreaterThan(0)
+      // Use exact match to avoid matching "The Godfather: Part II"
       await expect(
-        canvas.getByRole('option', { name: /the godfather/i }),
+        canvas.getByRole('option', { name: 'The Godfather' }),
       ).toBeInTheDocument()
     })
 
