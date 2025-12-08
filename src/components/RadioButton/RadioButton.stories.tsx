@@ -422,9 +422,10 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement)
 
     await step('Verify initial render with female selected', async () => {
-      const femaleRadio = canvas.getByRole('radio', { name: /female/i })
-      const maleRadio = canvas.getByRole('radio', { name: /male/i })
-      const otherRadio = canvas.getByRole('radio', { name: /other/i })
+      // Use exact text to avoid /male/i matching both "Female" and "Male"
+      const femaleRadio = canvas.getByRole('radio', { name: 'Female' })
+      const maleRadio = canvas.getByRole('radio', { name: 'Male' })
+      const otherRadio = canvas.getByRole('radio', { name: 'Other' })
 
       await expect(femaleRadio).toBeInTheDocument()
       await expect(maleRadio).toBeInTheDocument()
@@ -434,22 +435,22 @@ export const InteractionTest: Story = {
     })
 
     await step('Select male radio button', async () => {
-      const maleRadio = canvas.getByRole('radio', { name: /male/i })
+      const maleRadio = canvas.getByRole('radio', { name: 'Male' })
       await userEvent.click(maleRadio)
 
       await expect(maleRadio).toBeChecked()
       await expect(
-        canvas.getByRole('radio', { name: /female/i }),
+        canvas.getByRole('radio', { name: 'Female' }),
       ).not.toBeChecked()
     })
 
     await step('Select other radio button', async () => {
-      const otherRadio = canvas.getByRole('radio', { name: /other/i })
+      const otherRadio = canvas.getByRole('radio', { name: 'Other' })
       await userEvent.click(otherRadio)
 
       await expect(otherRadio).toBeChecked()
       await expect(
-        canvas.getByRole('radio', { name: /male/i }),
+        canvas.getByRole('radio', { name: 'Male' }),
       ).not.toBeChecked()
     })
 
@@ -457,9 +458,9 @@ export const InteractionTest: Story = {
       const femaleLabel = canvas.getByText('Female')
       await userEvent.click(femaleLabel)
 
-      await expect(canvas.getByRole('radio', { name: /female/i })).toBeChecked()
+      await expect(canvas.getByRole('radio', { name: 'Female' })).toBeChecked()
       await expect(
-        canvas.getByRole('radio', { name: /other/i }),
+        canvas.getByRole('radio', { name: 'Other' }),
       ).not.toBeChecked()
     })
   },
