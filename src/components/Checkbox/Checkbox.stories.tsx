@@ -58,23 +58,50 @@ export const Playground: Story = {
     disabled: false,
     defaultChecked: false,
     indeterminate: false,
+    inputProps: { 'aria-label': 'Checkbox control' },
   },
 }
 
 export const Default: Story = {
-  args: {},
+  args: {
+    inputProps: { 'aria-label': 'Default checkbox' },
+  },
 }
 
 export const Colors: Story = {
   args: {} as never,
   render: () => (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <Checkbox defaultChecked color="primary" />
-      <Checkbox defaultChecked color="secondary" />
-      <Checkbox defaultChecked color="success" />
-      <Checkbox defaultChecked color="error" />
-      <Checkbox defaultChecked color="info" />
-      <Checkbox defaultChecked color="warning" />
+      <Checkbox
+        defaultChecked
+        color="primary"
+        inputProps={{ 'aria-label': 'Primary checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="secondary"
+        inputProps={{ 'aria-label': 'Secondary checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="success"
+        inputProps={{ 'aria-label': 'Success checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="error"
+        inputProps={{ 'aria-label': 'Error checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="info"
+        inputProps={{ 'aria-label': 'Info checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        color="warning"
+        inputProps={{ 'aria-label': 'Warning checkbox' }}
+      />
     </div>
   ),
 }
@@ -83,9 +110,21 @@ export const Sizes: Story = {
   args: {} as never,
   render: () => (
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Checkbox defaultChecked size="small" />
-      <Checkbox defaultChecked size="medium" />
-      <Checkbox defaultChecked size="large" />
+      <Checkbox
+        defaultChecked
+        size="small"
+        inputProps={{ 'aria-label': 'Small checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        size="medium"
+        inputProps={{ 'aria-label': 'Medium checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        size="large"
+        inputProps={{ 'aria-label': 'Large checkbox' }}
+      />
     </div>
   ),
 }
@@ -93,6 +132,7 @@ export const Sizes: Story = {
 export const Indeterminate: Story = {
   args: {
     indeterminate: true,
+    inputProps: { 'aria-label': 'Indeterminate checkbox' },
   },
 }
 
@@ -100,12 +140,14 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     defaultChecked: true,
+    inputProps: { 'aria-label': 'Disabled checkbox' },
   },
 }
 
 export const ToggleInteraction: Story = {
   args: {
     defaultChecked: false,
+    inputProps: { 'aria-label': 'Toggle interaction checkbox' },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)

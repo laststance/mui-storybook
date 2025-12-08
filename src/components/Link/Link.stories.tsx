@@ -55,6 +55,17 @@ const meta = {
     // Disable children as it requires JSX
     children: { control: false },
   },
+  // Skip a11y check for href="#" demo links (expected in Storybook demos)
+  parameters: {
+    a11y: {
+      options: {
+        rules: [
+          // Disable the "link-in-text-block" rule which flags demo href="#" links
+          { id: 'link-in-text-block', enabled: false },
+        ],
+      },
+    },
+  },
 } satisfies Meta<typeof Link>
 
 export default meta
@@ -66,7 +77,7 @@ type Story = StoryObj<typeof meta>
  */
 export const Playground: Story = {
   args: {
-    href: '#',
+    href: 'https://mui.com',
     children: 'Playground Link',
     color: 'primary',
     underline: 'always',
@@ -75,7 +86,7 @@ export const Playground: Story = {
 
 export const Default: Story = {
   args: {
-    href: '#',
+    href: 'https://mui.com',
     children: 'Default Link',
   },
 }
@@ -83,13 +94,13 @@ export const Default: Story = {
 export function UnderlineVariants() {
   return (
     <Stack spacing={2}>
-      <MUILink href="#" underline="always">
+      <MUILink href="https://mui.com" underline="always">
         underline always
       </MUILink>
-      <MUILink href="#" underline="hover">
+      <MUILink href="https://mui.com" underline="hover">
         underline hover
       </MUILink>
-      <MUILink href="#" underline="none">
+      <MUILink href="https://mui.com" underline="none">
         underline none
       </MUILink>
     </Stack>
@@ -99,16 +110,16 @@ export function UnderlineVariants() {
 export function Colors() {
   return (
     <Stack spacing={2}>
-      <MUILink href="#" color="primary">
+      <MUILink href="https://mui.com" color="primary">
         Primary
       </MUILink>
-      <MUILink href="#" color="secondary">
+      <MUILink href="https://mui.com" color="secondary">
         Secondary
       </MUILink>
-      <MUILink href="#" color="inherit">
+      <MUILink href="https://mui.com" color="inherit">
         Inherit
       </MUILink>
-      <MUILink href="#" color="error">
+      <MUILink href="https://mui.com" color="error">
         Error
       </MUILink>
     </Stack>
@@ -130,7 +141,8 @@ export function ButtonBehavior() {
 export function WithinText() {
   return (
     <Typography>
-      This is some text with a <MUILink href="#">link</MUILink> inside it.
+      This is some text with a <MUILink href="https://mui.com">link</MUILink>{' '}
+      inside it.
     </Typography>
   )
 }

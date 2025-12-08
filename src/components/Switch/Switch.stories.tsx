@@ -1,3 +1,4 @@
+import MUISwitch from '@mui/material/Switch'
 import { expect, userEvent, within } from 'storybook/test'
 
 import {
@@ -53,28 +54,55 @@ type Story = StoryObj<typeof meta>
  * Use the Controls panel to experiment with all props.
  */
 export const Playground: Story = {
-  args: {
-    color: 'primary',
-    size: 'medium',
-    disabled: false,
-    defaultChecked: false,
-  },
+  args: {} as never,
+  render: () => (
+    <MUISwitch
+      color="primary"
+      size="medium"
+      inputProps={{ 'aria-label': 'Toggle switch' }}
+    />
+  ),
 }
 
 export const Default: Story = {
-  args: {},
+  args: {} as never,
+  render: () => <MUISwitch inputProps={{ 'aria-label': 'Default switch' }} />,
 }
 
 export const Colors: Story = {
   args: {} as never,
   render: () => (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <Switch defaultChecked color="primary" />
-      <Switch defaultChecked color="secondary" />
-      <Switch defaultChecked color="success" />
-      <Switch defaultChecked color="error" />
-      <Switch defaultChecked color="info" />
-      <Switch defaultChecked color="warning" />
+      <MUISwitch
+        defaultChecked
+        color="primary"
+        inputProps={{ 'aria-label': 'Primary switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        color="secondary"
+        inputProps={{ 'aria-label': 'Secondary switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        color="success"
+        inputProps={{ 'aria-label': 'Success switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        color="error"
+        inputProps={{ 'aria-label': 'Error switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        color="info"
+        inputProps={{ 'aria-label': 'Info switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        color="warning"
+        inputProps={{ 'aria-label': 'Warning switch' }}
+      />
     </div>
   ),
 }
@@ -83,23 +111,36 @@ export const Sizes: Story = {
   args: {} as never,
   render: () => (
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Switch defaultChecked size="small" />
-      <Switch defaultChecked size="medium" />
+      <MUISwitch
+        defaultChecked
+        size="small"
+        inputProps={{ 'aria-label': 'Small switch' }}
+      />
+      <MUISwitch
+        defaultChecked
+        size="medium"
+        inputProps={{ 'aria-label': 'Medium switch' }}
+      />
     </div>
   ),
 }
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    defaultChecked: true,
-  },
+  args: {} as never,
+  render: () => (
+    <MUISwitch
+      disabled
+      defaultChecked
+      inputProps={{ 'aria-label': 'Disabled switch' }}
+    />
+  ),
 }
 
 export const InteractionTest: Story = {
-  args: {
-    defaultChecked: false,
-  },
+  args: {} as never,
+  render: () => (
+    <MUISwitch inputProps={{ 'aria-label': 'Interaction test switch' }} />
+  ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const switchElement = canvas.getByRole('checkbox')
