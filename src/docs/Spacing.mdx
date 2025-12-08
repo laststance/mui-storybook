@@ -23,19 +23,29 @@ theme.spacing(4) // 32px
 
 ## Spacing Scale
 
-| Factor | Value | CSS Variable | Common Use |
-|--------|-------|--------------|------------|
-| 0 | 0px | `--spacing-0` | No space |
-| 0.5 | 4px | `--spacing-0-5` | Tight gaps |
-| 1 | 8px | `--spacing-1` | Icon gaps |
-| 1.5 | 12px | `--spacing-1-5` | Compact padding |
-| 2 | 16px | `--spacing-2` | Default padding |
-| 2.5 | 20px | `--spacing-2-5` | Medium gaps |
-| 3 | 24px | `--spacing-3` | Card padding |
-| 4 | 32px | `--spacing-4` | Section gaps |
-| 5 | 40px | `--spacing-5` | Large gaps |
-| 6 | 48px | `--spacing-6` | Section spacing |
-| 8 | 64px | `--spacing-8` | Major breaks |
+<table>
+  <thead>
+    <tr>
+      <th>Factor</th>
+      <th>Value</th>
+      <th>CSS Variable</th>
+      <th>Common Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0px</td><td><code>--spacing-0</code></td><td>No space</td></tr>
+    <tr><td>0.5</td><td>4px</td><td><code>--spacing-0-5</code></td><td>Tight gaps</td></tr>
+    <tr><td>1</td><td>8px</td><td><code>--spacing-1</code></td><td>Icon gaps</td></tr>
+    <tr><td>1.5</td><td>12px</td><td><code>--spacing-1-5</code></td><td>Compact padding</td></tr>
+    <tr><td>2</td><td>16px</td><td><code>--spacing-2</code></td><td>Default padding</td></tr>
+    <tr><td>2.5</td><td>20px</td><td><code>--spacing-2-5</code></td><td>Medium gaps</td></tr>
+    <tr><td>3</td><td>24px</td><td><code>--spacing-3</code></td><td>Card padding</td></tr>
+    <tr><td>4</td><td>32px</td><td><code>--spacing-4</code></td><td>Section gaps</td></tr>
+    <tr><td>5</td><td>40px</td><td><code>--spacing-5</code></td><td>Large gaps</td></tr>
+    <tr><td>6</td><td>48px</td><td><code>--spacing-6</code></td><td>Section spacing</td></tr>
+    <tr><td>8</td><td>64px</td><td><code>--spacing-8</code></td><td>Major breaks</td></tr>
+  </tbody>
+</table>
 
 ---
 
@@ -67,22 +77,30 @@ theme.spacing(4) // 32px
 
 ### Spacing Prop Reference
 
-| Prop | CSS Property |
-|------|-------------|
-| `m` | margin |
-| `mt` | margin-top |
-| `mb` | margin-bottom |
-| `ml` | margin-left |
-| `mr` | margin-right |
-| `mx` | margin-left, margin-right |
-| `my` | margin-top, margin-bottom |
-| `p` | padding |
-| `pt` | padding-top |
-| `pb` | padding-bottom |
-| `pl` | padding-left |
-| `pr` | padding-right |
-| `px` | padding-left, padding-right |
-| `py` | padding-top, padding-bottom |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>CSS Property</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>m</code></td><td>margin</td></tr>
+    <tr><td><code>mt</code></td><td>margin-top</td></tr>
+    <tr><td><code>mb</code></td><td>margin-bottom</td></tr>
+    <tr><td><code>ml</code></td><td>margin-left</td></tr>
+    <tr><td><code>mr</code></td><td>margin-right</td></tr>
+    <tr><td><code>mx</code></td><td>margin-left, margin-right</td></tr>
+    <tr><td><code>my</code></td><td>margin-top, margin-bottom</td></tr>
+    <tr><td><code>p</code></td><td>padding</td></tr>
+    <tr><td><code>pt</code></td><td>padding-top</td></tr>
+    <tr><td><code>pb</code></td><td>padding-bottom</td></tr>
+    <tr><td><code>pl</code></td><td>padding-left</td></tr>
+    <tr><td><code>pr</code></td><td>padding-right</td></tr>
+    <tr><td><code>px</code></td><td>padding-left, padding-right</td></tr>
+    <tr><td><code>py</code></td><td>padding-top, padding-bottom</td></tr>
+  </tbody>
+</table>
 
 ### Gap Property
 
@@ -256,13 +274,21 @@ import { Grid } from '@mui/material'
 
 ## Best Practices
 
-| Practice | Example |
-|----------|---------|
-| **Use factors** | `spacing={2}` not `spacing="16px"` |
-| **Consistent scale** | Stick to 1, 2, 3, 4, 6, 8 |
-| **Stack for lists** | Use `Stack` with `spacing` |
-| **Grid for layouts** | Use `Grid` with `spacing` |
-| **Responsive** | Adjust spacing by breakpoint |
+<table>
+  <thead>
+    <tr>
+      <th>Practice</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Use factors</strong></td><td><code>spacing=&#123;2&#125;</code> not <code>spacing="16px"</code></td></tr>
+    <tr><td><strong>Consistent scale</strong></td><td>Stick to 1, 2, 3, 4, 6, 8</td></tr>
+    <tr><td><strong>Stack for lists</strong></td><td>Use <code>Stack</code> with <code>spacing</code></td></tr>
+    <tr><td><strong>Grid for layouts</strong></td><td>Use <code>Grid</code> with <code>spacing</code></td></tr>
+    <tr><td><strong>Responsive</strong></td><td>Adjust spacing by breakpoint</td></tr>
+  </tbody>
+</table>
 
 ---
 

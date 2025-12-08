@@ -259,11 +259,20 @@ const ratio = getContrastRatio('#ffffff', '#1976d2')
 
 ## Accessibility
 
-| Contrast Ratio | WCAG Level | Use Case |
-|---------------|------------|----------|
-| ≥ 3.0 | AA Large | Large text (18pt+) |
-| ≥ 4.5 | AA Normal | Normal text |
-| ≥ 7.0 | AAA | Enhanced contrast |
+<table>
+  <thead>
+    <tr>
+      <th>Contrast Ratio</th>
+      <th>WCAG Level</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>≥ 3.0</td><td>AA Large</td><td>Large text (18pt+)</td></tr>
+    <tr><td>≥ 4.5</td><td>AA Normal</td><td>Normal text</td></tr>
+    <tr><td>≥ 7.0</td><td>AAA</td><td>Enhanced contrast</td></tr>
+  </tbody>
+</table>
 
 MUI automatically calculates `contrastText` for accessibility:
 

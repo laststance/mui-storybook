@@ -10,13 +10,22 @@ MUI's breakpoint system enables responsive design across all screen sizes.
 
 ## Default Breakpoints
 
-| Key | Value | Description |
-|-----|-------|-------------|
-| `xs` | 0px | Extra small (phones, portrait) |
-| `sm` | 600px | Small (phones, landscape / tablets) |
-| `md` | 900px | Medium (tablets) |
-| `lg` | 1200px | Large (desktops) |
-| `xl` | 1536px | Extra large (large desktops) |
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>xs</code></td><td>0px</td><td>Extra small (phones, portrait)</td></tr>
+    <tr><td><code>sm</code></td><td>600px</td><td>Small (phones, landscape / tablets)</td></tr>
+    <tr><td><code>md</code></td><td>900px</td><td>Medium (tablets)</td></tr>
+    <tr><td><code>lg</code></td><td>1200px</td><td>Large (desktops)</td></tr>
+    <tr><td><code>xl</code></td><td>1536px</td><td>Extra large (large desktops)</td></tr>
+  </tbody>
+</table>
 
 ```
 xs       sm       md       lg       xl
@@ -231,13 +240,21 @@ const theme = createTheme({
 
 Default max-widths for Container component:
 
-| Breakpoint | Max Width |
-|------------|-----------|
-| xs | 444px |
-| sm | 600px |
-| md | 900px |
-| lg | 1200px |
-| xl | 1536px |
+<table>
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Max Width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>xs</td><td>444px</td></tr>
+    <tr><td>sm</td><td>600px</td></tr>
+    <tr><td>md</td><td>900px</td></tr>
+    <tr><td>lg</td><td>1200px</td></tr>
+    <tr><td>xl</td><td>1536px</td></tr>
+  </tbody>
+</table>
 
 ```tsx
 <Container maxWidth="lg">
@@ -306,10 +323,18 @@ Default max-widths for Container component:
 
 ## Best Practices
 
-| Practice | Description |
-|----------|-------------|
-| **Mobile-first** | Start with `xs`, add larger breakpoints |
-| **Use theme helpers** | `breakpoints.up()` over raw media queries |
-| **Object syntax** | More readable than arrays |
-| **Test thoroughly** | Check all breakpoints |
-| **Consider touch** | Mobile isn't just small screens |
+<table>
+  <thead>
+    <tr>
+      <th>Practice</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Mobile-first</strong></td><td>Start with <code>xs</code>, add larger breakpoints</td></tr>
+    <tr><td><strong>Use theme helpers</strong></td><td><code>breakpoints.up()</code> over raw media queries</td></tr>
+    <tr><td><strong>Object syntax</strong></td><td>More readable than arrays</td></tr>
+    <tr><td><strong>Test thoroughly</strong></td><td>Check all breakpoints</td></tr>
+    <tr><td><strong>Consider touch</strong></td><td>Mobile isn't just small screens</td></tr>
+  </tbody>
+</table>

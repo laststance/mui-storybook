@@ -10,13 +10,22 @@ Deep customization techniques for MUI components beyond basic theming.
 
 ## Customization Methods
 
-| Method | Scope | Best For |
-|--------|-------|----------|
-| `sx` prop | Single instance | One-off styles |
-| `styled()` | Reusable component | Shared styled variants |
-| Theme `styleOverrides` | All instances | Global defaults |
-| Theme `variants` | Conditional | New variant types |
-| CSS Variables | Runtime | Dynamic theming |
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Scope</th>
+      <th>Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>sx</code> prop</td><td>Single instance</td><td>One-off styles</td></tr>
+    <tr><td><code>styled()</code></td><td>Reusable component</td><td>Shared styled variants</td></tr>
+    <tr><td>Theme <code>styleOverrides</code></td><td>All instances</td><td>Global defaults</td></tr>
+    <tr><td>Theme <code>variants</code></td><td>Conditional</td><td>New variant types</td></tr>
+    <tr><td>CSS Variables</td><td>Runtime</td><td>Dynamic theming</td></tr>
+  </tbody>
+</table>
 
 ---
 
@@ -433,10 +442,19 @@ const theme = createTheme({
 
 ## Best Practices
 
-| Practice | Do | Don't |
-|----------|----|----- |
-| **One-off styles** | Use `sx` prop | Create new styled component |
-| **Reusable styles** | Use `styled()` | Duplicate `sx` props |
-| **Global defaults** | Use theme overrides | Override in every instance |
-| **Custom variants** | Use theme variants | Create wrapper components |
-| **CSS specificity** | Use MUI APIs | Use `!important` |
+<table>
+  <thead>
+    <tr>
+      <th>Practice</th>
+      <th>Do</th>
+      <th>Don't</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>One-off styles</strong></td><td>Use <code>sx</code> prop</td><td>Create new styled component</td></tr>
+    <tr><td><strong>Reusable styles</strong></td><td>Use <code>styled()</code></td><td>Duplicate <code>sx</code> props</td></tr>
+    <tr><td><strong>Global defaults</strong></td><td>Use theme overrides</td><td>Override in every instance</td></tr>
+    <tr><td><strong>Custom variants</strong></td><td>Use theme variants</td><td>Create wrapper components</td></tr>
+    <tr><td><strong>CSS specificity</strong></td><td>Use MUI APIs</td><td>Use <code>!important</code></td></tr>
+  </tbody>
+</table>
