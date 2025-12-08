@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import MUISkeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
+import { expect, within } from 'storybook/test'
 
 import Skeleton from './Skeleton'
 
@@ -74,4 +75,68 @@ export function ListExample() {
       ))}
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => (
+    <Stack spacing={2}>
+      <MUISkeleton
+        variant="text"
+        sx={{ fontSize: '1rem' }}
+        data-testid="text-skeleton"
+      />
+      <MUISkeleton
+        variant="circular"
+        width={40}
+        height={40}
+        data-testid="circular-skeleton"
+      />
+      <MUISkeleton
+        variant="rectangular"
+        width={210}
+        height={60}
+        data-testid="rect-skeleton"
+      />
+      <MUISkeleton
+        variant="rounded"
+        width={210}
+        height={60}
+        data-testid="rounded-skeleton"
+      />
+      <Box sx={{ width: 300 }}>
+        <MUISkeleton animation="pulse" data-testid="pulse-skeleton" />
+        <MUISkeleton animation="wave" data-testid="wave-skeleton" />
+        <MUISkeleton animation={false} data-testid="static-skeleton" />
+      </Box>
+    </Stack>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify skeleton variants render', async () => {
+      const textSkeleton = canvas.getByTestId('text-skeleton')
+      await expect(textSkeleton).toBeInTheDocument()
+
+      const circularSkeleton = canvas.getByTestId('circular-skeleton')
+      await expect(circularSkeleton).toBeInTheDocument()
+
+      const rectSkeleton = canvas.getByTestId('rect-skeleton')
+      await expect(rectSkeleton).toBeInTheDocument()
+
+      const roundedSkeleton = canvas.getByTestId('rounded-skeleton')
+      await expect(roundedSkeleton).toBeInTheDocument()
+    })
+
+    await step('Verify skeleton animations render', async () => {
+      const pulseSkeleton = canvas.getByTestId('pulse-skeleton')
+      await expect(pulseSkeleton).toBeInTheDocument()
+
+      const waveSkeleton = canvas.getByTestId('wave-skeleton')
+      await expect(waveSkeleton).toBeInTheDocument()
+
+      const staticSkeleton = canvas.getByTestId('static-skeleton')
+      await expect(staticSkeleton).toBeInTheDocument()
+    })
+  },
 }

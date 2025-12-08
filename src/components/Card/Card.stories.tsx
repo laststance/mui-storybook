@@ -3,6 +3,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Card from './Card'
 
@@ -89,4 +90,57 @@ export const OutlinedCard: Story = {
       </CardContent>
     </Card>
   ),
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => {
+    const handleClick = fn()
+    return (
+      <Card sx={{ maxWidth: 345 }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Interactive Card
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            This card includes interactive elements for testing.
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={handleClick}>
+            Share
+          </Button>
+          <Button size="small" onClick={handleClick}>
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify card structure renders', async () => {
+      const heading = canvas.getByText('Interactive Card')
+      await expect(heading).toBeInTheDocument()
+
+      const description = canvas.getByText(
+        /This card includes interactive elements/,
+      )
+      await expect(description).toBeInTheDocument()
+    })
+
+    await step('Test card action buttons', async () => {
+      const shareButton = canvas.getByRole('button', { name: /share/i })
+      const learnMoreButton = canvas.getByRole('button', {
+        name: /learn more/i,
+      })
+
+      await expect(shareButton).toBeInTheDocument()
+      await expect(learnMoreButton).toBeInTheDocument()
+
+      await userEvent.click(shareButton)
+      await userEvent.click(learnMoreButton)
+    })
+  },
 }

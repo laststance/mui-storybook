@@ -1,6 +1,7 @@
 import MUILink from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Link from './Link'
 
@@ -75,4 +76,36 @@ export function WithinText() {
       This is some text with a <MUILink href="#">link</MUILink> inside it.
     </Typography>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {
+    href: '#test',
+    children: 'Test Link',
+    onClick: fn(),
+  },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify link renders', async () => {
+      const link = canvas.getByRole('link', { name: 'Test Link' })
+      await expect(link).toBeInTheDocument()
+    })
+
+    await step('Verify href attribute', async () => {
+      const link = canvas.getByRole('link', { name: 'Test Link' })
+      await expect(link).toHaveAttribute('href', '#test')
+    })
+
+    await step('Test link click interaction', async () => {
+      const link = canvas.getByRole('link', { name: 'Test Link' })
+      await userEvent.click(link)
+      await expect(args.onClick).toHaveBeenCalled()
+    })
+
+    await step('Test accessibility', async () => {
+      const link = canvas.getByRole('link', { name: 'Test Link' })
+      await expect(link.tagName).toBe('A')
+    })
+  },
 }

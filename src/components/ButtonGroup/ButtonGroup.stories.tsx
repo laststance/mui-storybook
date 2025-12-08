@@ -9,6 +9,7 @@ import MenuList from '@mui/material/MenuList'
 import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -224,4 +225,49 @@ export function DisableElevation() {
       <Button>Two</Button>
     </ButtonGroup>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const handleClick1 = fn()
+    const handleClick2 = fn()
+    const handleClick3 = fn()
+
+    return (
+      <ButtonGroup variant="contained" aria-label="test button group">
+        <Button onClick={handleClick1}>First</Button>
+        <Button onClick={handleClick2}>Second</Button>
+        <Button onClick={handleClick3}>Third</Button>
+      </ButtonGroup>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify ButtonGroup renders with all buttons', async () => {
+      const firstButton = canvas.getByRole('button', { name: /first/i })
+      const secondButton = canvas.getByRole('button', { name: /second/i })
+      const thirdButton = canvas.getByRole('button', { name: /third/i })
+
+      expect(firstButton).toBeInTheDocument()
+      expect(secondButton).toBeInTheDocument()
+      expect(thirdButton).toBeInTheDocument()
+    })
+
+    await step('Test clicking each button in the group', async () => {
+      const firstButton = canvas.getByRole('button', { name: /first/i })
+      const secondButton = canvas.getByRole('button', { name: /second/i })
+      const thirdButton = canvas.getByRole('button', { name: /third/i })
+
+      await userEvent.click(firstButton)
+      await userEvent.click(secondButton)
+      await userEvent.click(thirdButton)
+    })
+
+    await step('Verify ButtonGroup structure', async () => {
+      const buttonGroup = canvas.getByRole('group')
+      expect(buttonGroup).toBeInTheDocument()
+      expect(buttonGroup).toHaveClass('MuiButtonGroup-root')
+    })
+  },
 }

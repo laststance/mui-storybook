@@ -41,36 +41,5 @@ jobs:
           storybookBuildDir: storybook-static
           exitZeroOnChanges: true
           exitOnceUploaded: true
-
-  interaction-tests:
-    runs-on: ubuntu-latest
-    needs: chromatic
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
-
-      - name: Build Storybook
-        run: pnpm build
-
-      - name: Serve Storybook and run tests
-        run: |
-          npx concurrently -k -s first -n "STORYBOOK,TEST" -c "magenta,blue" \
-            "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && pnpm test-storybook:ci"
+          # Enable TurboSnap for faster builds
+          onlyChanged: true

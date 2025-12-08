@@ -7,6 +7,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
+import { expect, within } from 'storybook/test'
 
 import Divider from './Divider'
 
@@ -223,4 +224,40 @@ export const CustomStyles: Story = {
       <Divider sx={{ borderStyle: 'dotted', borderBottomWidth: 2 }} />
     </Box>
   ),
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <Box sx={{ width: '100%', maxWidth: 360 }}>
+      <Typography variant="body1">Item 1</Typography>
+      <Divider role="separator" />
+      <Typography variant="body1">Item 2</Typography>
+      <Divider role="separator" />
+      <Typography variant="body1">Item 3</Typography>
+    </Box>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify dividers render', async () => {
+      const dividers = canvas.getAllByRole('separator')
+      await expect(dividers).toHaveLength(2)
+    })
+
+    await step('Verify content separation', async () => {
+      const item1 = canvas.getByText('Item 1')
+      const item2 = canvas.getByText('Item 2')
+      const item3 = canvas.getByText('Item 3')
+      await expect(item1).toBeInTheDocument()
+      await expect(item2).toBeInTheDocument()
+      await expect(item3).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const dividers = canvas.getAllByRole('separator')
+      for (const divider of dividers) {
+        await expect(divider.tagName).toBe('HR')
+      }
+    })
+  },
 }

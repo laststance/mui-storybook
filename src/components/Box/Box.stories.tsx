@@ -1,5 +1,6 @@
 import MUIBox from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { expect, within } from 'storybook/test'
 
 import Box from './Box'
 
@@ -138,4 +139,42 @@ export function ResponsiveBox() {
       </Typography>
     </MUIBox>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <MUIBox
+      sx={{
+        width: 300,
+        height: 200,
+        backgroundColor: 'primary.main',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        p: 2,
+      }}
+      data-testid="test-box"
+    >
+      <Typography variant="h6" color="white">
+        Test Content
+      </Typography>
+    </MUIBox>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify Box renders with content', async () => {
+      const box = canvas.getByTestId('test-box')
+      expect(box).toBeInTheDocument()
+
+      const typography = canvas.getByText('Test Content')
+      expect(typography).toBeInTheDocument()
+    })
+
+    await step('Verify Box has correct styles', async () => {
+      const box = canvas.getByTestId('test-box')
+      const styles = window.getComputedStyle(box)
+      expect(styles.display).toBe('flex')
+    })
+  },
 }

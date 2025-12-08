@@ -2,6 +2,7 @@ import Box from '@mui/material/Box'
 import MUIGrid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
+import { expect, within } from 'storybook/test'
 
 import Grid from './Grid'
 
@@ -167,4 +168,44 @@ export function AutoLayoutGrid() {
       </MUIGrid>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <Box sx={{ flexGrow: 1 }} data-testid="grid-container">
+      <MUIGrid container spacing={2}>
+        <MUIGrid size={6}>
+          <Item data-testid="grid-item-1">Item 1</Item>
+        </MUIGrid>
+        <MUIGrid size={6}>
+          <Item data-testid="grid-item-2">Item 2</Item>
+        </MUIGrid>
+        <MUIGrid size={12}>
+          <Item data-testid="grid-item-3">Item 3</Item>
+        </MUIGrid>
+      </MUIGrid>
+    </Box>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify Grid container renders', async () => {
+      const container = canvas.getByTestId('grid-container')
+      expect(container).toBeInTheDocument()
+    })
+
+    await step('Verify all Grid items render', async () => {
+      const item1 = canvas.getByTestId('grid-item-1')
+      const item2 = canvas.getByTestId('grid-item-2')
+      const item3 = canvas.getByTestId('grid-item-3')
+
+      expect(item1).toBeInTheDocument()
+      expect(item2).toBeInTheDocument()
+      expect(item3).toBeInTheDocument()
+
+      expect(item1).toHaveTextContent('Item 1')
+      expect(item2).toHaveTextContent('Item 2')
+      expect(item3).toHaveTextContent('Item 3')
+    })
+  },
 }

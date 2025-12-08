@@ -10,6 +10,7 @@ import Switch from '@mui/material/Switch'
 import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom'
 import { useState } from 'react'
+import { expect, userEvent, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -264,5 +265,87 @@ export const AllTransitions: Story = {
         </Box>
       </Box>
     )
+  },
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const [checked, setChecked] = useState(false)
+
+    return (
+      <Box sx={{ height: 180 }} data-testid="transition-container">
+        <FormControlLabel
+          control={
+            <Switch
+              checked={checked}
+              onChange={() => setChecked(!checked)}
+              inputProps={{ 'aria-label': 'toggle transitions' }}
+            />
+          }
+          label="Show Transitions"
+        />
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Collapse in={checked}>
+            <Box data-testid="collapse-box">
+              <TransitionBox />
+            </Box>
+          </Collapse>
+          <Fade in={checked}>
+            <Box data-testid="fade-box">
+              <TransitionBox />
+            </Box>
+          </Fade>
+          <Grow in={checked}>
+            <Box data-testid="grow-box">
+              <TransitionBox />
+            </Box>
+          </Grow>
+        </Box>
+      </Box>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify switch and labels render', async () => {
+      const switchControl = canvas.getByRole('checkbox', {
+        name: /toggle transitions/i,
+      })
+      const label = canvas.getByText('Show Transitions')
+
+      expect(switchControl).toBeInTheDocument()
+      expect(label).toBeInTheDocument()
+      expect(switchControl).not.toBeChecked()
+    })
+
+    await step('Toggle transitions on', async () => {
+      const switchControl = canvas.getByRole('checkbox', {
+        name: /toggle transitions/i,
+      })
+      await userEvent.click(switchControl)
+
+      expect(switchControl).toBeChecked()
+
+      // Wait for transitions to complete
+      await new Promise((resolve) => setTimeout(resolve, 500))
+    })
+
+    await step('Verify transition elements are visible', async () => {
+      // Check that transition content exists
+      const contents = canvas.getAllByText('Content')
+      expect(contents.length).toBeGreaterThan(0)
+    })
+
+    await step('Toggle transitions off', async () => {
+      const switchControl = canvas.getByRole('checkbox', {
+        name: /toggle transitions/i,
+      })
+      await userEvent.click(switchControl)
+
+      expect(switchControl).not.toBeChecked()
+
+      // Wait for transitions to complete
+      await new Promise((resolve) => setTimeout(resolve, 500))
+    })
   },
 }

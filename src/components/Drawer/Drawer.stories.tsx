@@ -10,6 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
+import { expect, fn, screen, userEvent, within } from 'storybook/test'
 
 import Drawer from './Drawer'
 
@@ -161,4 +162,82 @@ export function Permanent() {
       </Box>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+    const handleOpen = fn(() => setOpen(true))
+    const handleClose = fn(() => setOpen(false))
+
+    return (
+      <div data-testid="drawer-container">
+        <Button variant="contained" onClick={handleOpen}>
+          Open Drawer
+        </Button>
+        <MUIDrawer anchor="left" open={open} onClose={handleClose}>
+          <DrawerContent />
+        </MUIDrawer>
+      </div>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render with drawer closed', async () => {
+      const openButton = canvas.getByRole('button', { name: /open drawer/i })
+      await expect(openButton).toBeInTheDocument()
+      await expect(screen.queryByRole('presentation')).not.toBeInTheDocument()
+    })
+
+    await step('Click button to open drawer', async () => {
+      const openButton = canvas.getByRole('button', { name: /open drawer/i })
+      await userEvent.click(openButton)
+
+      // Drawer renders in portal, use screen instead of canvas
+      const drawer = await screen.findByRole('presentation')
+      await expect(drawer).toBeInTheDocument()
+    })
+
+    await step('Verify drawer content is visible', async () => {
+      await expect(screen.getByText('Inbox')).toBeVisible()
+      await expect(screen.getByText('Starred')).toBeVisible()
+      await expect(screen.getByText('Send email')).toBeVisible()
+      await expect(screen.getByText('Drafts')).toBeVisible()
+      await expect(screen.getByText('All mail')).toBeVisible()
+      await expect(screen.getByText('Trash')).toBeVisible()
+      await expect(screen.getByText('Spam')).toBeVisible()
+    })
+
+    await step('Click on a list item', async () => {
+      const inboxItem = screen.getByText('Inbox')
+      await userEvent.click(inboxItem)
+
+      // Item is still visible after click
+      await expect(inboxItem).toBeVisible()
+    })
+
+    await step('Close drawer by clicking backdrop', async () => {
+      // Click the backdrop (outside the drawer content)
+      const backdrop = screen
+        .getByRole('presentation')
+        .querySelector('.MuiBackdrop-root')
+      if (backdrop) {
+        await userEvent.click(backdrop)
+      }
+
+      // Wait for drawer to close
+      await expect(screen.queryByRole('presentation')).not.toBeInTheDocument()
+    })
+
+    await step('Reopen drawer to verify it works again', async () => {
+      const openButton = canvas.getByRole('button', { name: /open drawer/i })
+      await userEvent.click(openButton)
+
+      const drawer = await screen.findByRole('presentation')
+      await expect(drawer).toBeInTheDocument()
+      await expect(screen.getByText('Inbox')).toBeVisible()
+    })
+  },
 }

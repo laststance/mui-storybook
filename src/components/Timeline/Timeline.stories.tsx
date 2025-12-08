@@ -10,6 +10,7 @@ import TimelineItem from '@mui/lab/TimelineItem'
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
 import Typography from '@mui/material/Typography'
+import { expect, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -325,4 +326,64 @@ export const OutlinedDots: Story = {
       </TimelineItem>
     </Timeline>
   ),
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <Timeline aria-label="test timeline">
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="primary" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Typography>First Event</Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="secondary" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Typography>Second Event</Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot color="success" />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Typography>Third Event</Typography>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify timeline renders', async () => {
+      const timeline = canvas.getByRole('list', { name: 'test timeline' })
+      await expect(timeline).toBeInTheDocument()
+    })
+
+    await step('Verify timeline items', async () => {
+      const items = canvas.getAllByRole('listitem')
+      await expect(items).toHaveLength(3)
+    })
+
+    await step('Verify timeline content', async () => {
+      const firstEvent = canvas.getByText('First Event')
+      const secondEvent = canvas.getByText('Second Event')
+      const thirdEvent = canvas.getByText('Third Event')
+      await expect(firstEvent).toBeInTheDocument()
+      await expect(secondEvent).toBeInTheDocument()
+      await expect(thirdEvent).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const timeline = canvas.getByRole('list')
+      await expect(timeline).toHaveAttribute('aria-label', 'test timeline')
+    })
+  },
 }

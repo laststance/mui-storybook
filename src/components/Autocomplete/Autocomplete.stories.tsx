@@ -2,6 +2,7 @@ import Autocomplete from '@mui/material/Autocomplete'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -323,4 +324,73 @@ export function Playground() {
       />
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [value, setValue] = React.useState<FilmOptionType | null>(null)
+    const handleChange = fn(
+      (_event: unknown, newValue: FilmOptionType | null) => {
+        setValue(newValue)
+      },
+    )
+
+    return (
+      <Autocomplete
+        disablePortal
+        id="autocomplete-test"
+        options={top100Films.slice(0, 10)}
+        value={value}
+        onChange={handleChange}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Movie" />}
+      />
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render', async () => {
+      const input = canvas.getByRole('combobox', { name: /movie/i })
+      await expect(input).toBeInTheDocument()
+      await expect(input).toHaveValue('')
+    })
+
+    await step('Click input to open dropdown', async () => {
+      const input = canvas.getByRole('combobox', { name: /movie/i })
+      await userEvent.click(input)
+
+      const listbox = canvas.getByRole('listbox')
+      await expect(listbox).toBeInTheDocument()
+    })
+
+    await step('Type to filter options', async () => {
+      const input = canvas.getByRole('combobox', { name: /movie/i })
+      await userEvent.clear(input)
+      await userEvent.type(input, 'Godfather')
+
+      const options = canvas.getAllByRole('option')
+      await expect(options.length).toBeGreaterThan(0)
+      await expect(
+        canvas.getByRole('option', { name: /the godfather/i }),
+      ).toBeInTheDocument()
+    })
+
+    await step('Select an option from dropdown', async () => {
+      const option = canvas.getByRole('option', { name: /^The Godfather$/i })
+      await userEvent.click(option)
+
+      const input = canvas.getByRole('combobox', { name: /movie/i })
+      await expect(input).toHaveValue('The Godfather')
+    })
+
+    await step('Clear selection', async () => {
+      const clearButton = canvas.getByRole('button', { name: /clear/i })
+      await userEvent.click(clearButton)
+
+      const input = canvas.getByRole('combobox', { name: /movie/i })
+      await expect(input).toHaveValue('')
+    })
+  },
 }

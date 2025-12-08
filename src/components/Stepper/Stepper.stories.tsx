@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel'
 import MUIStepper from '@mui/material/Stepper'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Stepper from './Stepper'
 
@@ -122,4 +123,110 @@ export function WithError() {
       ))}
     </MUIStepper>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const [activeStep, setActiveStep] = React.useState(0)
+    const handleNext = fn(() => setActiveStep((prev) => prev + 1))
+    const handleBack = fn(() => setActiveStep((prev) => prev - 1))
+    const handleReset = fn(() => setActiveStep(0))
+
+    return (
+      <Box sx={{ width: '100%' }} data-testid="stepper-container">
+        <MUIStepper activeStep={activeStep}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </MUIStepper>
+        {activeStep === steps.length ? (
+          <Box sx={{ mt: 2 }}>
+            <Typography>All steps completed</Typography>
+            <Button onClick={handleReset} sx={{ mt: 1 }}>
+              Reset
+            </Button>
+          </Box>
+        ) : (
+          <Box sx={{ mt: 2 }}>
+            <Typography>Step {activeStep + 1} content</Typography>
+            <Box sx={{ mt: 1 }}>
+              <Button disabled={activeStep === 0} onClick={handleBack}>
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                sx={{ ml: 1 }}
+                data-testid="next-button"
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+            </Box>
+          </Box>
+        )}
+      </Box>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render on first step', async () => {
+      const step1 = canvas.getByText('Select campaign settings')
+      const step2 = canvas.getByText('Create an ad group')
+      const step3 = canvas.getByText('Create an ad')
+
+      await expect(step1).toBeInTheDocument()
+      await expect(step2).toBeInTheDocument()
+      await expect(step3).toBeInTheDocument()
+      await expect(canvas.getByText('Step 1 content')).toBeInTheDocument()
+      await expect(canvas.getByRole('button', { name: /back/i })).toBeDisabled()
+    })
+
+    await step('Navigate to step 2', async () => {
+      const nextButton = canvas.getByRole('button', { name: /next/i })
+      await userEvent.click(nextButton)
+
+      await expect(canvas.getByText('Step 2 content')).toBeInTheDocument()
+      await expect(
+        canvas.getByRole('button', { name: /back/i }),
+      ).not.toBeDisabled()
+    })
+
+    await step('Navigate to step 3', async () => {
+      const nextButton = canvas.getByRole('button', { name: /next/i })
+      await userEvent.click(nextButton)
+
+      await expect(canvas.getByText('Step 3 content')).toBeInTheDocument()
+      await expect(
+        canvas.getByRole('button', { name: /finish/i }),
+      ).toBeInTheDocument()
+    })
+
+    await step('Navigate back to step 2', async () => {
+      const backButton = canvas.getByRole('button', { name: /back/i })
+      await userEvent.click(backButton)
+
+      await expect(canvas.getByText('Step 2 content')).toBeInTheDocument()
+    })
+
+    await step('Navigate forward to step 3 and finish', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: /next/i }))
+      await userEvent.click(canvas.getByRole('button', { name: /finish/i }))
+
+      await expect(canvas.getByText('All steps completed')).toBeInTheDocument()
+      await expect(
+        canvas.getByRole('button', { name: /reset/i }),
+      ).toBeInTheDocument()
+    })
+
+    await step('Reset stepper to beginning', async () => {
+      const resetButton = canvas.getByRole('button', { name: /reset/i })
+      await userEvent.click(resetButton)
+
+      await expect(canvas.getByText('Step 1 content')).toBeInTheDocument()
+      await expect(canvas.getByRole('button', { name: /back/i })).toBeDisabled()
+    })
+  },
 }

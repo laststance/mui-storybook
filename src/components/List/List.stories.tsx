@@ -19,6 +19,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
+import { expect, within } from 'storybook/test'
 
 import List from './List'
 
@@ -233,4 +234,52 @@ export function WithDividers() {
       </MUIList>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <MUIList aria-label="test list">
+        <ListItem>
+          <ListItemText primary="First Item" secondary="First description" />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Second Item" secondary="With icon" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Third Item" />
+        </ListItem>
+      </MUIList>
+    </Box>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify list renders', async () => {
+      const list = canvas.getByRole('list', { name: 'test list' })
+      await expect(list).toBeInTheDocument()
+    })
+
+    await step('Verify list items render', async () => {
+      const listItems = canvas.getAllByRole('listitem')
+      await expect(listItems).toHaveLength(3)
+    })
+
+    await step('Verify list item content', async () => {
+      const firstItem = canvas.getByText('First Item')
+      const secondItem = canvas.getByText('Second Item')
+      const thirdItem = canvas.getByText('Third Item')
+      await expect(firstItem).toBeInTheDocument()
+      await expect(secondItem).toBeInTheDocument()
+      await expect(thirdItem).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const list = canvas.getByRole('list')
+      await expect(list).toHaveAttribute('aria-label', 'test list')
+    })
+  },
 }

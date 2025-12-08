@@ -9,6 +9,7 @@ import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import PaginationComponent from './Pagination'
 
@@ -179,4 +180,99 @@ export function WithTablePagination() {
       </Table>
     </TableContainer>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [page, setPage] = React.useState(1)
+    const handleChange = fn(
+      (_event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value)
+      },
+    )
+
+    return (
+      <Stack spacing={2} data-testid="pagination-container">
+        <Pagination count={10} page={page} onChange={handleChange} />
+        <div>Current page: {page}</div>
+      </Stack>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render on page 1', async () => {
+      const pagination = canvas.getByRole('navigation')
+      await expect(pagination).toBeInTheDocument()
+      await expect(canvas.getByText('Current page: 1')).toBeInTheDocument()
+
+      const page1Button = canvas.getByRole('button', { name: 'page 1' })
+      await expect(page1Button).toHaveAttribute('aria-current', 'true')
+    })
+
+    await step('Navigate to page 2', async () => {
+      const page2Button = canvas.getByRole('button', { name: 'Go to page 2' })
+      await userEvent.click(page2Button)
+
+      await expect(canvas.getByText('Current page: 2')).toBeInTheDocument()
+      const page2CurrentButton = canvas.getByRole('button', { name: 'page 2' })
+      await expect(page2CurrentButton).toHaveAttribute('aria-current', 'true')
+    })
+
+    await step('Navigate to page 5 using direct page button', async () => {
+      const page5Button = canvas.getByRole('button', { name: 'Go to page 5' })
+      await userEvent.click(page5Button)
+
+      await expect(canvas.getByText('Current page: 5')).toBeInTheDocument()
+    })
+
+    await step('Navigate to next page using next button', async () => {
+      const nextButton = canvas.getByRole('button', {
+        name: 'Go to next page',
+      })
+      await userEvent.click(nextButton)
+
+      await expect(canvas.getByText('Current page: 6')).toBeInTheDocument()
+    })
+
+    await step('Navigate to previous page using previous button', async () => {
+      const prevButton = canvas.getByRole('button', {
+        name: 'Go to previous page',
+      })
+      await userEvent.click(prevButton)
+
+      await expect(canvas.getByText('Current page: 5')).toBeInTheDocument()
+    })
+
+    await step('Navigate to last page', async () => {
+      const page10Button = canvas.getByRole('button', { name: 'Go to page 10' })
+      await userEvent.click(page10Button)
+
+      await expect(canvas.getByText('Current page: 10')).toBeInTheDocument()
+      const page10CurrentButton = canvas.getByRole('button', {
+        name: 'page 10',
+      })
+      await expect(page10CurrentButton).toHaveAttribute('aria-current', 'true')
+
+      // Next button should be disabled on last page
+      const nextButton = canvas.getByRole('button', {
+        name: 'Go to next page',
+      })
+      await expect(nextButton).toBeDisabled()
+    })
+
+    await step('Navigate back to first page', async () => {
+      const page1Button = canvas.getByRole('button', { name: 'Go to page 1' })
+      await userEvent.click(page1Button)
+
+      await expect(canvas.getByText('Current page: 1')).toBeInTheDocument()
+
+      // Previous button should be disabled on first page
+      const prevButton = canvas.getByRole('button', {
+        name: 'Go to previous page',
+      })
+      await expect(prevButton).toBeDisabled()
+    })
+  },
 }

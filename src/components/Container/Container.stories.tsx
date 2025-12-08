@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import { expect, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -131,4 +132,35 @@ export const NestedContainers: Story = {
       </Box>
     </Container>
   ),
+}
+
+export const InteractionTest: Story = {
+  args: {
+    maxWidth: 'md',
+    children: (
+      <Box
+        sx={{ bgcolor: 'primary.light', p: 2 }}
+        data-testid="container-content"
+      >
+        <Typography>Container Test Content</Typography>
+      </Box>
+    ),
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify Container renders with content', async () => {
+      const content = canvas.getByTestId('container-content')
+      expect(content).toBeInTheDocument()
+
+      const typography = canvas.getByText('Container Test Content')
+      expect(typography).toBeInTheDocument()
+    })
+
+    await step('Verify Container structure', async () => {
+      const container = canvas.getByRole('main')
+      expect(container).toBeInTheDocument()
+      expect(container).toHaveClass('MuiContainer-root')
+    })
+  },
 }

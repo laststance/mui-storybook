@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Chip from './Chip'
 
@@ -219,4 +220,63 @@ export function ChipsArray() {
       })}
     </Paper>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => {
+    const handleClick = fn()
+    const handleDelete = fn()
+    return (
+      <Stack direction="row" spacing={1}>
+        <Chip label="Basic Chip" />
+        <Chip
+          label="Clickable Chip"
+          /* @ts-ignore */
+          onClick={handleClick}
+        />
+        <Chip
+          label="Deletable Chip"
+          /* @ts-ignore */
+          onDelete={handleDelete}
+        />
+        <Chip
+          label="Custom Icon Delete"
+          /* @ts-ignore */
+          onDelete={handleDelete}
+          deleteIcon={<DoneIcon />}
+        />
+      </Stack>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify chips render correctly', async () => {
+      const basicChip = canvas.getByText('Basic Chip')
+      await expect(basicChip).toBeInTheDocument()
+
+      const clickableChip = canvas.getByText('Clickable Chip')
+      await expect(clickableChip).toBeInTheDocument()
+
+      const deletableChip = canvas.getByText('Deletable Chip')
+      await expect(deletableChip).toBeInTheDocument()
+    })
+
+    await step('Test chip click interaction', async () => {
+      const clickableChip = canvas.getByText('Clickable Chip')
+      await userEvent.click(clickableChip)
+    })
+
+    await step('Test chip delete button', async () => {
+      const deleteButtons = canvas.getAllByTestId('CancelIcon')
+      await expect(deleteButtons.length).toBeGreaterThan(0)
+      await userEvent.click(deleteButtons[0])
+    })
+
+    await step('Test custom delete icon', async () => {
+      const customDeleteIcon = canvas.getByTestId('DoneIcon')
+      await expect(customDeleteIcon).toBeInTheDocument()
+    })
+  },
 }

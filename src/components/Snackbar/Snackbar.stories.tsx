@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MUISnackbar from '@mui/material/Snackbar'
 import React from 'react'
+import { expect, fn, screen, userEvent, within } from 'storybook/test'
 
 import Snackbar from './Snackbar'
 
@@ -145,4 +146,62 @@ export function WithAction() {
       />
     </div>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+    const handleClose = fn(() => setOpen(false))
+
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Snackbar
+        </Button>
+        <MUISnackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message="This is a test snackbar message"
+          action={
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
+      </div>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify open button renders', async () => {
+      const openButton = canvas.getByRole('button', { name: /open snackbar/i })
+      await expect(openButton).toBeInTheDocument()
+    })
+
+    await step('Test snackbar open interaction', async () => {
+      const openButton = canvas.getByRole('button', { name: /open snackbar/i })
+      await userEvent.click(openButton)
+
+      // Snackbar renders in portal, use screen instead of canvas
+      const snackbarMessage = await screen.findByText(
+        /this is a test snackbar message/i,
+      )
+      await expect(snackbarMessage).toBeInTheDocument()
+    })
+
+    await step('Test snackbar close button', async () => {
+      // Find close button in the snackbar portal
+      const closeButton = await screen.findByRole('button', { name: /close/i })
+      await expect(closeButton).toBeInTheDocument()
+      await userEvent.click(closeButton)
+    })
+  },
 }

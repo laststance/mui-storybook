@@ -9,6 +9,7 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import Alert from './Alert'
 
@@ -171,4 +172,51 @@ export function ColorAlerts() {
       This is a success alert — check it out!
     </MUIAlert>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {
+    variant: 'standard',
+  },
+  render: () => {
+    const handleClose = fn()
+    return (
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <MUIAlert severity="success">This is a success alert!</MUIAlert>
+        <MUIAlert severity="error" onClose={handleClose}>
+          This is a closeable error alert!
+        </MUIAlert>
+        <MUIAlert severity="warning">
+          <AlertTitle>Warning</AlertTitle>
+          This alert has a title
+        </MUIAlert>
+      </Stack>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify alerts render with correct severities', async () => {
+      const successAlert = canvas.getByText('This is a success alert!')
+      await expect(successAlert).toBeInTheDocument()
+
+      const errorAlert = canvas.getByText('This is a closeable error alert!')
+      await expect(errorAlert).toBeInTheDocument()
+
+      const warningTitle = canvas.getByText('Warning')
+      await expect(warningTitle).toBeInTheDocument()
+    })
+
+    await step('Test alert close button', async () => {
+      const closeButton = canvas.getByRole('button', { name: /close/i })
+      await expect(closeButton).toBeInTheDocument()
+      await userEvent.click(closeButton)
+    })
+
+    await step('Verify alert title functionality', async () => {
+      const alertTitle = canvas.getByText('Warning')
+      await expect(alertTitle).toBeInTheDocument()
+      await expect(alertTitle.tagName).toBe('DIV')
+    })
+  },
 }

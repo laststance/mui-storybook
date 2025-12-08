@@ -12,6 +12,7 @@ import Box from '@mui/material/Box'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -337,4 +338,100 @@ export function StandaloneToggle() {
       <FormatBoldIcon />
     </ToggleButton>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [formats, setFormats] = React.useState<string[]>(() => ['bold'])
+    const handleFormat = fn(
+      (_event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+        setFormats(newFormats)
+      },
+    )
+
+    return (
+      <Box data-testid="toggle-button-container">
+        <ToggleButtonGroup
+          value={formats}
+          onChange={handleFormat}
+          aria-label="text formatting"
+        >
+          <ToggleButton value="bold" aria-label="bold">
+            <FormatBoldIcon />
+          </ToggleButton>
+          <ToggleButton value="italic" aria-label="italic">
+            <FormatItalicIcon />
+          </ToggleButton>
+          <ToggleButton value="underlined" aria-label="underlined">
+            <FormatUnderlinedIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render with bold selected', async () => {
+      const boldButton = canvas.getByRole('button', { name: /bold/i })
+      const italicButton = canvas.getByRole('button', { name: /italic/i })
+      const underlinedButton = canvas.getByRole('button', {
+        name: /underlined/i,
+      })
+
+      await expect(boldButton).toBeInTheDocument()
+      await expect(italicButton).toBeInTheDocument()
+      await expect(underlinedButton).toBeInTheDocument()
+      await expect(boldButton).toHaveAttribute('aria-pressed', 'true')
+      await expect(italicButton).toHaveAttribute('aria-pressed', 'false')
+    })
+
+    await step('Toggle italic button on', async () => {
+      const italicButton = canvas.getByRole('button', { name: /italic/i })
+      await userEvent.click(italicButton)
+
+      await expect(italicButton).toHaveAttribute('aria-pressed', 'true')
+      await expect(
+        canvas.getByRole('button', { name: /bold/i }),
+      ).toHaveAttribute('aria-pressed', 'true')
+    })
+
+    await step('Toggle underlined button on', async () => {
+      const underlinedButton = canvas.getByRole('button', {
+        name: /underlined/i,
+      })
+      await userEvent.click(underlinedButton)
+
+      await expect(underlinedButton).toHaveAttribute('aria-pressed', 'true')
+    })
+
+    await step('Toggle bold button off', async () => {
+      const boldButton = canvas.getByRole('button', { name: /bold/i })
+      await userEvent.click(boldButton)
+
+      await expect(boldButton).toHaveAttribute('aria-pressed', 'false')
+      await expect(
+        canvas.getByRole('button', { name: /italic/i }),
+      ).toHaveAttribute('aria-pressed', 'true')
+      await expect(
+        canvas.getByRole('button', { name: /underlined/i }),
+      ).toHaveAttribute('aria-pressed', 'true')
+    })
+
+    await step('Toggle all buttons off', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: /italic/i }))
+      await userEvent.click(canvas.getByRole('button', { name: /underlined/i }))
+
+      await expect(
+        canvas.getByRole('button', { name: /bold/i }),
+      ).toHaveAttribute('aria-pressed', 'false')
+      await expect(
+        canvas.getByRole('button', { name: /italic/i }),
+      ).toHaveAttribute('aria-pressed', 'false')
+      await expect(
+        canvas.getByRole('button', { name: /underlined/i }),
+      ).toHaveAttribute('aria-pressed', 'false')
+    })
+  },
 }
