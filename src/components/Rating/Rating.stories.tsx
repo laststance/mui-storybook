@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, userEvent, waitFor, within } from 'storybook/test'
 
 import {
   muiSizeArgType,
@@ -97,7 +97,9 @@ export const InteractionTest: Story = {
     const thirdStar = radioButtons[2] // 0-indexed: 0=1star, 1=2stars, 2=3stars
 
     await userEvent.click(thirdStar)
-    await expect(thirdStar).toBeChecked()
+    await waitFor(() => {
+      expect(thirdStar).toBeChecked()
+    })
   },
 }
 

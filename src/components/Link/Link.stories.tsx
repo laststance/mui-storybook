@@ -55,17 +55,6 @@ const meta = {
     // Disable children as it requires JSX
     children: { control: false },
   },
-  // Skip a11y check for href="#" demo links (expected in Storybook demos)
-  parameters: {
-    a11y: {
-      options: {
-        rules: [
-          // Disable the "link-in-text-block" rule which flags demo href="#" links
-          { id: 'link-in-text-block', enabled: false },
-        ],
-      },
-    },
-  },
 } satisfies Meta<typeof Link>
 
 export default meta

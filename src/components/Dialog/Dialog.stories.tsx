@@ -5,7 +5,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
 import { useState } from 'react'
-import { expect, screen, userEvent, within } from 'storybook/test'
+import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -259,7 +259,9 @@ export const OpenCloseInteraction: Story = {
     const cancelButton = within(dialog).getByRole('button', { name: /cancel/i })
     await userEvent.click(cancelButton)
 
-    // Verify dialog is closed
-    await expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    // Verify dialog is closed (wait for animation to complete)
+    await waitFor(() => {
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    })
   },
 }
