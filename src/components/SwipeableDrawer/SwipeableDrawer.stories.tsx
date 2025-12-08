@@ -1,0 +1,272 @@
+import MailIcon from '@mui/icons-material/Mail'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import React from 'react'
+import { expect, screen, userEvent, within } from 'storybook/test'
+
+import SwipeableDrawer from './SwipeableDrawer'
+
+import type { Meta, StoryObj } from '@storybook/react-vite'
+
+const meta = {
+  title: 'Components/SwipeableDrawer',
+  component: SwipeableDrawer,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+} satisfies Meta<typeof SwipeableDrawer>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+type Anchor = 'top' | 'left' | 'bottom' | 'right'
+
+const DrawerContent = () => (
+  <Box sx={{ width: 250 }} role="presentation">
+    <List>
+      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        <ListItem key={text} disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+    <Divider />
+    <List>
+      {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        <ListItem key={text} disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  </Box>
+)
+
+export const Left: Story = {
+  args: {
+    anchor: 'left',
+    open: false,
+    onOpen: () => {},
+    onClose: () => {},
+  },
+  render: function LeftStory() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open Left Drawer</Button>
+        <SwipeableDrawer
+          anchor="left"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+        >
+          <DrawerContent />
+        </SwipeableDrawer>
+      </>
+    )
+  },
+}
+
+export const Right: Story = {
+  args: {
+    anchor: 'right',
+    open: false,
+    onOpen: () => {},
+    onClose: () => {},
+  },
+  render: function RightStory() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open Right Drawer</Button>
+        <SwipeableDrawer
+          anchor="right"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+        >
+          <DrawerContent />
+        </SwipeableDrawer>
+      </>
+    )
+  },
+}
+
+export const Top: Story = {
+  args: {
+    anchor: 'top',
+    open: false,
+    onOpen: () => {},
+    onClose: () => {},
+  },
+  render: function TopStory() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open Top Drawer</Button>
+        <SwipeableDrawer
+          anchor="top"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+        >
+          <Box sx={{ height: 200, p: 2 }}>
+            <h3>Top Drawer Content</h3>
+            <p>This drawer slides from the top.</p>
+          </Box>
+        </SwipeableDrawer>
+      </>
+    )
+  },
+}
+
+export const Bottom: Story = {
+  args: {
+    anchor: 'bottom',
+    open: false,
+    onOpen: () => {},
+    onClose: () => {},
+  },
+  render: function BottomStory() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open Bottom Drawer</Button>
+        <SwipeableDrawer
+          anchor="bottom"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+        >
+          <Box sx={{ height: 200, p: 2 }}>
+            <h3>Bottom Drawer Content</h3>
+            <p>This drawer slides from the bottom.</p>
+          </Box>
+        </SwipeableDrawer>
+      </>
+    )
+  },
+}
+
+export const AllAnchors: Story = {
+  args: {
+    open: false,
+    onOpen: () => {},
+    onClose: () => {},
+  },
+  render: function AllAnchorsStory() {
+    const [state, setState] = React.useState({
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    })
+
+    const toggleDrawer =
+      (anchor: Anchor, open: boolean) =>
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event &&
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return
+        }
+        setState({ ...state, [anchor]: open })
+      }
+
+    return (
+      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+        {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
+          <React.Fragment key={anchor}>
+            <Button onClick={toggleDrawer(anchor, true)}>
+              {anchor.charAt(0).toUpperCase() + anchor.slice(1)}
+            </Button>
+            <SwipeableDrawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+              onOpen={toggleDrawer(anchor, true)}
+            >
+              {anchor === 'top' || anchor === 'bottom' ? (
+                <Box sx={{ height: 200, p: 2 }}>
+                  <h3>
+                    {anchor.charAt(0).toUpperCase() + anchor.slice(1)} Drawer
+                  </h3>
+                </Box>
+              ) : (
+                <DrawerContent />
+              )}
+            </SwipeableDrawer>
+          </React.Fragment>
+        ))}
+      </Box>
+    )
+  },
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: function InteractionStory() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)} data-testid="open-drawer">
+          Open Drawer
+        </Button>
+        <SwipeableDrawer
+          anchor="left"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+        >
+          <DrawerContent />
+        </SwipeableDrawer>
+      </>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Click to open drawer', async () => {
+      const openButton = canvas.getByTestId('open-drawer')
+      await expect(openButton).toBeInTheDocument()
+      await userEvent.click(openButton)
+    })
+
+    await step('Verify drawer is open', async () => {
+      // SwipeableDrawer renders via portal, use screen
+      const inboxItem = await screen.findByText('Inbox')
+      await expect(inboxItem).toBeInTheDocument()
+    })
+
+    await step('Close drawer by pressing Escape', async () => {
+      await userEvent.keyboard('{Escape}')
+      // Wait for drawer to close
+      await expect(screen.queryByText('Inbox')).not.toBeInTheDocument()
+    })
+  },
+}
