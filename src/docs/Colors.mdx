@@ -1,0 +1,305 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks'
+
+<Meta title="Design System/Colors" />
+
+# Color System
+
+MUI's color system provides a comprehensive palette for building accessible, beautiful interfaces.
+
+---
+
+## Palette Structure
+
+```tsx
+theme.palette = {
+  mode: 'light' | 'dark',
+  primary: { main, light, dark, contrastText },
+  secondary: { main, light, dark, contrastText },
+  error: { main, light, dark, contrastText },
+  warning: { main, light, dark, contrastText },
+  info: { main, light, dark, contrastText },
+  success: { main, light, dark, contrastText },
+  grey: { 50, 100, 200, ..., 900, A100, A200, A400, A700 },
+  text: { primary, secondary, disabled },
+  divider: string,
+  background: { default, paper },
+  action: { active, hover, selected, disabled, ... },
+}
+```
+
+---
+
+## Primary & Secondary
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    subtitle="theme.palette.primary"
+    colors={{
+      light: '#42a5f5',
+      main: '#1976d2',
+      dark: '#1565c0',
+    }}
+  />
+  <ColorItem
+    title="Secondary"
+    subtitle="theme.palette.secondary"
+    colors={{
+      light: '#ba68c8',
+      main: '#9c27b0',
+      dark: '#7b1fa2',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## Semantic Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Error"
+    subtitle="Destructive actions, errors"
+    colors={{
+      light: '#ef5350',
+      main: '#d32f2f',
+      dark: '#c62828',
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="Caution, warnings"
+    colors={{
+      light: '#ff9800',
+      main: '#ed6c02',
+      dark: '#e65100',
+    }}
+  />
+  <ColorItem
+    title="Info"
+    subtitle="Information, hints"
+    colors={{
+      light: '#03a9f4',
+      main: '#0288d1',
+      dark: '#01579b',
+    }}
+  />
+  <ColorItem
+    title="Success"
+    subtitle="Success states"
+    colors={{
+      light: '#4caf50',
+      main: '#2e7d32',
+      dark: '#1b5e20',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## Grey Scale
+
+<ColorPalette>
+  <ColorItem
+    title="Grey"
+    subtitle="Neutral tones"
+    colors={{
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## Customizing Colors
+
+### Using createTheme
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      // light and dark are auto-calculated if omitted
+    },
+    secondary: {
+      main: '#9c27b0',
+    },
+    // Custom colors
+    tertiary: {
+      main: '#2e7d32',
+      light: '#4caf50',
+      dark: '#1b5e20',
+      contrastText: '#fff',
+    },
+  },
+})
+```
+
+### From a Color Value
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+
+// MUI calculates light, dark, and contrastText
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+  },
+})
+```
+
+### Using MUI Colors
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+import { purple, green } from '@mui/material/colors'
+
+const theme = createTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+  },
+})
+```
+
+---
+
+## Color Usage
+
+### In sx Prop
+
+```tsx
+// Using palette paths
+<Box sx={{ bgcolor: 'primary.main' }} />
+<Box sx={{ color: 'text.secondary' }} />
+<Box sx={{ borderColor: 'divider' }} />
+
+// Using color values
+<Box sx={{ bgcolor: 'grey.100' }} />
+<Box sx={{ color: 'error.main' }} />
+```
+
+### In styled Components
+
+```tsx
+import { styled } from '@mui/material/styles'
+
+const CustomBox = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+}))
+```
+
+### Dynamic Colors
+
+```tsx
+<Box
+  sx={(theme) => ({
+    bgcolor: theme.palette.mode === 'dark'
+      ? 'grey.800'
+      : 'grey.100',
+  })}
+/>
+```
+
+---
+
+## Color Utilities
+
+### alpha
+
+```tsx
+import { alpha } from '@mui/material/styles'
+
+// Creates rgba color with opacity
+<Box
+  sx={(theme) => ({
+    bgcolor: alpha(theme.palette.primary.main, 0.5),
+  })}
+/>
+```
+
+### darken / lighten
+
+```tsx
+import { darken, lighten } from '@mui/material/styles'
+
+const darker = darken('#1976d2', 0.2)  // 20% darker
+const lighter = lighten('#1976d2', 0.2) // 20% lighter
+```
+
+### getContrastRatio
+
+```tsx
+import { getContrastRatio } from '@mui/material/styles'
+
+// Returns WCAG contrast ratio
+const ratio = getContrastRatio('#ffffff', '#1976d2')
+// ratio > 4.5 is AA compliant
+```
+
+---
+
+## Accessibility
+
+| Contrast Ratio | WCAG Level | Use Case |
+|---------------|------------|----------|
+| ≥ 3.0 | AA Large | Large text (18pt+) |
+| ≥ 4.5 | AA Normal | Normal text |
+| ≥ 7.0 | AAA | Enhanced contrast |
+
+MUI automatically calculates `contrastText` for accessibility:
+
+```tsx
+// MUI ensures text is readable
+theme.palette.primary.contrastText // Calculated automatically
+```
+
+---
+
+## Dark Mode Colors
+
+```tsx
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    // Dark mode defaults:
+    primary: { main: '#90caf9' },
+    background: {
+      default: '#121212',
+      paper: '#1e1e1e',
+    },
+    text: {
+      primary: '#fff',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+    },
+  },
+})
+```
+
+---
+
+## Best Practices
+
+1. **Use semantic colors** - `error.main` instead of `#d32f2f`
+2. **Check contrast** - Ensure WCAG AA compliance
+3. **Test both modes** - Verify colors in light and dark
+4. **Use alpha** - For transparent overlays
+5. **Limit palette** - Stick to primary/secondary for most UI

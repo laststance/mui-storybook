@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider, Box } from '@mui/material'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
 
 import { DesignTokenProvider, designToken } from '../src/designToken'
@@ -13,15 +13,44 @@ const preview: Preview = {
     docs: {
       theme: muiBrandTheme,
       autodocs: true,
+      canvas: {
+        sourceState: 'shown',
+      },
     },
     options: {
       storySort: {
-        order: ['Default'],
+        order: [
+          'Design System',
+          ['Introduction', 'Getting Started', 'Theming', 'Design Tokens', 'Typography', 'Colors', 'Spacing', 'Breakpoints', 'Customization', '*'],
+          'Components',
+          ['Inputs', 'Data Display', 'Feedback', 'Surfaces', 'Navigation', 'Layout', 'Utils', '*'],
+          'Examples',
+          '*',
+        ],
       },
+    },
+    layout: 'centered',
+    backgrounds: {
+      disable: true,
     },
   },
 
   decorators: [
+    // Wrapper to ensure proper height and padding for components
+    (Story) => (
+      <Box
+        sx={{
+          minHeight: '100px',
+          padding: 3,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        <Story />
+      </Box>
+    ),
     (Story) => (
       <DesignTokenProvider theme={designToken}>
         <Story />

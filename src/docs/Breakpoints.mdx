@@ -1,0 +1,315 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Design System/Breakpoints" />
+
+# Breakpoints
+
+MUI's breakpoint system enables responsive design across all screen sizes.
+
+---
+
+## Default Breakpoints
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| `xs` | 0px | Extra small (phones, portrait) |
+| `sm` | 600px | Small (phones, landscape / tablets) |
+| `md` | 900px | Medium (tablets) |
+| `lg` | 1200px | Large (desktops) |
+| `xl` | 1536px | Extra large (large desktops) |
+
+```
+xs       sm       md       lg       xl
+│        │        │        │        │
+├────────┼────────┼────────┼────────┼────────►
+0       600      900     1200     1536    ∞
+```
+
+---
+
+## Breakpoint Helpers
+
+### up() - Min-Width
+
+```tsx
+theme.breakpoints.up('md')
+// @media (min-width: 900px)
+```
+
+```tsx
+// Styles apply at md (900px) and above
+<Box
+  sx={{
+    bgcolor: 'grey.100',
+    [theme.breakpoints.up('md')]: {
+      bgcolor: 'primary.main',
+    },
+  }}
+/>
+```
+
+### down() - Max-Width
+
+```tsx
+theme.breakpoints.down('md')
+// @media (max-width: 899.95px)
+```
+
+```tsx
+// Styles apply below md (< 900px)
+<Box
+  sx={{
+    display: 'block',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  }}
+/>
+```
+
+### between() - Range
+
+```tsx
+theme.breakpoints.between('sm', 'lg')
+// @media (min-width: 600px) and (max-width: 1199.95px)
+```
+
+### only() - Exact Breakpoint
+
+```tsx
+theme.breakpoints.only('md')
+// @media (min-width: 900px) and (max-width: 1199.95px)
+```
+
+---
+
+## Responsive Values in sx
+
+### Object Syntax
+
+```tsx
+<Box
+  sx={{
+    width: {
+      xs: '100%',   // 0px+
+      sm: '50%',    // 600px+
+      md: '33.33%', // 900px+
+      lg: '25%',    // 1200px+
+    },
+  }}
+/>
+```
+
+### Array Syntax
+
+```tsx
+// [xs, sm, md, lg, xl]
+<Box sx={{ width: ['100%', '50%', '33.33%', '25%'] }} />
+
+// Skip breakpoints with null
+<Box sx={{ width: ['100%', null, '50%'] }} />
+// 100% at xs, unchanged at sm, 50% at md+
+```
+
+---
+
+## Grid Responsive
+
+```tsx
+import { Grid } from '@mui/material'
+
+<Grid container spacing={2}>
+  <Grid
+    item
+    xs={12}    // Full width on mobile
+    sm={6}     // Half width on tablet
+    md={4}     // Third width on desktop
+    lg={3}     // Quarter width on large
+  >
+    <Item />
+  </Grid>
+</Grid>
+```
+
+---
+
+## Hidden Component
+
+```tsx
+import { Hidden } from '@mui/material' // Deprecated
+
+// Use sx instead
+<Box sx={{ display: { xs: 'none', md: 'block' } }}>
+  Hidden on mobile
+</Box>
+
+<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+  Hidden on desktop
+</Box>
+```
+
+---
+
+## useMediaQuery Hook
+
+```tsx
+import { useMediaQuery, useTheme } from '@mui/material'
+
+function Component() {
+  const theme = useTheme()
+
+  // Check if screen is md or larger
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+
+  // Check for specific range
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'))
+
+  // System preference
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)')
+
+  return isDesktop ? <DesktopView /> : <MobileView />
+}
+```
+
+### SSR Support
+
+```tsx
+const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
+  defaultMatches: true, // Default for SSR
+  noSsr: false,        // Enable SSR support
+})
+```
+
+---
+
+## Custom Breakpoints
+
+### Add or Modify
+
+```tsx
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      // Add custom
+      xxl: 1920,
+    },
+  },
+})
+
+// TypeScript: Extend types
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxl: true
+  }
+}
+```
+
+### Different Values
+
+```tsx
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 480,  // Custom: 480px instead of 600px
+      md: 768,  // Custom: 768px instead of 900px
+      lg: 1024, // Custom: 1024px instead of 1200px
+      xl: 1440, // Custom: 1440px instead of 1536px
+    },
+  },
+})
+```
+
+---
+
+## Container Width
+
+Default max-widths for Container component:
+
+| Breakpoint | Max Width |
+|------------|-----------|
+| xs | 444px |
+| sm | 600px |
+| md | 900px |
+| lg | 1200px |
+| xl | 1536px |
+
+```tsx
+<Container maxWidth="lg">
+  {/* Max 1200px width */}
+</Container>
+
+<Container maxWidth={false}>
+  {/* Full width */}
+</Container>
+```
+
+---
+
+## Common Responsive Patterns
+
+### Mobile-First Navigation
+
+```tsx
+<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+  <MobileNav />
+</Box>
+<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+  <DesktopNav />
+</Box>
+```
+
+### Responsive Typography
+
+```tsx
+<Typography
+  sx={{
+    fontSize: {
+      xs: '1.5rem',
+      sm: '2rem',
+      md: '2.5rem',
+      lg: '3rem',
+    },
+  }}
+>
+  Responsive Heading
+</Typography>
+```
+
+### Responsive Spacing
+
+```tsx
+<Box
+  sx={{
+    p: { xs: 2, sm: 3, md: 4 },
+    my: { xs: 3, md: 6 },
+  }}
+/>
+```
+
+### Responsive Grid
+
+```tsx
+<Grid container spacing={{ xs: 2, md: 3 }}>
+  <Grid item xs={12} md={6} lg={4}>
+    <Card />
+  </Grid>
+</Grid>
+```
+
+---
+
+## Best Practices
+
+| Practice | Description |
+|----------|-------------|
+| **Mobile-first** | Start with `xs`, add larger breakpoints |
+| **Use theme helpers** | `breakpoints.up()` over raw media queries |
+| **Object syntax** | More readable than arrays |
+| **Test thoroughly** | Check all breakpoints |
+| **Consider touch** | Mobile isn't just small screens |

@@ -1,0 +1,308 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Design System/Theming" />
+
+# Theming
+
+MUI's theming system allows you to customize all design aspects of your application consistently.
+
+---
+
+## Theme Structure
+
+```tsx
+const theme = createTheme({
+  palette: { ... },      // Colors
+  typography: { ... },   // Fonts and text styles
+  spacing: (factor) => ..., // Spacing multiplier
+  breakpoints: { ... },  // Responsive breakpoints
+  shape: { ... },        // Border radius
+  shadows: [ ... ],      // Elevation shadows
+  transitions: { ... },  // Animation timing
+  zIndex: { ... },       // Layer ordering
+  components: { ... },   // Component overrides
+})
+```
+
+---
+
+## createTheme API
+
+### Basic Usage
+
+```tsx
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+      contrastText: '#fff',
+    },
+  },
+})
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      {/* components */}
+    </ThemeProvider>
+  )
+}
+```
+
+### Extending Default Theme
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+
+// Get default theme values
+const defaultTheme = createTheme()
+
+// Extend with custom values
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: defaultTheme.spacing(1),
+        },
+      },
+    },
+  },
+})
+```
+
+---
+
+## Light and Dark Modes
+
+### Mode-Based Palette
+
+```tsx
+const theme = createTheme({
+  palette: {
+    mode: 'dark', // or 'light'
+  },
+})
+```
+
+### Color Scheme Support (CSS Variables)
+
+```tsx
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: { main: '#1976d2' },
+        background: { default: '#ffffff', paper: '#f5f5f5' },
+      },
+    },
+    dark: {
+      palette: {
+        primary: { main: '#90caf9' },
+        background: { default: '#0a1929', paper: '#001e3c' },
+      },
+    },
+  },
+})
+```
+
+### Runtime Mode Toggle
+
+```tsx
+import { useState, useMemo } from 'react'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { IconButton } from '@mui/material'
+import { Brightness4, Brightness7 } from '@mui/icons-material'
+
+function App() {
+  const [mode, setMode] = useState<'light' | 'dark'>('light')
+
+  const theme = useMemo(
+    () => createTheme({ palette: { mode } }),
+    [mode]
+  )
+
+  const toggleMode = () => {
+    setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <IconButton onClick={toggleMode}>
+        {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+      </IconButton>
+    </ThemeProvider>
+  )
+}
+```
+
+---
+
+## Component Customization
+
+### Global Style Overrides
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      // Default props
+      defaultProps: {
+        disableElevation: true,
+        variant: 'contained',
+      },
+      // Style overrides
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          borderRadius: 8,
+        },
+        containedPrimary: {
+          '&:hover': {
+            backgroundColor: '#1565c0',
+          },
+        },
+      },
+      // Variants
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            border: '2px dashed currentColor',
+          },
+        },
+      ],
+    },
+  },
+})
+```
+
+### Component-Level Theming
+
+```tsx
+// Access theme in sx prop
+<Box
+  sx={{
+    bgcolor: 'background.paper',
+    color: 'text.primary',
+    p: 2,
+    borderRadius: 1,
+  }}
+/>
+
+// Access theme with callback
+<Box
+  sx={(theme) => ({
+    bgcolor: theme.palette.mode === 'dark'
+      ? 'grey.900'
+      : 'grey.100',
+  })}
+/>
+```
+
+---
+
+## useTheme Hook
+
+```tsx
+import { useTheme } from '@mui/material/styles'
+
+function Component() {
+  const theme = useTheme()
+
+  return (
+    <div style={{
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.text.primary,
+      padding: theme.spacing(2),
+    }}>
+      Current mode: {theme.palette.mode}
+    </div>
+  )
+}
+```
+
+---
+
+## Nested Themes
+
+```tsx
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+
+const outerTheme = createTheme({
+  palette: { primary: { main: '#1976d2' } },
+})
+
+const innerTheme = createTheme({
+  palette: { primary: { main: '#e91e63' } },
+})
+
+function App() {
+  return (
+    <ThemeProvider theme={outerTheme}>
+      <Button>Blue Button</Button>
+      <ThemeProvider theme={innerTheme}>
+        <Button>Pink Button</Button>
+      </ThemeProvider>
+    </ThemeProvider>
+  )
+}
+```
+
+---
+
+## CSS Variables Mode
+
+Enable CSS variables for dynamic theming:
+
+```tsx
+const theme = createTheme({
+  cssVariables: true,
+})
+
+// Generated CSS variables:
+// --mui-palette-primary-main: #1976d2;
+// --mui-palette-background-default: #fff;
+// etc.
+```
+
+Usage in CSS:
+
+```css
+.custom-element {
+  background-color: var(--mui-palette-background-paper);
+  color: var(--mui-palette-text-primary);
+}
+```
+
+---
+
+## Best Practices
+
+| Practice | Description |
+|----------|-------------|
+| **Single Theme** | Create one theme and extend as needed |
+| **Use Tokens** | Reference theme values instead of hardcoding |
+| **Type Safety** | Extend theme types for custom properties |
+| **Performance** | Memoize theme creation with `useMemo` |
+| **Consistency** | Use `sx` prop for one-off styles |
+
+---
+
+## Next Steps
+
+- **[Design Tokens](/docs/design-system-design-tokens--docs)** - Explore all available tokens
+- **[Colors](/docs/design-system-colors--docs)** - Color palette customization
+- **[Typography](/docs/design-system-typography--docs)** - Font customization

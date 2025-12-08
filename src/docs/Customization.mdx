@@ -1,0 +1,442 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Design System/Customization" />
+
+# Advanced Customization
+
+Deep customization techniques for MUI components beyond basic theming.
+
+---
+
+## Customization Methods
+
+| Method | Scope | Best For |
+|--------|-------|----------|
+| `sx` prop | Single instance | One-off styles |
+| `styled()` | Reusable component | Shared styled variants |
+| Theme `styleOverrides` | All instances | Global defaults |
+| Theme `variants` | Conditional | New variant types |
+| CSS Variables | Runtime | Dynamic theming |
+
+---
+
+## sx Prop Deep Dive
+
+### System Properties
+
+```tsx
+<Box
+  sx={{
+    // Spacing (theme.spacing)
+    m: 2,                    // margin: 16px
+    p: [1, 2, 3],           // responsive padding
+
+    // Sizing
+    width: 1,               // 100%
+    width: 1/2,             // 50%
+    width: 300,             // 300px
+    height: '100vh',
+    minHeight: 200,
+    maxWidth: 'sm',         // breakpoint value
+
+    // Colors (theme.palette)
+    color: 'primary.main',
+    bgcolor: 'background.paper',
+    borderColor: 'divider',
+
+    // Typography
+    typography: 'body1',
+    fontWeight: 'bold',
+
+    // Flexbox
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 2,
+
+    // Grid
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+
+    // Position
+    position: 'relative',
+    top: 0,
+    zIndex: 'modal',        // theme.zIndex
+
+    // Borders
+    border: 1,              // 1px solid
+    borderRadius: 2,        // theme.shape.borderRadius * 2
+
+    // Shadows
+    boxShadow: 3,          // theme.shadows[3]
+  }}
+/>
+```
+
+### Pseudo-Selectors
+
+```tsx
+<Button
+  sx={{
+    '&:hover': {
+      bgcolor: 'primary.dark',
+    },
+    '&:focus': {
+      outline: '2px solid',
+      outlineColor: 'primary.main',
+    },
+    '&:disabled': {
+      opacity: 0.5,
+    },
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+    },
+  }}
+/>
+```
+
+### Nested Selectors
+
+```tsx
+<Card
+  sx={{
+    '& .MuiCardHeader-root': {
+      bgcolor: 'grey.100',
+    },
+    '& .MuiCardContent-root': {
+      p: 3,
+    },
+    '& img': {
+      width: '100%',
+    },
+  }}
+/>
+```
+
+### Theme Callback
+
+```tsx
+<Box
+  sx={(theme) => ({
+    bgcolor: theme.palette.mode === 'dark'
+      ? 'grey.900'
+      : 'grey.100',
+    ...theme.typography.body2,
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  })}
+/>
+```
+
+---
+
+## styled() API
+
+### Basic Styled Component
+
+```tsx
+import { styled } from '@mui/material/styles'
+
+const StyledCard = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  boxShadow: theme.shadows[2],
+}))
+```
+
+### Extending MUI Components
+
+```tsx
+import { styled } from '@mui/material/styles'
+import Button from '@mui/material/Button'
+
+const GradientButton = styled(Button)(({ theme }) => ({
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  border: 0,
+  borderRadius: 3,
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+}))
+```
+
+### With Custom Props
+
+```tsx
+interface CustomButtonProps {
+  danger?: boolean
+}
+
+const CustomButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'danger',
+})<CustomButtonProps>(({ theme, danger }) => ({
+  backgroundColor: danger
+    ? theme.palette.error.main
+    : theme.palette.primary.main,
+  '&:hover': {
+    backgroundColor: danger
+      ? theme.palette.error.dark
+      : theme.palette.primary.dark,
+  },
+}))
+
+// Usage
+<CustomButton danger>Delete</CustomButton>
+```
+
+### Using Theme Options
+
+```tsx
+const StyledBox = styled('div', {
+  name: 'MyBox',           // Component name for debugging
+  slot: 'Root',            // Slot name
+  skipSx: false,           // Allow sx prop
+  skipVariantsResolver: false,
+})(({ theme }) => ({
+  // styles
+}))
+```
+
+---
+
+## Theme Component Overrides
+
+### styleOverrides
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        // Target the root element
+        root: {
+          textTransform: 'none',
+          borderRadius: 8,
+        },
+        // Target specific variants
+        contained: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+        // Target by size
+        sizeSmall: {
+          fontSize: '0.75rem',
+        },
+        // Dynamic styles using ownerState
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: theme.palette.primary.dark,
+            }),
+        }),
+      },
+    },
+  },
+})
+```
+
+### defaultProps
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+        disableElevation: true,
+        disableRipple: true,
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+        size: 'small',
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'hover',
+      },
+    },
+  },
+})
+```
+
+### Custom Variants
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            border: '2px dashed',
+            borderColor: 'currentColor',
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            borderColor: theme.palette.secondary.main,
+          },
+        },
+        {
+          props: { size: 'extraLarge' },
+          style: {
+            fontSize: '1.25rem',
+            padding: '16px 32px',
+          },
+        },
+      ],
+    },
+  },
+})
+
+// TypeScript: Extend types
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true
+  }
+  interface ButtonPropsSizeOverrides {
+    extraLarge: true
+  }
+}
+
+// Usage
+<Button variant="dashed">Dashed Button</Button>
+<Button size="extraLarge">Extra Large</Button>
+```
+
+---
+
+## CSS Variables
+
+### Enable CSS Variables
+
+```tsx
+const theme = createTheme({
+  cssVariables: true,
+})
+
+// Generated CSS variables:
+// --mui-palette-primary-main: #1976d2;
+// --mui-palette-background-default: #fff;
+// --mui-spacing: 8px;
+```
+
+### Using CSS Variables
+
+```css
+/* In external CSS */
+.custom-element {
+  background-color: var(--mui-palette-primary-main);
+  padding: calc(var(--mui-spacing) * 2);
+  border-radius: var(--mui-shape-borderRadius);
+}
+```
+
+### Custom CSS Variables
+
+```tsx
+const theme = createTheme({
+  cssVariables: {
+    cssVarPrefix: 'app', // Default: 'mui'
+  },
+})
+// --app-palette-primary-main
+```
+
+---
+
+## Global CSS Overrides
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        // Global styles
+        '*': {
+          boxSizing: 'border-box',
+        },
+        html: {
+          scrollBehavior: 'smooth',
+        },
+        body: {
+          backgroundColor: '#fafafa',
+        },
+        a: {
+          textDecoration: 'none',
+        },
+        // Custom scrollbar
+        '::-webkit-scrollbar': {
+          width: 8,
+        },
+        '::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+          borderRadius: 4,
+        },
+      },
+    },
+  },
+})
+```
+
+---
+
+## Slot API
+
+Target internal elements of complex components:
+
+```tsx
+<Chip
+  label="Chip"
+  slotProps={{
+    label: {
+      sx: { fontWeight: 'bold' },
+    },
+    deleteIcon: {
+      sx: { color: 'error.main' },
+    },
+  }}
+/>
+
+// In theme
+const theme = createTheme({
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        label: {
+          fontWeight: 500,
+        },
+        deleteIcon: {
+          '&:hover': {
+            color: 'error.dark',
+          },
+        },
+      },
+    },
+  },
+})
+```
+
+---
+
+## Best Practices
+
+| Practice | Do | Don't |
+|----------|----|----- |
+| **One-off styles** | Use `sx` prop | Create new styled component |
+| **Reusable styles** | Use `styled()` | Duplicate `sx` props |
+| **Global defaults** | Use theme overrides | Override in every instance |
+| **Custom variants** | Use theme variants | Create wrapper components |
+| **CSS specificity** | Use MUI APIs | Use `!important` |

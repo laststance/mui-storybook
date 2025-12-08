@@ -9,6 +9,16 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
     '@storybook/addon-themes',
+    {
+      name: '@storybook/addon-mcp',
+      options: {
+        toolsets: {
+          dev: true,
+          docs: true,
+        },
+        experimentalFormat: 'markdown',
+      },
+    },
   ],
 
   framework: {
@@ -18,6 +28,10 @@ const config: StorybookConfig = {
 
   typescript: {
     reactDocgen: 'react-docgen-typescript',
+  },
+
+  features: {
+    experimentalComponentsManifest: true,
   },
 
   // Custom CSS for manager UI - fixes "Create a new story" button icon visibility

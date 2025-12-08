@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "storybook build",
-    "clean": "rimraf dist node_modules yarn.lock",
+    "clean": "rimraf dist node_modules pnpm-lock.yaml",
     "format": "prettier --write \"**/*.+(json|yml|css|md|mdx)\"",
     "gen": "plop",
     "lint": "eslint .",
@@ -30,6 +30,7 @@
     "@mui/types": "^7.4.9",
     "@storybook/addon-a11y": "^10.1.4",
     "@storybook/addon-docs": "^10.1.4",
+    "@storybook/addon-mcp": "^0.1.5",
     "@storybook/addon-themes": "^10.1.4",
     "@storybook/react": "^10.1.4",
     "@storybook/react-vite": "^10.1.4",
