@@ -4,18 +4,78 @@ import MUIBadge from '@mui/material/Badge'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 
+import {
+  muiColorArgType,
+  createSelectArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Badge from './Badge'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Badge',
+  title: 'Data Display/Badge',
   component: Badge,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    variant: createSelectArgType(
+      ['standard', 'dot'],
+      'standard',
+      'The variant to use.',
+      'Appearance',
+    ),
+    anchorOrigin: { control: false }, // Complex object
+    overlap: createSelectArgType(
+      ['circular', 'rectangular'],
+      'rectangular',
+      'Wrapped shape the badge should overlap.',
+      'Layout',
+    ),
+    invisible: createBooleanArgType(
+      'If true, the badge is invisible.',
+      false,
+      'State',
+    ),
+    showZero: createBooleanArgType(
+      'Controls whether the badge is hidden when badgeContent is zero.',
+      false,
+      'State',
+    ),
+    max: createNumberArgType('Max count to show.', 99, 1, 999, 'Content'),
+    badgeContent: {
+      control: { type: 'number', min: 0, max: 1000 },
+      description: 'The content rendered within the badge.',
+      table: { category: 'Content' },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Badge>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Badge component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    badgeContent: 4,
+    color: 'primary',
+    variant: 'standard',
+    invisible: false,
+    showZero: false,
+    max: 99,
+    children: <MailIcon />,
+  },
+}
 
 export const Default: Story = {
   args: {

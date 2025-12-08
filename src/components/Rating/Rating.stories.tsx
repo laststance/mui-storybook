@@ -8,18 +8,74 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiSizeArgType,
+  muiDisabledArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Rating from './Rating'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Rating',
+  title: 'Inputs/Rating',
   component: Rating,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    readOnly: createBooleanArgType(
+      'If true, the component is read-only.',
+      false,
+      'State',
+    ),
+    max: createNumberArgType('Maximum rating.', 5, 1, 10, 'Content'),
+    precision: {
+      control: { type: 'select' },
+      options: [0.1, 0.5, 1],
+      description: 'The minimum increment value change allowed.',
+      table: {
+        defaultValue: { summary: '1' },
+        category: 'Content',
+        type: { summary: 'number' },
+      },
+    },
+    defaultValue: {
+      control: { type: 'number', min: 0, max: 5, step: 0.5 },
+      description:
+        'The default value. Use when the component is not controlled.',
+      table: { category: 'Content' },
+    },
+    highlightSelectedOnly: createBooleanArgType(
+      'If true, only the selected icon will be highlighted.',
+      false,
+      'Appearance',
+    ),
+  },
 } satisfies Meta<typeof Rating>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Rating component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    defaultValue: 3,
+    max: 5,
+    precision: 1,
+    size: 'medium',
+    disabled: false,
+    readOnly: false,
+  },
+}
 
 export const Default: Story = {
   args: {

@@ -7,18 +7,86 @@ import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 import { expect, screen, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Dialog from './Dialog'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Dialog',
+  title: 'Feedback/Dialog',
   component: Dialog,
   tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    fullWidth: createBooleanArgType(
+      'If true, the dialog stretches to maxWidth.',
+      false,
+      'Layout',
+    ),
+    fullScreen: createBooleanArgType(
+      'If true, the dialog is full-screen.',
+      false,
+      'Layout',
+    ),
+    maxWidth: createSelectArgType(
+      ['xs', 'sm', 'md', 'lg', 'xl', 'false'],
+      'sm',
+      'Determine the max-width of the dialog.',
+      'Layout',
+    ),
+    scroll: createSelectArgType(
+      ['paper', 'body'],
+      'paper',
+      'Determine the container for scrolling the dialog.',
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Dialog>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Dialog component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    open: true,
+    fullWidth: false,
+    fullScreen: false,
+    maxWidth: 'sm',
+    scroll: 'paper',
+  },
+  render: (args) => (
+    <Dialog {...args}>
+      <DialogTitle>Playground Dialog</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          This is an interactive playground for the Dialog component. Use the
+          Controls panel to experiment with all props.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button>Cancel</Button>
+        <Button>Confirm</Button>
+      </DialogActions>
+    </Dialog>
+  ),
+}
 
 export const Default: Story = {
   args: {} as never,

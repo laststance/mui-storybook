@@ -33,17 +33,13 @@ const preview: Preview = {
             'Customization',
             '*',
           ],
-          'Components',
-          [
-            'Inputs',
-            'Data Display',
-            'Feedback',
-            'Surfaces',
-            'Navigation',
-            'Layout',
-            'Utils',
-            '*',
-          ],
+          'Inputs',
+          'Data Display',
+          'Feedback',
+          'Surfaces',
+          'Navigation',
+          'Layout',
+          'Utils',
           'Examples',
           '*',
         ],
@@ -52,6 +48,66 @@ const preview: Preview = {
     layout: 'centered',
     backgrounds: {
       disable: true,
+    },
+    // ════════════════════════════════════════════════════════════
+    // Controls configuration
+    // ════════════════════════════════════════════════════════════
+    controls: {
+      expanded: true, // Expand object/array controls
+      sort: 'requiredFirst', // Required props first, then alphabetical
+    },
+  },
+
+  // ════════════════════════════════════════════════════════════
+  // Global argTypes for common MUI patterns
+  // ════════════════════════════════════════════════════════════
+  argTypes: {
+    // Hide internal/advanced props
+    className: { table: { disable: true } },
+    style: { table: { disable: true } },
+    classes: { table: { disable: true } },
+
+    // Disable sx (too complex for controls)
+    sx: {
+      control: false,
+      description: 'The system prop for defining custom styles.',
+      table: {
+        category: 'Advanced',
+        type: { summary: 'SxProps<Theme>' },
+      },
+    },
+
+    // Event handlers - use actions, not controls
+    onClick: {
+      action: 'clicked',
+      control: false,
+      table: { category: 'Events' },
+    },
+    onChange: {
+      action: 'changed',
+      control: false,
+      table: { category: 'Events' },
+    },
+    onClose: {
+      action: 'closed',
+      control: false,
+      table: { category: 'Events' },
+    },
+    onOpen: { action: 'opened', control: false, table: { category: 'Events' } },
+    onFocus: {
+      action: 'focused',
+      control: false,
+      table: { category: 'Events' },
+    },
+    onBlur: {
+      action: 'blurred',
+      control: false,
+      table: { category: 'Events' },
+    },
+    onSubmit: {
+      action: 'submitted',
+      control: false,
+      table: { category: 'Events' },
     },
   },
 

@@ -7,18 +7,52 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 
+import {
+  muiColorArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Icon from './Icon'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Icon',
+  title: 'Data Display/Icon',
   component: Icon,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    fontSize: createSelectArgType(
+      ['inherit', 'small', 'medium', 'large'],
+      'medium',
+      'The fontSize applied to the icon.',
+      'Appearance',
+    ),
+    children: {
+      control: 'text',
+      description: 'The name of the icon font ligature.',
+      table: { category: 'Content' },
+    },
+  },
 } satisfies Meta<typeof Icon>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Icon component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    children: 'home',
+    color: 'primary',
+    fontSize: 'medium',
+  },
+}
 
 export const Default: Story = {
   args: {

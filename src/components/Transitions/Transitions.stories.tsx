@@ -11,6 +11,12 @@ import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom'
 import { useState } from 'react'
 
+import {
+  createSelectArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta = {
@@ -18,11 +24,79 @@ const meta: Meta = {
   parameters: {
     layout: 'padded',
   },
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    in: createBooleanArgType(
+      'If true, the component will transition in.',
+      false,
+      'State',
+    ),
+    timeout: createNumberArgType(
+      'The duration of the transition, in milliseconds.',
+      300,
+      0,
+      3000,
+      'Timing',
+    ),
+    easing: createSelectArgType(
+      ['ease-in', 'ease-out', 'ease-in-out', 'linear'],
+      'ease-in-out',
+      'The easing function to use.',
+      'Appearance',
+    ),
+    mountOnEnter: createBooleanArgType(
+      'If true, the component will be mounted when entering.',
+      false,
+      'Behavior',
+    ),
+    unmountOnExit: createBooleanArgType(
+      'If true, the component will be unmounted when exiting.',
+      false,
+      'Behavior',
+    ),
+  },
 }
 
 export default meta
 type Story = StoryObj
+
+/**
+ * Interactive playground for Transitions.
+ * Use the Controls panel to experiment with transition props.
+ */
+export const Playground: Story = {
+  args: {} as never,
+  render: () => {
+    const [checked, setChecked] = useState(true)
+    return (
+      <Box sx={{ height: 180 }}>
+        <FormControlLabel
+          control={
+            <Switch checked={checked} onChange={() => setChecked(!checked)} />
+          }
+          label="Show"
+        />
+        <Fade in={checked}>
+          <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+              }}
+            >
+              <Typography>Content</Typography>
+            </Box>
+          </Paper>
+        </Fade>
+      </Box>
+    )
+  },
+}
 
 const TransitionBox = () => (
   <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
