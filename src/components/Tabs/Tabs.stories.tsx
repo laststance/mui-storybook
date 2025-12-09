@@ -339,7 +339,8 @@ export const InteractionTest: Story = {
 
       await expect(tab2).toHaveAttribute('aria-selected', 'true')
       await expect(canvas.getByText('Content for Tab Two')).toBeVisible()
-      await expect(canvas.queryByText('Content for Tab One')).not.toBeVisible()
+      // Old content is removed from DOM when tab changes (conditional render)
+      expect(canvas.queryByText('Content for Tab One')).toBeNull()
     })
 
     await step('Click third tab and verify navigation', async () => {

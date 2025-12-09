@@ -281,7 +281,7 @@ export const InteractionTest: Story = {
       await expect(canvas.getByText('Current page: 1')).toBeInTheDocument()
 
       const page1Button = canvas.getByRole('button', { name: 'page 1' })
-      await expect(page1Button).toHaveAttribute('aria-current', 'true')
+      await expect(page1Button).toHaveAttribute('aria-current', 'page')
     })
 
     await step('Navigate to page 2', async () => {
@@ -290,7 +290,7 @@ export const InteractionTest: Story = {
 
       await expect(canvas.getByText('Current page: 2')).toBeInTheDocument()
       const page2CurrentButton = canvas.getByRole('button', { name: 'page 2' })
-      await expect(page2CurrentButton).toHaveAttribute('aria-current', 'true')
+      await expect(page2CurrentButton).toHaveAttribute('aria-current', 'page')
     })
 
     await step('Navigate to page 5 using direct page button', async () => {
