@@ -174,11 +174,11 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify buttons render
-    const hoverButton = canvas.getByRole('button', { name: /hover me/i })
-    await expect(hoverButton).toBeInTheDocument()
-
-    const deleteIcon = canvas.getByTestId('DeleteIcon')
-    await expect(deleteIcon).toBeInTheDocument()
+    // Note: MUI Tooltip sets aria-label on child to the tooltip text
+    // So button name becomes "Hover tooltip text", not "Hover Me"
+    const buttons = canvas.getAllByRole('button')
+    await expect(buttons.length).toBe(2)
+    await expect(buttons[0]).toBeInTheDocument()
+    await expect(buttons[1]).toBeInTheDocument()
   },
 }

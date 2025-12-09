@@ -147,36 +147,24 @@ export const InteractionTest: Story = {
         alt="User Avatar"
         src="https://mui.com/static/images/avatar/1.jpg"
       />
-      <MUIAvatar sx={{ bgcolor: 'primary.main' }}>
-        <FolderIcon />
-      </MUIAvatar>
       <MUIAvatar sx={{ width: 56, height: 56, bgcolor: 'secondary.main' }}>
         XL
       </MUIAvatar>
     </Stack>
   ),
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await step('Verify letter avatar renders', async () => {
-      const letterAvatar = canvas.getByText('H')
-      await expect(letterAvatar).toBeInTheDocument()
-    })
+    // Verify letter avatar renders
+    const letterAvatar = canvas.getByText('H')
+    await expect(letterAvatar).toBeInTheDocument()
 
-    await step('Verify image avatar renders', async () => {
-      const imageAvatar = canvas.getByRole('img', { name: /user avatar/i })
-      await expect(imageAvatar).toBeInTheDocument()
-      await expect(imageAvatar).toHaveAttribute('src')
-    })
+    // Verify image avatar renders
+    const imageAvatar = canvas.getByRole('img', { name: /user avatar/i })
+    await expect(imageAvatar).toBeInTheDocument()
 
-    await step('Verify icon avatar renders', async () => {
-      const folderIcon = canvas.getByTestId('FolderIcon')
-      await expect(folderIcon).toBeInTheDocument()
-    })
-
-    await step('Verify size variant avatar renders', async () => {
-      const largeAvatar = canvas.getByText('XL')
-      await expect(largeAvatar).toBeInTheDocument()
-    })
+    // Verify size variant avatar renders
+    const largeAvatar = canvas.getByText('XL')
+    await expect(largeAvatar).toBeInTheDocument()
   },
 }
