@@ -43,12 +43,25 @@ interface ButtonProps {
    * @default false
    */
   disableFocusRipple?: boolean
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple?: boolean
 
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
   href?: string
+  /**
+   * Element placed before the children.
+   */
+  startIcon?: React.ReactNode
+  /**
+   * Element placed after the children.
+   */
+  endIcon?: React.ReactNode
   /**
    * Callback fired when the button is clicked.
    */
@@ -58,6 +71,7 @@ interface ButtonProps {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
+  size?: 'small' | 'medium' | 'large'
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -4,6 +4,12 @@ import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import MUITooltip from '@mui/material/Tooltip'
 
+import {
+  muiPlacementArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Tooltip from './Tooltip'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -11,11 +17,79 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Data Display/Tooltip',
   component: Tooltip,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    placement: muiPlacementArgType,
+    arrow: createBooleanArgType(
+      'If true, adds an arrow to the tooltip.',
+      false,
+      'Appearance',
+    ),
+    disableHoverListener: createBooleanArgType(
+      'Do not respond to hover events.',
+      false,
+      'Behavior',
+    ),
+    disableFocusListener: createBooleanArgType(
+      'Do not respond to focus-visible events.',
+      false,
+      'Behavior',
+    ),
+    disableTouchListener: createBooleanArgType(
+      'Do not respond to long press touch events.',
+      false,
+      'Behavior',
+    ),
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    enterDelay: createNumberArgType(
+      'The number of milliseconds to wait before showing the tooltip.',
+      100,
+      0,
+      2000,
+      'Timing',
+    ),
+    leaveDelay: createNumberArgType(
+      'The number of milliseconds to wait before hiding the tooltip.',
+      0,
+      0,
+      2000,
+      'Timing',
+    ),
+    title: {
+      control: 'text',
+      description:
+        'Tooltip title. Zero-length titles string are never displayed.',
+      table: { category: 'Content' },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Tooltip>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Tooltip component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    title: 'Tooltip Text',
+    placement: 'bottom',
+    arrow: false,
+    enterDelay: 100,
+    leaveDelay: 0,
+    children: <Button>Hover me</Button>,
+  },
+}
 
 export const Default: Story = {
   args: {

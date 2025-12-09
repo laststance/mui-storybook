@@ -9,17 +9,57 @@ import RadioGroup from '@mui/material/RadioGroup'
 import { styled } from '@mui/material/styles'
 import React from 'react'
 
+import {
+  muiColorArgType,
+  muiSizeArgType,
+  muiDisabledArgType,
+  muiCheckedArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { RadioProps } from '@mui/material/Radio'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'Inputs/RadioButton',
   component: Radio,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    checked: muiCheckedArgType,
+    disableRipple: createBooleanArgType(
+      'If true, the ripple effect is disabled.',
+      false,
+      'Appearance',
+    ),
+    required: createBooleanArgType(
+      'If true, the input element is required.',
+      false,
+      'State',
+    ),
+  },
 } satisfies Meta<typeof Radio>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Radio component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    color: 'primary',
+    size: 'medium',
+    disabled: false,
+    checked: false,
+  },
+}
 
 export const Default: Story = {
   args: {},

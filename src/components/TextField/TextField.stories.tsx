@@ -1,5 +1,16 @@
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiColorArgType,
+  muiVariantArgType,
+  muiDisabledArgType,
+  muiRequiredArgType,
+  muiErrorArgType,
+  muiFullWidthArgType,
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import TextField from './TextField'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -18,10 +29,97 @@ const meta = {
       },
     },
   },
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['outlined', 'filled', 'standard'], 'outlined'),
+    color: muiColorArgType,
+    size: {
+      control: 'radio',
+      options: ['small', 'medium'],
+      description: 'The size of the component.',
+      table: {
+        defaultValue: { summary: 'medium' },
+        category: 'Appearance',
+        type: { summary: '"small" | "medium"' },
+      },
+    },
+    disabled: muiDisabledArgType,
+    required: muiRequiredArgType,
+    error: muiErrorArgType,
+    fullWidth: muiFullWidthArgType,
+    multiline: createBooleanArgType(
+      'If true, a textarea element is rendered instead of an input.',
+      false,
+      'Layout',
+    ),
+    margin: createSelectArgType(
+      ['none', 'dense', 'normal'],
+      'none',
+      'If dense or normal, will adjust vertical spacing.',
+      'Layout',
+    ),
+    type: createSelectArgType(
+      ['text', 'password', 'email', 'number', 'tel', 'url', 'search'],
+      'text',
+      'Type of the input element.',
+      'Content',
+    ),
+    label: {
+      control: 'text',
+      description: 'The label content.',
+      table: { category: 'Content' },
+    },
+    placeholder: {
+      control: 'text',
+      description:
+        'The short hint displayed in the input before the user enters a value.',
+      table: { category: 'Content' },
+    },
+    helperText: {
+      control: 'text',
+      description: 'The helper text content.',
+      table: { category: 'Content' },
+    },
+    defaultValue: {
+      control: 'text',
+      description:
+        'The default value. Use when the component is not controlled.',
+      table: { category: 'Content' },
+    },
+    rows: {
+      control: { type: 'number', min: 1, max: 20 },
+      description:
+        'Number of rows to display when multiline option is set to true.',
+      table: { category: 'Layout' },
+    },
+  },
+  args: {
+    label: 'Label',
+  },
 } satisfies Meta<typeof TextField>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the TextField component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    label: 'Username',
+    placeholder: 'Enter your username',
+    variant: 'outlined',
+    size: 'medium',
+    disabled: false,
+    required: false,
+    error: false,
+    fullWidth: false,
+    helperText: 'This field is optional',
+  },
+}
 
 export const Default: Story = {
   args: {
@@ -30,6 +128,7 @@ export const Default: Story = {
 }
 
 export const Variants: Story = {
+  args: {} as never,
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <TextField label="Outlined" variant="outlined" />

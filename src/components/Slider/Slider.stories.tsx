@@ -5,6 +5,14 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiColorArgType,
+  muiDisabledArgType,
+  muiOrientationArgType,
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Slider from './Slider'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -12,11 +20,98 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Inputs/Slider',
   component: Slider,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    size: {
+      control: 'radio',
+      options: ['small', 'medium'],
+      description: 'The size of the slider.',
+      table: {
+        defaultValue: { summary: 'medium' },
+        category: 'Appearance',
+        type: { summary: '"small" | "medium"' },
+      },
+    },
+    disabled: muiDisabledArgType,
+    orientation: muiOrientationArgType,
+    valueLabelDisplay: createSelectArgType(
+      ['auto', 'on', 'off'],
+      'off',
+      'Controls when the value label is displayed.',
+      'Appearance',
+    ),
+    track: createSelectArgType(
+      ['normal', 'inverted', 'false'],
+      'normal',
+      'The track presentation.',
+      'Appearance',
+    ),
+    marks: createBooleanArgType(
+      'Marks indicate predetermined values to which the user can move the slider.',
+      false,
+      'Appearance',
+    ),
+    step: {
+      control: { type: 'number', min: 1, max: 100 },
+      description:
+        'The granularity with which the slider can step through values.',
+      table: {
+        defaultValue: { summary: '1' },
+        category: 'Content',
+        type: { summary: 'number | null' },
+      },
+    },
+    min: {
+      control: { type: 'number' },
+      description: 'The minimum allowed value of the slider.',
+      table: {
+        defaultValue: { summary: '0' },
+        category: 'Content',
+        type: { summary: 'number' },
+      },
+    },
+    max: {
+      control: { type: 'number' },
+      description: 'The maximum allowed value of the slider.',
+      table: {
+        defaultValue: { summary: '100' },
+        category: 'Content',
+        type: { summary: 'number' },
+      },
+    },
+    defaultValue: {
+      control: { type: 'number', min: 0, max: 100 },
+      description:
+        'The default value. Use when the component is not controlled.',
+      table: { category: 'Content' },
+    },
+  },
 } satisfies Meta<typeof Slider>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Slider component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    defaultValue: 50,
+    'aria-label': 'Playground slider',
+    color: 'primary',
+    size: 'medium',
+    disabled: false,
+    valueLabelDisplay: 'auto',
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+}
 
 export const Default: Story = {
   args: {

@@ -5,6 +5,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
+import {
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Table from './Table'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -12,7 +17,31 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Data Display/Table',
   component: Table,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    size: createSelectArgType(
+      ['small', 'medium'],
+      'medium',
+      'The size of the table.',
+      'Appearance',
+    ),
+    padding: createSelectArgType(
+      ['checkbox', 'none', 'normal'],
+      'normal',
+      'The padding of the cells.',
+      'Layout',
+    ),
+    stickyHeader: createBooleanArgType(
+      'Set the header sticky.',
+      false,
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Table>
 
 export default meta

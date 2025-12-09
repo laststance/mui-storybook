@@ -20,6 +20,8 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
 
+import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
+
 import List from './List'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -27,11 +29,59 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Data Display/List',
   component: List,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    dense: createBooleanArgType(
+      'If true, compact vertical padding designed for keyboard and mouse input is used.',
+      false,
+      'Appearance',
+    ),
+    disablePadding: createBooleanArgType(
+      'If true, vertical padding is removed from the list.',
+      false,
+      'Layout',
+    ),
+    subheader: {
+      control: 'text',
+      description: 'The content of the subheader, normally ListSubheader.',
+      table: { category: 'Content' },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof List>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the List component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    dense: false,
+    disablePadding: false,
+  },
+  render: (args) => (
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List {...args}>
+        <ListItem>
+          <ListItemText primary="Item 1" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Item 2" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Item 3" />
+        </ListItem>
+      </List>
+    </Box>
+  ),
+}
 
 export const Default: Story = {
   render: () => (

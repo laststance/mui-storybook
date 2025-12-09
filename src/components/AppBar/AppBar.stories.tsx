@@ -6,6 +6,12 @@ import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 
+import {
+  createSelectArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import AppBar from './AppBar'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -13,11 +19,70 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Surfaces/AppBar',
   component: AppBar,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ['default', 'inherit', 'primary', 'secondary', 'transparent'],
+      description: 'The color of the component.',
+      table: {
+        defaultValue: { summary: 'primary' },
+        category: 'Appearance',
+        type: {
+          summary:
+            '"default" | "inherit" | "primary" | "secondary" | "transparent"',
+        },
+      },
+    },
+    position: createSelectArgType(
+      ['fixed', 'absolute', 'sticky', 'static', 'relative'],
+      'fixed',
+      'The positioning type.',
+      'Layout',
+    ),
+    enableColorOnDark: createBooleanArgType(
+      'If true, the color prop is applied in dark mode.',
+      false,
+      'Appearance',
+    ),
+    elevation: createNumberArgType(
+      'Shadow depth, corresponds to dp in the spec.',
+      4,
+      0,
+      24,
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof AppBar>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the AppBar component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    color: 'primary',
+    position: 'static',
+    elevation: 4,
+  },
+  render: (args) => (
+    <AppBar {...args}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Playground AppBar
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  ),
+}
 
 export const Default: Story = {
   render: () => (

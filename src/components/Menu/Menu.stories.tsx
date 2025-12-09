@@ -10,6 +10,11 @@ import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Menu from './Menu'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -17,11 +22,75 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Navigation/Menu',
   component: Menu,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    autoFocus: createBooleanArgType(
+      'If true, will focus on the element at the start of the list.',
+      true,
+      'Behavior',
+    ),
+    disableAutoFocusItem: createBooleanArgType(
+      'If true, the menu will not automatically focus on items.',
+      false,
+      'Behavior',
+    ),
+    variant: createSelectArgType(
+      ['menu', 'selectedMenu'],
+      'selectedMenu',
+      'The variant to use.',
+      'Appearance',
+    ),
+    // Disable anchorEl and children as they require JSX/refs
+    anchorEl: { control: false },
+    children: { control: false },
+  },
 } satisfies Meta<typeof Menu>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Menu component.
+ * Note: Menu requires an anchorEl, so this playground uses a render function.
+ */
+export const Playground: Story = {
+  args: {
+    open: true,
+  },
+  render: (args) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const open = Boolean(anchorEl) || args.open
+
+    return (
+      <div>
+        <Button
+          variant="contained"
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+        >
+          Open Menu
+        </Button>
+        <Menu
+          {...args}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={() => setAnchorEl(null)}
+        >
+          <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+          <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
+          <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
+        </Menu>
+      </div>
+    )
+  },
+}
 
 export const Default: Story = {
   args: {

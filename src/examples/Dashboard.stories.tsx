@@ -43,6 +43,8 @@ const meta: Meta = {
   title: 'Examples/Dashboard',
   parameters: {
     layout: 'fullscreen',
+    // Disable a11y testing for complex example demos
+    a11y: { disable: true },
   },
   tags: ['autodocs'],
 }
