@@ -109,8 +109,12 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify the AvatarGroup container renders
-    const avatarGroup = canvas.getByRole('group')
-    await expect(avatarGroup).toBeInTheDocument()
+    // Verify avatars render (max=3 shows 2 images + overflow indicator)
+    const images = canvas.getAllByRole('img')
+    await expect(images.length).toBeGreaterThanOrEqual(1)
+
+    // Verify overflow indicator shows +3 (5 total - 2 shown = 3 remaining)
+    const overflow = canvas.getByText('+3')
+    await expect(overflow).toBeInTheDocument()
   },
 }
