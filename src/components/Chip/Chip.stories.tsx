@@ -7,18 +7,64 @@ import { styled } from '@mui/material/styles'
 import React from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  muiColorArgType,
+  muiSizeArgType,
+  muiDisabledArgType,
+  muiVariantArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Chip from './Chip'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    variant: muiVariantArgType(['filled', 'outlined'], 'filled'),
+    clickable: createBooleanArgType(
+      'If true, the chip will appear clickable.',
+      false,
+      'Behavior',
+    ),
+    label: {
+      control: 'text',
+      description: 'The content of the label.',
+      table: { category: 'Content' },
+    },
+    // Disable props that require JSX
+    avatar: { control: false },
+    deleteIcon: { control: false },
+    icon: { control: false },
+  },
 } satisfies Meta<typeof Chip>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Chip component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    label: 'Chip Label',
+    color: 'primary',
+    size: 'medium',
+    variant: 'filled',
+    disabled: false,
+    clickable: false,
+  },
+}
 
 export const Default: Story = {
   args: {

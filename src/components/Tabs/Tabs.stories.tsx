@@ -8,14 +8,60 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Tabs from './Tabs'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Navigation/Tabs',
   component: Tabs,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    value: {
+      control: { type: 'number', min: 0, max: 10 },
+      description: 'The value of the currently selected Tab.',
+      table: { category: 'State' },
+    },
+    orientation: createSelectArgType(
+      ['horizontal', 'vertical'],
+      'horizontal',
+      'The component orientation.',
+      'Layout',
+    ),
+    variant: createSelectArgType(
+      ['standard', 'scrollable', 'fullWidth'],
+      'standard',
+      'Determines additional display behavior of the tabs.',
+      'Appearance',
+    ),
+    centered: createBooleanArgType(
+      'If true, the tabs are centered.',
+      false,
+      'Layout',
+    ),
+    textColor: createSelectArgType(
+      ['inherit', 'primary', 'secondary'],
+      'inherit',
+      'Determines the color of the Tab.',
+      'Appearance',
+    ),
+    indicatorColor: createSelectArgType(
+      ['primary', 'secondary'],
+      'primary',
+      'Determines the color of the indicator.',
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Tabs>
 
 export default meta
@@ -38,6 +84,32 @@ function TabPanel(props: TabPanelProps) {
       )}
     </div>
   )
+}
+
+/**
+ * Interactive playground for the Tabs component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    value: 0,
+    orientation: 'horizontal',
+    variant: 'standard',
+    centered: false,
+    textColor: 'primary',
+    indicatorColor: 'primary',
+  },
+  render: (args) => (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs {...args}>
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+        </Tabs>
+      </Box>
+    </Box>
+  ),
 }
 
 export const Default: Story = {

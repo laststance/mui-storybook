@@ -6,14 +6,58 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
+
 import Modal from './Modal'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Modal',
+  title: 'Feedback/Modal',
   component: Modal,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    keepMounted: createBooleanArgType(
+      'Always keep the children in the DOM.',
+      false,
+      'Behavior',
+    ),
+    disableEscapeKeyDown: createBooleanArgType(
+      'If true, hitting escape will not fire onClose.',
+      false,
+      'Behavior',
+    ),
+    disableAutoFocus: createBooleanArgType(
+      'If true, the modal will not automatically shift focus.',
+      false,
+      'Behavior',
+    ),
+    disableEnforceFocus: createBooleanArgType(
+      'If true, the modal will not prevent focus from leaving.',
+      false,
+      'Behavior',
+    ),
+    disableRestoreFocus: createBooleanArgType(
+      'If true, the modal will not restore focus after closing.',
+      false,
+      'Behavior',
+    ),
+    hideBackdrop: createBooleanArgType(
+      'If true, the backdrop is not rendered.',
+      false,
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Modal>
 
 export default meta
@@ -29,6 +73,24 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+}
+
+/**
+ * Interactive playground for the Modal component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {} as never,
+  render: () => (
+    <Modal open>
+      <Box sx={style}>
+        <Typography variant="h6">Playground Modal</Typography>
+        <Typography sx={{ mt: 2 }}>
+          Use the Controls panel to experiment with Modal props.
+        </Typography>
+      </Box>
+    </Modal>
+  ),
 }
 
 export const Default: Story = {

@@ -1,20 +1,87 @@
 import { expect, within } from 'storybook/test'
 
+import {
+  muiTypographyVariantArgType,
+  muiAlignArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Typography from './Typography'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Typography',
+  title: 'Data Display/Typography',
   component: Typography,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiTypographyVariantArgType,
+    align: muiAlignArgType,
+    color: {
+      control: 'select',
+      options: [
+        'initial',
+        'inherit',
+        'primary',
+        'secondary',
+        'textPrimary',
+        'textSecondary',
+        'error',
+      ],
+      description: 'The color of the component.',
+      table: {
+        defaultValue: { summary: 'inherit' },
+        category: 'Appearance',
+      },
+    },
+    gutterBottom: createBooleanArgType(
+      'If true, the text will have a bottom margin.',
+      false,
+      'Layout',
+    ),
+    noWrap: createBooleanArgType(
+      'If true, the text will not wrap.',
+      false,
+      'Layout',
+    ),
+    paragraph: createBooleanArgType(
+      'If true, the element will be a paragraph element.',
+      false,
+      'Layout',
+    ),
+    children: {
+      control: 'text',
+      description: 'The content of the component.',
+      table: { category: 'Content' },
+    },
+  },
 } satisfies Meta<typeof Typography>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+/**
+ * Interactive playground for the Typography component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    children: 'Typography Text',
+    variant: 'body1',
+    align: 'inherit',
+    color: 'initial',
+    gutterBottom: false,
+    noWrap: false,
+  },
+}
+
 export const Default: Story = {
-  args: {},
+  args: {
+    children: 'Default Typography',
+  },
 }
 
 export const AllVariants: Story = {

@@ -6,18 +6,71 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiDisabledArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Accordion from './Accordion'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Surfaces/Accordion',
   component: Accordion,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    expanded: createBooleanArgType(
+      'If true, expands the accordion, otherwise collapse it.',
+      false,
+      'State',
+    ),
+    defaultExpanded: createBooleanArgType(
+      'If true, expands the accordion by default.',
+      false,
+      'State',
+    ),
+    disabled: muiDisabledArgType,
+    disableGutters: createBooleanArgType(
+      'If true, it removes the margin between two expanded accordion items.',
+      false,
+      'Layout',
+    ),
+    square: createBooleanArgType(
+      'If true, rounded corners are disabled.',
+      false,
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Accordion>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Accordion component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {} as never,
+  render: () => (
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography>Playground Accordion</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>
+          Use the Controls panel to experiment with Accordion props.
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+  ),
+}
 
 export const Default: Story = {
   args: {} as never,

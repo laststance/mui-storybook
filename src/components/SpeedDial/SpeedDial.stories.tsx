@@ -9,14 +9,48 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import React from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import SpeedDial from './SpeedDial'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/SpeedDial',
+  title: 'Navigation/SpeedDial',
   component: SpeedDial,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    hidden: createBooleanArgType(
+      'If true, the SpeedDial is hidden.',
+      false,
+      'State',
+    ),
+    direction: createSelectArgType(
+      ['up', 'down', 'left', 'right'],
+      'up',
+      'The direction the actions open relative to the floating action button.',
+      'Layout',
+    ),
+    ariaLabel: {
+      control: 'text',
+      description: 'The aria-label of the button element.',
+      table: { category: 'Accessibility' },
+    },
+    // Disable icon and children as they require JSX
+    icon: { control: false },
+    children: { control: false },
+  },
 } satisfies Meta<typeof SpeedDial>
 
 export default meta
@@ -28,6 +62,36 @@ const actions = [
   { icon: <PrintIcon />, name: 'Print' },
   { icon: <ShareIcon />, name: 'Share' },
 ]
+
+/**
+ * Interactive playground for the SpeedDial component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    open: false,
+    hidden: false,
+    direction: 'up',
+    ariaLabel: 'SpeedDial playground',
+  },
+  render: (args) => (
+    <Box sx={{ height: 320, position: 'relative' }}>
+      <SpeedDial
+        {...args}
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+          />
+        ))}
+      </SpeedDial>
+    </Box>
+  ),
+}
 
 export const Default: Story = {
   args: {} as never,

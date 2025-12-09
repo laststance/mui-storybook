@@ -11,18 +11,55 @@ import Stack from '@mui/material/Stack'
 import React from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import { createSelectArgType } from '../../../.storybook/argTypeTemplates'
+
 import Alert from './Alert'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Alert',
+  title: 'Feedback/Alert',
   component: Alert,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    severity: createSelectArgType(
+      ['error', 'warning', 'info', 'success'],
+      'success',
+      'The severity of the alert. This defines the color and icon used.',
+      'Appearance',
+    ),
+    variant: createSelectArgType(
+      ['standard', 'outlined', 'filled'],
+      'standard',
+      'The variant to use.',
+      'Appearance',
+    ),
+    color: createSelectArgType(
+      ['error', 'warning', 'info', 'success'],
+      'success',
+      'The color of the component. Unless provided, the value is taken from the severity prop.',
+      'Appearance',
+    ),
+  },
 } satisfies Meta<typeof Alert>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Alert component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    severity: 'success',
+    variant: 'standard',
+  },
+  render: (args) => <Alert {...args}>This is an alert — check it out!</Alert>,
+}
 
 export const Default: Story = {
   args: {

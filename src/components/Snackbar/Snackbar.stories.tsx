@@ -6,18 +6,60 @@ import MUISnackbar from '@mui/material/Snackbar'
 import React from 'react'
 import { expect, fn, screen, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Snackbar from './Snackbar'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Snackbar',
+  title: 'Feedback/Snackbar',
   component: Snackbar,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    autoHideDuration: createNumberArgType(
+      'The number of milliseconds to wait before automatically dismissing.',
+      6000,
+      1000,
+      60000,
+      'Timing',
+    ),
+    message: {
+      control: 'text',
+      description: 'The message to display.',
+      table: { category: 'Content' },
+    },
+    // Disable action and children as they require JSX
+    action: { control: false },
+    children: { control: false },
+  },
 } satisfies Meta<typeof Snackbar>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Snackbar component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    open: true,
+    message: 'This is a snackbar message',
+    autoHideDuration: 6000,
+  },
+}
 
 export const Default: Story = {
   args: {

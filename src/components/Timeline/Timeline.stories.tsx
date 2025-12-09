@@ -12,25 +12,68 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator'
 import Typography from '@mui/material/Typography'
 import { expect, within } from 'storybook/test'
 
+import { createSelectArgType } from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Timeline> = {
-  title: 'Components/Timeline',
+  title: 'Data Display/Timeline',
   component: Timeline,
   parameters: {
     layout: 'padded',
   },
   tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
   argTypes: {
-    position: {
-      control: 'select',
-      options: ['left', 'right', 'alternate', 'alternate-reverse'],
-    },
+    position: createSelectArgType(
+      ['left', 'right', 'alternate', 'alternate-reverse'],
+      'right',
+      'The position where the TimelineContent should appear relative to the time axis.',
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Timeline>
+
+/**
+ * Interactive playground for the Timeline component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    position: 'right',
+  },
+  render: (args) => (
+    <Timeline {...args}>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Eat</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>Code</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot />
+        </TimelineSeparator>
+        <TimelineContent>Sleep</TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  ),
+}
 
 /**
  * Basic timeline

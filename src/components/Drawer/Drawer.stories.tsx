@@ -12,14 +12,51 @@ import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
 import { expect, fn, screen, userEvent, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Drawer from './Drawer'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Drawer',
+  title: 'Navigation/Drawer',
   component: Drawer,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    anchor: createSelectArgType(
+      ['left', 'right', 'top', 'bottom'],
+      'left',
+      'Side from which the drawer will appear.',
+      'Layout',
+    ),
+    variant: createSelectArgType(
+      ['permanent', 'persistent', 'temporary'],
+      'temporary',
+      'The variant to use.',
+      'Appearance',
+    ),
+    elevation: {
+      control: { type: 'number', min: 0, max: 24 },
+      description: 'The elevation of the drawer.',
+      table: {
+        category: 'Appearance',
+        defaultValue: { summary: '16' },
+      },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Drawer>
 
 export default meta
@@ -55,6 +92,23 @@ function DrawerContent() {
       </List>
     </Box>
   )
+}
+
+/**
+ * Interactive playground for the Drawer component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    open: true,
+    anchor: 'left',
+    variant: 'temporary',
+  },
+  render: (args) => (
+    <Drawer {...args}>
+      <DrawerContent />
+    </Drawer>
+  ),
 }
 
 export const Default: Story = {

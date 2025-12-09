@@ -5,6 +5,11 @@ import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import { expect, within } from 'storybook/test'
 
+import {
+  createSelectArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 /**
@@ -70,13 +75,70 @@ const itemData = [
 ]
 
 const meta: Meta<typeof ImageList> = {
-  title: 'Components/ImageList',
+  title: 'Data Display/ImageList',
   component: ImageList,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: createSelectArgType(
+      ['standard', 'quilted', 'woven', 'masonry'],
+      'standard',
+      'The variant to use.',
+      'Appearance',
+    ),
+    cols: createNumberArgType('Number of columns.', 3, 1, 6, 'Layout'),
+    rowHeight: {
+      control: { type: 'number', min: 50, max: 500 },
+      description: 'The height of one row in px.',
+      table: {
+        defaultValue: { summary: 'auto' },
+        category: 'Layout',
+        type: { summary: 'number | "auto"' },
+      },
+    },
+    gap: createNumberArgType(
+      'The gap between items in px.',
+      4,
+      0,
+      24,
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 }
 
 export default meta
 type Story = StoryObj<typeof ImageList>
+
+/**
+ * Interactive playground for the ImageList component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    variant: 'standard',
+    cols: 3,
+    rowHeight: 164,
+    gap: 4,
+  },
+  render: (args) => (
+    <ImageList sx={{ width: 500, height: 450 }} {...args}>
+      {itemData.map((item) => (
+        <ImageListItem key={item.img}>
+          <img
+            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+            alt={item.title}
+            loading="lazy"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+  ),
+}
 
 /**
  * Default ImageList with basic configuration

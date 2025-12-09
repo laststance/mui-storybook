@@ -5,16 +5,110 @@ import Typography from '@mui/material/Typography'
 import * as React from 'react'
 import { expect, screen, userEvent, within } from 'storybook/test'
 
+import {
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Popover> = {
-  title: 'Components/Popover',
+  title: 'Utils/Popover',
   component: Popover,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: createBooleanArgType(
+      'If true, the component is shown.',
+      false,
+      'State',
+    ),
+    anchorReference: createSelectArgType(
+      ['anchorEl', 'anchorPosition', 'none'],
+      'anchorEl',
+      'This determines which anchor prop to refer to when setting the position of the popover.',
+      'Layout',
+    ),
+    elevation: {
+      control: { type: 'number', min: 0, max: 24 },
+      description: 'The elevation of the popover.',
+      table: {
+        defaultValue: { summary: '8' },
+        category: 'Appearance',
+        type: { summary: 'number' },
+      },
+    },
+    marginThreshold: {
+      control: { type: 'number', min: 0, max: 32 },
+      description:
+        'Specifies how close to the edge of the window the popover can appear.',
+      table: {
+        defaultValue: { summary: '16' },
+        category: 'Layout',
+        type: { summary: 'number' },
+      },
+    },
+    disableScrollLock: createBooleanArgType(
+      'If true, the scroll lock behavior is disabled.',
+      false,
+      'Behavior',
+    ),
+    // Disable complex props
+    anchorEl: { control: false },
+    anchorOrigin: { control: false },
+    transformOrigin: { control: false },
+    children: { control: false },
+  },
 }
 
 export default meta
 type Story = StoryObj<typeof Popover>
+
+/**
+ * Interactive playground for the Popover component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    open: false,
+    elevation: 8,
+    marginThreshold: 16,
+    disableScrollLock: false,
+  },
+  render: (args) => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+      null,
+    )
+    const open = Boolean(anchorEl) || args.open
+
+    return (
+      <div>
+        <Button
+          variant="contained"
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+        >
+          Open Popover
+        </Button>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          elevation={args.elevation}
+          marginThreshold={args.marginThreshold}
+          disableScrollLock={args.disableScrollLock}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+        >
+          <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        </Popover>
+      </div>
+    )
+  },
+}
 
 export const Default: Story = {
   args: {

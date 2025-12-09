@@ -6,6 +6,16 @@ import Stack from '@mui/material/Stack'
 import { useState } from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  muiColorArgType,
+  muiSizeArgType,
+  muiDisabledArgType,
+  muiVariantArgType,
+  muiLoadingArgType,
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof LoadingButton> = {
@@ -15,21 +25,66 @@ const meta: Meta<typeof LoadingButton> = {
     layout: 'padded',
   },
   tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
   argTypes: {
-    loading: { control: 'boolean' },
-    variant: {
-      control: 'select',
-      options: ['text', 'contained', 'outlined'],
+    loading: muiLoadingArgType,
+    variant: muiVariantArgType(['text', 'contained', 'outlined'], 'text'),
+    color: muiColorArgType,
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    loadingPosition: createSelectArgType(
+      ['start', 'center', 'end'],
+      'center',
+      'The loading indicator position.',
+      'Appearance',
+    ),
+    disableElevation: createBooleanArgType(
+      'If true, no elevation is used.',
+      false,
+      'Appearance',
+    ),
+    disableRipple: createBooleanArgType(
+      'If true, the ripple effect is disabled.',
+      false,
+      'Appearance',
+    ),
+    fullWidth: createBooleanArgType(
+      'If true, the button will take up the full width of its container.',
+      false,
+      'Layout',
+    ),
+    children: {
+      control: 'text',
+      description: 'The content of the button.',
+      table: { category: 'Content' },
     },
-    loadingPosition: {
-      control: 'select',
-      options: ['start', 'end', 'center'],
-    },
+    // Disable props that require JSX
+    startIcon: { control: false },
+    endIcon: { control: false },
+    loadingIndicator: { control: false },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof LoadingButton>
+
+/**
+ * Interactive playground for the LoadingButton component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    children: 'Submit',
+    loading: false,
+    variant: 'contained',
+    color: 'primary',
+    size: 'medium',
+    disabled: false,
+    loadingPosition: 'center',
+  },
+}
 
 /**
  * Default loading button

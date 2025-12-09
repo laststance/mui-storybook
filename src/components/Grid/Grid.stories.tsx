@@ -4,14 +4,54 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import { expect, within } from 'storybook/test'
 
+import {
+  createSelectArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Grid from './Grid'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Grid',
+  title: 'Layout/Grid',
   component: Grid,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    container: {
+      control: 'boolean',
+      description:
+        'If true, the component will have the flex container behavior.',
+      table: {
+        category: 'Layout',
+        defaultValue: { summary: 'false' },
+      },
+    },
+    spacing: createNumberArgType(
+      'Defines the space between children.',
+      2,
+      0,
+      10,
+      'Layout',
+    ),
+    direction: createSelectArgType(
+      ['row', 'row-reverse', 'column', 'column-reverse'],
+      'row',
+      'Defines the flex-direction style property.',
+      'Layout',
+    ),
+    wrap: createSelectArgType(
+      ['wrap', 'nowrap', 'wrap-reverse'],
+      'wrap',
+      'Defines the flex-wrap style property.',
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Grid>
 
 export default meta
@@ -24,6 +64,32 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }))
+
+/**
+ * Interactive playground for the Grid component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    container: true,
+    spacing: 2,
+    direction: 'row',
+    wrap: 'wrap',
+  },
+  render: (args) => (
+    <Grid {...args}>
+      <MUIGrid size={4}>
+        <Item>Item 1</Item>
+      </MUIGrid>
+      <MUIGrid size={4}>
+        <Item>Item 2</Item>
+      </MUIGrid>
+      <MUIGrid size={4}>
+        <Item>Item 3</Item>
+      </MUIGrid>
+    </Grid>
+  ),
+}
 
 export const Default: Story = {
   render: () => (

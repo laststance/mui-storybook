@@ -14,16 +14,66 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import React from 'react'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  muiColorArgType,
+  muiSizeArgType,
+  muiDisabledArgType,
+  muiSelectedArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/ToggleButton',
+  title: 'Inputs/ToggleButton',
   component: ToggleButton,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    color: muiColorArgType,
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    selected: muiSelectedArgType,
+    disableRipple: createBooleanArgType(
+      'If true, the ripple effect is disabled.',
+      false,
+      'Appearance',
+    ),
+    fullWidth: createBooleanArgType(
+      'If true, the button will take up the full width of its container.',
+      false,
+      'Layout',
+    ),
+    value: {
+      control: 'text',
+      description:
+        'The value to associate with the button when selected in a ToggleButtonGroup.',
+      table: { category: 'Content' },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof ToggleButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the ToggleButton component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    value: 'bold',
+    selected: false,
+    color: 'primary',
+    size: 'medium',
+    disabled: false,
+    children: <FormatBoldIcon />,
+  },
+}
 
 export const Default: Story = {
   args: {
@@ -258,57 +308,6 @@ export function Colors() {
         exclusive
         onChange={handleChange}
         aria-label="Success color"
-      >
-        <ToggleButton value="left">
-          <FormatAlignLeftIcon />
-        </ToggleButton>
-        <ToggleButton value="center">
-          <FormatAlignCenterIcon />
-        </ToggleButton>
-        <ToggleButton value="right">
-          <FormatAlignRightIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <ToggleButtonGroup
-        color="error"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-        aria-label="Error color"
-      >
-        <ToggleButton value="left">
-          <FormatAlignLeftIcon />
-        </ToggleButton>
-        <ToggleButton value="center">
-          <FormatAlignCenterIcon />
-        </ToggleButton>
-        <ToggleButton value="right">
-          <FormatAlignRightIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <ToggleButtonGroup
-        color="warning"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-        aria-label="Warning color"
-      >
-        <ToggleButton value="left">
-          <FormatAlignLeftIcon />
-        </ToggleButton>
-        <ToggleButton value="center">
-          <FormatAlignCenterIcon />
-        </ToggleButton>
-        <ToggleButton value="right">
-          <FormatAlignRightIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <ToggleButtonGroup
-        color="info"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-        aria-label="Info color"
       >
         <ToggleButton value="left">
           <FormatAlignLeftIcon />

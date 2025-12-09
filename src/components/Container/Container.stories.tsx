@@ -3,6 +3,11 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { expect, within } from 'storybook/test'
 
+import {
+  createBooleanArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof Container> = {
@@ -12,16 +17,54 @@ const meta: Meta<typeof Container> = {
     layout: 'fullscreen',
   },
   tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
   argTypes: {
-    maxWidth: {
-      control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl', false],
-    },
+    maxWidth: createSelectArgType(
+      ['xs', 'sm', 'md', 'lg', 'xl', 'false'],
+      'lg',
+      'Determine the max-width of the container.',
+      'Layout',
+    ),
+    fixed: createBooleanArgType(
+      'Set the max-width to match the min-width of the current breakpoint.',
+      false,
+      'Layout',
+    ),
+    disableGutters: createBooleanArgType(
+      'If true, the left and right padding is removed.',
+      false,
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Container>
+
+/**
+ * Interactive playground for the Container component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    maxWidth: 'lg',
+    fixed: false,
+    disableGutters: false,
+  },
+  render: (args) => (
+    <Container {...args}>
+      <Box sx={{ bgcolor: 'primary.light', p: 2 }}>
+        <Typography>
+          Playground Container - resize window to see responsive behavior
+        </Typography>
+      </Box>
+    </Container>
+  ),
+}
 
 /**
  * Default fluid container

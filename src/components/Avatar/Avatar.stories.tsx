@@ -4,18 +4,58 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Stack from '@mui/material/Stack'
 import { expect, within } from 'storybook/test'
 
+import { createSelectArgType } from '../../../.storybook/argTypeTemplates'
+
 import Avatar from './Avatar'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Data Display/Avatar',
   component: Avatar,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: createSelectArgType(
+      ['circular', 'rounded', 'square'],
+      'circular',
+      'The shape of the avatar.',
+      'Appearance',
+    ),
+    src: {
+      control: 'text',
+      description: 'The src attribute for the img element.',
+      table: { category: 'Content' },
+    },
+    alt: {
+      control: 'text',
+      description:
+        'Used in combination with src to provide an alt attribute for the img element.',
+      table: { category: 'Content' },
+    },
+    children: {
+      control: 'text',
+      description: 'Used to render icon or text elements inside the Avatar.',
+      table: { category: 'Content' },
+    },
+  },
 } satisfies Meta<typeof Avatar>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Avatar component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    children: 'AB',
+    variant: 'circular',
+  },
+}
 
 export const Default: Story = {
   args: {

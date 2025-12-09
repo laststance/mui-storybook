@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper'
 import { useState } from 'react'
 import { userEvent, within } from 'storybook/test'
 
+import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof BottomNavigation> = {
@@ -17,11 +19,49 @@ const meta: Meta<typeof BottomNavigation> = {
   parameters: {
     layout: 'padded',
   },
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    showLabels: createBooleanArgType(
+      'If true, all BottomNavigationActions will show their labels.',
+      false,
+      'Appearance',
+    ),
+    value: {
+      control: { type: 'number', min: 0, max: 10 },
+      description:
+        'The value of the currently selected BottomNavigationAction.',
+      table: { category: 'State' },
+    },
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 }
 
 export default meta
 type Story = StoryObj<typeof BottomNavigation>
+
+/**
+ * Interactive playground for the BottomNavigation component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    showLabels: true,
+    value: 0,
+  },
+  render: (args) => (
+    <Box sx={{ width: 500 }}>
+      <BottomNavigation {...args}>
+        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      </BottomNavigation>
+    </Box>
+  ),
+}
 
 /**
  * Basic bottom navigation with three actions

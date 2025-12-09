@@ -9,18 +9,75 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiOrientationArgType,
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Divider from './Divider'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Divider',
+  title: 'Data Display/Divider',
   component: Divider,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    orientation: muiOrientationArgType,
+    variant: createSelectArgType(
+      ['fullWidth', 'inset', 'middle'],
+      'fullWidth',
+      'The variant to use.',
+      'Appearance',
+    ),
+    textAlign: createSelectArgType(
+      ['center', 'left', 'right'],
+      'center',
+      'The text alignment.',
+      'Layout',
+    ),
+    flexItem: createBooleanArgType(
+      'If true, a vertical divider will have the correct height when used in flex container.',
+      false,
+      'Layout',
+    ),
+    light: createBooleanArgType(
+      'If true, the divider will have a lighter color.',
+      false,
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Divider>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Divider component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    orientation: 'horizontal',
+    variant: 'fullWidth',
+    textAlign: 'center',
+    flexItem: false,
+    light: false,
+  },
+  render: (args) => (
+    <Box sx={{ width: '100%', maxWidth: 360 }}>
+      <Typography variant="body1">Item 1</Typography>
+      <Divider {...args} />
+      <Typography variant="body1">Item 2</Typography>
+    </Box>
+  ),
+}
 
 export const Default: Story = {
   args: {},

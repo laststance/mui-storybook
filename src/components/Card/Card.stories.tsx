@@ -5,18 +5,84 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { expect, fn, userEvent, within } from 'storybook/test'
 
+import {
+  createSelectArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Card from './Card'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Surfaces/Card',
   component: Card,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: createSelectArgType(
+      ['elevation', 'outlined'],
+      'elevation',
+      'The variant to use.',
+      'Appearance',
+    ),
+    raised: createBooleanArgType(
+      'If true, the card will use raised styling.',
+      false,
+      'Appearance',
+    ),
+    elevation: createNumberArgType(
+      'Shadow depth, corresponds to dp in the spec.',
+      1,
+      0,
+      24,
+      'Appearance',
+    ),
+    square: createBooleanArgType(
+      'If true, rounded corners are disabled.',
+      false,
+      'Appearance',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Card>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Card component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    variant: 'elevation',
+    raised: false,
+    elevation: 1,
+    square: false,
+  },
+  render: (args) => (
+    <Card {...args} sx={{ maxWidth: 345 }}>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Playground Card
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Use the Controls panel to experiment with Card props like variant,
+          elevation, and raised.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  ),
+}
 
 export const Default: Story = {
   render: () => (
