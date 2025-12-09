@@ -109,8 +109,8 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // AvatarGroup should show max avatars + surplus indicator
-    const avatarGroup = canvas.getByRole('group')
-    await expect(avatarGroup).toBeInTheDocument()
+    // Verify avatars render correctly - MUI AvatarGroup doesn't have role="group"
+    const avatars = canvas.getAllByRole('img', { hidden: true })
+    await expect(avatars.length).toBeGreaterThan(0)
   },
 }
