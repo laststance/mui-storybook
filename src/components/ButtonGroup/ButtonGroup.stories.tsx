@@ -10,18 +10,76 @@ import Paper from '@mui/material/Paper'
 import Popper from '@mui/material/Popper'
 import React from 'react'
 
+import {
+  muiColorArgType,
+  muiSizeArgType,
+  muiDisabledArgType,
+  muiVariantArgType,
+  muiOrientationArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/ButtonGroup',
+  title: 'Inputs/ButtonGroup',
   component: ButtonGroup,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['text', 'outlined', 'contained'], 'outlined'),
+    color: muiColorArgType,
+    size: muiSizeArgType,
+    disabled: muiDisabledArgType,
+    orientation: muiOrientationArgType,
+    disableElevation: createBooleanArgType(
+      'If true, no elevation is used.',
+      false,
+      'Appearance',
+    ),
+    disableRipple: createBooleanArgType(
+      'If true, the ripple effect is disabled.',
+      false,
+      'Appearance',
+    ),
+    fullWidth: createBooleanArgType(
+      'If true, the buttons will take up the full width of its container.',
+      false,
+      'Layout',
+    ),
+    // Disable children as it requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof ButtonGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+/**
+ * Interactive playground for the ButtonGroup component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    variant: 'contained',
+    color: 'primary',
+    size: 'medium',
+    disabled: false,
+    orientation: 'horizontal',
+  },
+  render: (args) => (
+    <ButtonGroup {...args} aria-label="playground button group">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </ButtonGroup>
+  ),
+}
+
 export const Default: Story = {
+  args: {} as never,
   render: () => (
     <ButtonGroup variant="contained" aria-label="outlined primary button group">
       <Button>One</Button>
@@ -31,7 +89,8 @@ export const Default: Story = {
   ),
 }
 
-export const VariantButtonGroup: Story = {
+export const Variants: Story = {
+  args: {} as never,
   render: () => (
     <Box
       sx={{
@@ -43,6 +102,11 @@ export const VariantButtonGroup: Story = {
         },
       }}
     >
+      <ButtonGroup variant="contained" aria-label="contained button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
       <ButtonGroup variant="outlined" aria-label="outlined button group">
         <Button>One</Button>
         <Button>Two</Button>

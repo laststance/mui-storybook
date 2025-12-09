@@ -10,18 +10,91 @@ import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import React from 'react'
 
+import {
+  muiColorArgType,
+  muiDisabledArgType,
+  createSelectArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import PaginationComponent from './Pagination'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Pagination',
+  title: 'Navigation/Pagination',
   component: PaginationComponent,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    count: createNumberArgType(
+      'The total number of pages.',
+      10,
+      1,
+      100,
+      'Content',
+    ),
+    page: createNumberArgType('The current page.', 1, 1, 100, 'State'),
+    color: muiColorArgType,
+    variant: createSelectArgType(
+      ['text', 'outlined'],
+      'text',
+      'The variant to use.',
+      'Appearance',
+    ),
+    shape: createSelectArgType(
+      ['circular', 'rounded'],
+      'circular',
+      'The shape of the pagination items.',
+      'Appearance',
+    ),
+    size: {
+      control: 'radio',
+      options: ['small', 'medium', 'large'],
+      description: 'The size of the component.',
+      table: {
+        defaultValue: { summary: 'medium' },
+        category: 'Appearance',
+        type: { summary: '"small" | "medium" | "large"' },
+      },
+    },
+    disabled: muiDisabledArgType,
+    siblingCount: createNumberArgType(
+      'Number of always visible pages before and after the current page.',
+      1,
+      0,
+      5,
+      'Content',
+    ),
+    boundaryCount: createNumberArgType(
+      'Number of always visible pages at the beginning and end.',
+      1,
+      0,
+      5,
+      'Content',
+    ),
+  },
 } satisfies Meta<typeof PaginationComponent>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Pagination component.
+ * Use the Controls panel to experiment with all props.
+ */
+export const Playground: Story = {
+  args: {
+    count: 10,
+    color: 'primary',
+    variant: 'text',
+    shape: 'circular',
+    size: 'medium',
+    disabled: false,
+  },
+}
 
 export const Default: Story = {
   args: {

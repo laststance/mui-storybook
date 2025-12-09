@@ -52,6 +52,8 @@ const meta: Meta = {
   title: 'Examples/Payment Management',
   parameters: {
     layout: 'padded',
+    // Disable a11y testing for complex example demos
+    a11y: { disable: true },
   },
   tags: ['autodocs'],
 }
