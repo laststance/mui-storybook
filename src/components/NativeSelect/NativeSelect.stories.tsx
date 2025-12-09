@@ -5,14 +5,33 @@ import Stack from '@mui/material/Stack'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  muiDisabledArgType,
+  muiErrorArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import NativeSelect from './NativeSelect'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/NativeSelect',
+  title: 'Inputs/NativeSelect',
   component: NativeSelect,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['standard', 'outlined', 'filled'], 'standard'),
+    disabled: muiDisabledArgType,
+    error: muiErrorArgType,
+    IconComponent: { control: false },
+    input: { control: false },
+    inputProps: { control: false },
+    // Children requires JSX (option elements)
+    children: { control: false },
+  },
 } satisfies Meta<typeof NativeSelect>
 
 export default meta

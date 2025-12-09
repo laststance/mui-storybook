@@ -7,17 +7,51 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, screen, userEvent, within } from 'storybook/test'
 
+import {
+  muiOpenArgType,
+  muiPlacementArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Popper from './Popper'
 
 import type { PopperPlacementType } from '@mui/material/Popper'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Popper',
+  title: 'Utils/Popper',
   component: Popper,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    open: muiOpenArgType,
+    placement: muiPlacementArgType,
+    disablePortal: createBooleanArgType(
+      'If true, the component renders inside parent DOM.',
+      false,
+      'Layout',
+    ),
+    keepMounted: createBooleanArgType(
+      'If true, the component is kept mounted when closed.',
+      false,
+      'State',
+    ),
+    transition: createBooleanArgType(
+      'If true, renders with TransitionProps function child.',
+      false,
+      'Appearance',
+    ),
+    // Complex props
+    anchorEl: { control: false },
+    children: { control: false },
+    modifiers: { control: false },
+    popperOptions: { control: false },
+    popperRef: { control: false },
   },
 } satisfies Meta<typeof Popper>
 

@@ -2,14 +2,41 @@ import Avatar from '@mui/material/Avatar'
 import Stack from '@mui/material/Stack'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  createNumberArgType,
+  createSelectArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import AvatarGroup from './AvatarGroup'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/AvatarGroup',
+  title: 'Data Display/AvatarGroup',
   component: AvatarGroup,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    max: createNumberArgType('Max number of avatars to display.', 5, 1, 10),
+    total: createNumberArgType(
+      'Total number of avatars (for +N display).',
+      0,
+      0,
+      100,
+    ),
+    spacing: createSelectArgType(
+      ['small', 'medium'],
+      'medium',
+      'Spacing between avatars.',
+      'Layout',
+    ),
+    variant: muiVariantArgType(['circular', 'rounded', 'square'], 'circular'),
+    // Children requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof AvatarGroup>
 
 export default meta

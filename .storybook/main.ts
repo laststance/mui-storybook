@@ -29,6 +29,8 @@ const config: StorybookConfig = {
     options: {},
   },
 
+  staticDirs: ['./static'],
+
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
@@ -37,13 +39,40 @@ const config: StorybookConfig = {
     experimentalComponentsManifest: true,
   },
 
-  // Custom CSS for manager UI - fixes "Create a new story" button icon visibility
+  // Custom CSS for manager UI - fixes button visibility and contrast issues
   managerHead: (head) => `
     ${head}
     <style>
       /* Fix: "Create a new story" button icon visibility */
       /* The icon was Sky-700 on Sky-600 background - now white for contrast */
       button[aria-label="Create a new story"] svg path {
+        fill: #ffffff !important;
+      }
+
+      /* Fix #13: Control panel button readability */
+      /* Improve contrast for Reset controls and other control buttons */
+      [id*="panel-tab-content"] button,
+      .docblock-argstable button,
+      [class*="ActionButton"] {
+        background-color: #0284c7 !important; /* Sky-600 - darker for better contrast */
+        color: #ffffff !important;
+        border: 1px solid #0369a1 !important; /* Sky-700 border */
+      }
+
+      [id*="panel-tab-content"] button:hover,
+      .docblock-argstable button:hover,
+      [class*="ActionButton"]:hover {
+        background-color: #0369a1 !important; /* Sky-700 on hover */
+      }
+
+      /* Ensure control panel icons are visible */
+      [id*="panel-tab-content"] button svg,
+      .docblock-argstable button svg {
+        color: #ffffff !important;
+      }
+
+      [id*="panel-tab-content"] button svg path,
+      .docblock-argstable button svg path {
         fill: #ffffff !important;
       }
     </style>

@@ -22,7 +22,7 @@ const preview: Preview = {
       theme: muiBrandTheme,
       autodocs: true,
       canvas: {
-        sourceState: 'shown',
+        sourceState: 'hidden',
       },
     },
     options: {

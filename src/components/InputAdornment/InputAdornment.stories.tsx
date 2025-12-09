@@ -12,14 +12,48 @@ import TextField from '@mui/material/TextField'
 import React from 'react'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  createSelectArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import InputAdornment from './InputAdornment'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/InputAdornment',
+  title: 'Inputs/InputAdornment',
   component: InputAdornment,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    position: createSelectArgType(
+      ['start', 'end'],
+      'start',
+      'The position this adornment should appear relative to the Input.',
+      'Layout',
+    ),
+    variant: muiVariantArgType(['standard', 'outlined', 'filled'], 'standard'),
+    disablePointerEvents: createBooleanArgType(
+      'If true, disable pointer events on the root.',
+      false,
+      'State',
+    ),
+    disableTypography: createBooleanArgType(
+      'If true, the adornment will not wrap in Typography component.',
+      false,
+      'Appearance',
+    ),
+    // Children can be text or JSX
+    children: {
+      control: 'text',
+      description: 'The content of the component.',
+      table: { category: 'Content' },
+    },
+  },
 } satisfies Meta<typeof InputAdornment>
 
 export default meta

@@ -3,14 +3,51 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import { expect, within } from 'storybook/test'
 
+import {
+  createNumberArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Masonry from './Masonry'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Masonry',
+  title: 'Layout/Masonry',
   component: Masonry,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    columns: createNumberArgType('Number of columns.', 4, 1, 12),
+    spacing: createNumberArgType('Spacing between items.', 1, 0, 10),
+    sequential: createBooleanArgType(
+      'If true, items are ordered from left to right (default is optimal packing).',
+      false,
+      'Layout',
+    ),
+    defaultHeight: createNumberArgType(
+      'Default height for items before measurement.',
+      0,
+      0,
+      500,
+    ),
+    defaultColumns: createNumberArgType(
+      'Default number of columns before measurement.',
+      4,
+      1,
+      12,
+    ),
+    defaultSpacing: createNumberArgType(
+      'Default spacing before measurement.',
+      1,
+      0,
+      10,
+    ),
+    // Children requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Masonry>
 
 export default meta

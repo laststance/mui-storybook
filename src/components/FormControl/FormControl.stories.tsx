@@ -8,14 +8,66 @@ import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  muiDisabledArgType,
+  muiRequiredArgType,
+  muiErrorArgType,
+  muiFullWidthArgType,
+  muiColorArgType,
+  muiSizeArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import FormControl from './FormControl'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/FormControl',
+  title: 'Inputs/FormControl',
   component: FormControl,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['standard', 'outlined', 'filled'], 'outlined'),
+    size: muiSizeArgType,
+    color: muiColorArgType,
+    disabled: muiDisabledArgType,
+    required: muiRequiredArgType,
+    error: muiErrorArgType,
+    fullWidth: muiFullWidthArgType,
+    focused: {
+      control: 'boolean',
+      description: 'If true, the component is displayed in focused state.',
+      table: {
+        defaultValue: { summary: 'false' },
+        category: 'State',
+        type: { summary: 'boolean' },
+      },
+    },
+    hiddenLabel: {
+      control: 'boolean',
+      description: 'If true, the label is hidden.',
+      table: {
+        defaultValue: { summary: 'false' },
+        category: 'Appearance',
+        type: { summary: 'boolean' },
+      },
+    },
+    margin: {
+      control: 'select',
+      options: ['none', 'dense', 'normal'],
+      description: 'If dense or normal, will adjust vertical spacing.',
+      table: {
+        defaultValue: { summary: 'none' },
+        category: 'Layout',
+        type: { summary: '"none" | "dense" | "normal"' },
+      },
+    },
+    // Children requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof FormControl>
 
 export default meta

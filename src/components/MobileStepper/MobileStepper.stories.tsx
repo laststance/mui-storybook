@@ -8,14 +8,38 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  muiPositionArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import MobileStepper from './MobileStepper'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/MobileStepper',
+  title: 'Navigation/MobileStepper',
   component: MobileStepper,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['dots', 'progress', 'text'], 'dots'),
+    position: muiPositionArgType(['bottom', 'top', 'static'], 'bottom'),
+    steps: createNumberArgType('Total number of steps.', 3, 1, 20),
+    activeStep: createNumberArgType(
+      'Current active step (0-indexed).',
+      0,
+      0,
+      19,
+    ),
+    // Button props require JSX
+    nextButton: { control: false },
+    backButton: { control: false },
+    LinearProgressProps: { control: false },
+  },
 } satisfies Meta<typeof MobileStepper>
 
 export default meta

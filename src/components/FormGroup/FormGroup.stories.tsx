@@ -7,14 +7,28 @@ import Switch from '@mui/material/Switch'
 import React from 'react'
 import { expect, userEvent, within } from 'storybook/test'
 
+import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
+
 import FormGroup from './FormGroup'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/FormGroup',
+  title: 'Inputs/FormGroup',
   component: FormGroup,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    row: createBooleanArgType(
+      'If true, the form group will display its children in a row.',
+      false,
+      'Layout',
+    ),
+    // Children requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof FormGroup>
 
 export default meta

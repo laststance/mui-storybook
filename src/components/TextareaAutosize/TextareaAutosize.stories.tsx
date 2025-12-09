@@ -4,14 +4,47 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import { expect, userEvent, within } from 'storybook/test'
 
+import { createNumberArgType } from '../../../.storybook/argTypeTemplates'
+
 import TextareaAutosize from './TextareaAutosize'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/TextareaAutosize',
+  title: 'Inputs/TextareaAutosize',
   component: TextareaAutosize,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    minRows: createNumberArgType('Minimum number of rows.', 1, 1, 20),
+    maxRows: createNumberArgType(
+      'Maximum number of rows (before scrolling).',
+      0,
+      0,
+      50,
+    ),
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text.',
+      table: { category: 'Content' },
+    },
+    defaultValue: {
+      control: 'text',
+      description: 'Default value for uncontrolled component.',
+      table: { category: 'Content' },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'If true, the textarea is disabled.',
+      table: {
+        defaultValue: { summary: 'false' },
+        category: 'State',
+        type: { summary: 'boolean' },
+      },
+    },
+  },
 } satisfies Meta<typeof TextareaAutosize>
 
 export default meta

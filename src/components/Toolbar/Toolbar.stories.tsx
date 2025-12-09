@@ -8,14 +8,32 @@ import { alpha, styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiVariantArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import Toolbar from './Toolbar'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Toolbar',
+  title: 'Navigation/Toolbar',
   component: Toolbar,
   tags: ['autodocs'],
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    variant: muiVariantArgType(['regular', 'dense'], 'regular'),
+    disableGutters: createBooleanArgType(
+      'If true, disables gutter padding.',
+      false,
+      'Layout',
+    ),
+    // Children requires JSX
+    children: { control: false },
+  },
 } satisfies Meta<typeof Toolbar>
 
 export default meta

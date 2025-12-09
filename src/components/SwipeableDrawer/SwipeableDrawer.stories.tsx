@@ -11,16 +11,62 @@ import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
 import { expect, within } from 'storybook/test'
 
+import {
+  muiAnchorArgType,
+  muiOpenArgType,
+  createBooleanArgType,
+  createNumberArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import SwipeableDrawer from './SwipeableDrawer'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/SwipeableDrawer',
+  title: 'Navigation/SwipeableDrawer',
   component: SwipeableDrawer,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    anchor: muiAnchorArgType,
+    open: muiOpenArgType,
+    disableBackdropTransition: createBooleanArgType(
+      'If true, the backdrop transition is disabled.',
+      false,
+      'Appearance',
+    ),
+    disableDiscovery: createBooleanArgType(
+      'If true, swipe discovery is disabled.',
+      false,
+      'State',
+    ),
+    disableSwipeToOpen: createBooleanArgType(
+      'If true, swipe to open is disabled.',
+      false,
+      'State',
+    ),
+    hysteresis: createNumberArgType('Swipe sensitivity (0 to 1).', 0.52, 0, 1),
+    minFlingVelocity: createNumberArgType(
+      'Minimum velocity to trigger swipe.',
+      450,
+      0,
+      1000,
+    ),
+    swipeAreaWidth: createNumberArgType(
+      'Width of the swipe area (in px).',
+      20,
+      0,
+      100,
+    ),
+    // Callback props
+    onOpen: { control: false, action: 'opened' },
+    onClose: { control: false, action: 'closed' },
+    children: { control: false },
   },
 } satisfies Meta<typeof SwipeableDrawer>
 
