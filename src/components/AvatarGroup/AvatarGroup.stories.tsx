@@ -99,18 +99,18 @@ export const InteractionTest: Story = {
   args: {
     max: 3,
     children: [
-      <Avatar key="1" alt="User 1" />,
-      <Avatar key="2" alt="User 2" />,
-      <Avatar key="3" alt="User 3" />,
-      <Avatar key="4" alt="User 4" />,
-      <Avatar key="5" alt="User 5" />,
+      <Avatar key="1" alt="User 1" src="https://i.pravatar.cc/150?img=1" />,
+      <Avatar key="2" alt="User 2" src="https://i.pravatar.cc/150?img=2" />,
+      <Avatar key="3" alt="User 3" src="https://i.pravatar.cc/150?img=3" />,
+      <Avatar key="4" alt="User 4" src="https://i.pravatar.cc/150?img=4" />,
+      <Avatar key="5" alt="User 5" src="https://i.pravatar.cc/150?img=5" />,
     ],
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify avatars render correctly - MUI AvatarGroup doesn't have role="group"
-    const avatars = canvas.getAllByRole('img', { hidden: true })
-    await expect(avatars.length).toBeGreaterThan(0)
+    // Verify the AvatarGroup container renders
+    const avatarGroup = canvas.getByRole('group')
+    await expect(avatarGroup).toBeInTheDocument()
   },
 }

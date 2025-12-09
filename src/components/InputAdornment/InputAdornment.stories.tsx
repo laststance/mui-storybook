@@ -220,8 +220,8 @@ export const InteractionTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify InputAdornment renders with password field
-    const input = canvas.getByLabelText(/password/i)
+    // Verify InputAdornment renders with password field using specific ID
+    const input = document.getElementById('test-password')
     await expect(input).toBeInTheDocument()
     await expect(input).toHaveAttribute('type', 'password')
 
