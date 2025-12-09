@@ -6,13 +6,45 @@ import Box from './Box'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'Components/Box',
+  title: 'Layout/Box',
   component: Box,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    // Note: Box primarily uses the sx prop for styling
+    // which is not easily controlled via Storybook controls
+    // The component prop is available but not typed in BoxProps
+    children: { control: false },
+  },
 } satisfies Meta<typeof Box>
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/**
+ * Interactive playground for the Box component.
+ * Note: Box is primarily styled via the sx prop.
+ */
+export const Playground: Story = {
+  args: {} as never,
+  render: () => (
+    <Box
+      sx={{
+        width: 300,
+        height: 200,
+        backgroundColor: 'primary.main',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 2,
+      }}
+    >
+      <Typography color="white">Playground Box</Typography>
+    </Box>
+  ),
+}
 
 export const Default: Story = {
   render: () => (

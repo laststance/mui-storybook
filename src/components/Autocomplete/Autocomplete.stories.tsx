@@ -3,6 +3,11 @@ import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import React from 'react'
 
+import {
+  muiDisabledArgType,
+  createBooleanArgType,
+} from '../../../.storybook/argTypeTemplates'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
@@ -140,9 +145,74 @@ interface FilmOptionType {
 }
 
 const meta = {
-  title: 'Components/Autocomplete',
+  title: 'Inputs/Autocomplete',
   component: Autocomplete<FilmOptionType, false, false, false>,
-  tags: [], // autodocs disabled - using custom MDX documentation,
+  tags: [], // autodocs disabled - using custom MDX documentation
+  // ═══════════════════════════════════════════════════════════════
+  // ArgTypes Configuration
+  // ═══════════════════════════════════════════════════════════════
+  argTypes: {
+    disabled: muiDisabledArgType,
+    disableClearable: createBooleanArgType(
+      'If true, the input cannot be cleared.',
+      false,
+      'State',
+    ),
+    disableCloseOnSelect: createBooleanArgType(
+      'If true, the popup will not close when a value is selected.',
+      false,
+      'Behavior',
+    ),
+    disablePortal: createBooleanArgType(
+      'If true, the Popper content will be under the DOM hierarchy of the parent component.',
+      false,
+      'Layout',
+    ),
+    freeSolo: createBooleanArgType(
+      'If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options.',
+      false,
+      'Content',
+    ),
+    fullWidth: createBooleanArgType(
+      'If true, the input will take up the full width of its container.',
+      false,
+      'Layout',
+    ),
+    loading: createBooleanArgType(
+      'If true, the component is in a loading state.',
+      false,
+      'State',
+    ),
+    multiple: createBooleanArgType(
+      'If true, value must be an array and the menu will support multiple selections.',
+      false,
+      'State',
+    ),
+    openOnFocus: createBooleanArgType(
+      'If true, the popup will open on input focus.',
+      false,
+      'Behavior',
+    ),
+    readOnly: createBooleanArgType(
+      'If true, the component becomes read-only.',
+      false,
+      'State',
+    ),
+    size: {
+      control: 'radio',
+      options: ['small', 'medium'],
+      description: 'The size of the component.',
+      table: {
+        defaultValue: { summary: 'medium' },
+        category: 'Appearance',
+        type: { summary: '"small" | "medium"' },
+      },
+    },
+    // Disable complex props that require functions/JSX
+    options: { control: false },
+    renderInput: { control: false },
+    getOptionLabel: { control: false },
+  },
 } satisfies Meta<typeof Autocomplete<FilmOptionType, false, false, false>>
 
 export default meta
