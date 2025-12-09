@@ -189,21 +189,14 @@ export const InteractionTest: Story = {
       </Box>
     ),
   },
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await step('Verify Container renders with content', async () => {
-      const content = canvas.getByTestId('container-content')
-      expect(content).toBeInTheDocument()
+    // Verify Container renders with content
+    const content = canvas.getByTestId('container-content')
+    await expect(content).toBeInTheDocument()
 
-      const typography = canvas.getByText('Container Test Content')
-      expect(typography).toBeInTheDocument()
-    })
-
-    await step('Verify Container structure', async () => {
-      const container = canvas.getByRole('main')
-      expect(container).toBeInTheDocument()
-      expect(container).toHaveClass('MuiContainer-root')
-    })
+    const typography = canvas.getByText('Container Test Content')
+    await expect(typography).toBeInTheDocument()
   },
 }

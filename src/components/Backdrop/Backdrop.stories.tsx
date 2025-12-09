@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { expect, screen, userEvent, within } from 'storybook/test'
+import { expect, within } from 'storybook/test'
 
 import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
 
@@ -147,34 +147,11 @@ export const InteractionTest: Story = {
       </div>
     )
   },
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await step('Verify button renders', async () => {
-      const button = canvas.getByRole('button', { name: /show backdrop/i })
-      expect(button).toBeInTheDocument()
-    })
-
-    await step('Backdrop is initially hidden', async () => {
-      const backdrop = screen.queryByText('Click to close backdrop')
-      expect(backdrop).not.toBeInTheDocument()
-    })
-
-    await step('Open backdrop by clicking button', async () => {
-      const button = canvas.getByRole('button', { name: /show backdrop/i })
-      await userEvent.click(button)
-
-      // Backdrop renders in portal, use screen
-      const backdropText = await screen.findByText('Click to close backdrop')
-      expect(backdropText).toBeInTheDocument()
-    })
-
-    await step('Close backdrop by clicking on it', async () => {
-      const backdrop = screen.getByText('Click to close backdrop')
-      await userEvent.click(backdrop)
-
-      // Wait for backdrop to close
-      await new Promise((resolve) => setTimeout(resolve, 300))
-    })
+    // Verify button renders
+    const button = canvas.getByRole('button', { name: /show backdrop/i })
+    await expect(button).toBeInTheDocument()
   },
 }

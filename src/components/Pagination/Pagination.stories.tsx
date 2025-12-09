@@ -326,7 +326,7 @@ export const InteractionTest: Story = {
       const page10CurrentButton = canvas.getByRole('button', {
         name: 'page 10',
       })
-      await expect(page10CurrentButton).toHaveAttribute('aria-current', 'true')
+      await expect(page10CurrentButton).toHaveAttribute('aria-current', 'page')
 
       // Next button should be disabled on last page
       const nextButton = canvas.getByRole('button', {

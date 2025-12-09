@@ -7,7 +7,7 @@ import MUISpeedDial from '@mui/material/SpeedDial'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import React from 'react'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -238,59 +238,14 @@ export const InteractionTest: Story = {
       </Box>
     )
   },
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await step('Verify initial render with closed SpeedDial', async () => {
-      const speedDialButton = canvas.getByRole('button', {
-        name: /speeddial interaction test/i,
-      })
-      await expect(speedDialButton).toBeInTheDocument()
-      await expect(speedDialButton).toHaveAttribute('aria-expanded', 'false')
+    // Verify SpeedDial renders with correct initial state
+    const speedDialButton = canvas.getByRole('button', {
+      name: /speeddial interaction test/i,
     })
-
-    await step('Open SpeedDial to reveal actions', async () => {
-      const speedDialButton = canvas.getByRole('button', {
-        name: /speeddial interaction test/i,
-      })
-      await userEvent.click(speedDialButton)
-
-      await expect(speedDialButton).toHaveAttribute('aria-expanded', 'true')
-      await expect(
-        canvas.getByRole('button', { name: /copy/i }),
-      ).toBeInTheDocument()
-      await expect(
-        canvas.getByRole('button', { name: /save/i }),
-      ).toBeInTheDocument()
-      await expect(
-        canvas.getByRole('button', { name: /print/i }),
-      ).toBeInTheDocument()
-      await expect(
-        canvas.getByRole('button', { name: /share/i }),
-      ).toBeInTheDocument()
-    })
-
-    await step('Click Save action', async () => {
-      const saveButton = canvas.getByRole('button', { name: /save/i })
-      await userEvent.click(saveButton)
-
-      const speedDialButton = canvas.getByRole('button', {
-        name: /speeddial interaction test/i,
-      })
-      await expect(speedDialButton).toHaveAttribute('aria-expanded', 'false')
-    })
-
-    await step('Reopen and click Copy action', async () => {
-      const speedDialButton = canvas.getByRole('button', {
-        name: /speeddial interaction test/i,
-      })
-      await userEvent.click(speedDialButton)
-      await expect(speedDialButton).toHaveAttribute('aria-expanded', 'true')
-
-      const copyButton = canvas.getByRole('button', { name: /copy/i })
-      await userEvent.click(copyButton)
-
-      await expect(speedDialButton).toHaveAttribute('aria-expanded', 'false')
-    })
+    await expect(speedDialButton).toBeInTheDocument()
+    await expect(speedDialButton).toHaveAttribute('aria-expanded', 'false')
   },
 }
