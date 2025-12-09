@@ -382,8 +382,8 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement)
 
     await step('Verify switch and labels render', async () => {
-      const switchControl = canvas.getByRole('checkbox', {
-        name: /toggle transitions/i,
+      const switchControl = canvas.getByRole('switch', {
+        name: /show transitions/i,
       })
       const label = canvas.getByText('Show Transitions')
 
@@ -393,8 +393,8 @@ export const InteractionTest: Story = {
     })
 
     await step('Toggle transitions on', async () => {
-      const switchControl = canvas.getByRole('checkbox', {
-        name: /toggle transitions/i,
+      const switchControl = canvas.getByRole('switch', {
+        name: /show transitions/i,
       })
       await userEvent.click(switchControl)
 
@@ -411,8 +411,8 @@ export const InteractionTest: Story = {
     })
 
     await step('Toggle transitions off', async () => {
-      const switchControl = canvas.getByRole('checkbox', {
-        name: /toggle transitions/i,
+      const switchControl = canvas.getByRole('switch', {
+        name: /show transitions/i,
       })
       await userEvent.click(switchControl)
 
