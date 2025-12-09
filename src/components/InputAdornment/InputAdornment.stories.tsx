@@ -10,7 +10,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import React from 'react'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, within } from 'storybook/test'
 
 import InputAdornment from './InputAdornment'
 
