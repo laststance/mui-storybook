@@ -3,6 +3,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import MUIBadge from '@mui/material/Badge'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
+import { expect, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -148,4 +149,34 @@ export function WithIconButton() {
       </IconButton>
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => (
+    <Stack direction="row" spacing={3}>
+      <MUIBadge badgeContent={4} color="primary">
+        <MailIcon />
+      </MUIBadge>
+      <MUIBadge badgeContent={99} color="secondary">
+        <MailIcon />
+      </MUIBadge>
+      <MUIBadge badgeContent={1000} max={999} color="error">
+        <MailIcon />
+      </MUIBadge>
+    </Stack>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify badges render with correct content
+    const badge4 = canvas.getByText('4')
+    await expect(badge4).toBeInTheDocument()
+
+    const badge99 = canvas.getByText('99')
+    await expect(badge99).toBeInTheDocument()
+
+    const badge999Plus = canvas.getByText('999+')
+    await expect(badge999Plus).toBeInTheDocument()
+  },
 }

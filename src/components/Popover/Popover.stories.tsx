@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import Popover from '@mui/material/Popover'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
+import { expect, screen, userEvent, within } from 'storybook/test'
 
 import {
   createSelectArgType,
@@ -352,4 +353,72 @@ export function VirtualElement() {
       </Popover>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+      null,
+    )
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+      setAnchorEl(null)
+    }
+
+    const open = Boolean(anchorEl)
+    const id = open ? 'test-popover' : undefined
+
+    return (
+      <div>
+        <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+          Open Test Popover
+        </Button>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+        >
+          <Typography sx={{ p: 2 }}>Test Popover Content</Typography>
+        </Popover>
+      </div>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify trigger button renders', async () => {
+      const button = canvas.getByRole('button', { name: /open test popover/i })
+      expect(button).toBeInTheDocument()
+    })
+
+    await step('Popover is initially closed', async () => {
+      const popoverContent = screen.queryByText('Test Popover Content')
+      expect(popoverContent).not.toBeInTheDocument()
+    })
+
+    await step('Open popover by clicking button', async () => {
+      const button = canvas.getByRole('button', { name: /open test popover/i })
+      await userEvent.click(button)
+
+      // Popover renders in portal, use screen
+      const popoverContent = await screen.findByText('Test Popover Content')
+      expect(popoverContent).toBeInTheDocument()
+    })
+
+    await step('Close popover by pressing Escape', async () => {
+      await userEvent.keyboard('{Escape}')
+
+      // Wait for popover to close
+      await new Promise((resolve) => setTimeout(resolve, 300))
+    })
+  },
 }

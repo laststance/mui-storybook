@@ -2,6 +2,7 @@ import Divider from '@mui/material/Divider'
 import Paper from '@mui/material/Paper'
 import MUIStack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
+import { expect, within } from 'storybook/test'
 
 import {
   createSelectArgType,
@@ -205,4 +206,36 @@ export function WithJustifyContent() {
       </div>
     </MUIStack>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <MUIStack spacing={2} data-testid="stack-container">
+      <Item data-testid="stack-item-1">Item 1</Item>
+      <Item data-testid="stack-item-2">Item 2</Item>
+      <Item data-testid="stack-item-3">Item 3</Item>
+    </MUIStack>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify Stack container renders', async () => {
+      const container = canvas.getByTestId('stack-container')
+      expect(container).toBeInTheDocument()
+    })
+
+    await step('Verify all Stack items render', async () => {
+      const item1 = canvas.getByTestId('stack-item-1')
+      const item2 = canvas.getByTestId('stack-item-2')
+      const item3 = canvas.getByTestId('stack-item-3')
+
+      expect(item1).toBeInTheDocument()
+      expect(item2).toBeInTheDocument()
+      expect(item3).toBeInTheDocument()
+
+      expect(item1).toHaveTextContent('Item 1')
+      expect(item2).toHaveTextContent('Item 2')
+      expect(item3).toHaveTextContent('Item 3')
+    })
+  },
 }

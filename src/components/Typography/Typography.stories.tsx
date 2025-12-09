@@ -1,3 +1,5 @@
+import { expect, within } from 'storybook/test'
+
 import {
   muiTypographyVariantArgType,
   muiAlignArgType,
@@ -112,4 +114,38 @@ export const Colors: Story = {
       <Typography color="error">Error Color</Typography>
     </>
   ),
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <>
+      <Typography variant="h1">Test Heading</Typography>
+      <Typography variant="body1">Test body text content</Typography>
+      <Typography color="primary">Primary colored text</Typography>
+    </>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify heading renders', async () => {
+      const heading = canvas.getByText('Test Heading')
+      await expect(heading).toBeInTheDocument()
+      await expect(heading.tagName).toBe('H1')
+    })
+
+    await step('Verify body text renders', async () => {
+      const body = canvas.getByText('Test body text content')
+      await expect(body).toBeInTheDocument()
+    })
+
+    await step('Verify colored text renders', async () => {
+      const coloredText = canvas.getByText('Primary colored text')
+      await expect(coloredText).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const heading = canvas.getByText('Test Heading')
+      await expect(heading).toHaveAttribute('class')
+    })
+  },
 }

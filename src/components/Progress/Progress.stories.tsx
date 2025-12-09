@@ -4,6 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import { expect, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -180,4 +181,67 @@ export function CircularSizes() {
       <CircularProgress size={60} />
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => (
+    <Stack spacing={3}>
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress data-testid="linear-indeterminate" />
+      </Box>
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress
+          variant="determinate"
+          value={50}
+          data-testid="linear-determinate"
+        />
+      </Box>
+      <Stack direction="row" spacing={2}>
+        <CircularProgress data-testid="circular-indeterminate" />
+        <CircularProgress
+          variant="determinate"
+          value={75}
+          data-testid="circular-determinate"
+        />
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <LinearProgress color="primary" data-testid="linear-primary" />
+        <LinearProgress color="secondary" data-testid="linear-secondary" />
+        <LinearProgress color="success" data-testid="linear-success" />
+      </Stack>
+    </Stack>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify linear progress variants render', async () => {
+      const linearIndeterminate = canvas.getByTestId('linear-indeterminate')
+      await expect(linearIndeterminate).toBeInTheDocument()
+
+      const linearDeterminate = canvas.getByTestId('linear-determinate')
+      await expect(linearDeterminate).toBeInTheDocument()
+      await expect(linearDeterminate).toHaveAttribute('aria-valuenow', '50')
+    })
+
+    await step('Verify circular progress variants render', async () => {
+      const circularIndeterminate = canvas.getByTestId('circular-indeterminate')
+      await expect(circularIndeterminate).toBeInTheDocument()
+
+      const circularDeterminate = canvas.getByTestId('circular-determinate')
+      await expect(circularDeterminate).toBeInTheDocument()
+      await expect(circularDeterminate).toHaveAttribute('aria-valuenow', '75')
+    })
+
+    await step('Verify progress color variants render', async () => {
+      const primaryProgress = canvas.getByTestId('linear-primary')
+      await expect(primaryProgress).toBeInTheDocument()
+
+      const secondaryProgress = canvas.getByTestId('linear-secondary')
+      await expect(secondaryProgress).toBeInTheDocument()
+
+      const successProgress = canvas.getByTestId('linear-success')
+      await expect(successProgress).toBeInTheDocument()
+    })
+  },
 }

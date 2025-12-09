@@ -10,6 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import React from 'react'
+import { expect, fn, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -215,4 +216,31 @@ export function Permanent() {
       </Box>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+    const handleOpen = fn(() => setOpen(true))
+    const handleClose = fn(() => setOpen(false))
+
+    return (
+      <div data-testid="drawer-container">
+        <Button variant="contained" onClick={handleOpen}>
+          Open Drawer
+        </Button>
+        <MUIDrawer anchor="left" open={open} onClose={handleClose}>
+          <DrawerContent />
+        </MUIDrawer>
+      </div>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify the open drawer button renders
+    const openButton = canvas.getByRole('button', { name: /open drawer/i })
+    await expect(openButton).toBeInTheDocument()
+  },
 }

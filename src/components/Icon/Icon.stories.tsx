@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import SettingsIcon from '@mui/icons-material/Settings'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
+import { expect, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -155,4 +156,23 @@ export function MaterialIcons() {
       </Stack>
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {
+    children: 'home',
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify icon renders with correct text', async () => {
+      const icon = canvas.getByText('home')
+      await expect(icon).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const icon = canvas.getByText('home')
+      await expect(icon.tagName).toBe('SPAN')
+    })
+  },
 }

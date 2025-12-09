@@ -7,6 +7,7 @@ import MUISpeedDial from '@mui/material/SpeedDial'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import React from 'react'
+import { expect, fn, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -200,4 +201,51 @@ export function WithTooltips() {
       </MUISpeedDial>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+    const handleOpen = fn(() => setOpen(true))
+    const handleClose = fn(() => setOpen(false))
+    const handleActionClick = fn(() => {
+      setOpen(false)
+    })
+
+    return (
+      <Box
+        sx={{ height: 320, position: 'relative' }}
+        data-testid="speed-dial-container"
+      >
+        <MUISpeedDial
+          ariaLabel="SpeedDial interaction test"
+          sx={{ position: 'absolute', bottom: 16, right: 16 }}
+          icon={<SpeedDialIcon />}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={handleActionClick}
+            />
+          ))}
+        </MUISpeedDial>
+      </Box>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify SpeedDial renders with correct initial state
+    const speedDialButton = canvas.getByRole('button', {
+      name: /speeddial interaction test/i,
+    })
+    await expect(speedDialButton).toBeInTheDocument()
+    await expect(speedDialButton).toHaveAttribute('aria-expanded', 'false')
+  },
 }

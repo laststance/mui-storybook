@@ -4,6 +4,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { expect, within } from 'storybook/test'
 
 import {
   createSelectArgType,
@@ -139,4 +140,77 @@ export const DenseTable: Story = {
       </Table>
     </TableContainer>
   ),
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <TableContainer component={Paper}>
+      <Table aria-label="test table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat (g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell component="th" scope="row">
+              Frozen yoghurt
+            </TableCell>
+            <TableCell align="right">159</TableCell>
+            <TableCell align="right">6.0</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">
+              Ice cream sandwich
+            </TableCell>
+            <TableCell align="right">237</TableCell>
+            <TableCell align="right">9.0</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify table renders', async () => {
+      const table = canvas.getByRole('table', { name: 'test table' })
+      await expect(table).toBeInTheDocument()
+    })
+
+    await step('Verify table headers', async () => {
+      const nameHeader = canvas.getByRole('columnheader', { name: 'Name' })
+      const caloriesHeader = canvas.getByRole('columnheader', {
+        name: 'Calories',
+      })
+      const fatHeader = canvas.getByRole('columnheader', { name: 'Fat (g)' })
+      await expect(nameHeader).toBeInTheDocument()
+      await expect(caloriesHeader).toBeInTheDocument()
+      await expect(fatHeader).toBeInTheDocument()
+    })
+
+    await step('Verify table rows', async () => {
+      const rows = canvas.getAllByRole('row')
+      // 1 header row + 2 body rows = 3 total
+      await expect(rows).toHaveLength(3)
+    })
+
+    await step('Verify table cell content', async () => {
+      const yoghurtCell = canvas.getByRole('rowheader', {
+        name: 'Frozen yoghurt',
+      })
+      const iceCreamCell = canvas.getByRole('rowheader', {
+        name: 'Ice cream sandwich',
+      })
+      await expect(yoghurtCell).toBeInTheDocument()
+      await expect(iceCreamCell).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const table = canvas.getByRole('table')
+      await expect(table).toHaveAttribute('aria-label', 'test table')
+    })
+  },
 }

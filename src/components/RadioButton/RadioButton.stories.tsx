@@ -8,6 +8,7 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import { styled } from '@mui/material/styles'
 import React from 'react'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -431,4 +432,76 @@ export function CustomizedRadios() {
       </RadioGroup>
     </FormControl>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {} as never,
+  render: () => {
+    const [value, setValue] = React.useState('female')
+    const handleChange = fn((event: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(event.target.value)
+    })
+
+    return (
+      <FormControl data-testid="radio-form">
+        <FormLabel id="test-radio-group-label">Gender</FormLabel>
+        <RadioGroup
+          aria-labelledby="test-radio-group-label"
+          name="test-radio-group"
+          value={value}
+          onChange={handleChange}
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+        </RadioGroup>
+      </FormControl>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify initial render with female selected', async () => {
+      // Use exact text to avoid /male/i matching both "Female" and "Male"
+      const femaleRadio = canvas.getByRole('radio', { name: 'Female' })
+      const maleRadio = canvas.getByRole('radio', { name: 'Male' })
+      const otherRadio = canvas.getByRole('radio', { name: 'Other' })
+
+      await expect(femaleRadio).toBeInTheDocument()
+      await expect(maleRadio).toBeInTheDocument()
+      await expect(otherRadio).toBeInTheDocument()
+      await expect(femaleRadio).toBeChecked()
+      await expect(maleRadio).not.toBeChecked()
+    })
+
+    await step('Select male radio button', async () => {
+      const maleRadio = canvas.getByRole('radio', { name: 'Male' })
+      await userEvent.click(maleRadio)
+
+      await expect(maleRadio).toBeChecked()
+      await expect(
+        canvas.getByRole('radio', { name: 'Female' }),
+      ).not.toBeChecked()
+    })
+
+    await step('Select other radio button', async () => {
+      const otherRadio = canvas.getByRole('radio', { name: 'Other' })
+      await userEvent.click(otherRadio)
+
+      await expect(otherRadio).toBeChecked()
+      await expect(
+        canvas.getByRole('radio', { name: 'Male' }),
+      ).not.toBeChecked()
+    })
+
+    await step('Click on label to select female', async () => {
+      const femaleLabel = canvas.getByText('Female')
+      await userEvent.click(femaleLabel)
+
+      await expect(canvas.getByRole('radio', { name: 'Female' })).toBeChecked()
+      await expect(
+        canvas.getByRole('radio', { name: 'Other' }),
+      ).not.toBeChecked()
+    })
+  },
 }

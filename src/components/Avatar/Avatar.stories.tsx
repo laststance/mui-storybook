@@ -2,6 +2,7 @@ import FolderIcon from '@mui/icons-material/Folder'
 import MUIAvatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Stack from '@mui/material/Stack'
+import { expect, within } from 'storybook/test'
 
 import { createSelectArgType } from '../../../.storybook/argTypeTemplates'
 
@@ -135,4 +136,35 @@ export function Group() {
       <MUIAvatar alt="A5" src="https://mui.com/static/images/avatar/5.jpg" />
     </AvatarGroup>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <MUIAvatar>H</MUIAvatar>
+      <MUIAvatar
+        alt="User Avatar"
+        src="https://mui.com/static/images/avatar/1.jpg"
+      />
+      <MUIAvatar sx={{ width: 56, height: 56, bgcolor: 'secondary.main' }}>
+        XL
+      </MUIAvatar>
+    </Stack>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify letter avatar renders
+    const letterAvatar = canvas.getByText('H')
+    await expect(letterAvatar).toBeInTheDocument()
+
+    // Verify image avatar renders
+    const imageAvatar = canvas.getByRole('img', { name: /user avatar/i })
+    await expect(imageAvatar).toBeInTheDocument()
+
+    // Verify size variant avatar renders
+    const largeAvatar = canvas.getByText('XL')
+    await expect(largeAvatar).toBeInTheDocument()
+  },
 }

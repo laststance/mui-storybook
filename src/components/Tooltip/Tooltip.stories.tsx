@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import MUITooltip from '@mui/material/Tooltip'
+import { expect, within } from 'storybook/test'
 
 import {
   muiPlacementArgType,
@@ -151,4 +152,33 @@ export function Delays() {
       </MUITooltip>
     </Stack>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {
+    title: 'Test Tooltip',
+    children: <Button>Test</Button>,
+  },
+  render: () => (
+    <Stack direction="row" spacing={2} sx={{ p: 4 }}>
+      <MUITooltip title="Hover tooltip text" arrow>
+        <Button>Hover Me</Button>
+      </MUITooltip>
+      <MUITooltip title="Delete item" placement="top">
+        <IconButton>
+          <DeleteIcon />
+        </IconButton>
+      </MUITooltip>
+    </Stack>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Note: MUI Tooltip sets aria-label on child to the tooltip text
+    // So button name becomes "Hover tooltip text", not "Hover Me"
+    const buttons = canvas.getAllByRole('button')
+    await expect(buttons.length).toBe(2)
+    await expect(buttons[0]).toBeInTheDocument()
+    await expect(buttons[1]).toBeInTheDocument()
+  },
 }

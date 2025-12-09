@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import {
   createSelectArgType,
@@ -184,4 +185,65 @@ export function Dense() {
       </MUIAppBar>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const handleMenuClick = fn()
+    const handleSearchClick = fn()
+
+    return (
+      <Box sx={{ flexGrow: 1 }}>
+        <MUIAppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuClick}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Test AppBar
+            </Typography>
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="search"
+              onClick={handleSearchClick}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Toolbar>
+        </MUIAppBar>
+      </Box>
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify AppBar renders with title', async () => {
+      const title = canvas.getByText('Test AppBar')
+      expect(title).toBeInTheDocument()
+    })
+
+    await step('Verify menu and search buttons exist', async () => {
+      const menuButton = canvas.getByLabelText('menu')
+      const searchButton = canvas.getByLabelText('search')
+
+      expect(menuButton).toBeInTheDocument()
+      expect(searchButton).toBeInTheDocument()
+    })
+
+    await step('Test button interactions', async () => {
+      const menuButton = canvas.getByLabelText('menu')
+      const searchButton = canvas.getByLabelText('search')
+
+      await userEvent.click(menuButton)
+      await userEvent.click(searchButton)
+    })
+  },
 }

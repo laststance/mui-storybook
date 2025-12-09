@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab'
 import MUITabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import { expect, fn, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -289,4 +290,45 @@ export function Colors() {
       </Box>
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => {
+    const [value, setValue] = React.useState(0)
+    const handleChange = fn((_, newValue: number) => setValue(newValue))
+
+    return (
+      <Box sx={{ width: '100%' }} data-testid="tabs-container">
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <MUITabs value={value} onChange={handleChange} aria-label="test tabs">
+            <Tab label="Item One" />
+            <Tab label="Item Two" />
+            <Tab label="Item Three" />
+          </MUITabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          Content for Tab One
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Content for Tab Two
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          Content for Tab Three
+        </TabPanel>
+      </Box>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify initial render with all tabs present
+    const tab1 = canvas.getByRole('tab', { name: /item one/i })
+    const tab2 = canvas.getByRole('tab', { name: /item two/i })
+    const tab3 = canvas.getByRole('tab', { name: /item three/i })
+
+    await expect(tab1).toBeInTheDocument()
+    await expect(tab2).toBeInTheDocument()
+    await expect(tab3).toBeInTheDocument()
+    await expect(tab1).toHaveAttribute('aria-selected', 'true')
+  },
 }

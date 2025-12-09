@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton'
 import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
+import { expect, within } from 'storybook/test'
 
 import {
   createSelectArgType,
@@ -322,4 +323,57 @@ export const WithTitlebarBelow: Story = {
       ))}
     </ImageList>
   ),
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+      {itemData.slice(0, 6).map((item) => (
+        <ImageListItem key={item.img} data-testid={`image-item-${item.title}`}>
+          <img
+            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+            alt={item.title}
+            loading="lazy"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify ImageList renders', async () => {
+      const imageList = canvas.getByRole('list')
+      expect(imageList).toBeInTheDocument()
+      expect(imageList).toHaveClass('MuiImageList-root')
+    })
+
+    await step('Verify all image items render', async () => {
+      const images = canvas.getAllByRole('img')
+      expect(images).toHaveLength(6)
+
+      images.forEach((img) => {
+        expect(img).toBeInTheDocument()
+        expect(img).toHaveAttribute('alt')
+      })
+    })
+
+    await step('Verify image items have correct structure', async () => {
+      const listItems = canvas.getAllByRole('listitem')
+      expect(listItems).toHaveLength(6)
+
+      listItems.forEach((item) => {
+        expect(item).toHaveClass('MuiImageListItem-root')
+      })
+    })
+
+    await step('Verify specific images render correctly', async () => {
+      const breakfastItem = canvas.getByTestId('image-item-Breakfast')
+      const burgerItem = canvas.getByTestId('image-item-Burger')
+
+      expect(breakfastItem).toBeInTheDocument()
+      expect(burgerItem).toBeInTheDocument()
+    })
+  },
 }

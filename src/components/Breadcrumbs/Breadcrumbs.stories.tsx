@@ -5,6 +5,7 @@ import WhatshotIcon from '@mui/icons-material/Whatshot'
 import MUIBreadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
+import { expect, userEvent, within } from 'storybook/test'
 
 import { createNumberArgType } from '../../../.storybook/argTypeTemplates'
 
@@ -161,4 +162,51 @@ export function Collapsed() {
       <Typography color="text.primary">Details</Typography>
     </MUIBreadcrumbs>
   )
+}
+
+export const InteractionTest: Story = {
+  render: () => (
+    <MUIBreadcrumbs aria-label="test breadcrumb">
+      <Link underline="hover" color="inherit" href="/">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="/products">
+        Products
+      </Link>
+      <Typography color="text.primary">Details</Typography>
+    </MUIBreadcrumbs>
+  ),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify breadcrumbs navigation renders', async () => {
+      const nav = canvas.getByRole('navigation', { name: 'test breadcrumb' })
+      await expect(nav).toBeInTheDocument()
+    })
+
+    await step('Verify breadcrumb links', async () => {
+      const homeLink = canvas.getByRole('link', { name: 'Home' })
+      const productsLink = canvas.getByRole('link', { name: 'Products' })
+      await expect(homeLink).toBeInTheDocument()
+      await expect(productsLink).toBeInTheDocument()
+      await expect(homeLink).toHaveAttribute('href', '/')
+      await expect(productsLink).toHaveAttribute('href', '/products')
+    })
+
+    await step('Verify current page text', async () => {
+      const currentPage = canvas.getByText('Details')
+      await expect(currentPage).toBeInTheDocument()
+    })
+
+    await step('Test link interaction', async () => {
+      const homeLink = canvas.getByRole('link', { name: 'Home' })
+      await userEvent.hover(homeLink)
+      await expect(homeLink).toBeInTheDocument()
+    })
+
+    await step('Test accessibility', async () => {
+      const nav = canvas.getByRole('navigation')
+      await expect(nav).toHaveAttribute('aria-label', 'test breadcrumb')
+    })
+  },
 }

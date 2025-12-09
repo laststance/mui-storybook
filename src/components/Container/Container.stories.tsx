@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import { expect, within } from 'storybook/test'
 
 import {
   createBooleanArgType,
@@ -174,4 +175,28 @@ export const NestedContainers: Story = {
       </Box>
     </Container>
   ),
+}
+
+export const InteractionTest: Story = {
+  args: {
+    maxWidth: 'md',
+    children: (
+      <Box
+        sx={{ bgcolor: 'primary.light', p: 2 }}
+        data-testid="container-content"
+      >
+        <Typography>Container Test Content</Typography>
+      </Box>
+    ),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify Container renders with content
+    const content = canvas.getByTestId('container-content')
+    await expect(content).toBeInTheDocument()
+
+    const typography = canvas.getByText('Container Test Content')
+    await expect(typography).toBeInTheDocument()
+  },
 }

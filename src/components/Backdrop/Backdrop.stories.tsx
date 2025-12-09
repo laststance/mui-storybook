@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import { expect, within } from 'storybook/test'
 
 import { createBooleanArgType } from '../../../.storybook/argTypeTemplates'
 
@@ -121,4 +122,36 @@ export function WithCustomContent() {
       </MUIBackdrop>
     </div>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {
+    open: false,
+  },
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Show Backdrop
+        </Button>
+        <MUIBackdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={() => setOpen(false)}
+          data-testid="test-backdrop"
+        >
+          <Typography>Click to close backdrop</Typography>
+        </MUIBackdrop>
+      </div>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify button renders
+    const button = canvas.getByRole('button', { name: /show backdrop/i })
+    await expect(button).toBeInTheDocument()
+  },
 }

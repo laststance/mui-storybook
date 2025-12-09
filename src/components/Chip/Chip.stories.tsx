@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 import React from 'react'
+import { expect, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -265,4 +266,28 @@ export function ChipsArray() {
       })}
     </Paper>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  render: () => (
+    <Stack direction="row" spacing={1}>
+      <Chip label="Basic Chip" />
+      <Chip label="Outlined Chip" variant="outlined" />
+      <Chip label="Small Chip" size="small" />
+    </Stack>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Verify chips render correctly
+    const basicChip = canvas.getByText('Basic Chip')
+    await expect(basicChip).toBeInTheDocument()
+
+    const outlinedChip = canvas.getByText('Outlined Chip')
+    await expect(outlinedChip).toBeInTheDocument()
+
+    const smallChip = canvas.getByText('Small Chip')
+    await expect(smallChip).toBeInTheDocument()
+  },
 }

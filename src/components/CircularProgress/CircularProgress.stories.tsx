@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import MUICircularProgress from '@mui/material/CircularProgress'
+import { expect, within } from 'storybook/test'
 
 import {
   muiColorArgType,
@@ -116,4 +117,32 @@ export function Sizes() {
       <MUICircularProgress size={60} />
     </Box>
   )
+}
+
+export const InteractionTest: Story = {
+  args: {},
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
+    await step('Verify progress indicator renders', async () => {
+      const progress = canvas.getByRole('progressbar')
+      await expect(progress).toBeInTheDocument()
+    })
+
+    await step('Verify progress indicator is visible', async () => {
+      const progress = canvas.getByRole('progressbar')
+      await expect(progress).toBeVisible()
+    })
+
+    await step('Test accessibility role', async () => {
+      const progress = canvas.getByRole('progressbar')
+      await expect(progress).toHaveAttribute('role', 'progressbar')
+    })
+
+    await step('Verify SVG structure', async () => {
+      const progress = canvas.getByRole('progressbar')
+      const svg = progress.querySelector('svg')
+      await expect(svg).toBeInTheDocument()
+    })
+  },
 }
