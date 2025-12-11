@@ -84,6 +84,34 @@ const config: StorybookConfig = {
       }
     </style>
   `,
+
+  // Custom CSS for preview/docs iframe - fixes Control button visibility in docs pages
+  previewHead: (head) => `
+    ${head}
+    <style>
+      /* Fix: Controls panel button text contrast in docs pages */
+      /* Target all control buttons in the docs iframe (Set boolean, Set object, etc.) */
+      .docblock-argstable button,
+      [class*="Control"] button,
+      [class*="ObjectControl"] button,
+      [class*="ArrayControl"] button,
+      [class*="BooleanControl"] button,
+      button[class*="Button"] {
+        color: #ffffff !important;
+      }
+
+      /* Ensure button icons are also visible */
+      .docblock-argstable button svg,
+      [class*="Control"] button svg {
+        color: #ffffff !important;
+      }
+
+      .docblock-argstable button svg path,
+      [class*="Control"] button svg path {
+        fill: #ffffff !important;
+      }
+    </style>
+  `,
 }
 
 export default config
