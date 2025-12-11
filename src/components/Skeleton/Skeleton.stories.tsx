@@ -55,7 +55,7 @@ export const Playground: Story = {
     variant: 'text',
     animation: 'pulse',
     width: 210,
-    height: 20,
+    height: 61,
   },
 }
 
