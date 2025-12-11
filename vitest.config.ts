@@ -1,3 +1,4 @@
+import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -8,6 +9,19 @@ import { defineConfig, mergeConfig } from 'vitest/config'
 import viteConfig from './vite.config'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
+
+/**
+ * Ensure coverage temp directory exists to prevent ENOENT errors
+ * when Storybook test runner writes coverage data.
+ * This runs in Node.js context during config phase.
+ */
+const coverageTmpDir = path.join(
+  dirname,
+  'node_modules/.cache/storybook/default/coverage/.tmp'
+)
+if (!fs.existsSync(coverageTmpDir)) {
+  fs.mkdirSync(coverageTmpDir, { recursive: true })
+}
 
 export default mergeConfig(
   viteConfig,
@@ -37,6 +51,14 @@ export default mergeConfig(
               instances: [{ browser: 'chromium' }],
             },
             setupFiles: ['./.storybook/vitest.setup.ts'],
+            globalSetup: ['./.storybook/vitest.globalSetup.ts'],
+            // Disable coverage to work around ENOENT temp directory bug in @storybook/addon-vitest
+            // See: https://github.com/storybookjs/storybook/issues/... (upstream bug)
+            // The coverage provider tries to write to .tmp/coverage-N.json before creating the directory.
+            // Run coverage separately via CLI if needed: pnpm vitest --coverage
+            coverage: {
+              enabled: false,
+            },
           },
         },
       ],
