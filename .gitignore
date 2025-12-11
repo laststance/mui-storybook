@@ -11,6 +11,9 @@ dist
 storybook-static
 .cache
 
+# test coverage
+coverage
+
 # misc
 .DS_Store
 .env
