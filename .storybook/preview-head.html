@@ -52,4 +52,54 @@
   .sbdocs pre {
     font-size: 14px !important;
   }
+
+  /* ════════════════════════════════════════════════════════════════════════
+   * ArgTypes Table Category Headers - WCAG AA Contrast Fix
+   *
+   * Problem: Storybook uses textInverseColor (white) for category row buttons,
+   * but with the Sky theme's light background (#f0f9ff), this creates
+   * insufficient contrast (~1.07:1 vs required 4.5:1).
+   *
+   * Solution: Override button text color to use dark blue from theme.
+   * ════════════════════════════════════════════════════════════════════════ */
+
+  /* Target category collapse buttons in ArgTypes table (second cell only)
+   * Category rows have "Hide xxx items" button as direct child of td:nth-child(2)
+   * Control buttons ("Set object", "Set boolean") are in td:last-child with backgrounds
+   * We only style the category collapse buttons, not the control buttons */
+  table td:nth-child(2) > button,
+  .sbdocs table td:nth-child(2) > button,
+  .sb-unstyled table td:nth-child(2) > button {
+    color: #0c4a6e !important; /* Sky-900 - matches theme textColor */
+  }
+
+  /* Ensure category labels have full opacity for readability */
+  .sbdocs table td > div:has(button) > div,
+  .sb-unstyled table td > div:has(button) > div {
+    color: #0c4a6e !important; /* Sky-900 - full contrast */
+    opacity: 1 !important;
+  }
+
+  /* Category row background - slightly more distinct */
+  .sbdocs table tr:has(button[class*="css"]) td,
+  .sb-unstyled table tr:has(button[class*="css"]) td {
+    background-color: #e0f2fe !important; /* Sky-100 - better visual separation */
+  }
+
+  /* Category label text (ADVANCED, EVENTS, etc.) */
+  .sbdocs table td svg + span,
+  .sb-unstyled table td svg + span {
+    color: #0369a1 !important; /* Sky-700 - good contrast */
+    font-weight: 600 !important;
+  }
+
+  /* Hide duplicate "Hide xxx items" button on left side of category row
+   * The same button already exists on the right side (second cell)
+   * This removes the redundant overlapping button from the Name column
+   * Structure: td > button (direct child) + span (category label) */
+  table td:first-child > button,
+  .sbdocs table td:first-child > button,
+  .sb-unstyled table td:first-child > button {
+    display: none !important;
+  }
 </style>
