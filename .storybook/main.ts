@@ -74,6 +74,14 @@ const config: StorybookConfig = {
       .docblock-argstable button svg path {
         fill: #ffffff !important;
       }
+
+      /* Fix: Boolean control "Set boolean" button text color */
+      /* Target all buttons in Controls addon panel */
+      [class*="BooleanControl"] button,
+      [class*="Control"] button,
+      [data-testid*="control"] button {
+        color: #ffffff !important;
+      }
     </style>
   `,
 }
