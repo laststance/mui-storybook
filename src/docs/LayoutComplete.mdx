@@ -1,0 +1,537 @@
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks'
+import { Box, Typography, Divider, Alert, Chip, Paper, Stack } from '@mui/material'
+import MUILayoutDeepDive from '../components/LayoutComplete/MUILayoutDeepDive'
+import LayoutPatternsGallery from '../components/LayoutComplete/LayoutPatternsGallery'
+import EyeTrackingPatterns from '../components/LayoutComplete/EyeTrackingPatterns'
+import CSSImplementationGuide from '../components/LayoutComplete/CSSImplementationGuide'
+import LayoutTrends2025 from '../components/LayoutComplete/LayoutTrends2025'
+import DesignPrinciples from '../components/LayoutComplete/DesignPrinciples'
+import LayoutPatternsMUIGuide from '../components/LayoutComplete/LayoutPatternsMUIGuide'
+
+<Meta title="Design System/Layout Complete" />
+
+# Layout Complete
+
+<Alert severity="success" sx={{ mb: 4 }}>
+  <Typography variant="body2">
+    <strong>The Ultimate Layout Learning Resource for 2025</strong> — This comprehensive guide covers
+    everything from MUI layout components to modern CSS techniques, eye-tracking patterns, and current design trends.
+    Perfect for junior web designers and developers building their foundation.
+  </Typography>
+</Alert>
+
+<Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 4 }}>
+  <Chip label="MUI Components" color="primary" size="small" />
+  <Chip label="30+ Layout Patterns" color="secondary" size="small" />
+  <Chip label="CSS Grid & Flexbox" color="info" size="small" />
+  <Chip label="Eye-tracking UX" color="warning" size="small" />
+  <Chip label="2025 Trends" color="success" size="small" />
+  <Chip label="CRAP Principles" color="error" size="small" />
+</Box>
+
+## Quick Navigation
+
+<table>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Description</th>
+      <th>Key Concepts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#mui-layout-deep-dive">MUI Layout Deep-Dive</a></td>
+      <td>Technical specs for Box, Container, Grid, Stack, Masonry</td>
+      <td>Spacing system, Grid v2, CSS properties</td>
+    </tr>
+    <tr>
+      <td><a href="#30-layout-patterns">30 Layout Patterns</a></td>
+      <td>Comprehensive pattern gallery</td>
+      <td>Column, Grid, Scroll, Container, Data patterns</td>
+    </tr>
+    <tr>
+      <td><a href="#mui-implementation-guide">MUI Implementation Guide</a></td>
+      <td>30 patterns with MUI code examples</td>
+      <td>Box, Container, Grid, Stack, Masonry code</td>
+    </tr>
+    <tr>
+      <td><a href="#eye-tracking-patterns">Eye-tracking Patterns</a></td>
+      <td>F, Z, N patterns for UX optimization</td>
+      <td>Visual hierarchy, attention flow</td>
+    </tr>
+    <tr>
+      <td><a href="#css-implementation-guide">CSS Implementation Guide</a></td>
+      <td>Grid vs Flexbox with MUI equivalents</td>
+      <td>CSS Grid, Flexbox, Tailwind comparison</td>
+    </tr>
+    <tr>
+      <td><a href="#2025-layout-trends">2025 Layout Trends</a></td>
+      <td>Modern design trends</td>
+      <td>Bento Grid, Glassmorphism, Asymmetric layouts</td>
+    </tr>
+    <tr>
+      <td><a href="#design-principles-crap">Design Principles</a></td>
+      <td>CRAP principles (Contrast, Repetition, Alignment, Proximity)</td>
+      <td>Visual design fundamentals</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## MUI Layout Deep-Dive
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Interactive MUI Layout Component Explorer
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Explore Box, Container, Grid v2, Stack, and Masonry with visual specs, interactive calculators,
+    and live demos. Color-coded: padding (blue), margin (orange), spacing (green).
+  </Typography>
+  <MUILayoutDeepDive />
+</Paper>
+
+### The 8px Grid System
+
+MUI's spacing system is based on an **8px grid** by default:
+
+```typescript
+// theme.spacing(n) = n * 8px
+theme.spacing(1)  // 8px
+theme.spacing(2)  // 16px
+theme.spacing(3)  // 24px
+theme.spacing(4)  // 32px
+```
+
+### Layout Component Quick Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Purpose</th>
+      <th>CSS Display</th>
+      <th>Key Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Box</code></td>
+      <td>Generic container, sx-prop styling</td>
+      <td>block (customizable)</td>
+      <td><code>sx</code>, <code>component</code></td>
+    </tr>
+    <tr>
+      <td><code>Container</code></td>
+      <td>Centered content with maxWidth</td>
+      <td>block</td>
+      <td><code>maxWidth</code>, <code>fixed</code>, <code>disableGutters</code></td>
+    </tr>
+    <tr>
+      <td><code>Grid v2</code></td>
+      <td>12-column responsive grid</td>
+      <td>grid</td>
+      <td><code>container</code>, <code>size</code>, <code>spacing</code>, <code>offset</code></td>
+    </tr>
+    <tr>
+      <td><code>Stack</code></td>
+      <td>1D layouts (row/column)</td>
+      <td>flex</td>
+      <td><code>direction</code>, <code>spacing</code>, <code>divider</code></td>
+    </tr>
+    <tr>
+      <td><code>Masonry</code></td>
+      <td>Pinterest-style layouts</td>
+      <td>masonry (CSS)</td>
+      <td><code>columns</code>, <code>spacing</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 30 Layout Patterns
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Web Layout Pattern Gallery
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    A comprehensive collection of 30 proven web layout patterns, organized by category.
+    Each pattern includes visual preview, CSS approach, and use cases.
+  </Typography>
+  <LayoutPatternsGallery defaultCategory="all" showFilter={true} compact={false} />
+</Paper>
+
+### Pattern Categories Overview
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, mb: 3 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="primary">Column-Based (5)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Single Column, Two Column, Three Column, Sidebar, Holy Grail
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="secondary">Grid-Based (4)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      12-Column Grid, Magazine, Modular, Bento Grid
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="info.main">Scroll and Flow (4)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Infinite Scroll, Parallax, Horizontal Scroll, Vertical Rhythm
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="warning.main">Container and Flow (5)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Fluid, Fixed Width, Adaptive, Split Screen, Full Bleed
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="success.main">Data Display (6)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Card Grid, List, Table, Dashboard, Timeline, Kanban
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="error.main">Special (6)</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Modal, Drawer, Accordion, Tabs, Carousel, Masonry
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+## MUI Implementation Guide
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    30 Layout Patterns with MUI Code Examples
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Learn how to implement all 30 layout patterns using MUI's core layout components:
+    Box, Container, Grid, Stack, and Masonry. Each pattern includes ready-to-use code
+    with Japanese translations and practical tips.
+  </Typography>
+  <LayoutPatternsMUIGuide defaultCategory="all" showCodeByDefault={false} compact={false} />
+</Paper>
+
+### Component Color Legend
+
+<Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 3 }}>
+  <Chip label="Box - Primary" sx={{ bgcolor: 'rgba(33, 150, 243, 0.2)', color: '#2196F3' }} />
+  <Chip label="Container" sx={{ bgcolor: 'rgba(156, 39, 176, 0.2)', color: '#9C27B0' }} />
+  <Chip label="Grid" sx={{ bgcolor: 'rgba(76, 175, 80, 0.2)', color: '#4CAF50' }} />
+  <Chip label="Stack" sx={{ bgcolor: 'rgba(255, 152, 0, 0.2)', color: '#FF9800' }} />
+  <Chip label="Masonry" sx={{ bgcolor: 'rgba(244, 67, 54, 0.2)', color: '#F44336' }} />
+</Box>
+
+### When to Use Each Component
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Best For</th>
+      <th>Pattern Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Box</strong></td>
+      <td>Generic wrapper, custom CSS via sx prop</td>
+      <td>Full Bleed, Modal, Split Screen</td>
+    </tr>
+    <tr>
+      <td><strong>Container</strong></td>
+      <td>Centered content with max-width</td>
+      <td>Fixed Width, Single Column</td>
+    </tr>
+    <tr>
+      <td><strong>Grid</strong></td>
+      <td>12-column responsive layouts</td>
+      <td>Card Grid, Dashboard, Magazine</td>
+    </tr>
+    <tr>
+      <td><strong>Stack</strong></td>
+      <td>1D layouts (vertical/horizontal)</td>
+      <td>List, Timeline, Accordion</td>
+    </tr>
+    <tr>
+      <td><strong>Masonry</strong></td>
+      <td>Pinterest-style variable heights</td>
+      <td>Gallery, Masonry Grid</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Eye-tracking Patterns
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Visual Attention Flow Patterns
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Understanding how users scan web pages helps you place important content strategically.
+    Animated visualizations show the F-pattern, Z-pattern, and N-pattern reading behaviors.
+  </Typography>
+  <EyeTrackingPatterns defaultPattern="F" showAnimation={true} showHeatmap={true} />
+</Paper>
+
+### Pattern Usage Guidelines
+
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Best For</th>
+      <th>Key Elements Placement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>F-Pattern</strong></td>
+      <td>Text-heavy pages, articles, blogs</td>
+      <td>Headlines top-left, key info in first paragraphs</td>
+    </tr>
+    <tr>
+      <td><strong>Z-Pattern</strong></td>
+      <td>Landing pages, marketing sites</td>
+      <td>Logo top-left, CTA bottom-right, hero center</td>
+    </tr>
+    <tr>
+      <td><strong>N-Pattern</strong></td>
+      <td>Mobile-first, vertical scrolling</td>
+      <td>Content stacked vertically, alternating emphasis</td>
+    </tr>
+  </tbody>
+</table>
+
+### Heatmap Color Legend
+
+<Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+  <Chip label="High Attention (Red)" sx={{ bgcolor: 'rgba(255,0,0,0.2)' }} />
+  <Chip label="Medium Attention (Yellow)" sx={{ bgcolor: 'rgba(255,255,0,0.2)' }} />
+  <Chip label="Low Attention (Blue)" sx={{ bgcolor: 'rgba(0,0,255,0.2)' }} />
+</Stack>
+
+---
+
+## CSS Implementation Guide
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    CSS Grid vs Flexbox with MUI Equivalents
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Learn when to use Grid vs Flexbox, see side-by-side comparisons,
+    and understand how MUI components map to native CSS properties.
+  </Typography>
+  <CSSImplementationGuide defaultTab="comparison" showPlayground={true} />
+</Paper>
+
+### Quick Decision: Grid vs Flexbox
+
+- **1D layout (row OR column)?** → Use Flexbox (Stack component)
+- **2D layout (rows AND columns)?** → Use CSS Grid (Grid component)
+- **Content dictates size?** → Flexbox (content-first)
+- **Structure dictates size?** → Grid (structure-first)
+
+### MUI to CSS Property Mapping
+
+<table>
+  <thead>
+    <tr>
+      <th>MUI Prop</th>
+      <th>CSS Property</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sx display flex</code></td>
+      <td><code>display: flex</code></td>
+      <td>Enable flexbox</td>
+    </tr>
+    <tr>
+      <td><code>sx display grid</code></td>
+      <td><code>display: grid</code></td>
+      <td>Enable grid</td>
+    </tr>
+    <tr>
+      <td><code>spacing=2</code></td>
+      <td><code>gap: 16px</code></td>
+      <td>Grid/Stack spacing</td>
+    </tr>
+    <tr>
+      <td><code>direction=row</code></td>
+      <td><code>flex-direction: row</code></td>
+      <td>Stack direction</td>
+    </tr>
+    <tr>
+      <td><code>justifyContent=center</code></td>
+      <td><code>justify-content: center</code></td>
+      <td>Main axis alignment</td>
+    </tr>
+    <tr>
+      <td><code>alignItems=center</code></td>
+      <td><code>align-items: center</code></td>
+      <td>Cross axis alignment</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 2025 Layout Trends
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Modern Layout Design Trends
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Explore cutting-edge layout trends: Bento Grid, Dimensionality, Asymmetric Grids,
+    and Glassmorphism with live interactive demos.
+  </Typography>
+  <LayoutTrends2025 showDemos={true} showCode={true} />
+</Paper>
+
+### Trend Overview
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, mb: 3 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">Bento Grid</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Modular grid layouts with varying cell sizes, popularized by Apple.
+      Creates visual interest through intentional asymmetry within a grid structure.
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">Dimensionality</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Adding depth through shadows, overlapping elements, and perspective transforms.
+      Creates hierarchy and focus through z-axis manipulation.
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">Asymmetric Grids</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Breaking traditional symmetry for dynamic, editorial-style layouts.
+      Creates visual tension and guides eye movement intentionally.
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">Glassmorphism</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Frosted glass effects with blur and transparency.
+      Creates depth and modern aesthetic, requires careful contrast management.
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+## Design Principles (CRAP)
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Fundamental Design Principles
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Master the four fundamental principles of visual design: Contrast, Repetition, Alignment, and Proximity.
+    Interactive before/after toggles demonstrate each principle's impact.
+  </Typography>
+  <DesignPrinciples showInteractive={true} defaultPrinciple="proximity" />
+</Paper>
+
+### The CRAP Principles Explained
+
+<table>
+  <thead>
+    <tr>
+      <th>Principle</th>
+      <th>Japanese</th>
+      <th>Key Concept</th>
+      <th>Application</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Contrast</strong></td>
+      <td>コントラスト</td>
+      <td>Make different elements look different</td>
+      <td>Size, color, weight variations for hierarchy</td>
+    </tr>
+    <tr>
+      <td><strong>Repetition</strong></td>
+      <td>反復</td>
+      <td>Repeat visual elements for consistency</td>
+      <td>Consistent colors, fonts, spacing throughout</td>
+    </tr>
+    <tr>
+      <td><strong>Alignment</strong></td>
+      <td>整列</td>
+      <td>Connect elements through visual lines</td>
+      <td>Grid alignment, consistent margins</td>
+    </tr>
+    <tr>
+      <td><strong>Proximity</strong></td>
+      <td>近接</td>
+      <td>Group related items together</td>
+      <td>Reduce space between related elements</td>
+    </tr>
+  </tbody>
+</table>
+
+### Design Quality Checklist
+
+**Before shipping any layout, verify:**
+
+- Proximity — Are related elements grouped together?
+- Alignment — Do elements align to a consistent grid?
+- Repetition — Are styles consistent throughout?
+- Contrast — Is hierarchy clear through size/color differences?
+- Responsiveness — Does it work across all breakpoints?
+- Accessibility — Is it usable with keyboard/screen reader?
+
+---
+
+## Further Learning Resources
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 2 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="primary">MUI Documentation</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Official MUI layout component guides and API references.
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="secondary">CSS-Tricks Grid Guide</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Comprehensive CSS Grid visual guide with examples.
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="info.main">Flexbox Froggy</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Interactive game to learn CSS Flexbox properties.
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+<Alert severity="info" sx={{ mt: 4 }}>
+  <Typography variant="body2">
+    <strong>Pro Tip:</strong> Use the theme toolbar above to switch between light and dark modes.
+    All layout components adapt their appearance while maintaining the same structural patterns.
+  </Typography>
+</Alert>
