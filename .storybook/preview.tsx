@@ -21,6 +21,7 @@ const preview: Preview = {
     docs: {
       theme: muiBrandTheme,
       autodocs: true,
+      codePanel: true, // Show source code panel on Canvas (story) pages
       canvas: {
         sourceState: 'hidden',
       },
