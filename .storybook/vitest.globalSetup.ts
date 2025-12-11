@@ -15,7 +15,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 export default function globalSetup() {
   const coverageTmpDir = path.join(
     dirname,
-    '../node_modules/.cache/storybook/default/coverage/.tmp'
+    '../node_modules/.cache/storybook/default/coverage/.tmp',
   )
 
   // Create the directory synchronously to ensure it exists before any tests run
@@ -29,7 +29,7 @@ export default function globalSetup() {
   fs.promises.writeFile = async function patchedWriteFile(
     filePath: fs.PathLike,
     data: string | Uint8Array,
-    options?: fs.WriteFileOptions
+    options?: fs.WriteFileOptions,
   ): Promise<void> {
     const filePathStr = filePath.toString()
 

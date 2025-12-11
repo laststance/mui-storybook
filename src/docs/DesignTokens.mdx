@@ -1,469 +1,425 @@
-import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks'
-import { designToken } from '../designToken'
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks'
+import { Box, Typography, Divider, Alert, Chip, Paper } from '@mui/material'
+import ThemeExplorer from '../components/DesignTokens/ThemeExplorer'
+import PaletteVisualizer from '../components/DesignTokens/PaletteVisualizer'
+import TypographyShowcase from '../components/DesignTokens/TypographyShowcase'
+import SpacingVisualizer from '../components/DesignTokens/SpacingVisualizer'
+import BreakpointsDemo from '../components/DesignTokens/BreakpointsDemo'
+import ShadowsElevation from '../components/DesignTokens/ShadowsElevation'
+import ZIndexVisualizer from '../components/DesignTokens/ZIndexVisualizer'
+import TransitionsDemo from '../components/DesignTokens/TransitionsDemo'
 
 <Meta title="Design System/Design Tokens" />
-{/* Updated to appear under Design System category in sidebar */}
 
 # Design Tokens
 
-Design tokens are the visual design atoms of the design system — specifically, they are named entities that store visual design attributes. This documentation covers all the design tokens used in this MUI-based design system.
+<Alert severity="info" sx={{ mb: 4 }}>
+  <Typography variant="body2">
+    <strong>Interactive Documentation</strong> — This page provides live, interactive visualizations
+    of all MUI theme tokens. Switch between light/dark themes using the toolbar to see how tokens adapt.
+  </Typography>
+</Alert>
 
-## Overview
-
-Design tokens provide a single source of truth for design decisions. They enable:
-- **Consistency** across all components
-- **Scalability** as the design system grows
-- **Maintainability** through centralized updates
-- **Theme switching** support (light/dark modes)
-
----
-
-## Color Palette
-
-### Primary Colors
-
-The primary color palette is used for main interactive elements like buttons, links, and active states.
-
-<ColorPalette>
-  <ColorItem
-    title="Primary"
-    subtitle="theme.palette.primary"
-    colors={{
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
-      contrastText: '#fff',
-    }}
-  />
-</ColorPalette>
-
-### Secondary Colors
-
-Secondary colors complement the primary palette and provide visual hierarchy.
-
-<ColorPalette>
-  <ColorItem
-    title="Secondary"
-    subtitle="theme.palette.secondary"
-    colors={{
-      main: '#9c27b0',
-      light: '#ba68c8',
-      dark: '#7b1fa2',
-      contrastText: '#fff',
-    }}
-  />
-</ColorPalette>
-
-### Tertiary Colors
-
-Custom tertiary palette for additional color variety.
-
-<ColorPalette>
-  <ColorItem
-    title="Tertiary"
-    subtitle="theme.palette.tertiary"
-    colors={{
-      main: '#2e7d32',
-      light: '#4caf50',
-      dark: '#1b5e20',
-      contrastText: '#fff',
-    }}
-  />
-</ColorPalette>
-
-### Semantic Colors
-
-Semantic colors convey meaning and status.
-
-<ColorPalette>
-  <ColorItem
-    title="Error"
-    subtitle="theme.palette.error"
-    colors={{
-      main: '#d32f2f',
-      light: '#ef5350',
-      dark: '#c62828',
-    }}
-  />
-  <ColorItem
-    title="Warning"
-    subtitle="theme.palette.warning"
-    colors={{
-      main: '#ed6c02',
-      light: '#ff9800',
-      dark: '#e65100',
-    }}
-  />
-  <ColorItem
-    title="Info"
-    subtitle="theme.palette.info"
-    colors={{
-      main: '#0288d1',
-      light: '#03a9f4',
-      dark: '#01579b',
-    }}
-  />
-  <ColorItem
-    title="Success"
-    subtitle="theme.palette.success"
-    colors={{
-      main: '#2e7d32',
-      light: '#4caf50',
-      dark: '#1b5e20',
-    }}
-  />
-</ColorPalette>
-
-### Grey Scale
-
-The grey scale provides neutral tones for backgrounds, borders, and text.
-
-<ColorPalette>
-  <ColorItem
-    title="Grey"
-    subtitle="theme.palette.grey"
-    colors={{
-      50: '#fafafa',
-      100: '#f5f5f5',
-      200: '#eeeeee',
-      300: '#e0e0e0',
-      400: '#bdbdbd',
-      500: '#9e9e9e',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
-    }}
-  />
-</ColorPalette>
-
-### Text Colors
-
-<ColorPalette>
-  <ColorItem
-    title="Text"
-    subtitle="theme.palette.text"
-    colors={{
-      primary: 'rgba(0, 0, 0, 0.87)',
-      secondary: 'rgba(0, 0, 0, 0.6)',
-      disabled: 'rgba(0, 0, 0, 0.38)',
-    }}
-  />
-</ColorPalette>
-
-### Background Colors
-
-<ColorPalette>
-  <ColorItem
-    title="Background"
-    subtitle="theme.palette.background"
-    colors={{
-      default: '#fff',
-      paper: '#fff',
-    }}
-  />
-</ColorPalette>
+Design tokens are the visual design atoms of the design system — specifically, they are named entities
+that store visual design attributes. They enable **consistency**, **scalability**, **maintainability**,
+and **theme switching** across all components.
 
 ---
 
-## Typography
+## 🎨 Theme Explorer
 
-### Font Family
-
-The default font stack uses Roboto with fallbacks:
-
-```
-"Roboto", "Helvetica", "Arial", sans-serif
-```
-
-### Type Scale
-
-<table>
-  <thead>
-    <tr>
-      <th>Variant</th>
-      <th>Font Size</th>
-      <th>Line Height</th>
-      <th>Letter Spacing</th>
-      <th>Weight</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>h1</td><td>6rem (96px)</td><td>1.167</td><td>-0.01562em</td><td>300</td></tr>
-    <tr><td>h2</td><td>3.75rem (60px)</td><td>1.2</td><td>-0.00833em</td><td>300</td></tr>
-    <tr><td>h3</td><td>3rem (48px)</td><td>1.167</td><td>0em</td><td>400</td></tr>
-    <tr><td>h4</td><td>2.125rem (34px)</td><td>1.235</td><td>0.00735em</td><td>400</td></tr>
-    <tr><td>h5</td><td>1.5rem (24px)</td><td>1.334</td><td>0em</td><td>400</td></tr>
-    <tr><td>h6</td><td>1.25rem (20px)</td><td>1.6</td><td>0.0075em</td><td>500</td></tr>
-    <tr><td>subtitle1</td><td>1rem (16px)</td><td>1.75</td><td>0.00938em</td><td>400</td></tr>
-    <tr><td>subtitle2</td><td>0.875rem (14px)</td><td>1.57</td><td>0.00714em</td><td>500</td></tr>
-    <tr><td>body1</td><td>1rem (16px)</td><td>1.5</td><td>0.00938em</td><td>400</td></tr>
-    <tr><td>body2</td><td>0.875rem (14px)</td><td>1.43</td><td>0.01071em</td><td>400</td></tr>
-    <tr><td>button</td><td>0.875rem (14px)</td><td>1.75</td><td>0.02857em</td><td>500</td></tr>
-    <tr><td>caption</td><td>0.75rem (12px)</td><td>1.66</td><td>0.03333em</td><td>400</td></tr>
-    <tr><td>overline</td><td>0.75rem (12px)</td><td>2.66</td><td>0.08333em</td><td>400</td></tr>
-  </tbody>
-</table>
-
-### Font Weights
-
-<table>
-  <thead>
-    <tr>
-      <th>Token</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>fontWeightLight</code></td><td>300</td></tr>
-    <tr><td><code>fontWeightRegular</code></td><td>400</td></tr>
-    <tr><td><code>fontWeightMedium</code></td><td>500</td></tr>
-    <tr><td><code>fontWeightBold</code></td><td>700</td></tr>
-  </tbody>
-</table>
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Interactive Theme Object Viewer
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Explore the complete MUI theme object. Click nodes to expand/collapse. Color values display inline swatches.
+    Use "Expand All" to see the full structure.
+  </Typography>
+  <ThemeExplorer defaultExpandedDepth={1} showSearch={true} showControls={true} maxHeight="500px" />
+</Paper>
 
 ---
 
-## Spacing
+## 🎨 Color Palette
 
-The spacing system uses an 8px base unit. All spacing values are multiples of this base.
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Complete Color System
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    All palette tokens with WCAG contrast ratio badges. Click any color to copy its value.
+    Semantic colors (primary, secondary, etc.) show main/light/dark/contrastText variants.
+  </Typography>
+  <PaletteVisualizer />
+</Paper>
 
-<table>
-  <thead>
-    <tr>
-      <th>Factor</th>
-      <th>Value</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>0</td><td>0px</td><td>No spacing</td></tr>
-    <tr><td>1</td><td>8px</td><td>Extra small gaps</td></tr>
-    <tr><td>2</td><td>16px</td><td>Small gaps, default padding</td></tr>
-    <tr><td>3</td><td>24px</td><td>Medium gaps</td></tr>
-    <tr><td>4</td><td>32px</td><td>Large gaps</td></tr>
-    <tr><td>5</td><td>40px</td><td>Extra large gaps</td></tr>
-    <tr><td>6</td><td>48px</td><td>Section spacing</td></tr>
-    <tr><td>7</td><td>56px</td><td>Large section spacing</td></tr>
-    <tr><td>8</td><td>64px</td><td>Major section breaks</td></tr>
-  </tbody>
-</table>
+### Palette Structure
 
-### Usage
-
-```tsx
-// Using spacing function
-<Box sx={{ p: 2 }} />  // padding: 16px
-<Box sx={{ m: 3 }} />  // margin: 24px
-<Box sx={{ gap: 1 }} /> // gap: 8px
-
-// Custom spacing
-<Box sx={{ p: theme => theme.spacing(2) }} /> // 16px
-```
-
----
-
-## Breakpoints
-
-Responsive breakpoints for adaptive layouts:
-
-<table>
-  <thead>
-    <tr>
-      <th>Breakpoint</th>
-      <th>Value</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>xs</td><td>0px</td><td>Extra small devices (phones)</td></tr>
-    <tr><td>sm</td><td>600px</td><td>Small devices (tablets portrait)</td></tr>
-    <tr><td>md</td><td>900px</td><td>Medium devices (tablets landscape)</td></tr>
-    <tr><td>lg</td><td>1200px</td><td>Large devices (desktops)</td></tr>
-    <tr><td>xl</td><td>1536px</td><td>Extra large devices (large desktops)</td></tr>
-  </tbody>
-</table>
-
-### Usage
-
-```tsx
-// Responsive styling
-<Box
-  sx={{
-    width: {
-      xs: '100%',
-      sm: '50%',
-      md: '33%',
-    }
-  }}
-/>
-
-// Media query helpers
-theme.breakpoints.up('md')    // @media (min-width: 900px)
-theme.breakpoints.down('sm')  // @media (max-width: 599.95px)
-theme.breakpoints.between('sm', 'lg')
-```
-
----
-
-## Shape
-
-Border radius tokens for consistent rounded corners:
-
-<table>
-  <thead>
-    <tr>
-      <th>Token</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>borderRadius</code></td><td>4px</td></tr>
-  </tbody>
-</table>
-
-### Recommended Usage
-
-<table>
-  <thead>
-    <tr>
-      <th>Element</th>
-      <th>Border Radius</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Buttons</td><td>4px (default)</td></tr>
-    <tr><td>Cards</td><td>4px or 8px</td></tr>
-    <tr><td>Dialogs</td><td>4px</td></tr>
-    <tr><td>Chips</td><td>Full (pill shape)</td></tr>
-    <tr><td>Avatars</td><td>Full (circle)</td></tr>
-  </tbody>
-</table>
-
----
-
-## Shadows (Elevation)
-
-MUI provides 25 elevation levels (0-24). Key levels:
-
-<table>
-  <thead>
-    <tr>
-      <th>Level</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>0</td><td>No shadow (flat)</td></tr>
-    <tr><td>1</td><td>Cards at rest</td></tr>
-    <tr><td>2</td><td>Raised buttons</td></tr>
-    <tr><td>4</td><td>Floating action buttons</td></tr>
-    <tr><td>6</td><td>Snackbar</td></tr>
-    <tr><td>8</td><td>Dialogs, pickers</td></tr>
-    <tr><td>16</td><td>Navigation drawer</td></tr>
-    <tr><td>24</td><td>Modals</td></tr>
-  </tbody>
-</table>
-
----
-
-## Z-Index
-
-Layer ordering tokens:
-
-<table>
-  <thead>
-    <tr>
-      <th>Token</th>
-      <th>Value</th>
-      <th>Element</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>mobileStepper</code></td><td>1000</td><td>Mobile stepper</td></tr>
-    <tr><td><code>speedDial</code></td><td>1050</td><td>Speed dial</td></tr>
-    <tr><td><code>appBar</code></td><td>1100</td><td>App bar</td></tr>
-    <tr><td><code>drawer</code></td><td>1200</td><td>Drawer</td></tr>
-    <tr><td><code>modal</code></td><td>1300</td><td>Modal</td></tr>
-    <tr><td><code>snackbar</code></td><td>1400</td><td>Snackbar</td></tr>
-    <tr><td><code>tooltip</code></td><td>1500</td><td>Tooltip</td></tr>
-  </tbody>
-</table>
-
----
-
-## Transitions
-
-Animation easing and duration tokens:
-
-### Easing Functions
-
-<table>
-  <thead>
-    <tr>
-      <th>Token</th>
-      <th>Value</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>easeInOut</code></td><td>cubic-bezier(0.4, 0, 0.2, 1)</td><td>Standard</td></tr>
-    <tr><td><code>easeOut</code></td><td>cubic-bezier(0.0, 0, 0.2, 1)</td><td>Enter</td></tr>
-    <tr><td><code>easeIn</code></td><td>cubic-bezier(0.4, 0, 1, 1)</td><td>Exit</td></tr>
-    <tr><td><code>sharp</code></td><td>cubic-bezier(0.4, 0, 0.6, 1)</td><td>Sharp</td></tr>
-  </tbody>
-</table>
-
-### Duration
-
-<table>
-  <thead>
-    <tr>
-      <th>Token</th>
-      <th>Value</th>
-      <th>Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>shortest</code></td><td>150ms</td><td>Micro-interactions</td></tr>
-    <tr><td><code>shorter</code></td><td>200ms</td><td>Quick feedback</td></tr>
-    <tr><td><code>short</code></td><td>250ms</td><td>Normal</td></tr>
-    <tr><td><code>standard</code></td><td>300ms</td><td>Default</td></tr>
-    <tr><td><code>complex</code></td><td>375ms</td><td>Complex animations</td></tr>
-    <tr><td><code>enteringScreen</code></td><td>225ms</td><td>Screen enter</td></tr>
-    <tr><td><code>leavingScreen</code></td><td>195ms</td><td>Screen exit</td></tr>
-  </tbody>
-</table>
-
----
-
-## Component Defaults
-
-Custom component default props:
-
-```tsx
-// MuiCard default elevation
-MuiCard: {
-  defaultProps: {
-    elevation: 0,
-  },
+```typescript
+theme.palette = {
+  mode: 'light' | 'dark',
+  primary: { main, light, dark, contrastText },
+  secondary: { main, light, dark, contrastText },
+  error: { main, light, dark, contrastText },
+  warning: { main, light, dark, contrastText },
+  info: { main, light, dark, contrastText },
+  success: { main, light, dark, contrastText },
+  grey: { 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A700 },
+  text: { primary, secondary, disabled },
+  background: { default, paper },
+  action: { active, hover, selected, disabled, disabledBackground, focus },
+  divider: string,
+  common: { black, white },
 }
 ```
 
 ---
 
-## Using Design Tokens
+## 📝 Typography
 
-### Importing
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Typography Scale & Font Weights
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Live preview of all typography variants with CSS properties. Edit the sample text to see changes across all variants.
+  </Typography>
+  <TypographyShowcase showEditor={true} showFontWeights={true} showFontFamily={true} />
+</Paper>
 
-```tsx
-import { designToken, DesignTokenProvider } from '../designToken'
-import { useTheme } from '@mui/material/styles'
+### Typography Structure
+
+```typescript
+theme.typography = {
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontSize: 14,
+  fontWeightLight: 300,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+  h1: { fontSize, fontWeight, lineHeight, letterSpacing },
+  h2: { ... },
+  h3: { ... },
+  h4: { ... },
+  h5: { ... },
+  h6: { ... },
+  subtitle1: { ... },
+  subtitle2: { ... },
+  body1: { ... },
+  body2: { ... },
+  button: { ... },
+  caption: { ... },
+  overline: { ... },
+}
 ```
 
-### In Components
+---
 
-```tsx
+## 📏 Spacing
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    8px Grid System
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Visual scale showing spacing factors (0-12). Use the interactive demo to see spacing applied to elements.
+  </Typography>
+  <SpacingVisualizer minFactor={0} maxFactor={12} showScale={true} showInteractive={true} showExamples={true} />
+</Paper>
+
+### Spacing Usage
+
+```typescript
+// All spacing values are multiples of 8px
+theme.spacing(1)  // 8px
+theme.spacing(2)  // 16px
+theme.spacing(3)  // 24px
+
+// sx prop shortcuts
+<Box sx={{ p: 2 }} />       // padding: 16px
+<Box sx={{ m: 3 }} />       // margin: 24px
+<Box sx={{ gap: 1 }} />     // gap: 8px
+<Box sx={{ mt: 2, mb: 4 }} /> // marginTop: 16px, marginBottom: 32px
+```
+
+---
+
+## 📱 Breakpoints
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Responsive Breakpoints
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Current viewport indicator with all breakpoint ranges. Resize your browser to see the active breakpoint change.
+  </Typography>
+  <BreakpointsDemo />
+</Paper>
+
+### Breakpoint Values
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Key</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>xs</code></td>
+        <td style={{ padding: '12px 16px' }}>0px</td>
+        <td style={{ padding: '12px 16px' }}>Extra small (phones)</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>sm</code></td>
+        <td style={{ padding: '12px 16px' }}>600px</td>
+        <td style={{ padding: '12px 16px' }}>Small (tablets portrait)</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>md</code></td>
+        <td style={{ padding: '12px 16px' }}>900px</td>
+        <td style={{ padding: '12px 16px' }}>Medium (tablets landscape)</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>lg</code></td>
+        <td style={{ padding: '12px 16px' }}>1200px</td>
+        <td style={{ padding: '12px 16px' }}>Large (desktops)</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '12px 16px' }}><code>xl</code></td>
+        <td style={{ padding: '12px 16px' }}>1536px</td>
+        <td style={{ padding: '12px 16px' }}>Extra large (large desktops)</td>
+      </tr>
+    </tbody>
+  </table>
+</Box>
+
+### Breakpoint Helpers
+
+```typescript
+// Media query helpers
+theme.breakpoints.up('md')      // @media (min-width: 900px)
+theme.breakpoints.down('sm')    // @media (max-width: 599.95px)
+theme.breakpoints.only('md')    // @media (min-width: 900px) and (max-width: 1199.95px)
+theme.breakpoints.between('sm', 'lg')  // @media (min-width: 600px) and (max-width: 1199.95px)
+
+// Responsive sx values
+<Box sx={{
+  width: { xs: '100%', sm: '50%', md: '33%' },
+  display: { xs: 'block', md: 'flex' },
+}} />
+```
+
+---
+
+## 🌓 Shadows (Elevation)
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    25 Elevation Levels (0-24)
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Hover over each elevation box to see the CSS box-shadow value. Use the interactive slider to preview any elevation level.
+  </Typography>
+  <ShadowsElevation showInteractive={true} showCssValues={true} columns={5} />
+</Paper>
+
+### Elevation Guidelines
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Level</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>0</td><td style={{ padding: '12px 16px' }}>Flat surfaces (no shadow)</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>1</td><td style={{ padding: '12px 16px' }}>Cards at rest, Switch</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>2</td><td style={{ padding: '12px 16px' }}>Raised buttons, Search bar</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>4</td><td style={{ padding: '12px 16px' }}>App bar, FAB at rest</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>6</td><td style={{ padding: '12px 16px' }}>Snackbar, FAB (pressed)</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>8</td><td style={{ padding: '12px 16px' }}>Bottom navigation, Menu, Picker dialogs</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>16</td><td style={{ padding: '12px 16px' }}>Navigation drawer, Modal side sheet</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}>24</td><td style={{ padding: '12px 16px' }}>Dialog, Modal bottom sheet</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+---
+
+## 📚 Z-Index
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Stacking Context Layers
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Interactive visualization of MUI z-index layers. Click layers to highlight them. Switch between stacked, 3D, and chart views.
+  </Typography>
+  <ZIndexVisualizer viewMode="stacked" showComponents={true} interactive={true} />
+</Paper>
+
+### Z-Index Values
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Components</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>mobileStepper</code></td><td style={{ padding: '12px 16px' }}>1000</td><td style={{ padding: '12px 16px' }}>MobileStepper</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>fab</code></td><td style={{ padding: '12px 16px' }}>1050</td><td style={{ padding: '12px 16px' }}>Fab, SpeedDial</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>speedDial</code></td><td style={{ padding: '12px 16px' }}>1050</td><td style={{ padding: '12px 16px' }}>SpeedDial</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>appBar</code></td><td style={{ padding: '12px 16px' }}>1100</td><td style={{ padding: '12px 16px' }}>AppBar</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>drawer</code></td><td style={{ padding: '12px 16px' }}>1200</td><td style={{ padding: '12px 16px' }}>Drawer</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>modal</code></td><td style={{ padding: '12px 16px' }}>1300</td><td style={{ padding: '12px 16px' }}>Modal, Dialog, Backdrop</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>snackbar</code></td><td style={{ padding: '12px 16px' }}>1400</td><td style={{ padding: '12px 16px' }}>Snackbar</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>tooltip</code></td><td style={{ padding: '12px 16px' }}>1500</td><td style={{ padding: '12px 16px' }}>Tooltip</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+```typescript
+// Accessing z-index values
+theme.zIndex.modal     // 1300
+theme.zIndex.tooltip   // 1500
+theme.zIndex.drawer    // 1200
+```
+
+---
+
+## ⚡ Transitions
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    Animation System
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Duration tokens with visual timeline bars. Easing curves with bezier visualization.
+    Use the playground to create custom transition combinations.
+  </Typography>
+  <TransitionsDemo />
+</Paper>
+
+### Duration Tokens
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>shortest</code></td><td style={{ padding: '12px 16px' }}>150ms</td><td style={{ padding: '12px 16px' }}>Micro-interactions</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>shorter</code></td><td style={{ padding: '12px 16px' }}>200ms</td><td style={{ padding: '12px 16px' }}>Quick feedback</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>short</code></td><td style={{ padding: '12px 16px' }}>250ms</td><td style={{ padding: '12px 16px' }}>Normal</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>standard</code></td><td style={{ padding: '12px 16px' }}>300ms</td><td style={{ padding: '12px 16px' }}>Default</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>complex</code></td><td style={{ padding: '12px 16px' }}>375ms</td><td style={{ padding: '12px 16px' }}>Complex animations</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>enteringScreen</code></td><td style={{ padding: '12px 16px' }}>225ms</td><td style={{ padding: '12px 16px' }}>Screen enter</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>leavingScreen</code></td><td style={{ padding: '12px 16px' }}>195ms</td><td style={{ padding: '12px 16px' }}>Screen exit</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+### Easing Curves
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeInOut</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td><td style={{ padding: '12px 16px' }}>Standard</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeOut</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.0, 0, 0.2, 1)</code></td><td style={{ padding: '12px 16px' }}>Enter</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeIn</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 1, 1)</code></td><td style={{ padding: '12px 16px' }}>Exit</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>sharp</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 0.6, 1)</code></td><td style={{ padding: '12px 16px' }}>Sharp</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+### Creating Transitions
+
+```typescript
+// Using theme.transitions.create()
+const styles = {
+  transition: theme.transitions.create(['background-color', 'transform'], {
+    duration: theme.transitions.duration.standard,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+}
+
+// Result: "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1)"
+```
+
+---
+
+## 🔧 Shape
+
+```typescript
+theme.shape = {
+  borderRadius: 4,  // Default border radius in pixels
+}
+```
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid', borderColor: 'divider' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Element</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>Recommended Border Radius</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>Buttons</td>
+        <td style={{ padding: '12px 16px' }}>4px (default)</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>Cards</td>
+        <td style={{ padding: '12px 16px' }}>4px or 8px</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>Dialogs</td>
+        <td style={{ padding: '12px 16px' }}>4px</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>Chips</td>
+        <td style={{ padding: '12px 16px' }}>Full (pill shape)</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '12px 16px' }}>Avatars</td>
+        <td style={{ padding: '12px 16px' }}>Full (circle)</td>
+      </tr>
+    </tbody>
+  </table>
+</Box>
+
+---
+
+## 📖 Using Design Tokens
+
+### Importing Theme
+
+```typescript
+import { useTheme } from '@mui/material/styles'
+
 function MyComponent() {
   const theme = useTheme()
 
@@ -473,6 +429,8 @@ function MyComponent() {
         color: theme.palette.primary.main,
         p: theme.spacing(2),
         borderRadius: theme.shape.borderRadius,
+        boxShadow: theme.shadows[4],
+        transition: theme.transitions.create('background-color'),
       }}
     >
       Content
@@ -481,12 +439,14 @@ function MyComponent() {
 }
 ```
 
-### With sx Prop
+### sx Prop Shortcuts
 
-```tsx
+```typescript
+// Direct access via sx prop
 <Button
   sx={{
     bgcolor: 'primary.main',
+    color: 'primary.contrastText',
     '&:hover': {
       bgcolor: 'primary.dark',
     },
@@ -495,3 +455,12 @@ function MyComponent() {
   Click me
 </Button>
 ```
+
+---
+
+<Alert severity="success" sx={{ mt: 4 }}>
+  <Typography variant="body2">
+    <strong>💡 Pro Tip:</strong> Use the theme toolbar (top-right) to switch between light and dark modes.
+    All visualizations on this page will update automatically to show the current theme's token values.
+  </Typography>
+</Alert>

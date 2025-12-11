@@ -17,7 +17,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
  */
 const coverageTmpDir = path.join(
   dirname,
-  'node_modules/.cache/storybook/default/coverage/.tmp'
+  'node_modules/.cache/storybook/default/coverage/.tmp',
 )
 if (!fs.existsSync(coverageTmpDir)) {
   fs.mkdirSync(coverageTmpDir, { recursive: true })
