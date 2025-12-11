@@ -54,8 +54,16 @@ const preview: Preview = {
       },
     },
     layout: 'centered',
+    // ════════════════════════════════════════════════════════════
+    // Backgrounds addon - completely disabled
+    // MUI ThemeProvider handles background colors via theme switching
+    // ════════════════════════════════════════════════════════════
     backgrounds: {
-      disabled: true,
+      disable: true, // Disable the feature (correct v10 API)
+      options: {}, // Empty options = hide toolbar dropdown
+      grid: {
+        disable: true, // Also disable the grid feature
+      },
     },
     // ════════════════════════════════════════════════════════════
     // Controls configuration
