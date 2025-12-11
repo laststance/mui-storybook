@@ -18,8 +18,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "resolvePackageJsonExports": true
   },
-  "include": ["src"],
+  "include": ["src", ".storybook", "*.config.ts", "*.config.js"],
   "exclude": ["node_modules", "generators"]
 }

@@ -55,7 +55,7 @@ const preview: Preview = {
     },
     layout: 'centered',
     backgrounds: {
-      disable: true,
+      disabled: true,
     },
     // ════════════════════════════════════════════════════════════
     // Controls configuration

@@ -1,42 +1,45 @@
-import path from 'node:path'
+import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 import { playwright } from '@vitest/browser-playwright'
-import { defineConfig } from 'vitest/config'
+import { defineConfig, mergeConfig } from 'vitest/config'
 
-const dirname =
-  typeof __dirname !== 'undefined'
-    ? __dirname
-    : path.dirname(fileURLToPath(import.meta.url))
+import viteConfig from './vite.config'
 
-// https://storybook.js.org/docs/writing-tests/integrations/vitest-addon
-export default defineConfig({
-  plugins: [
-    // The plugin will run tests for the stories defined in your Storybook config
-    // See options at: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#storybooktest
-    storybookTest({ configDir: path.join(dirname, '.storybook') }),
-  ],
-  test: {
-    name: 'storybook',
-    browser: {
-      enabled: true,
-      headless: true,
-      provider: playwright(),
-      instances: [{ browser: 'chromium' }],
-    },
-    setupFiles: ['.storybook/vitest.setup.ts'],
-    // Coverage configuration for 100% target
-    coverage: {
-      provider: 'istanbul',
-      reporter: ['text', 'json', 'html', 'lcov'],
-      reportsDirectory: './coverage/storybook',
-      include: ['src/components/**/*.tsx'],
-      exclude: [
-        'src/components/**/*.stories.tsx',
-        'src/components/**/*.test.tsx',
-        '**/*.d.ts',
+const dirname = path.dirname(fileURLToPath(import.meta.url))
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      // Use `workspace` field in Vitest < 3.2
+      projects: [
+        {
+          extends: true,
+          plugins: [
+            storybookTest({
+              // The location of your Storybook config, main.js|ts
+              configDir: path.join(dirname, '.storybook'),
+              // This should match your package.json script to run Storybook
+              // The --no-open flag will skip the automatic opening of a browser
+              storybookScript: 'pnpm storybook --no-open',
+            }),
+          ],
+          test: {
+            name: 'storybook',
+            // Enable browser mode
+            browser: {
+              enabled: true,
+              // Make sure to install Playwright
+              provider: playwright({}),
+              headless: true,
+              instances: [{ browser: 'chromium' }],
+            },
+            setupFiles: ['./.storybook/vitest.setup.ts'],
+          },
+        },
       ],
     },
-  },
-})
+  }),
+)

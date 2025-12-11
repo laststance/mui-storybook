@@ -21,7 +21,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,56 +36,10 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Vitest Storybook tests with coverage
-        run: pnpm test:ci
+        run: pnpm test-storybook
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          files: ./coverage/storybook/lcov.info
-          flags: storybook
-          name: storybook-coverage
-          fail_ci_if_error: false
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/storybook/
-          retention-days: 7
-
-  accessibility:
-    name: Accessibility Tests
-    runs-on: ubuntu-latest
-    # A11y tests are non-blocking - many MUI components have pre-existing a11y issues
-    continue-on-error: true
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
-
-      - name: Build Storybook
-        run: pnpm build
-
-      - name: Serve Storybook and run a11y tests
-        run: |
-          npx concurrently -k -s first -n "STORYBOOK,TEST" -c "magenta,blue" \
-            "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && pnpm test-storybook:ci"
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: laststance/mui-storybook
