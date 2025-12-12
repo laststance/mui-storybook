@@ -1,0 +1,224 @@
+<style>
+/* ════════════════════════════════════════════════════════════════════════════
+ * Storybook Manager UI - White Text Fix for Sky Theme
+ *
+ * Problem: Sky blue buttons (#0ea5e9) have dark text, creating poor contrast.
+ * Solution: Override text color to white (#ffffff) for WCAG compliance.
+ *
+ * Target Elements:
+ * 1. Addon action buttons (Update story, Create new story, Reset)
+ * 2. Boolean toggle labels (False/True)
+ * 3. Completion buttons (Mark as complete)
+ * ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 1. Addon Action Buttons - Primary blue buttons in toolbars
+ * Target: "Update story", "Create new story", "Reset" buttons
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Buttons with blue background in manager UI */
+button[style*="background"],
+div[role="toolbar"] button,
+[data-testid*="button"],
+.css-1rp1h6k, /* Common Storybook button class */
+.css-1rg1ldq,
+.css-1g7e8xl {
+  color: #ffffff !important;
+}
+
+/* Ensure all buttons with sky-blue background have white text */
+button {
+  &[style*="#0ea5e9"],
+  &[style*="rgb(14, 165, 233)"],
+  &[style*="sky"] {
+    color: #ffffff !important;
+  }
+}
+
+/* Addon-specific button styling */
+[id*="addon"] button,
+[class*="addon"] button {
+  &:not([aria-disabled="true"]) {
+    color: inherit;
+  }
+}
+
+/* Primary action buttons - ensure white text on blue backgrounds */
+button[type="submit"],
+button[class*="primary"],
+button[class*="action"] {
+  color: #ffffff !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 2. Boolean Toggle - False/True labels
+ * Target: Toggle switch labels in controls panel
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Boolean toggle container */
+[data-testid="toggle"],
+label[class*="toggle"],
+div[class*="toggle"] {
+  /* Left side (False) - selected state */
+  & span:first-child,
+  & label:first-child {
+    color: #ffffff !important;
+  }
+
+  /* Right side (True) - inactive state */
+  & span:last-child,
+  & label:last-child {
+    color: #0c4a6e !important; /* Dark for inactive */
+  }
+}
+
+/* Toggle with selected="false" */
+[aria-pressed="true"] span,
+[data-selected="true"] span,
+input:checked + span {
+  color: #ffffff !important;
+}
+
+/* Boolean toggle buttons - both False and True labels */
+[class*="BooleanControl"] span,
+[class*="boolean"] span,
+div[title="Change boolean value"] span {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+/* Segmented control / toggle group labels */
+[role="radiogroup"] label,
+[role="radiogroup"] span,
+button[role="radio"] {
+  color: #ffffff !important;
+}
+
+/* Override for unselected toggle option (right side) */
+[role="radio"][aria-checked="false"],
+button[role="radio"]:not([aria-pressed="true"]) {
+  color: #0c4a6e !important; /* Dark text for unselected */
+}
+
+/* Selected toggle option */
+[role="radio"][aria-checked="true"],
+button[role="radio"][aria-pressed="true"] {
+  color: #ffffff !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 3. Mark as Complete Button
+ * Target: Action button with checkmark icon
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Checkmark icon in buttons */
+button svg[class*="check"],
+button path[d*="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"],
+[class*="complete"] svg {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Complete/action button text */
+button[class*="complete"],
+button[class*="action"],
+button[class*="submit"] {
+  color: #ffffff !important;
+
+  /* Ensure child elements also white */
+  & * {
+    color: #ffffff !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 4. Generic Sky-Blue Background Elements
+ * Ensure all elements with sky-blue background have white text
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Any element with inline sky-blue background */
+[style*="background-color: rgb(14, 165, 233)"],
+[style*="background-color:#0ea5e9"],
+[style*="background: rgb(14, 165, 233)"],
+[style*="background:#0ea5e9"] {
+  color: #ffffff !important;
+
+  & * {
+    color: #ffffff !important;
+  }
+
+  & svg {
+    fill: #ffffff !important;
+  }
+}
+
+/* CSS variable-based backgrounds */
+:root {
+  --sb-manager-button-text: #ffffff;
+  --sb-manager-toggle-text-selected: #ffffff;
+  --sb-manager-toggle-text-unselected: #0c4a6e;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 5. Storybook Specific Component Overrides
+ * Target known Storybook addon class patterns
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Storybook addon buttons (MCP addon, interaction addon, etc.) */
+#storybook-panel-root button[class*="css-"],
+#storybook-explorer-menu button[class*="css-"] {
+  &[style*="background"] {
+    color: #ffffff !important;
+  }
+}
+
+/* Toolbar buttons with backgrounds */
+[role="main"] [role="toolbar"] button {
+  &:not(:disabled):not([aria-disabled="true"]) {
+    &[style*="background"] {
+      color: #ffffff !important;
+    }
+  }
+}
+
+/* Panel tab buttons */
+[role="tablist"] button[aria-selected="true"],
+[role="tablist"] [aria-selected="true"] {
+  color: #ffffff !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 6. SVG Icon Color Override
+ * Ensure icons in buttons are also white
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+button[style*="background"] svg,
+button[class*="primary"] svg,
+button[class*="action"] svg {
+  fill: currentColor !important;
+  color: #ffffff !important;
+}
+
+/* Checkmark icon specifically */
+svg[viewBox="0 0 24 24"] path,
+svg[viewBox="0 0 14 14"] path {
+  fill: currentColor !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * 7. Dark Mode Compatibility
+ * Ensure styles work correctly when dark theme is active
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  button[style*="background"] {
+    color: #ffffff !important;
+  }
+}
+
+/* Storybook dark theme class */
+.sb-dark-theme button[style*="background"],
+[data-theme="dark"] button[style*="background"] {
+  color: #ffffff !important;
+}
+</style>

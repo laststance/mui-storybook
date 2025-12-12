@@ -5,7 +5,7 @@ import muiBrandTheme from './MuiBrandTheme'
 addons.setConfig({
   isFullscreen: false,
   showNav: true,
-  showPanel: false,
+  showPanel: true,
   panelPosition: 'bottom',
   enableShortcuts: true,
   showToolbar: true,
