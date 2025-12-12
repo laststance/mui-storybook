@@ -28,3 +28,8 @@ yarn-error.log*
 
 # we use yarn
 package-lock.json
+
+# Playwright
+playwright-report/
+playwright-results/
+.playwright-mcp/
