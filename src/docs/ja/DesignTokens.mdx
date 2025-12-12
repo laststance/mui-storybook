@@ -1,0 +1,459 @@
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks'
+import { Box, Typography, Divider, Alert, Chip, Paper } from '@mui/material'
+import ThemeExplorer from '../../components/DesignTokens/ThemeExplorer'
+import PaletteVisualizer from '../../components/DesignTokens/PaletteVisualizer'
+import TypographyShowcase from '../../components/DesignTokens/TypographyShowcase'
+import SpacingVisualizer from '../../components/DesignTokens/SpacingVisualizer'
+import BreakpointsDemo from '../../components/DesignTokens/BreakpointsDemo'
+import ShadowsElevation from '../../components/DesignTokens/ShadowsElevation'
+import ZIndexVisualizer from '../../components/DesignTokens/ZIndexVisualizer'
+import TransitionsDemo from '../../components/DesignTokens/TransitionsDemo'
+
+<Meta title="デザインシステム/デザイントークン" />
+
+# デザイントークン
+
+<Alert severity="info" sx={{ mb: 4 }}>
+  <Typography variant="body2">
+    <strong>インタラクティブドキュメント</strong> — このページでは、すべてのMUIテーマトークンのライブでインタラクティブなビジュアライゼーションを提供します。ツールバーを使用してライト/ダークテーマを切り替えると、トークンがどのように適応するかを確認できます。
+  </Typography>
+</Alert>
+
+デザイントークンは、デザインシステムのビジュアルデザインの原子です。具体的には、ビジュアルデザイン属性を格納する名前付きエンティティです。デザイントークンにより、すべてのコンポーネント全体で**一貫性**、**スケーラビリティ**、**保守性**、および**テーマの切り替え**が可能になります。
+
+---
+
+## 🎨 テーマエクスプローラー
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    インタラクティブテーマオブジェクトビューアー
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    完全なMUIテーマオブジェクトを探索します。ノードをクリックして展開/折りたたみができます。カラー値はインラインスウォッチで表示されます。完全な構造を確認するには「すべて展開」を使用してください。
+  </Typography>
+  <ThemeExplorer defaultExpandedDepth={1} showSearch={true} showControls={true} maxHeight="500px" />
+</Paper>
+
+---
+
+## 🎨 カラーパレット
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    完全なカラーシステム
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    WCAGコントラスト比バッジ付きのすべてのパレットトークン。任意の色をクリックして値をコピーできます。セマンティックカラー（プライマリ、セカンダリなど）は、main/light/dark/contrastTextバリアントを表示します。
+  </Typography>
+  <PaletteVisualizer />
+</Paper>
+
+### パレット構造
+
+```typescript
+theme.palette = {
+  mode: 'light' | 'dark',
+  primary: { main, light, dark, contrastText },
+  secondary: { main, light, dark, contrastText },
+  error: { main, light, dark, contrastText },
+  warning: { main, light, dark, contrastText },
+  info: { main, light, dark, contrastText },
+  success: { main, light, dark, contrastText },
+  grey: { 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200, A400, A700 },
+  text: { primary, secondary, disabled },
+  background: { default, paper },
+  action: { active, hover, selected, disabled, disabledBackground, focus },
+  divider: string,
+  common: { black, white },
+}
+```
+
+---
+
+## 📝 タイポグラフィ
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    タイポグラフィスケールとフォントウェイト
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    CSSプロパティを持つすべてのタイポグラフィバリアントのライブプレビュー。サンプルテキストを編集して、すべてのバリアントでの変更を確認できます。
+  </Typography>
+  <TypographyShowcase showEditor={true} showFontWeights={true} showFontFamily={true} />
+</Paper>
+
+### タイポグラフィ構造
+
+```typescript
+theme.typography = {
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontSize: 14,
+  fontWeightLight: 300,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+  h1: { fontSize, fontWeight, lineHeight, letterSpacing },
+  h2: { ... },
+  h3: { ... },
+  h4: { ... },
+  h5: { ... },
+  h6: { ... },
+  subtitle1: { ... },
+  subtitle2: { ... },
+  body1: { ... },
+  body2: { ... },
+  button: { ... },
+  caption: { ... },
+  overline: { ... },
+}
+```
+
+---
+
+## 📏 スペーシング
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    8pxグリッドシステム
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    スペーシングファクター（0-12）を示すビジュアルスケール。インタラクティブデモを使用して、要素に適用されたスペーシングを確認できます。
+  </Typography>
+  <SpacingVisualizer minFactor={0} maxFactor={12} showScale={true} showInteractive={true} showExamples={true} />
+</Paper>
+
+### スペーシングの使用方法
+
+```typescript
+// すべてのスペーシング値は8pxの倍数です
+theme.spacing(1)  // 8px
+theme.spacing(2)  // 16px
+theme.spacing(3)  // 24px
+
+// sx propのショートカット
+<Box sx={{ p: 2 }} />       // padding: 16px
+<Box sx={{ m: 3 }} />       // margin: 24px
+<Box sx={{ gap: 1 }} />     // gap: 8px
+<Box sx={{ mt: 2, mb: 4 }} /> // marginTop: 16px, marginBottom: 32px
+```
+
+---
+
+## 📱 ブレークポイント
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    レスポンシブブレークポイント
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    すべてのブレークポイント範囲を持つ現在のビューポートインジケーター。ブラウザをリサイズして、アクティブなブレークポイントの変化を確認できます。
+  </Typography>
+  <BreakpointsDemo />
+</Paper>
+
+### ブレークポイントの値
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>キー</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>値</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>説明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>xs</code></td>
+        <td style={{ padding: '12px 16px' }}>0px</td>
+        <td style={{ padding: '12px 16px' }}>超小型（スマートフォン）</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>sm</code></td>
+        <td style={{ padding: '12px 16px' }}>600px</td>
+        <td style={{ padding: '12px 16px' }}>小型（タブレット縦向き）</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>md</code></td>
+        <td style={{ padding: '12px 16px' }}>900px</td>
+        <td style={{ padding: '12px 16px' }}>中型（タブレット横向き）</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}><code>lg</code></td>
+        <td style={{ padding: '12px 16px' }}>1200px</td>
+        <td style={{ padding: '12px 16px' }}>大型（デスクトップ）</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '12px 16px' }}><code>xl</code></td>
+        <td style={{ padding: '12px 16px' }}>1536px</td>
+        <td style={{ padding: '12px 16px' }}>超大型（大型デスクトップ）</td>
+      </tr>
+    </tbody>
+  </table>
+</Box>
+
+### ブレークポイントヘルパー
+
+```typescript
+// メディアクエリヘルパー
+theme.breakpoints.up('md')      // @media (min-width: 900px)
+theme.breakpoints.down('sm')    // @media (max-width: 599.95px)
+theme.breakpoints.only('md')    // @media (min-width: 900px) and (max-width: 1199.95px)
+theme.breakpoints.between('sm', 'lg')  // @media (min-width: 600px) and (max-width: 1199.95px)
+
+// レスポンシブsx値
+<Box sx={{
+  width: { xs: '100%', sm: '50%', md: '33%' },
+  display: { xs: 'block', md: 'flex' },
+}} />
+```
+
+---
+
+## 🌓 シャドウ（エレベーション）
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    25段階のエレベーションレベル（0-24）
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    各エレベーションボックスにホバーして、CSSのbox-shadow値を確認できます。インタラクティブスライダーを使用して、任意のエレベーションレベルをプレビューできます。
+  </Typography>
+  <ShadowsElevation showInteractive={true} showCssValues={true} columns={5} />
+</Paper>
+
+### エレベーションガイドライン
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>レベル</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>使用方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>0</td><td style={{ padding: '12px 16px' }}>フラットサーフェス（影なし）</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>1</td><td style={{ padding: '12px 16px' }}>静止時のカード、スイッチ</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>2</td><td style={{ padding: '12px 16px' }}>浮き上がったボタン、検索バー</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>4</td><td style={{ padding: '12px 16px' }}>アプリバー、静止時のFAB</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>6</td><td style={{ padding: '12px 16px' }}>スナックバー、押下時のFAB</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>8</td><td style={{ padding: '12px 16px' }}>ボトムナビゲーション、メニュー、ピッカーダイアログ</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}>16</td><td style={{ padding: '12px 16px' }}>ナビゲーションドロワー、モーダルサイドシート</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}>24</td><td style={{ padding: '12px 16px' }}>ダイアログ、モーダルボトムシート</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+---
+
+## 📚 Z-Index
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    スタッキングコンテキストレイヤー
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    MUI z-indexレイヤーのインタラクティブビジュアライゼーション。レイヤーをクリックしてハイライトできます。スタック、3D、チャートビューを切り替えられます。
+  </Typography>
+  <ZIndexVisualizer viewMode="stacked" showComponents={true} interactive={true} />
+</Paper>
+
+### Z-Indexの値
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>トークン</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>値</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>コンポーネント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>mobileStepper</code></td><td style={{ padding: '12px 16px' }}>1000</td><td style={{ padding: '12px 16px' }}>MobileStepper</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>fab</code></td><td style={{ padding: '12px 16px' }}>1050</td><td style={{ padding: '12px 16px' }}>Fab, SpeedDial</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>speedDial</code></td><td style={{ padding: '12px 16px' }}>1050</td><td style={{ padding: '12px 16px' }}>SpeedDial</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>appBar</code></td><td style={{ padding: '12px 16px' }}>1100</td><td style={{ padding: '12px 16px' }}>AppBar</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>drawer</code></td><td style={{ padding: '12px 16px' }}>1200</td><td style={{ padding: '12px 16px' }}>Drawer</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>modal</code></td><td style={{ padding: '12px 16px' }}>1300</td><td style={{ padding: '12px 16px' }}>Modal, Dialog, Backdrop</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>snackbar</code></td><td style={{ padding: '12px 16px' }}>1400</td><td style={{ padding: '12px 16px' }}>Snackbar</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>tooltip</code></td><td style={{ padding: '12px 16px' }}>1500</td><td style={{ padding: '12px 16px' }}>Tooltip</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+```typescript
+// z-index値へのアクセス
+theme.zIndex.modal     // 1300
+theme.zIndex.tooltip   // 1500
+theme.zIndex.drawer    // 1200
+```
+
+---
+
+## ⚡ トランジション
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+  <Typography variant="h6" gutterBottom>
+    アニメーションシステム
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    ビジュアルタイムラインバー付きのデュレーショントークン。ベジェビジュアライゼーション付きのイージングカーブ。プレイグラウンドを使用して、カスタムトランジションの組み合わせを作成できます。
+  </Typography>
+  <TransitionsDemo />
+</Paper>
+
+### デュレーショントークン
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>トークン</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>値</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>使用方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>shortest</code></td><td style={{ padding: '12px 16px' }}>150ms</td><td style={{ padding: '12px 16px' }}>マイクロインタラクション</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>shorter</code></td><td style={{ padding: '12px 16px' }}>200ms</td><td style={{ padding: '12px 16px' }}>クイックフィードバック</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>short</code></td><td style={{ padding: '12px 16px' }}>250ms</td><td style={{ padding: '12px 16px' }}>通常</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>standard</code></td><td style={{ padding: '12px 16px' }}>300ms</td><td style={{ padding: '12px 16px' }}>デフォルト</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>complex</code></td><td style={{ padding: '12px 16px' }}>375ms</td><td style={{ padding: '12px 16px' }}>複雑なアニメーション</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>enteringScreen</code></td><td style={{ padding: '12px 16px' }}>225ms</td><td style={{ padding: '12px 16px' }}>画面の進入</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>leavingScreen</code></td><td style={{ padding: '12px 16px' }}>195ms</td><td style={{ padding: '12px 16px' }}>画面の退出</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+### イージングカーブ
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #e0e0e0' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>トークン</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>値</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>使用方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeInOut</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td><td style={{ padding: '12px 16px' }}>標準</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeOut</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.0, 0, 0.2, 1)</code></td><td style={{ padding: '12px 16px' }}>進入</td></tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}><td style={{ padding: '12px 16px' }}><code>easeIn</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 1, 1)</code></td><td style={{ padding: '12px 16px' }}>退出</td></tr>
+      <tr><td style={{ padding: '12px 16px' }}><code>sharp</code></td><td style={{ padding: '12px 16px' }}><code>cubic-bezier(0.4, 0, 0.6, 1)</code></td><td style={{ padding: '12px 16px' }}>シャープ</td></tr>
+    </tbody>
+  </table>
+</Box>
+
+### トランジションの作成
+
+```typescript
+// theme.transitions.create()の使用
+const styles = {
+  transition: theme.transitions.create(['background-color', 'transform'], {
+    duration: theme.transitions.duration.standard,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+}
+
+// 結果: "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1)"
+```
+
+---
+
+## 🔧 シェイプ
+
+```typescript
+theme.shape = {
+  borderRadius: 4,  // デフォルトのボーダー半径（ピクセル単位）
+}
+```
+
+<Box sx={{ mt: 2 }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid', borderColor: 'divider' }}>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>要素</th>
+        <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: 600 }}>推奨ボーダー半径</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>ボタン</td>
+        <td style={{ padding: '12px 16px' }}>4px（デフォルト）</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>カード</td>
+        <td style={{ padding: '12px 16px' }}>4pxまたは8px</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>ダイアログ</td>
+        <td style={{ padding: '12px 16px' }}>4px</td>
+      </tr>
+      <tr style={{ borderBottom: '1px solid #e0e0e0' }}>
+        <td style={{ padding: '12px 16px' }}>チップ</td>
+        <td style={{ padding: '12px 16px' }}>完全（ピル型）</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '12px 16px' }}>アバター</td>
+        <td style={{ padding: '12px 16px' }}>完全（円形）</td>
+      </tr>
+    </tbody>
+  </table>
+</Box>
+
+---
+
+## 📖 デザイントークンの使用
+
+### テーマのインポート
+
+```typescript
+import { useTheme } from '@mui/material/styles'
+
+function MyComponent() {
+  const theme = useTheme()
+
+  return (
+    <Box
+      sx={{
+        color: theme.palette.primary.main,
+        p: theme.spacing(2),
+        borderRadius: theme.shape.borderRadius,
+        boxShadow: theme.shadows[4],
+        transition: theme.transitions.create('background-color'),
+      }}
+    >
+      Content
+    </Box>
+  )
+}
+```
+
+### sx Propのショートカット
+
+```typescript
+// sx propを介した直接アクセス
+<Button
+  sx={{
+    bgcolor: 'primary.main',
+    color: 'primary.contrastText',
+    '&:hover': {
+      bgcolor: 'primary.dark',
+    },
+  }}
+>
+  Click me
+</Button>
+```
+
+---
+
+<Alert severity="success" sx={{ mt: 4 }}>
+  <Typography variant="body2">
+    <strong>💡 プロのヒント:</strong> テーマツールバー（右上）を使用して、ライトモードとダークモードを切り替えてください。このページのすべてのビジュアライゼーションが自動的に更新され、現在のテーマのトークン値が表示されます。
+  </Typography>
+</Alert>

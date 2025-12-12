@@ -67,6 +67,7 @@
     "rimraf": "^6.1.2",
     "sort-package-json": "^3.5.0",
     "storybook": "^10.1.6",
+    "storybook-i18n": "^10.0.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",

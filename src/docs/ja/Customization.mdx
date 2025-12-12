@@ -1,0 +1,460 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="デザインシステム/カスタマイズ" />
+
+# 高度なカスタマイズ
+
+基本的なテーマ設定を超えた、MUIコンポーネントの深いカスタマイズ技術について説明します。
+
+---
+
+## カスタマイズ方法
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>スコープ</th>
+      <th>最適な用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>sx</code> プロップ</td><td>単一インスタンス</td><td>一回限りのスタイル</td></tr>
+    <tr><td><code>styled()</code></td><td>再利用可能なコンポーネント</td><td>共有スタイルバリアント</td></tr>
+    <tr><td>テーマ <code>styleOverrides</code></td><td>全インスタンス</td><td>グローバルデフォルト</td></tr>
+    <tr><td>テーマ <code>variants</code></td><td>条件付き</td><td>新しいバリアントタイプ</td></tr>
+    <tr><td>CSS変数</td><td>ランタイム</td><td>動的テーマ設定</td></tr>
+  </tbody>
+</table>
+
+---
+
+## sx プロップの詳細
+
+### システムプロパティ
+
+```tsx
+<Box
+  sx={{
+    // スペーシング (theme.spacing)
+    m: 2,                    // margin: 16px
+    p: [1, 2, 3],           // レスポンシブなpadding
+
+    // サイズ
+    width: 1,               // 100%
+    width: 1/2,             // 50%
+    width: 300,             // 300px
+    height: '100vh',
+    minHeight: 200,
+    maxWidth: 'sm',         // ブレークポイント値
+
+    // カラー (theme.palette)
+    color: 'primary.main',
+    bgcolor: 'background.paper',
+    borderColor: 'divider',
+
+    // タイポグラフィ
+    typography: 'body1',
+    fontWeight: 'bold',
+
+    // Flexbox
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 2,
+
+    // Grid
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+
+    // ポジション
+    position: 'relative',
+    top: 0,
+    zIndex: 'modal',        // theme.zIndex
+
+    // ボーダー
+    border: 1,              // 1px solid
+    borderRadius: 2,        // theme.shape.borderRadius * 2
+
+    // シャドウ
+    boxShadow: 3,          // theme.shadows[3]
+  }}
+/>
+```
+
+### 疑似セレクタ
+
+```tsx
+<Button
+  sx={{
+    '&:hover': {
+      bgcolor: 'primary.dark',
+    },
+    '&:focus': {
+      outline: '2px solid',
+      outlineColor: 'primary.main',
+    },
+    '&:disabled': {
+      opacity: 0.5,
+    },
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+    },
+  }}
+/>
+```
+
+### ネストセレクタ
+
+```tsx
+<Card
+  sx={{
+    '& .MuiCardHeader-root': {
+      bgcolor: 'grey.100',
+    },
+    '& .MuiCardContent-root': {
+      p: 3,
+    },
+    '& img': {
+      width: '100%',
+    },
+  }}
+/>
+```
+
+### テーマコールバック
+
+```tsx
+<Box
+  sx={(theme) => ({
+    bgcolor: theme.palette.mode === 'dark'
+      ? 'grey.900'
+      : 'grey.100',
+    ...theme.typography.body2,
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  })}
+/>
+```
+
+---
+
+## styled() API
+
+### 基本的なスタイル済みコンポーネント
+
+```tsx
+import { styled } from '@mui/material/styles'
+
+const StyledCard = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  boxShadow: theme.shadows[2],
+}))
+```
+
+### MUIコンポーネントの拡張
+
+```tsx
+import { styled } from '@mui/material/styles'
+import Button from '@mui/material/Button'
+
+const GradientButton = styled(Button)(({ theme }) => ({
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  border: 0,
+  borderRadius: 3,
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+}))
+```
+
+### カスタムプロップの使用
+
+```tsx
+interface CustomButtonProps {
+  danger?: boolean
+}
+
+const CustomButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'danger',
+})<CustomButtonProps>(({ theme, danger }) => ({
+  backgroundColor: danger
+    ? theme.palette.error.main
+    : theme.palette.primary.main,
+  '&:hover': {
+    backgroundColor: danger
+      ? theme.palette.error.dark
+      : theme.palette.primary.dark,
+  },
+}))
+
+// 使用例
+<CustomButton danger>Delete</CustomButton>
+```
+
+### テーマオプションの使用
+
+```tsx
+const StyledBox = styled('div', {
+  name: 'MyBox',           // デバッグ用のコンポーネント名
+  slot: 'Root',            // スロット名
+  skipSx: false,           // sx プロップを許可
+  skipVariantsResolver: false,
+})(({ theme }) => ({
+  // スタイル
+}))
+```
+
+---
+
+## テーマコンポーネントのオーバーライド
+
+### styleOverrides
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        // ルート要素をターゲット
+        root: {
+          textTransform: 'none',
+          borderRadius: 8,
+        },
+        // 特定のバリアントをターゲット
+        contained: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+        // サイズごとにターゲット
+        sizeSmall: {
+          fontSize: '0.75rem',
+        },
+        // ownerStateを使用した動的スタイル
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: theme.palette.primary.dark,
+            }),
+        }),
+      },
+    },
+  },
+})
+```
+
+### defaultProps
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+        disableElevation: true,
+        disableRipple: true,
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+        size: 'small',
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'hover',
+      },
+    },
+  },
+})
+```
+
+### カスタムバリアント
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            border: '2px dashed',
+            borderColor: 'currentColor',
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            borderColor: theme.palette.secondary.main,
+          },
+        },
+        {
+          props: { size: 'extraLarge' },
+          style: {
+            fontSize: '1.25rem',
+            padding: '16px 32px',
+          },
+        },
+      ],
+    },
+  },
+})
+
+// TypeScript: 型を拡張
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true
+  }
+  interface ButtonPropsSizeOverrides {
+    extraLarge: true
+  }
+}
+
+// 使用例
+<Button variant="dashed">Dashed Button</Button>
+<Button size="extraLarge">Extra Large</Button>
+```
+
+---
+
+## CSS変数
+
+### CSS変数を有効化
+
+```tsx
+const theme = createTheme({
+  cssVariables: true,
+})
+
+// 生成されるCSS変数:
+// --mui-palette-primary-main: #1976d2;
+// --mui-palette-background-default: #fff;
+// --mui-spacing: 8px;
+```
+
+### CSS変数の使用
+
+```css
+/* 外部CSSで使用 */
+.custom-element {
+  background-color: var(--mui-palette-primary-main);
+  padding: calc(var(--mui-spacing) * 2);
+  border-radius: var(--mui-shape-borderRadius);
+}
+```
+
+### カスタムCSS変数
+
+```tsx
+const theme = createTheme({
+  cssVariables: {
+    cssVarPrefix: 'app', // デフォルト: 'mui'
+  },
+})
+// --app-palette-primary-main
+```
+
+---
+
+## グローバルCSSのオーバーライド
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        // グローバルスタイル
+        '*': {
+          boxSizing: 'border-box',
+        },
+        html: {
+          scrollBehavior: 'smooth',
+        },
+        body: {
+          backgroundColor: '#fafafa',
+        },
+        a: {
+          textDecoration: 'none',
+        },
+        // カスタムスクロールバー
+        '::-webkit-scrollbar': {
+          width: 8,
+        },
+        '::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+          borderRadius: 4,
+        },
+      },
+    },
+  },
+})
+```
+
+---
+
+## スロットAPI
+
+複雑なコンポーネントの内部要素をターゲットにする:
+
+```tsx
+<Chip
+  label="Chip"
+  slotProps={{
+    label: {
+      sx: { fontWeight: 'bold' },
+    },
+    deleteIcon: {
+      sx: { color: 'error.main' },
+    },
+  }}
+/>
+
+// テーマで設定
+const theme = createTheme({
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        label: {
+          fontWeight: 500,
+        },
+        deleteIcon: {
+          '&:hover': {
+            color: 'error.dark',
+          },
+        },
+      },
+    },
+  },
+})
+```
+
+---
+
+## ベストプラクティス
+
+<table>
+  <thead>
+    <tr>
+      <th>実践内容</th>
+      <th>推奨</th>
+      <th>非推奨</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>一回限りのスタイル</strong></td><td><code>sx</code>プロップを使用</td><td>新しいスタイル済みコンポーネントを作成</td></tr>
+    <tr><td><strong>再利用可能なスタイル</strong></td><td><code>styled()</code>を使用</td><td><code>sx</code>プロップを重複</td></tr>
+    <tr><td><strong>グローバルデフォルト</strong></td><td>テーマオーバーライドを使用</td><td>すべてのインスタンスでオーバーライド</td></tr>
+    <tr><td><strong>カスタムバリアント</strong></td><td>テーマバリアントを使用</td><td>ラッパーコンポーネントを作成</td></tr>
+    <tr><td><strong>CSS優先度</strong></td><td>MUI APIを使用</td><td><code>!important</code>を使用</td></tr>
+  </tbody>
+</table>
