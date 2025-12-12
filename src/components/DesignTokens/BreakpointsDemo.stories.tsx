@@ -78,8 +78,10 @@ export const InteractionTest: Story = {
     await step('Verify all breakpoint cards render', async () => {
       const breakpoints = ['XS', 'SM', 'MD', 'LG', 'XL']
       for (const bp of breakpoints) {
-        const card = canvas.getByText(bp)
-        expect(card).toBeInTheDocument()
+        // Some breakpoints appear multiple times (e.g., in header and card)
+        const cards = canvas.getAllByText(bp)
+        expect(cards.length).toBeGreaterThan(0)
+        expect(cards[0]).toBeInTheDocument()
       }
     })
 

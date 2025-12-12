@@ -248,8 +248,10 @@ export const SearchInteraction: Story = {
 
     // The tree should filter to show only matching results
     // We should still see 'palette' since it contains 'primary'
-    const primaryText = await canvas.findByText('primary')
-    await expect(primaryText).toBeVisible()
+    // Multiple 'primary' elements may exist in the tree
+    const primaryTexts = await canvas.findAllByText('primary')
+    await expect(primaryTexts.length).toBeGreaterThan(0)
+    await expect(primaryTexts[0]).toBeVisible()
   },
 }
 

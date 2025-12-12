@@ -307,8 +307,9 @@ export const SpeedDialInteractionTest: Story = {
     const ariaExpanded = speedDialFab.getAttribute('aria-expanded')
     await expect(ariaExpanded === null || ariaExpanded === 'false').toBe(true)
 
-    // Open the SpeedDial by clicking (more reliable than hover in tests)
-    await userEvent.click(speedDialFab)
+    // Open the SpeedDial by clicking - use pointerEventsCheck: 'none' as MUI SpeedDial
+    // applies pointer-events:none to the FAB when closed
+    await userEvent.click(speedDialFab, { pointerEventsCheck: 0 })
 
     // Wait for SpeedDial to open and verify actions are visible
     await waitFor(
