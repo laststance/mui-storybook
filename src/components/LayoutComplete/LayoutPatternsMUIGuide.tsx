@@ -10,7 +10,10 @@
  * - Code example
  * - Best practices
  */
-import React, { useState } from 'react'
+import CheckIcon from '@mui/icons-material/Check'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Box,
   Typography,
@@ -27,10 +30,7 @@ import {
   Tooltip,
 } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import CheckIcon from '@mui/icons-material/Check'
+import React, { useState } from 'react'
 
 /** Props for LayoutPatternsMUIGuide component */
 export interface LayoutPatternsMUIGuideProps {
@@ -87,7 +87,12 @@ const LAYOUT_PATTERNS: LayoutPattern[] = [
     <Typography>More content...</Typography>
   </Stack>
 </Container>`,
-    useCases: ['Blog posts', 'Landing pages', 'Mobile layouts', 'Article pages'],
+    useCases: [
+      'Blog posts',
+      'Landing pages',
+      'Mobile layouts',
+      'Article pages',
+    ],
     tips: [
       'Use Container for centered content with max-width',
       'Stack provides consistent vertical spacing',
@@ -656,7 +661,12 @@ import Drawer from '@mui/material/Drawer'
     </Paper>
   ))}
 </Stack>`,
-    useCases: ['Email lists', 'User directories', 'Task lists', 'Search results'],
+    useCases: [
+      'Email lists',
+      'User directories',
+      'Task lists',
+      'Search results',
+    ],
     tips: [
       'Use ListItem component for semantic lists',
       'flex: 1 on content allows action buttons to align right',
@@ -938,7 +948,10 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material
   },
 ]
 
-const CATEGORY_LABELS: Record<PatternCategory, { label: string; count: number }> = {
+const CATEGORY_LABELS: Record<
+  PatternCategory,
+  { label: string; count: number }
+> = {
   all: { label: 'All Patterns', count: 30 },
   column: { label: 'Column-Based', count: 5 },
   grid: { label: 'Grid-Based', count: 5 },
@@ -1003,8 +1016,8 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
         30 Layout Patterns with MUI Implementation
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        Each pattern shows the primary MUI component and includes ready-to-use code examples.
-        Click any pattern to see the implementation details.
+        Each pattern shows the primary MUI component and includes ready-to-use
+        code examples. Click any pattern to see the implementation details.
       </Typography>
 
       {/* Category Tabs */}
@@ -1085,7 +1098,10 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
                   width: 40,
                   height: 40,
                   borderRadius: 1,
-                  bgcolor: alpha(COMPONENT_COLORS[pattern.primaryComponent], 0.2), // Improved contrast
+                  bgcolor: alpha(
+                    COMPONENT_COLORS[pattern.primaryComponent],
+                    0.2,
+                  ), // Improved contrast
                   color: COMPONENT_COLORS[pattern.primaryComponent],
                   display: 'flex',
                   alignItems: 'center',
@@ -1155,11 +1171,22 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
             <Collapse in={expandedCodes.has(pattern.id) || showCodeByDefault}>
               <Divider />
               <Box sx={{ p: 2, bgcolor: 'grey.50' }}>
-                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-                  <Typography variant="caption" fontWeight="bold" color="text.secondary">
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ mb: 1 }}
+                >
+                  <Typography
+                    variant="caption"
+                    fontWeight="bold"
+                    color="text.secondary"
+                  >
                     MUI Code Example
                   </Typography>
-                  <Tooltip title={copiedId === pattern.id ? 'Copied!' : 'Copy code'}>
+                  <Tooltip
+                    title={copiedId === pattern.id ? 'Copied!' : 'Copy code'}
+                  >
                     <IconButton
                       size="small"
                       onClick={(e) => {
@@ -1180,7 +1207,8 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
                   sx={{
                     p: 2,
                     borderRadius: 1,
-                    bgcolor: theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
+                    bgcolor:
+                      theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
                     overflow: 'auto',
                     fontSize: '0.75rem',
                     fontFamily: 'monospace',
@@ -1195,7 +1223,11 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
                 {/* Use Cases & Tips */}
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                   <Grid size={{ xs: 12, sm: 6 }}>
-                    <Typography variant="caption" fontWeight="bold" color="text.secondary">
+                    <Typography
+                      variant="caption"
+                      fontWeight="bold"
+                      color="text.secondary"
+                    >
                       Use Cases
                     </Typography>
                     <Stack spacing={0.5} sx={{ mt: 0.5 }}>
@@ -1207,7 +1239,11 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
                     </Stack>
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6 }}>
-                    <Typography variant="caption" fontWeight="bold" color="text.secondary">
+                    <Typography
+                      variant="caption"
+                      fontWeight="bold"
+                      color="text.secondary"
+                    >
                       Tips
                     </Typography>
                     <Stack spacing={0.5} sx={{ mt: 0.5 }}>
@@ -1232,8 +1268,17 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
         </Typography>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
-            <Box sx={{ p: 1.5, bgcolor: alpha(COMPONENT_COLORS.Box, 0.2), borderRadius: 1 }}>
-              <Typography variant="subtitle2" sx={{ color: COMPONENT_COLORS.Box }}>
+            <Box
+              sx={{
+                p: 1.5,
+                bgcolor: alpha(COMPONENT_COLORS.Box, 0.2),
+                borderRadius: 1,
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ color: COMPONENT_COLORS.Box }}
+              >
                 Box
               </Typography>
               <Typography variant="caption">
@@ -1242,8 +1287,17 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
             </Box>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
-            <Box sx={{ p: 1.5, bgcolor: alpha(COMPONENT_COLORS.Container, 0.2), borderRadius: 1 }}>
-              <Typography variant="subtitle2" sx={{ color: COMPONENT_COLORS.Container }}>
+            <Box
+              sx={{
+                p: 1.5,
+                bgcolor: alpha(COMPONENT_COLORS.Container, 0.2),
+                borderRadius: 1,
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ color: COMPONENT_COLORS.Container }}
+              >
                 Container
               </Typography>
               <Typography variant="caption">
@@ -1252,8 +1306,17 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
             </Box>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
-            <Box sx={{ p: 1.5, bgcolor: alpha(COMPONENT_COLORS.Grid, 0.2), borderRadius: 1 }}>
-              <Typography variant="subtitle2" sx={{ color: COMPONENT_COLORS.Grid }}>
+            <Box
+              sx={{
+                p: 1.5,
+                bgcolor: alpha(COMPONENT_COLORS.Grid, 0.2),
+                borderRadius: 1,
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ color: COMPONENT_COLORS.Grid }}
+              >
                 Grid
               </Typography>
               <Typography variant="caption">
@@ -1262,8 +1325,17 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
             </Box>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
-            <Box sx={{ p: 1.5, bgcolor: alpha(COMPONENT_COLORS.Stack, 0.2), borderRadius: 1 }}>
-              <Typography variant="subtitle2" sx={{ color: COMPONENT_COLORS.Stack }}>
+            <Box
+              sx={{
+                p: 1.5,
+                bgcolor: alpha(COMPONENT_COLORS.Stack, 0.2),
+                borderRadius: 1,
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ color: COMPONENT_COLORS.Stack }}
+              >
                 Stack
               </Typography>
               <Typography variant="caption">
@@ -1272,8 +1344,17 @@ const LayoutPatternsMUIGuide: React.FC<LayoutPatternsMUIGuideProps> = ({
             </Box>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
-            <Box sx={{ p: 1.5, bgcolor: alpha(COMPONENT_COLORS.Masonry, 0.2), borderRadius: 1 }}>
-              <Typography variant="subtitle2" sx={{ color: COMPONENT_COLORS.Masonry }}>
+            <Box
+              sx={{
+                p: 1.5,
+                bgcolor: alpha(COMPONENT_COLORS.Masonry, 0.2),
+                borderRadius: 1,
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ color: COMPONENT_COLORS.Masonry }}
+              >
                 Masonry
               </Typography>
               <Typography variant="caption">
