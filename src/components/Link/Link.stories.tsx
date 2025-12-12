@@ -141,7 +141,7 @@ export const InteractionTest: Story = {
   args: {
     href: '#test',
     children: 'Test Link',
-    onClick: fn(),
+    onClick: fn((e: React.MouseEvent) => e.preventDefault()),
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement)
