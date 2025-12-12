@@ -1,4 +1,4 @@
-import { expect, fn, screen, userEvent, within } from 'storybook/test'
+import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import OverlayLayout from './OverlayLayout'
 
@@ -313,9 +313,14 @@ export const InteractionTest: Story = {
 
     await userEvent.click(firstImage)
 
-    // Verify lightbox is open using screen (portal)
+    // Verify lightbox is open using screen (portal) with waitFor for animation
     const lightboxImage = await screen.findByTestId('lightbox-image')
-    await expect(lightboxImage).toBeVisible()
+    await waitFor(
+      () => {
+        expect(lightboxImage).toBeVisible()
+      },
+      { timeout: 1000 },
+    )
 
     // Find and click close button
     const closeButton = await screen.findByTestId('lightbox-close')
@@ -349,9 +354,14 @@ export const NavigationInteractionTest: Story = {
     const firstImage = canvas.getByTestId('gallery-image-1')
     await userEvent.click(firstImage)
 
-    // Wait for lightbox to open
+    // Wait for lightbox to open with waitFor for animation
     const lightboxImage = await screen.findByTestId('lightbox-image')
-    await expect(lightboxImage).toBeVisible()
+    await waitFor(
+      () => {
+        expect(lightboxImage).toBeVisible()
+      },
+      { timeout: 1000 },
+    )
 
     // Click next button
     const nextButton = await screen.findByTestId('nav-next')

@@ -1,4 +1,4 @@
-import { expect, fn, userEvent, within, screen } from 'storybook/test'
+import { expect, fn, userEvent, waitFor, within, screen } from 'storybook/test'
 
 import MasonryLayout from './MasonryLayout'
 
@@ -405,7 +405,12 @@ export const ZoomInteractionTest: Story = {
     // Wait for dialog to appear (portal renders outside canvas)
     // Using screen for portal testing as documented
     const dialog = await screen.findByRole('dialog')
-    await expect(dialog).toBeVisible()
+    await waitFor(
+      () => {
+        expect(dialog).toBeVisible()
+      },
+      { timeout: 1000 },
+    )
 
     // Close the dialog by clicking backdrop or pressing Escape
     await userEvent.keyboard('{Escape}')

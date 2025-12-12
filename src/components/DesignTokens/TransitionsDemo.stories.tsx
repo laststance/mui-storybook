@@ -1,4 +1,4 @@
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, screen, userEvent, within } from 'storybook/test'
 
 import TransitionsDemo from './TransitionsDemo'
 
@@ -48,8 +48,8 @@ export const DurationSelection: Story = {
         // Wait for menu to open
         await new Promise((resolve) => setTimeout(resolve, 200))
 
-        // Select "Complex" option
-        const complexOption = await canvas.findByRole('option', {
+        // Select "Complex" option (dropdown renders in portal, use screen)
+        const complexOption = await screen.findByRole('option', {
           name: /complex/i,
         })
         await userEvent.click(complexOption)
@@ -82,8 +82,8 @@ export const EasingSelection: Story = {
       // Wait for menu to open
       await new Promise((resolve) => setTimeout(resolve, 200))
 
-      // Select "Sharp" option
-      const sharpOption = await canvas.findByRole('option', {
+      // Select "Sharp" option (dropdown renders in portal, use screen)
+      const sharpOption = await screen.findByRole('option', {
         name: /sharp/i,
       })
       await userEvent.click(sharpOption)

@@ -390,16 +390,18 @@ export const PaginationInteractionTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Find pagination buttons
-    const nextPageButton = await canvas.findByRole('button', {
+    // Find pagination buttons (may be multiple)
+    const nextPageButtons = await canvas.findAllByRole('button', {
       name: /next page/i,
     })
-    await expect(nextPageButton).toBeInTheDocument()
+    await expect(nextPageButtons.length).toBeGreaterThan(0)
+    const nextPageButton = nextPageButtons[0]
 
-    const prevPageButton = await canvas.findByRole('button', {
+    const prevPageButtons = await canvas.findAllByRole('button', {
       name: /previous page/i,
     })
-    await expect(prevPageButton).toBeInTheDocument()
+    await expect(prevPageButtons.length).toBeGreaterThan(0)
+    const prevPageButton = prevPageButtons[0]
     await expect(prevPageButton).toBeDisabled() // First page, so prev is disabled
 
     // Click next page

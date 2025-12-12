@@ -296,9 +296,10 @@ export const ExpandDetailsInteraction: Story = {
     // Click to expand
     await userEvent.click(viewDetailsButtons[0])
 
-    // Verify "Recommended Use Cases" text appears
-    const useCasesText = await canvas.findByText(/Recommended Use Cases/i)
-    await expect(useCasesText).toBeVisible()
+    // Verify "Recommended Use Cases" text appears (may be multiple)
+    const useCasesTexts = await canvas.findAllByText(/Recommended Use Cases/i)
+    await expect(useCasesTexts.length).toBeGreaterThan(0)
+    await expect(useCasesTexts[0]).toBeVisible()
 
     // Click again to collapse
     const hideDetailsButton = await canvas.findByText(/Hide Details/i)
