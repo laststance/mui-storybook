@@ -465,8 +465,9 @@ export const InteractionTest: Story = {
     })
 
     await step('Verify content is visible', async () => {
-      const heading = canvas.getByText('Parallax Effect')
-      await expect(heading).toBeInTheDocument()
+      const headings = canvas.getAllByText('Parallax Effect')
+      await expect(headings.length).toBeGreaterThan(0)
+      await expect(headings[0]).toBeInTheDocument()
     })
 
     await step('Verify accessibility attributes', async () => {
