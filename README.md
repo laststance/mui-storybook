@@ -62,6 +62,30 @@ Then start your Storybook - MUI Storybook will appear in your sidebar.
 
 <img src="https://digital3.nyc3.cdn.digitaloceanspaces.com/mui-storybook-install.png" alt="installation" />
 
+## MCP Integration (AI Assistants)
+
+Enable AI assistants (Claude, Cursor, VS Code Copilot) to access component documentation via the [Storybook MCP Server](https://github.com/nicoepp/storybook-mcp):
+
+```json
+{
+  "mcpServers": {
+    "mui-storybook": {
+      "command": "npx",
+      "args": ["-y", "storybook-mcp@latest"],
+      "env": {
+        "STORYBOOK_URL": "https://main--632a01c394385880b3383063.chromatic.com/index.json"
+      }
+    }
+  }
+}
+```
+
+This provides:
+- `getComponentList` - List all available components
+- `getComponentsProps` - Get detailed props information
+
+For CUSTOM_TOOLS configuration and IDE-specific setup, see [MCP Integration Guide](docs/MCP_INTEGRATION.md).
+
 ## Local Development
 
 ```sh
