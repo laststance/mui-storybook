@@ -14,9 +14,10 @@ const preview: Preview = {
     // Accessibility testing configuration
     // ════════════════════════════════════════════════════════════
     a11y: {
-      // Set to 'warn' to log a11y violations without failing tests
+      // Set to 'todo' to log a11y violations without failing tests
+      // Valid values: 'error' (fail), 'todo' (warn only), 'off' (disable)
       // This allows CI to pass while still surfacing issues for review
-      test: 'warn',
+      test: 'todo',
     },
     docs: {
       theme: muiBrandTheme,
@@ -40,6 +41,7 @@ const preview: Preview = {
             'Spacing',
             'Breakpoints',
             'Customization',
+            'Layout Complete',
             '*',
           ],
           'Inputs',
@@ -50,6 +52,50 @@ const preview: Preview = {
           'Layout',
           'Utils',
           'Examples',
+          'Design Tokens',
+          'Layout Complete',
+          [
+            'LayoutPatternsGallery',
+            'Layouts',
+            [
+              // Column-Based (5)
+              'SingleColumn',
+              'TwoColumn',
+              'ThreeColumn',
+              'LeftRight',
+              'MultiColumn',
+              // Grid-Based (4)
+              'Grid',
+              'Masonry',
+              'BrokenGrid',
+              'NonGrid',
+              // Scroll/Flow (4)
+              'FullScreen',
+              'CardBased',
+              'InfiniteScroll',
+              'Parallax',
+              // Container/Flow (5)
+              'Stack',
+              'Ribbon',
+              'SplitScreen',
+              'OffCanvas',
+              'LiquidResponsive',
+              // Data Display (6)
+              'Tabbed',
+              'MultiPanel',
+              'Timeline',
+              'Catalog',
+              'Comparison',
+              'FormBased',
+              // Special (6)
+              'FAB',
+              'Overlay',
+              'Circular',
+              'Canvas',
+              'Hierarchical',
+              'Scattered',
+            ],
+          ],
           '*',
         ],
       },
