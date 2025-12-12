@@ -14,9 +14,10 @@ const preview: Preview = {
     // Accessibility testing configuration
     // ════════════════════════════════════════════════════════════
     a11y: {
-      // Set to 'warn' to log a11y violations without failing tests
+      // Set to 'todo' to log a11y violations without failing tests
+      // Valid values: 'error' (fail), 'todo' (warn only), 'off' (disable)
       // This allows CI to pass while still surfacing issues for review
-      test: 'warn',
+      test: 'todo',
     },
     docs: {
       theme: muiBrandTheme,
