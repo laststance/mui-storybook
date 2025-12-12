@@ -145,10 +145,13 @@ export const AllSections: Story = {
       })
       await expect(sectionTitle).toBeInTheDocument()
 
-      // Check for duration labels
-      await expect(canvas.getByText(/shortest/i)).toBeInTheDocument()
-      await expect(canvas.getByText(/standard/i)).toBeInTheDocument()
-      await expect(canvas.getByText(/complex/i)).toBeInTheDocument()
+      // Check for duration labels (use getAllByText since these appear multiple times)
+      const shortestElements = canvas.getAllByText(/shortest/i)
+      await expect(shortestElements.length).toBeGreaterThan(0)
+      const standardElements = canvas.getAllByText(/standard/i)
+      await expect(standardElements.length).toBeGreaterThan(0)
+      const complexElements = canvas.getAllByText(/complex/i)
+      await expect(complexElements.length).toBeGreaterThan(0)
     })
 
     await step('Verify Easing Curves section', async () => {
@@ -157,9 +160,11 @@ export const AllSections: Story = {
       })
       await expect(sectionTitle).toBeInTheDocument()
 
-      // Check for easing labels
-      await expect(canvas.getByText(/ease in out/i)).toBeInTheDocument()
-      await expect(canvas.getByText(/ease out/i)).toBeInTheDocument()
+      // Check for easing labels (use getAllByText since these appear multiple times)
+      const easeInOutElements = canvas.getAllByText(/ease in out/i)
+      await expect(easeInOutElements.length).toBeGreaterThan(0)
+      const easeOutElements = canvas.getAllByText(/ease out/i)
+      await expect(easeOutElements.length).toBeGreaterThan(0)
     })
 
     await step('Verify Animation Playground section', async () => {

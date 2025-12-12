@@ -1,4 +1,4 @@
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import BrokenGridLayout from './BrokenGridLayout'
 
@@ -352,6 +352,7 @@ export const InteractionTest: Story = {
   args: {
     style: 'creative',
     overlapIntensity: 'moderate',
+    onCtaClick: fn(),
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)
@@ -379,6 +380,7 @@ export const ShowreelInteractionTest: Story = {
   args: {
     showShowreel: true,
     style: 'creative',
+    onShowreelClick: fn(),
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)

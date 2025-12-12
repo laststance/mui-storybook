@@ -165,16 +165,17 @@ export const ExpandCollapseInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Wait for the component to render
-    const paletteButton = await canvas.findByRole('button', {
+    // Wait for the component to render - get all expand/collapse buttons
+    const expandButtons = await canvas.findAllByRole('button', {
       name: /expand|collapse/i,
     })
+    await expect(expandButtons.length).toBeGreaterThan(0)
 
-    // Click to expand
-    await userEvent.click(paletteButton)
+    // Click the first one to expand
+    await userEvent.click(expandButtons[0])
 
-    // Verify it expanded (aria-label changes or children appear)
-    await expect(paletteButton).toBeVisible()
+    // Verify it's still visible after click
+    await expect(expandButtons[0]).toBeVisible()
   },
 }
 

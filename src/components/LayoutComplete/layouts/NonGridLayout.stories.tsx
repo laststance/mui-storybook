@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import NonGridLayout, {
   InteractiveArtGallery,
@@ -445,6 +445,7 @@ export const InteractionTest: Story = {
     ],
     minHeight: 300,
     interactive: true,
+    onElementClick: fn(),
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)

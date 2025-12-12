@@ -18,7 +18,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import VideoCallIcon from '@mui/icons-material/VideoCall'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
 
 import CircularLayout from './CircularLayout'
 
@@ -317,9 +317,14 @@ export const InteractionTest: Story = {
     // Wait for animation and verify menu is open
     await expect(centerButton).toHaveAttribute('aria-expanded', 'true')
 
-    // Find an action button
+    // Find an action button and wait for animation to complete
     const homeAction = await canvas.findByTestId('action-home')
-    await expect(homeAction).toBeVisible()
+    await waitFor(
+      () => {
+        expect(homeAction).toBeVisible()
+      },
+      { timeout: 1000 },
+    )
 
     // Click the action
     await userEvent.click(homeAction)

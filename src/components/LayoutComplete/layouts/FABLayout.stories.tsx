@@ -7,7 +7,7 @@ import ImageIcon from '@mui/icons-material/Image'
 import MicIcon from '@mui/icons-material/Mic'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import SendIcon from '@mui/icons-material/Send'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
 
 import FABLayout from './FABLayout'
 
@@ -306,12 +306,17 @@ export const SpeedDialInteractionTest: Story = {
     // Verify SpeedDial is initially closed
     await expect(speedDialFab).toHaveAttribute('aria-expanded', 'false')
 
-    // Open the SpeedDial by hovering
-    await userEvent.hover(speedDialFab)
+    // Open the SpeedDial by clicking (more reliable than hover in tests)
+    await userEvent.click(speedDialFab)
 
     // Wait for SpeedDial to open and verify actions are visible
-    const editAction = await canvas.findByTestId('speed-dial-action-edit')
-    await expect(editAction).toBeVisible()
+    await waitFor(
+      async () => {
+        const editAction = await canvas.findByTestId('speed-dial-action-edit')
+        expect(editAction).toBeVisible()
+      },
+      { timeout: 1000 },
+    )
   },
   parameters: {
     docs: {

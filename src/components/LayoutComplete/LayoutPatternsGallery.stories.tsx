@@ -259,19 +259,20 @@ export const FilterInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Find and click the Grid-Based filter chip
-    const gridBasedChip = await canvas.findByRole('button', {
+    // Find and click the Grid-Based filter chip (use getAllByRole since there might be multiple)
+    const gridBasedChips = await canvas.findAllByRole('button', {
       name: /Grid-Based/i,
     })
-    await expect(gridBasedChip).toBeInTheDocument()
+    await expect(gridBasedChips.length).toBeGreaterThan(0)
 
-    await userEvent.click(gridBasedChip)
+    await userEvent.click(gridBasedChips[0])
 
-    // Verify that Grid Layout pattern card is visible
-    const gridLayoutText = await canvas.findByText('Grid Layout')
-    await expect(gridLayoutText).toBeVisible()
+    // Verify that Grid Layout pattern card is visible (use findAllByText)
+    const gridLayoutTexts = await canvas.findAllByText('Grid Layout')
+    await expect(gridLayoutTexts.length).toBeGreaterThan(0)
+    await expect(gridLayoutTexts[0]).toBeVisible()
 
-    // Verify that patterns from other categories are not visible
+    // Verify that patterns from other categories are not visible or filtered
     const singleColumnCards = canvas.queryAllByText('Single Column')
     // The text might still exist but in a filtered state, so we check the count
     await expect(singleColumnCards.length).toBeLessThanOrEqual(1)
@@ -319,9 +320,10 @@ export const AllFilterInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Initially showing Special category
-    const fabText = await canvas.findByText('FAB')
-    await expect(fabText).toBeVisible()
+    // Initially showing Special category (use findAllByText)
+    const fabTexts = await canvas.findAllByText('FAB')
+    await expect(fabTexts.length).toBeGreaterThan(0)
+    await expect(fabTexts[0]).toBeVisible()
 
     // Click the "All" filter chip
     const allChip = await canvas.findByRole('button', {
@@ -329,9 +331,10 @@ export const AllFilterInteraction: Story = {
     })
     await userEvent.click(allChip)
 
-    // Verify patterns from other categories are now visible
-    const singleColumnText = await canvas.findByText('Single Column')
-    await expect(singleColumnText).toBeVisible()
+    // Verify patterns from other categories are now visible (use findAllByText)
+    const singleColumnTexts = await canvas.findAllByText('Single Column')
+    await expect(singleColumnTexts.length).toBeGreaterThan(0)
+    await expect(singleColumnTexts[0]).toBeVisible()
   },
 }
 
