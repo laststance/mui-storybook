@@ -88,8 +88,10 @@ export const InteractionTest: Story = {
     await step('Verify breakpoint labels render', async () => {
       const labels = ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large']
       for (const label of labels) {
-        const element = canvas.getByText(label)
-        expect(element).toBeInTheDocument()
+        // Some labels may appear multiple times
+        const elements = canvas.getAllByText(label)
+        expect(elements.length).toBeGreaterThan(0)
+        expect(elements[0]).toBeInTheDocument()
       }
     })
 
