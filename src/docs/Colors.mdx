@@ -1,6 +1,9 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../.storybook/components/LocalizedDoc'
 
 <Meta title="Design System/Colors" />
+
+<En>
 
 # Color System
 
@@ -312,3 +315,320 @@ const theme = createTheme({
 3. **Test both modes** - Verify colors in light and dark
 4. **Use alpha** - For transparent overlays
 5. **Limit palette** - Stick to primary/secondary for most UI
+
+</En>
+
+<Ja>
+
+# カラーシステム
+
+MUIのカラーシステムは、アクセシブルで美しいインターフェースを構築するための包括的なパレットを提供します。
+
+---
+
+## パレット構造
+
+```tsx
+theme.palette = {
+  mode: 'light' | 'dark',
+  primary: { main, light, dark, contrastText },
+  secondary: { main, light, dark, contrastText },
+  error: { main, light, dark, contrastText },
+  warning: { main, light, dark, contrastText },
+  info: { main, light, dark, contrastText },
+  success: { main, light, dark, contrastText },
+  grey: { 50, 100, 200, ..., 900, A100, A200, A400, A700 },
+  text: { primary, secondary, disabled },
+  divider: string,
+  background: { default, paper },
+  action: { active, hover, selected, disabled, ... },
+}
+```
+
+---
+
+## プライマリー & セカンダリー
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    subtitle="theme.palette.primary"
+    colors={{
+      light: '#42a5f5',
+      main: '#1976d2',
+      dark: '#1565c0',
+    }}
+  />
+  <ColorItem
+    title="Secondary"
+    subtitle="theme.palette.secondary"
+    colors={{
+      light: '#ba68c8',
+      main: '#9c27b0',
+      dark: '#7b1fa2',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## セマンティックカラー
+
+<ColorPalette>
+  <ColorItem
+    title="Error"
+    subtitle="破壊的なアクション、エラー"
+    colors={{
+      light: '#ef5350',
+      main: '#d32f2f',
+      dark: '#c62828',
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="注意、警告"
+    colors={{
+      light: '#ff9800',
+      main: '#ed6c02',
+      dark: '#e65100',
+    }}
+  />
+  <ColorItem
+    title="Info"
+    subtitle="情報、ヒント"
+    colors={{
+      light: '#03a9f4',
+      main: '#0288d1',
+      dark: '#01579b',
+    }}
+  />
+  <ColorItem
+    title="Success"
+    subtitle="成功状態"
+    colors={{
+      light: '#4caf50',
+      main: '#2e7d32',
+      dark: '#1b5e20',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## グレースケール
+
+<ColorPalette>
+  <ColorItem
+    title="Grey"
+    subtitle="ニュートラルトーン"
+    colors={{
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## カラーのカスタマイズ
+
+### createThemeを使用
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      // lightとdarkは省略すると自動計算されます
+    },
+    secondary: {
+      main: '#9c27b0',
+    },
+    // カスタムカラー
+    tertiary: {
+      main: '#2e7d32',
+      light: '#4caf50',
+      dark: '#1b5e20',
+      contrastText: '#fff',
+    },
+  },
+})
+```
+
+### カラー値から生成
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+
+// MUIがlight、dark、contrastTextを自動計算します
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+  },
+})
+```
+
+### MUIカラーを使用
+
+```tsx
+import { createTheme } from '@mui/material/styles'
+import { purple, green } from '@mui/material/colors'
+
+const theme = createTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+  },
+})
+```
+
+---
+
+## カラーの使用方法
+
+### sx Propで使用
+
+```tsx
+// パレットパスを使用
+<Box sx={{ bgcolor: 'primary.main' }} />
+<Box sx={{ color: 'text.secondary' }} />
+<Box sx={{ borderColor: 'divider' }} />
+
+// カラー値を使用
+<Box sx={{ bgcolor: 'grey.100' }} />
+<Box sx={{ color: 'error.main' }} />
+```
+
+### styled Componentsで使用
+
+```tsx
+import { styled } from '@mui/material/styles'
+
+const CustomBox = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+}))
+```
+
+### 動的なカラー
+
+```tsx
+<Box
+  sx={(theme) => ({
+    bgcolor: theme.palette.mode === 'dark'
+      ? 'grey.800'
+      : 'grey.100',
+  })}
+/>
+```
+
+---
+
+## カラーユーティリティ
+
+### alpha
+
+```tsx
+import { alpha } from '@mui/material/styles'
+
+// 透明度を指定してrgbaカラーを生成
+<Box
+  sx={(theme) => ({
+    bgcolor: alpha(theme.palette.primary.main, 0.5),
+  })}
+/>
+```
+
+### darken / lighten
+
+```tsx
+import { darken, lighten } from '@mui/material/styles'
+
+const darker = darken('#1976d2', 0.2)  // 20%暗く
+const lighter = lighten('#1976d2', 0.2) // 20%明るく
+```
+
+### getContrastRatio
+
+```tsx
+import { getContrastRatio } from '@mui/material/styles'
+
+// WCAGコントラスト比を返します
+const ratio = getContrastRatio('#ffffff', '#1976d2')
+// ratio > 4.5 はAA準拠
+```
+
+---
+
+## アクセシビリティ
+
+<table>
+  <thead>
+    <tr>
+      <th>コントラスト比</th>
+      <th>WCAGレベル</th>
+      <th>使用用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>≥ 3.0</td><td>AA Large</td><td>大きなテキスト（18pt以上）</td></tr>
+    <tr><td>≥ 4.5</td><td>AA Normal</td><td>通常のテキスト</td></tr>
+    <tr><td>≥ 7.0</td><td>AAA</td><td>拡張コントラスト</td></tr>
+  </tbody>
+</table>
+
+MUIは、アクセシビリティのために`contrastText`を自動的に計算します:
+
+```tsx
+// MUIがテキストを読みやすくします
+theme.palette.primary.contrastText // 自動的に計算されます
+```
+
+---
+
+## ダークモードのカラー
+
+```tsx
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    // ダークモードのデフォルト値:
+    primary: { main: '#90caf9' },
+    background: {
+      default: '#121212',
+      paper: '#1e1e1e',
+    },
+    text: {
+      primary: '#fff',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+    },
+  },
+})
+```
+
+---
+
+## ベストプラクティス
+
+1. **セマンティックカラーを使用** - `#d32f2f`ではなく`error.main`を使用
+2. **コントラストを確認** - WCAG AA準拠を確保
+3. **両方のモードをテスト** - ライトとダークの両方でカラーを確認
+4. **alphaを使用** - 透明なオーバーレイには透明度を使用
+5. **パレットを制限** - ほとんどのUIにはprimary/secondaryを使用
+
+</Ja>

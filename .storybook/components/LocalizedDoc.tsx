@@ -1,5 +1,36 @@
-import React, { ReactNode } from 'react'
-import { useGlobals } from '@storybook/preview-api'
+import React, { createContext, useContext } from 'react'
+
+import type { ReactNode } from 'react'
+
+// ════════════════════════════════════════════════════════════
+// Locale Context - Safe alternative to useGlobals() for MDX
+// ════════════════════════════════════════════════════════════
+// useGlobals() can only be called inside decorators/story functions.
+// MDX doc pages render outside that context, so we use React Context instead.
+// The LocaleProvider is set up in preview.tsx decorator.
+
+type Locale = 'en' | 'ja'
+
+const LocaleContext = createContext<Locale>('en')
+
+/**
+ * LocaleProvider - Wraps children with locale context
+ * @description Used in preview.tsx decorator to provide locale to all components
+ */
+export const LocaleProvider: React.FC<{ locale: Locale; children: ReactNode }> = ({
+  locale,
+  children,
+}) => {
+  return <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
+}
+
+/**
+ * useLocale - Hook to get current locale from context
+ * @description Safe to use anywhere in the component tree (including MDX)
+ */
+export const useLocale = (): Locale => {
+  return useContext(LocaleContext)
+}
 
 /**
  * LocalizedDoc - Component for locale-aware content in MDX documentation
@@ -33,10 +64,10 @@ export const LocalizedDoc: React.FC<LocalizedDocProps> = ({
   ja,
   fallback = 'en',
 }) => {
-  const [globals] = useGlobals()
-  const locale = globals.locale || fallback
+  const locale = useLocale()
+  const effectiveLocale = locale || fallback
 
-  switch (locale) {
+  switch (effectiveLocale) {
     case 'ja':
       return <>{ja}</>
     case 'en':
@@ -62,27 +93,55 @@ export interface LocalizedTextProps {
 }
 
 export const LocalizedText: React.FC<LocalizedTextProps> = ({ en, ja }) => {
-  const [globals] = useGlobals()
-  const locale = globals.locale || 'en'
+  const locale = useLocale()
 
   return <>{locale === 'ja' ? ja : en}</>
 }
 
 /**
- * useLocale - Hook to get current locale
+ * En - English-only content wrapper for MDX
  *
  * @description
- * Returns the current locale string ('en' or 'ja')
+ * Renders children only when locale is 'en'.
+ * Use this in MDX files to wrap English markdown content.
  *
  * @example
- * ```tsx
- * const locale = useLocale()
- * return <p>{locale === 'ja' ? '日本語' : 'English'}</p>
+ * ```mdx
+ * <En>
+ *
+ * # English Title
+ *
+ * English content here with **markdown** support.
+ *
+ * </En>
  * ```
  */
-export const useLocale = (): 'en' | 'ja' => {
-  const [globals] = useGlobals()
-  return (globals.locale as 'en' | 'ja') || 'en'
+export const En: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const locale = useLocale()
+  return locale === 'en' ? <>{children}</> : null
+}
+
+/**
+ * Ja - Japanese-only content wrapper for MDX
+ *
+ * @description
+ * Renders children only when locale is 'ja'.
+ * Use this in MDX files to wrap Japanese markdown content.
+ *
+ * @example
+ * ```mdx
+ * <Ja>
+ *
+ * # 日本語タイトル
+ *
+ * 日本語コンテンツ（**マークダウン**対応）
+ *
+ * </Ja>
+ * ```
+ */
+export const Ja: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const locale = useLocale()
+  return locale === 'ja' ? <>{children}</> : null
 }
 
 export default LocalizedDoc

@@ -1,12 +1,53 @@
 import { CssBaseline, ThemeProvider, Box } from '@mui/material'
+import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
+import { useGlobals } from 'storybook/preview-api'
 
 import { DesignTokenProvider, designToken } from '../src/designToken'
 import { lightTheme, darkTheme } from '../src/themes'
+import { LocaleProvider } from './components/LocalizedDoc'
 
 import muiBrandTheme from './MuiBrandTheme'
 
 import type { Preview } from '@storybook/react-vite'
+import type { ComponentProps, PropsWithChildren } from 'react'
+
+// ════════════════════════════════════════════════════════════
+// Locale Bridge Decorator (for Stories)
+// ════════════════════════════════════════════════════════════
+// Bridges Storybook's useGlobals() (only available in decorators)
+// to our LocaleProvider (React Context available everywhere)
+const withLocaleProvider = (Story: React.ComponentType) => {
+  const [globals] = useGlobals()
+  const locale = (globals.locale as 'en' | 'ja') || 'en'
+
+  return (
+    <LocaleProvider locale={locale}>
+      <Story />
+    </LocaleProvider>
+  )
+}
+
+// ════════════════════════════════════════════════════════════
+// Custom DocsContainer (for MDX Documentation Pages)
+// ════════════════════════════════════════════════════════════
+// MDX prose content renders outside the story decorator chain,
+// so we need to wrap the DocsContainer with LocaleProvider too.
+type DocsContainerProps = PropsWithChildren<ComponentProps<typeof BaseDocsContainer>>
+
+const DocsContainer = ({ children, context, ...props }: DocsContainerProps) => {
+  // Access globals from Storybook's GlobalsStore
+  // In SB10, userGlobals is a GlobalsStore class with globals property
+  const globalsStore = context.store?.userGlobals as { globals?: Record<string, unknown> } | undefined
+  const globals = globalsStore?.globals || {}
+  const locale = (globals.locale as 'en' | 'ja') || 'en'
+
+  return (
+    <BaseDocsContainer context={context} {...props}>
+      <LocaleProvider locale={locale}>{children}</LocaleProvider>
+    </BaseDocsContainer>
+  )
+}
 
 const preview: Preview = {
   // ════════════════════════════════════════════════════════════
@@ -37,6 +78,8 @@ const preview: Preview = {
       canvas: {
         sourceState: 'hidden',
       },
+      // Custom DocsContainer wraps MDX content with LocaleProvider
+      container: DocsContainer,
     },
     options: {
       storySort: {
@@ -53,21 +96,6 @@ const preview: Preview = {
             'Breakpoints',
             'Customization',
             'Layout Complete',
-            '*',
-          ],
-          // Japanese Documentation (日本語ドキュメント)
-          'デザインシステム',
-          [
-            'はじめに',
-            'はじめ方',
-            'テーマ',
-            'デザイントークン',
-            'タイポグラフィ',
-            'カラー',
-            'スペーシング',
-            'ブレークポイント',
-            'カスタマイズ',
-            'レイアウト完全ガイド',
             '*',
           ],
           // Components
@@ -202,6 +230,10 @@ const preview: Preview = {
   },
 
   decorators: [
+    // ════════════════════════════════════════════════════════════
+    // Locale Provider - MUST be first to provide context to all components
+    // ════════════════════════════════════════════════════════════
+    withLocaleProvider,
     // Wrapper to ensure proper height and padding for components
     (Story) => (
       <Box

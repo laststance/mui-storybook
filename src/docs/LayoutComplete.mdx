@@ -7,8 +7,11 @@ import CSSImplementationGuide from '../components/LayoutComplete/CSSImplementati
 import LayoutTrends2025 from '../components/LayoutComplete/LayoutTrends2025'
 import DesignPrinciples from '../components/LayoutComplete/DesignPrinciples'
 import LayoutPatternsMUIGuide from '../components/LayoutComplete/LayoutPatternsMUIGuide'
+import { En, Ja } from '../../.storybook/components/LocalizedDoc'
 
 <Meta title="Design System/Layout Complete" />
+
+<En>
 
 # Layout Complete
 
@@ -535,3 +538,534 @@ theme.spacing(4)  // 32px
     All layout components adapt their appearance while maintaining the same structural patterns.
   </Typography>
 </Alert>
+
+</En>
+
+<Ja>
+
+# レイアウト完全ガイド
+
+<Alert severity="success" sx={{ mb: 4 }}>
+  <Typography variant="body2">
+    <strong>2025年の究極のレイアウト学習リソース</strong> — この包括的なガイドでは、MUIレイアウトコンポーネントから最新のCSSテクニック、視線追跡パターン、そして最新のデザイントレンドまで、すべてを網羅しています。
+    ジュニアWebデザイナーや開発者が基礎を築くのに最適です。
+  </Typography>
+</Alert>
+
+<Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 4 }}>
+  <Chip label="MUIコンポーネント" color="primary" size="small" />
+  <Chip label="30以上のレイアウトパターン" color="secondary" size="small" />
+  <Chip label="CSS Grid & Flexbox" color="info" size="small" />
+  <Chip label="視線追跡UX" color="warning" size="small" />
+  <Chip label="2025年トレンド" color="success" size="small" />
+  <Chip label="CRAPの原則" color="error" size="small" />
+</Box>
+
+## クイックナビゲーション
+
+<table>
+  <thead>
+    <tr>
+      <th>セクション</th>
+      <th>説明</th>
+      <th>主要コンセプト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#mui-layout-deep-dive">MUIレイアウト詳細解説</a></td>
+      <td>Box、Container、Grid、Stack、Masonryの技術仕様</td>
+      <td>スペーシングシステム、Grid v2、CSSプロパティ</td>
+    </tr>
+    <tr>
+      <td><a href="#30-layout-patterns">30のレイアウトパターン</a></td>
+      <td>包括的なパターンギャラリー</td>
+      <td>カラム、グリッド、スクロール、コンテナ、データパターン</td>
+    </tr>
+    <tr>
+      <td><a href="#mui-implementation-guide">MUI実装ガイド</a></td>
+      <td>30パターンのMUIコード例</td>
+      <td>Box、Container、Grid、Stack、Masonryのコード</td>
+    </tr>
+    <tr>
+      <td><a href="#eye-tracking-patterns">視線追跡パターン</a></td>
+      <td>F、Z、NパターンによるUX最適化</td>
+      <td>視覚的階層、注意の流れ</td>
+    </tr>
+    <tr>
+      <td><a href="#css-implementation-guide">CSS実装ガイド</a></td>
+      <td>GridとFlexboxの比較、MUI対応表</td>
+      <td>CSS Grid、Flexbox、Tailwind比較</td>
+    </tr>
+    <tr>
+      <td><a href="#2025-layout-trends">2025年レイアウトトレンド</a></td>
+      <td>最新デザイントレンド</td>
+      <td>ベントグリッド、グラスモーフィズム、非対称レイアウト</td>
+    </tr>
+    <tr>
+      <td><a href="#design-principles-crap">デザイン原則</a></td>
+      <td>CRAPの原則（コントラスト、反復、整列、近接）</td>
+      <td>ビジュアルデザインの基礎</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## MUIレイアウト詳細解説
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    インタラクティブMUIレイアウトコンポーネントエクスプローラー
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    Box、Container、Grid v2、Stack、Masonryをビジュアル仕様、インタラクティブ計算機、ライブデモで探索できます。
+    色分け：パディング（青）、マージン（オレンジ）、スペーシング（緑）。
+  </Typography>
+  <MUILayoutDeepDive />
+</Paper>
+
+### 8pxグリッドシステム
+
+MUIのスペーシングシステムはデフォルトで **8pxグリッド** に基づいています：
+
+```typescript
+// theme.spacing(n) = n * 8px
+theme.spacing(1)  // 8px
+theme.spacing(2)  // 16px
+theme.spacing(3)  // 24px
+theme.spacing(4)  // 32px
+```
+
+### レイアウトコンポーネントクイックリファレンス
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>用途</th>
+      <th>CSSディスプレイ</th>
+      <th>主要Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Box</code></td>
+      <td>汎用コンテナ、sx-propスタイリング</td>
+      <td>block（カスタマイズ可能）</td>
+      <td><code>sx</code>、<code>component</code></td>
+    </tr>
+    <tr>
+      <td><code>Container</code></td>
+      <td>maxWidthを持つ中央配置コンテンツ</td>
+      <td>block</td>
+      <td><code>maxWidth</code>、<code>fixed</code>、<code>disableGutters</code></td>
+    </tr>
+    <tr>
+      <td><code>Grid v2</code></td>
+      <td>12カラムレスポンシブグリッド</td>
+      <td>grid</td>
+      <td><code>container</code>、<code>size</code>、<code>spacing</code>、<code>offset</code></td>
+    </tr>
+    <tr>
+      <td><code>Stack</code></td>
+      <td>1次元レイアウト（行/列）</td>
+      <td>flex</td>
+      <td><code>direction</code>、<code>spacing</code>、<code>divider</code></td>
+    </tr>
+    <tr>
+      <td><code>Masonry</code></td>
+      <td>Pinterest風レイアウト</td>
+      <td>masonry（CSS）</td>
+      <td><code>columns</code>、<code>spacing</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 30のレイアウトパターン
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    Webレイアウトパターンギャラリー
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    カテゴリ別に整理された30の実証済みWebレイアウトパターンの包括的なコレクション。
+    各パターンには、ビジュアルプレビュー、CSSアプローチ、ユースケースが含まれています。
+  </Typography>
+  <LayoutPatternsGallery defaultCategory="all" showFilter={true} compact={false} />
+</Paper>
+
+### パターンカテゴリ概要
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, mb: 3 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="primary">カラムベース（5）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      シングルカラム、2カラム、3カラム、サイドバー、Holy Grail
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="secondary">グリッドベース（4）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      12カラムグリッド、マガジン、モジュラー、ベントグリッド
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="info.main">スクロールとフロー（4）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      無限スクロール、パララックス、横スクロール、垂直リズム
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="warning.main">コンテナとフロー（5）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      フルード、固定幅、アダプティブ、分割スクリーン、フルブリード
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="success.main">データ表示（6）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      カードグリッド、リスト、テーブル、ダッシュボード、タイムライン、カンバン
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="error.main">特殊（6）</Typography>
+    <Typography variant="body2" color="text.secondary">
+      モーダル、ドロワー、アコーディオン、タブ、カルーセル、Masonry
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+## MUI実装ガイド
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    30のレイアウトパターンとMUIコード例
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    MUIのコアレイアウトコンポーネントを使用して30のレイアウトパターンを実装する方法を学びます：
+    Box、Container、Grid、Stack、Masonry。各パターンには、日本語訳と実用的なヒントを含む
+    すぐに使えるコードが含まれています。
+  </Typography>
+  <LayoutPatternsMUIGuide defaultCategory="all" showCodeByDefault={false} compact={false} />
+</Paper>
+
+### コンポーネント色凡例
+
+<Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 3 }}>
+  <Chip label="Box - Primary" sx={{ bgcolor: 'rgba(33, 150, 243, 0.2)', color: '#2196F3' }} />
+  <Chip label="Container" sx={{ bgcolor: 'rgba(156, 39, 176, 0.2)', color: '#9C27B0' }} />
+  <Chip label="Grid" sx={{ bgcolor: 'rgba(76, 175, 80, 0.2)', color: '#4CAF50' }} />
+  <Chip label="Stack" sx={{ bgcolor: 'rgba(255, 152, 0, 0.2)', color: '#FF9800' }} />
+  <Chip label="Masonry" sx={{ bgcolor: 'rgba(244, 67, 54, 0.2)', color: '#F44336' }} />
+</Box>
+
+### 各コンポーネントの使い分け
+
+<table>
+  <thead>
+    <tr>
+      <th>コンポーネント</th>
+      <th>最適な用途</th>
+      <th>パターン例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Box</strong></td>
+      <td>汎用ラッパー、sx propによるカスタムCSS</td>
+      <td>フルブリード、モーダル、分割スクリーン</td>
+    </tr>
+    <tr>
+      <td><strong>Container</strong></td>
+      <td>最大幅を持つ中央配置コンテンツ</td>
+      <td>固定幅、シングルカラム</td>
+    </tr>
+    <tr>
+      <td><strong>Grid</strong></td>
+      <td>12カラムレスポンシブレイアウト</td>
+      <td>カードグリッド、ダッシュボード、マガジン</td>
+    </tr>
+    <tr>
+      <td><strong>Stack</strong></td>
+      <td>1次元レイアウト（縦/横）</td>
+      <td>リスト、タイムライン、アコーディオン</td>
+    </tr>
+    <tr>
+      <td><strong>Masonry</strong></td>
+      <td>Pinterest風の可変高さ</td>
+      <td>ギャラリー、Masonryグリッド</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 視線追跡パターン
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    視覚的注意フローパターン
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    ユーザーがWebページをスキャンする方法を理解することで、重要なコンテンツを戦略的に配置できます。
+    アニメーションビジュアライゼーションは、Fパターン、Zパターン、Nパターンの読み取り行動を示しています。
+  </Typography>
+  <EyeTrackingPatterns defaultPattern="F" showAnimation={true} showHeatmap={true} />
+</Paper>
+
+### パターン使用ガイドライン
+
+<table>
+  <thead>
+    <tr>
+      <th>パターン</th>
+      <th>最適な用途</th>
+      <th>主要要素の配置</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Fパターン</strong></td>
+      <td>テキスト重視のページ、記事、ブログ</td>
+      <td>左上に見出し、最初の段落に主要情報</td>
+    </tr>
+    <tr>
+      <td><strong>Zパターン</strong></td>
+      <td>ランディングページ、マーケティングサイト</td>
+      <td>左上にロゴ、右下にCTA、中央にヒーロー</td>
+    </tr>
+    <tr>
+      <td><strong>Nパターン</strong></td>
+      <td>モバイルファースト、垂直スクロール</td>
+      <td>コンテンツを垂直に積み重ね、強調を交互に配置</td>
+    </tr>
+  </tbody>
+</table>
+
+### ヒートマップ色凡例
+
+<Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+  <Chip label="高い注意（赤）" sx={{ bgcolor: 'rgba(255,0,0,0.2)' }} />
+  <Chip label="中程度の注意（黄）" sx={{ bgcolor: 'rgba(255,255,0,0.2)' }} />
+  <Chip label="低い注意（青）" sx={{ bgcolor: 'rgba(0,0,255,0.2)' }} />
+</Stack>
+
+---
+
+## CSS実装ガイド
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    CSS GridとFlexboxの比較、MUI対応表
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    GridとFlexboxの使い分けを学び、並列比較を見て、
+    MUIコンポーネントがネイティブCSSプロパティにどのようにマッピングされるかを理解します。
+  </Typography>
+  <CSSImplementationGuide defaultTab="comparison" showPlayground={true} />
+</Paper>
+
+### クイック判断：GridとFlexbox
+
+- **1次元レイアウト（行または列）？** → Flexbox（Stackコンポーネント）を使用
+- **2次元レイアウト（行と列）？** → CSS Grid（Gridコンポーネント）を使用
+- **コンテンツがサイズを決定？** → Flexbox（コンテンツファースト）
+- **構造がサイズを決定？** → Grid（構造ファースト）
+
+### MUIからCSSプロパティへのマッピング
+
+<table>
+  <thead>
+    <tr>
+      <th>MUI Prop</th>
+      <th>CSSプロパティ</th>
+      <th>例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sx display flex</code></td>
+      <td><code>display: flex</code></td>
+      <td>Flexboxを有効化</td>
+    </tr>
+    <tr>
+      <td><code>sx display grid</code></td>
+      <td><code>display: grid</code></td>
+      <td>Gridを有効化</td>
+    </tr>
+    <tr>
+      <td><code>spacing=2</code></td>
+      <td><code>gap: 16px</code></td>
+      <td>Grid/Stackのスペーシング</td>
+    </tr>
+    <tr>
+      <td><code>direction=row</code></td>
+      <td><code>flex-direction: row</code></td>
+      <td>Stackの方向</td>
+    </tr>
+    <tr>
+      <td><code>justifyContent=center</code></td>
+      <td><code>justify-content: center</code></td>
+      <td>主軸の配置</td>
+    </tr>
+    <tr>
+      <td><code>alignItems=center</code></td>
+      <td><code>align-items: center</code></td>
+      <td>交差軸の配置</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## 2025年レイアウトトレンド
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    最新レイアウトデザイントレンド
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    最先端のレイアウトトレンドを探索：ベントグリッド、次元性、非対称グリッド、
+    グラスモーフィズムをライブインタラクティブデモで体験できます。
+  </Typography>
+  <LayoutTrends2025 showDemos={true} showCode={true} />
+</Paper>
+
+### トレンド概要
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2, mb: 3 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">ベントグリッド</Typography>
+    <Typography variant="body2" color="text.secondary">
+      Appleによって普及した、さまざまなセルサイズを持つモジュラーグリッドレイアウト。
+      グリッド構造内の意図的な非対称性を通じて視覚的な興味を生み出します。
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">次元性</Typography>
+    <Typography variant="body2" color="text.secondary">
+      影、重なり合う要素、パースペクティブトランスフォームを通じて奥行きを追加。
+      Z軸の操作を通じて階層とフォーカスを作り出します。
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">非対称グリッド</Typography>
+    <Typography variant="body2" color="text.secondary">
+      ダイナミックで編集スタイルのレイアウトのために伝統的な対称性を破る。
+      視覚的な緊張感を生み出し、意図的に視線の動きを導きます。
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle1" fontWeight="bold">グラスモーフィズム</Typography>
+    <Typography variant="body2" color="text.secondary">
+      ぼかしと透明度を持つすりガラス効果。
+      奥行きとモダンな美学を生み出しますが、慎重なコントラスト管理が必要です。
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+## デザイン原則（CRAP）
+
+<Paper elevation={0} sx={{ p: 3, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 2, mb: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    基本的なデザイン原則
+  </Typography>
+  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    ビジュアルデザインの4つの基本原則をマスター：コントラスト、反復、整列、近接。
+    インタラクティブな前後トグルは、各原則の影響を実証します。
+  </Typography>
+  <DesignPrinciples showInteractive={true} defaultPrinciple="proximity" />
+</Paper>
+
+### CRAPの原則の説明
+
+<table>
+  <thead>
+    <tr>
+      <th>原則</th>
+      <th>日本語</th>
+      <th>主要コンセプト</th>
+      <th>適用方法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Contrast</strong></td>
+      <td>コントラスト</td>
+      <td>異なる要素を異なって見せる</td>
+      <td>階層のためのサイズ、色、ウェイトの変化</td>
+    </tr>
+    <tr>
+      <td><strong>Repetition</strong></td>
+      <td>反復</td>
+      <td>一貫性のために視覚的要素を繰り返す</td>
+      <td>全体で一貫した色、フォント、スペーシング</td>
+    </tr>
+    <tr>
+      <td><strong>Alignment</strong></td>
+      <td>整列</td>
+      <td>視覚的なラインを通じて要素を接続</td>
+      <td>グリッド配置、一貫したマージン</td>
+    </tr>
+    <tr>
+      <td><strong>Proximity</strong></td>
+      <td>近接</td>
+      <td>関連するアイテムをグループ化</td>
+      <td>関連要素間のスペースを減らす</td>
+    </tr>
+  </tbody>
+</table>
+
+### デザイン品質チェックリスト
+
+**レイアウトをリリースする前に確認：**
+
+- 近接 — 関連する要素がグループ化されているか？
+- 整列 — 要素が一貫したグリッドに整列しているか？
+- 反復 — スタイルが全体で一貫しているか？
+- コントラスト — サイズ/色の違いによって階層が明確か？
+- レスポンシブ — すべてのブレークポイントで機能するか？
+- アクセシビリティ — キーボード/スクリーンリーダーで使用可能か？
+
+---
+
+## さらなる学習リソース
+
+<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 2 }}>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="primary">MUIドキュメント</Typography>
+    <Typography variant="body2" color="text.secondary">
+      公式MUIレイアウトコンポーネントガイドとAPIリファレンス。
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="secondary">CSS-Tricks Gridガイド</Typography>
+    <Typography variant="body2" color="text.secondary">
+      例付きの包括的なCSS Gridビジュアルガイド。
+    </Typography>
+  </Paper>
+  <Paper sx={{ p: 2 }}>
+    <Typography variant="subtitle2" color="info.main">Flexbox Froggy</Typography>
+    <Typography variant="body2" color="text.secondary">
+      CSS Flexboxプロパティを学ぶインタラクティブゲーム。
+    </Typography>
+  </Paper>
+</Box>
+
+---
+
+<Alert severity="info" sx={{ mt: 4 }}>
+  <Typography variant="body2">
+    <strong>プロのヒント：</strong> 上部のテーマツールバーを使用して、ライトモードとダークモードを切り替えます。
+    すべてのレイアウトコンポーネントは、同じ構造パターンを維持しながら、外観を適応させます。
+  </Typography>
+</Alert>
+
+</Ja>

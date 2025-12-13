@@ -1,6 +1,9 @@
 import { Meta, Typeset } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../.storybook/components/LocalizedDoc'
 
 <Meta title="Design System/Typography" />
+
+<En>
 
 # Typography System
 
@@ -300,3 +303,308 @@ const theme = createTheme({
     <tr><td><strong>Responsive</strong></td><td>Adjust sizes for mobile</td></tr>
   </tbody>
 </table>
+
+</En>
+
+<Ja>
+
+# タイポグラフィシステム
+
+MUIのタイポグラフィシステムは、Material Designガイドラインに従った一貫性のあるテキストスタイルを提供します。
+
+---
+
+## デフォルトフォントスタック
+
+```tsx
+fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
+```
+
+---
+
+## タイプスケール
+
+<table>
+  <thead>
+    <tr>
+      <th>バリアント</th>
+      <th>サイズ</th>
+      <th>ウェイト</th>
+      <th>行の高さ</th>
+      <th>用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>h1</code></td><td>96px (6rem)</td><td>300</td><td>1.167</td><td>ヒーローヘッダー</td></tr>
+    <tr><td><code>h2</code></td><td>60px (3.75rem)</td><td>300</td><td>1.2</td><td>ページタイトル</td></tr>
+    <tr><td><code>h3</code></td><td>48px (3rem)</td><td>400</td><td>1.167</td><td>セクションヘッダー</td></tr>
+    <tr><td><code>h4</code></td><td>34px (2.125rem)</td><td>400</td><td>1.235</td><td>サブセクション</td></tr>
+    <tr><td><code>h5</code></td><td>24px (1.5rem)</td><td>400</td><td>1.334</td><td>カードタイトル</td></tr>
+    <tr><td><code>h6</code></td><td>20px (1.25rem)</td><td>500</td><td>1.6</td><td>小見出し</td></tr>
+    <tr><td><code>subtitle1</code></td><td>16px (1rem)</td><td>400</td><td>1.75</td><td>強調された本文</td></tr>
+    <tr><td><code>subtitle2</code></td><td>14px (0.875rem)</td><td>500</td><td>1.57</td><td>ラベル</td></tr>
+    <tr><td><code>body1</code></td><td>16px (1rem)</td><td>400</td><td>1.5</td><td>主要なコンテンツ</td></tr>
+    <tr><td><code>body2</code></td><td>14px (0.875rem)</td><td>400</td><td>1.43</td><td>副次的なコンテンツ</td></tr>
+    <tr><td><code>button</code></td><td>14px (0.875rem)</td><td>500</td><td>1.75</td><td>ボタン</td></tr>
+    <tr><td><code>caption</code></td><td>12px (0.75rem)</td><td>400</td><td>1.66</td><td>ヘルプテキスト</td></tr>
+    <tr><td><code>overline</code></td><td>12px (0.75rem)</td><td>400</td><td>2.66</td><td>ラベル</td></tr>
+  </tbody>
+</table>
+
+---
+
+## Typographyコンポーネント
+
+### 基本的な使い方
+
+```tsx
+import { Typography } from '@mui/material'
+
+<Typography variant="h1">Heading 1</Typography>
+<Typography variant="body1">Body text</Typography>
+<Typography variant="caption">Caption text</Typography>
+```
+
+### セマンティックHTML
+
+```tsx
+// h4のスタイルで<p>としてレンダリング
+<Typography variant="h4" component="p">
+  Styled as h4, semantically a paragraph
+</Typography>
+
+// h3のスタイルで<h1>としてレンダリング
+<Typography variant="h3" component="h1">
+  Styled as h3, semantically an h1
+</Typography>
+```
+
+### Props
+
+```tsx
+<Typography
+  variant="body1"      // スタイルバリアント
+  component="span"     // HTML要素
+  color="primary"      // テキストカラー
+  align="center"       // テキスト配置
+  noWrap              // 省略記号で切り詰め
+  gutterBottom        // 下部マージンを追加
+  paragraph           // 下部マージンを追加（本文のみ）
+>
+  Content
+</Typography>
+```
+
+---
+
+## フォントウェイト
+
+```tsx
+theme.typography = {
+  fontWeightLight: 300,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+}
+```
+
+---
+
+## タイポグラフィのカスタマイズ
+
+### カスタムフォントファミリー
+
+```tsx
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Inter',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+  },
+})
+```
+
+### カスタムバリアントスタイル
+
+```tsx
+const theme = createTheme({
+  typography: {
+    h1: {
+      fontSize: '3rem',
+      fontWeight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '-0.01em',
+    },
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.6,
+    },
+    button: {
+      textTransform: 'none', // Remove uppercase
+      fontWeight: 600,
+    },
+  },
+})
+```
+
+### レスポンシブタイポグラフィ
+
+```tsx
+const theme = createTheme({
+  typography: {
+    h1: {
+      fontSize: '2rem',
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '3rem',
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '4rem',
+      },
+    },
+  },
+})
+```
+
+### カスタムバリアントの追加
+
+```tsx
+// 1. テーマの型を拡張
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    poster: React.CSSProperties
+  }
+  interface TypographyVariantsOptions {
+    poster?: React.CSSProperties
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true
+  }
+}
+
+// 2. テーマを作成
+const theme = createTheme({
+  typography: {
+    poster: {
+      fontSize: '4rem',
+      fontWeight: 700,
+      lineHeight: 1.1,
+    },
+  },
+})
+
+// 3. 使用する
+<Typography variant="poster">Large Poster</Typography>
+```
+
+---
+
+## タイポグラフィトークンの使用
+
+### sx Propでの使用
+
+```tsx
+<Box
+  sx={{
+    typography: 'body1',
+    // または個別のプロパティ
+    fontWeight: 'fontWeightBold',
+    fontSize: 'h6.fontSize',
+    lineHeight: 'body1.lineHeight',
+  }}
+/>
+```
+
+### styledコンポーネントでの使用
+
+```tsx
+const CustomText = styled('span')(({ theme }) => ({
+  ...theme.typography.body2,
+  fontWeight: theme.typography.fontWeightMedium,
+}))
+```
+
+---
+
+## コードタイポグラフィ
+
+```tsx
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Roboto", sans-serif',
+    // コード用の等幅フォント
+    fontFamilyCode: '"Roboto Mono", "Consolas", monospace',
+  },
+})
+
+// 使い方
+<Box sx={{ fontFamily: 'fontFamilyCode' }}>
+  const x = 42;
+</Box>
+```
+
+---
+
+## テキストユーティリティ
+
+### 切り詰め
+
+```tsx
+// 単一行の切り詰め
+<Typography noWrap>
+  Long text that will be truncated with ellipsis...
+</Typography>
+
+// 複数行の切り詰め
+<Typography
+  sx={{
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: 'vertical',
+  }}
+>
+  Multi-line text that truncates after 3 lines...
+</Typography>
+```
+
+### カラー
+
+```tsx
+<Typography color="primary">Primary color</Typography>
+<Typography color="secondary">Secondary color</Typography>
+<Typography color="textPrimary">High emphasis</Typography>
+<Typography color="textSecondary">Medium emphasis</Typography>
+<Typography color="error">Error state</Typography>
+```
+
+---
+
+## ベストプラクティス
+
+<table>
+  <thead>
+    <tr>
+      <th>プラクティス</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>バリアントを使用</strong></td><td>カスタムスタイルよりも<code>variant</code>を優先</td></tr>
+    <tr><td><strong>セマンティックHTML</strong></td><td>正しいセマンティクスのために<code>component</code>を使用</td></tr>
+    <tr><td><strong>バリアントを制限</strong></td><td>1ページあたり4〜5種類のバリアントに留める</td></tr>
+    <tr><td><strong>一貫性のあるサイズ</strong></td><td>タイプスケールに従う</td></tr>
+    <tr><td><strong>レスポンシブ</strong></td><td>モバイル向けにサイズを調整</td></tr>
+  </tbody>
+</table>
+
+</Ja>
