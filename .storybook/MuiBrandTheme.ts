@@ -37,8 +37,8 @@ export default create({
   inputBorderRadius: 8,
 
   // Button colors - Vibrant and cohesive
-  buttonBg: '#0ea5e9', // Sky-500 - vibrant primary action
-  buttonBorder: '#0284c7', // Sky-600 - subtle depth
+  buttonBg: '#38bdf8', // Sky-400 - brighter, more vibrant primary action
+  buttonBorder: '#0ea5e9', // Sky-500 - subtle depth
 
   // Boolean inputs - Clear and modern
   booleanBg: '#e0f2fe', // Sky-100 - subtle background
