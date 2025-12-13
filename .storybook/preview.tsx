@@ -1,23 +1,33 @@
 import { CssBaseline, ThemeProvider, Box } from '@mui/material'
 import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
+import { initialize, mswLoader } from 'msw-storybook-addon'
 import { useGlobals } from 'storybook/preview-api'
 
 import { DesignTokenProvider, designToken } from '../src/designToken'
 import { lightTheme, darkTheme } from '../src/themes'
-import { LocaleProvider } from './components/LocalizedDoc'
 
+import { LocaleProvider } from './components/LocalizedDoc'
 import muiBrandTheme from './MuiBrandTheme'
 
 import type { Preview } from '@storybook/react-vite'
 import type { ComponentProps, PropsWithChildren } from 'react'
 
 // ════════════════════════════════════════════════════════════
+// MSW (Mock Service Worker) Initialization
+// ════════════════════════════════════════════════════════════
+// Initialize MSW for API mocking in stories
+// This enables stories to mock REST/GraphQL requests
+initialize({
+  onUnhandledRequest: 'bypass', // Bypass requests without handlers
+})
+
+// ════════════════════════════════════════════════════════════
 // Locale Bridge Decorator (for Stories)
 // ════════════════════════════════════════════════════════════
 // Bridges Storybook's useGlobals() (only available in decorators)
 // to our LocaleProvider (React Context available everywhere)
-const withLocaleProvider = (Story: React.ComponentType) => {
+const WithLocaleProvider = (Story: React.ComponentType) => {
   const [globals] = useGlobals()
   const locale = (globals.locale as 'en' | 'ja') || 'en'
 
@@ -33,12 +43,16 @@ const withLocaleProvider = (Story: React.ComponentType) => {
 // ════════════════════════════════════════════════════════════
 // MDX prose content renders outside the story decorator chain,
 // so we need to wrap the DocsContainer with LocaleProvider too.
-type DocsContainerProps = PropsWithChildren<ComponentProps<typeof BaseDocsContainer>>
+type DocsContainerProps = PropsWithChildren<
+  ComponentProps<typeof BaseDocsContainer>
+>
 
 const DocsContainer = ({ children, context, ...props }: DocsContainerProps) => {
   // Access globals from Storybook's GlobalsStore
   // In SB10, userGlobals is a GlobalsStore class with globals property
-  const globalsStore = context.store?.userGlobals as { globals?: Record<string, unknown> } | undefined
+  const globalsStore = context.store?.userGlobals as
+    | { globals?: Record<string, unknown> }
+    | undefined
   const globals = globalsStore?.globals || {}
   const locale = (globals.locale as 'en' | 'ja') || 'en'
 
@@ -50,6 +64,11 @@ const DocsContainer = ({ children, context, ...props }: DocsContainerProps) => {
 }
 
 const preview: Preview = {
+  // ════════════════════════════════════════════════════════════
+  // MSW Loader - Required for API mocking in stories
+  // ════════════════════════════════════════════════════════════
+  loaders: [mswLoader],
+
   // ════════════════════════════════════════════════════════════
   // Internationalization (i18n) - Language Switching
   // ════════════════════════════════════════════════════════════
@@ -166,12 +185,7 @@ const preview: Preview = {
           // 4th: Examples (Real-world implementations)
           // ════════════════════════════════════════════════════════════
           'Examples',
-          [
-            'Dashboard',
-            'Payment Management',
-            'Mobile Landing',
-            '*',
-          ],
+          ['Dashboard', 'Payment Management', 'Mobile Landing', '*'],
           // ════════════════════════════════════════════════════════════
           // Components (organized by category)
           // ════════════════════════════════════════════════════════════
@@ -264,7 +278,7 @@ const preview: Preview = {
     // ════════════════════════════════════════════════════════════
     // Locale Provider - MUST be first to provide context to all components
     // ════════════════════════════════════════════════════════════
-    withLocaleProvider,
+    WithLocaleProvider,
     // Wrapper to ensure proper height and padding for components
     (Story) => (
       <Box

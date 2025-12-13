@@ -17,11 +17,13 @@ const LocaleContext = createContext<Locale>('en')
  * LocaleProvider - Wraps children with locale context
  * @description Used in preview.tsx decorator to provide locale to all components
  */
-export const LocaleProvider: React.FC<{ locale: Locale; children: ReactNode }> = ({
-  locale,
-  children,
-}) => {
-  return <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
+export const LocaleProvider: React.FC<{
+  locale: Locale
+  children: ReactNode
+}> = ({ locale, children }) => {
+  return (
+    <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
+  )
 }
 
 /**

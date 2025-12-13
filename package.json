@@ -25,6 +25,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.1",
+    "@hookform/resolvers": "^5.2.2",
     "@mui/icons-material": "^7.3.6",
     "@mui/lab": "7.0.1-beta.20",
     "@mui/material": "^7.3.6",
@@ -37,6 +38,10 @@
     "@storybook/addon-themes": "^10.1.7",
     "@storybook/addon-vitest": "^10.1.7",
     "@storybook/react-vite": "^10.1.7",
+    "@tanstack/react-query": "^5.90.12",
+    "@tanstack/react-router": "^1.141.1",
+    "@tanstack/react-store": "^0.8.0",
+    "@tanstack/store": "^0.8.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
@@ -59,11 +64,14 @@
     "eslint-plugin-storybook": "^10.1.7",
     "globals": "^16.5.0",
     "http-server": "^14.1.1",
+    "msw": "^2.12.4",
+    "msw-storybook-addon": "^2.0.6",
     "playwright": "^1.57.0",
     "plop": "^4.0.4",
     "prettier": "^3.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-hook-form": "^7.68.0",
     "rimraf": "^6.1.2",
     "sort-package-json": "^3.5.1",
     "storybook": "^10.1.7",
@@ -72,6 +80,12 @@
     "typescript-eslint": "^8.49.0",
     "vite": "^7.2.7",
     "vitest": "^4.0.15",
-    "wait-on": "^9.0.3"
+    "wait-on": "^9.0.3",
+    "zod": "^4.1.13"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
