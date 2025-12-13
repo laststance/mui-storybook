@@ -125,6 +125,102 @@ Test runner configured in `.storybook/test-runner.ts`:
 - Stories can disable a11y checks with `parameters.a11y.disable: true`
 - Stories can customize axe options via `parameters.a11y.options`
 
+## Mandatory Testing Requirements
+
+**IMPORTANT**: After completing any implementation work, you MUST write Playwright tests (interaction tests in stories) to verify the functionality.
+
+### When Tests Are Required
+
+| Change Type | Test Required | Test Type |
+|-------------|---------------|-----------|
+| New component | ✅ Yes | Story with `play` function |
+| Component modification | ✅ Yes | Update/add interaction tests |
+| Bug fix | ✅ Yes | Test that reproduces and verifies fix |
+| UI/UX changes | ✅ Yes | Visual and interaction verification |
+| New story variants | ✅ Yes | `play` function for each variant |
+
+### Exceptions (No Test Required)
+
+- **MCP operations**: Server configurations, tool integrations
+- **Documentation only**: MDX content, README updates, comments
+- **Configuration**: ESLint, Prettier, TypeScript config changes
+- **Theme tokens**: Design token value adjustments (unless affecting behavior)
+- **Type definitions**: Interface/type-only changes
+
+### Test Implementation Checklist
+
+Before marking work as complete, verify:
+
+1. ✅ **Interaction tests exist**: Every interactive component has a `play` function
+2. ✅ **Tests pass locally**: Run `pnpm test-storybook` (requires Storybook running)
+3. ✅ **Portal components tested**: Use `screen` for Dialog/Modal/Popover testing
+4. ✅ **Accessibility validated**: axe-core runs automatically via test-runner
+5. ✅ **Edge cases covered**: Error states, loading states, empty states
+
+### Test Command Workflow
+
+```bash
+# 1. Start Storybook (if not running)
+pnpm storybook
+
+# 2. Run interaction tests
+pnpm test-storybook
+
+# 3. For CI-style testing (auto-starts Storybook)
+pnpm test-storybook:ci
+```
+
+### Example: Required Test Pattern
+
+```tsx
+import { expect, fn, userEvent, within } from 'storybook/test'
+
+// ❌ INCOMPLETE - Missing play function
+export const Primary: Story = {
+  args: { variant: 'contained', children: 'Click me' },
+}
+
+// ✅ COMPLETE - With interaction test
+export const Primary: Story = {
+  args: { variant: 'contained', children: 'Click me', onClick: fn() },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button', { name: /click me/i })
+    await userEvent.click(button)
+    await expect(args.onClick).toHaveBeenCalled()
+  },
+}
+```
+
+### Example: Portal Component Testing (Dialog/Modal/Popover)
+
+Portal components render outside `canvasElement`. Use `screen` from `storybook/test`:
+
+```tsx
+import { expect, screen, userEvent, within } from 'storybook/test'
+
+export const DialogTest: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Click trigger to open dialog
+    await userEvent.click(canvas.getByRole('button', { name: /open/i }))
+
+    // Use screen for portal content (NOT canvas)
+    const dialog = await screen.findByRole('dialog')
+    await expect(dialog).toBeInTheDocument()
+
+    // Interact with dialog content
+    const closeButton = within(dialog).getByRole('button', { name: /close/i })
+    await userEvent.click(closeButton)
+  },
+}
+```
+
+### Note on Test Runner
+
+This project uses `@storybook/test-runner` which executes Playwright under the hood. The `play` functions in stories become Playwright tests that run in a real browser environment, providing reliable E2E-style testing for components.
+
 ## Code Style
 
 - **Import order**: Alphabetized, grouped (builtin → external → internal → relative)
