@@ -1,9 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 import * as BoxStories from './Box.stories'
 
 <Meta of={BoxStories} />
 
+<En>
 # Box
 
 Utility component for layouts
@@ -18,22 +20,54 @@ Key features:
 - Responsive design support
 - Easy implementation of Flexbox and Grid layouts
 - Change element type with the `component` prop
+</En>
+
+<Ja>
+# Box
+
+レイアウトのためのユーティリティコンポーネント
+
+## 概要
+
+Box コンポーネントは、MUI のスタイリングソリューションにおける最も基本的な構成要素です。`sx` プロップを使用してテーマベースのスタイリングを直接適用できます。レイアウト、スペーシング、レスポンシブデザインなど、多目的に使用できるコンテナコンポーネントです。
+
+主な機能:
+- `sx` プロップによる強力なスタイリング
+- テーマの値への直接アクセス
+- レスポンシブデザインのサポート
+- Flexbox と Grid レイアウトの簡単な実装
+- `component` プロップによる要素タイプの変更
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -109,3 +143,82 @@ function ResponsiveBox() {
 - Use the `component` prop to give it semantic meaning
 - Example: `<Box component="section">` or `<Box component="article">`
 - When using as an interactive element, add appropriate ARIA attributes
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+function MyBox() {
+  return (
+    <Box
+      sx={{
+        width: 300,
+        height: 200,
+        backgroundColor: 'primary.main',
+        borderRadius: 2,
+        padding: 2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '&:hover': {
+          backgroundColor: 'primary.dark',
+        },
+      }}
+    >
+      <Typography color="white">Box コンテンツ</Typography>
+    </Box>
+  )
+}
+
+// Flexbox レイアウト
+function FlexboxLayout() {
+  return (
+    <Box sx={{ display: 'flex', gap: 2, p: 2 }}>
+      <Box sx={{ flex: 1, bgcolor: 'primary.light', p: 2 }}>
+        アイテム 1
+      </Box>
+      <Box sx={{ flex: 2, bgcolor: 'secondary.light', p: 2 }}>
+        アイテム 2 (flex: 2)
+      </Box>
+      <Box sx={{ flex: 1, bgcolor: 'error.light', p: 2 }}>
+        アイテム 3
+      </Box>
+    </Box>
+  )
+}
+
+// レスポンシブデザイン
+function ResponsiveBox() {
+  return (
+    <Box
+      sx={{
+        width: {
+          xs: '100%', // モバイル
+          sm: '75%',  // タブレット
+          md: '50%',  // デスクトップ
+        },
+        bgcolor: {
+          xs: 'error.light',
+          sm: 'warning.light',
+          md: 'success.light',
+        },
+        p: 2,
+      }}
+    >
+      レスポンシブ Box
+    </Box>
+  )
+}
+```
+
+## アクセシビリティ
+
+- Box は標準の `<div>` 要素としてレンダリングされます
+- `component` プロップを使用してセマンティックな意味を持たせることができます
+- 例: `<Box component="section">` や `<Box component="article">`
+- インタラクティブな要素として使用する場合は、適切な ARIA 属性を追加してください
+</Ja>

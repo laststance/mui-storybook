@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as TextFieldStories from './TextField.stories'
 
 <Meta of={TextFieldStories} />
 
+<En>
 # TextField
 
 Text input field
@@ -12,20 +14,47 @@ Text input field
 The MUI TextField component is a basic form component for users to input text. It supports single-line input, multi-line input (textarea), and various variants (outlined, filled, standard). It comprehensively provides features necessary for forms, including labels, helper text, error messages, and required field marking. Designed with accessibility and usability in mind.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# TextField
+
+テキスト入力フィールド
+
+## 概要
+
+MUI TextFieldコンポーネントは、ユーザーがテキストを入力するための基本的なフォームコンポーネントです。単一行入力、複数行入力（textarea）、およびさまざまなバリアント（outlined、filled、standard）をサポートしています。ラベル、ヘルパーテキスト、エラーメッセージ、必須フィールドのマーキングなど、フォームに必要な機能を包括的に提供します。アクセシビリティとユーザビリティを考慮して設計されています。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -58,3 +87,39 @@ function ContactForm() {
 - Specifies appropriate input type using the `type` attribute
 - Screen readers properly announce labels, values, and error messages
 - Fully supports keyboard operations (Tab, arrow keys, etc.)
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import TextField from '@mui/material/TextField'
+import { useState } from 'react'
+
+function ContactForm() {
+  const [email, setEmail] = useState('')
+
+  return (
+    <TextField
+      label="メールアドレス"
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+      helperText="メールアドレスは共有されません"
+      variant="outlined"
+      fullWidth
+    />
+  )
+}
+```
+
+## アクセシビリティ
+
+- `label`プロパティを使用して視覚的かつセマンティックなラベルを提供します
+- `required`プロパティを使用して必須フィールドを示します
+- `error`と`helperText`を使用してエラー状態とメッセージを提供します
+- `type`属性を使用して適切な入力タイプを指定します
+- スクリーンリーダーはラベル、値、エラーメッセージを適切に読み上げます
+- キーボード操作を完全にサポートしています（Tab、矢印キーなど）
+</Ja>

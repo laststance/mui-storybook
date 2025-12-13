@@ -1,9 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 import * as BadgeStories from './Badge.stories'
 
 <Meta of={BadgeStories} />
 
+<En>
 # Badge
 
 Badges displaying notification counts or status
@@ -21,20 +23,55 @@ Key features:
 - Custom content support
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Badge
+
+通知カウントやステータスを表示するバッジ
+
+## 概要
+
+Badgeコンポーネントは、アイコンやボタンの隅に小さなバッジを表示して、未読メッセージ数やステータスなどを示します。通知システム、ショッピングカートのアイテム数、ステータスインジケーターなどに使用されます。
+
+主な機能：
+- 数値バッジとドットバッジ
+- カラーバリエーション（primary、secondary、error、successなど）
+- 最大値の設定（99+など）
+- バッジ位置の調整
+- バッジの表示/非表示の制御
+- カスタムコンテンツのサポート
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -91,3 +128,63 @@ function ControlledBadge() {
 - Example: `aria-label="4 new messages"`
 - If badge content is only displayed visually, provide alternative text for screen reader users
 - For dynamically changing badges, consider using `aria-live` regions
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Badge from '@mui/material/Badge'
+import IconButton from '@mui/material/IconButton'
+import MailIcon from '@mui/icons-material/Mail'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import Stack from '@mui/material/Stack'
+
+function MyBadges() {
+  return (
+    <Stack direction="row" spacing={3}>
+      {/* 数値バッジ */}
+      <Badge badgeContent={4} color="primary">
+        <MailIcon />
+      </Badge>
+
+      {/* 最大値を設定 */}
+      <Badge badgeContent={100} max={99} color="secondary">
+        <MailIcon />
+      </Badge>
+
+      {/* ドットバッジ */}
+      <Badge variant="dot" color="error">
+        <NotificationsIcon />
+      </Badge>
+
+      {/* アイコンボタンと組み合わせ */}
+      <IconButton aria-label="17件の新しい通知">
+        <Badge badgeContent={17} color="error">
+          <NotificationsIcon />
+        </Badge>
+      </IconButton>
+    </Stack>
+  )
+}
+
+// バッジの表示制御
+function ControlledBadge() {
+  const [count, setCount] = React.useState(1)
+  const [invisible, setInvisible] = React.useState(false)
+
+  return (
+    <Badge badgeContent={count} invisible={invisible} color="primary">
+      <MailIcon />
+    </Badge>
+  )
+}
+```
+
+## アクセシビリティ
+
+- IconButtonと組み合わせる場合、`aria-label`に通知数を含めてください
+- 例：`aria-label="4件の新しいメッセージ"`
+- バッジの内容が視覚的にのみ表示される場合、スクリーンリーダーユーザーのための代替テキストを提供してください
+- 動的に変化するバッジには、`aria-live`リージョンの使用を検討してください
+</Ja>

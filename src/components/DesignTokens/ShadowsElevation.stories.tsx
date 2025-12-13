@@ -16,7 +16,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Design Tokens/Shadows Elevation',
   component: ShadowsElevation,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
   parameters: {
     docs: {
       description: {

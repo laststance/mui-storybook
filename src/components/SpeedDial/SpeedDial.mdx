@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as SpeedDialStories from './SpeedDial.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={SpeedDialStories} />
+
+<En>
 
 # SpeedDial
 
@@ -11,20 +14,58 @@ Floating menu for multiple actions
 
 The MUI SpeedDial component displays multiple related actions grouped within a single floating action button. When the primary action button is clicked, multiple related actions expand, allowing users to select from them. It provides quick access to frequently used actions and efficiently utilizes screen space. Display direction (up, down, left, right) and tooltips can be customized.
 
+</En>
+
+<Ja>
+
+# SpeedDial
+
+複数アクション用のフローティングメニュー
+
+## 概要
+
+MUI SpeedDialコンポーネントは、単一のフローティングアクションボタン内にグループ化された複数の関連アクションを表示します。プライマリアクションボタンがクリックされると、複数の関連アクションが展開され、ユーザーはその中から選択できます。頻繁に使用するアクションへの素早いアクセスを提供し、画面スペースを効率的に活用します。表示方向（上、下、左、右）とツールチップをカスタマイズできます。
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -65,3 +106,49 @@ function QuickActions() {
 - Set descriptive names for each action using `tooltipTitle`
 - Supports keyboard operations (Tab, Enter, Escape)
 - Each action is properly identified by screen readers
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import SpeedDial from '@mui/material/SpeedDial'
+import SpeedDialAction from '@mui/material/SpeedDialAction'
+import SpeedDialIcon from '@mui/material/SpeedDialIcon'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
+import SaveIcon from '@mui/icons-material/Save'
+
+const actions = [
+  { icon: <FileCopyIcon />, name: 'コピー' },
+  { icon: <SaveIcon />, name: '保存' },
+]
+
+function QuickActions() {
+  return (
+    <SpeedDial
+      ariaLabel="クイックアクション"
+      icon={<SpeedDialIcon />}
+      direction="up"
+    >
+      {actions.map((action) => (
+        <SpeedDialAction
+          key={action.name}
+          icon={action.icon}
+          tooltipTitle={action.name}
+        />
+      ))}
+    </SpeedDial>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `ariaLabel`プロパティを使用して明確なラベルを提供してください
+- `tooltipTitle`を使用して各アクションに説明的な名前を設定してください
+- キーボード操作（Tab、Enter、Escape）をサポート
+- 各アクションはスクリーンリーダーによって適切に識別されます
+
+</Ja>

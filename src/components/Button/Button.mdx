@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ButtonStories from './Button.stories'
 
 <Meta of={ButtonStories} />
 
+<En>
 # Button
 
 MUI Button component wrapper. Provides interactive elements for users to perform actions.
@@ -17,20 +19,52 @@ The Button component wraps Material-UI's Button and provides the following featu
 - **Accessibility**: WCAG AA compliant color contrast
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Button
+
+MUI Buttonコンポーネントラッパー。ユーザーがアクションを実行するためのインタラクティブな要素を提供します。
+
+## 概要
+
+ButtonコンポーネントはMaterial-UIのButtonをラップし、以下の機能を提供します：
+
+- **バリアント**: 3種類 - `text`、`outlined`、`contained`
+- **カラー**: `primary`、`secondary`、`success`、`error`、`info`、`warning`
+- **サイズ**: `small`、`medium`、`large`
+- **アクセシビリティ**: WCAG AA準拠のカラーコントラスト
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe button behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、ボタンの動作を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -60,3 +94,36 @@ import Button from '@/components/Button'
 - Always provide clear and descriptive labels for buttons
 - Use `aria-label` for icon-only buttons
 - Keyboard navigation is supported
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Button from '@/components/Button'
+
+// 基本的な使用法
+<Button variant="contained" color="primary">
+  クリック
+</Button>
+
+// クリックハンドラー付き
+<Button
+  variant="outlined"
+  onClick={() => console.log('clicked')}
+>
+  送信
+</Button>
+
+// 無効状態
+<Button disabled>
+  無効なボタン
+</Button>
+```
+
+## アクセシビリティ
+
+- ボタンには常に明確で説明的なラベルを付けてください
+- アイコンのみのボタンには`aria-label`を使用してください
+- キーボードナビゲーションがサポートされています
+</Ja>

@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ToggleButtonStories from './ToggleButton.stories'
 
 <Meta of={ToggleButtonStories} />
 
+<En>
 # ToggleButton
 
 Toggle button
@@ -12,22 +14,55 @@ Toggle button
 The MUI ToggleButton component is a button with on/off states, and when combined with ToggleButtonGroup, you can create UI for selecting one or multiple options from a set of choices. It can be utilized in scenarios requiring visual state indication, such as text alignment settings, view switching, and filter option selection. Supports both exclusive selection (radio button-like behavior) and multiple selection (checkbox-like behavior).
 
 ## Primary Demo
+</En>
+
+<Ja>
+# ToggleButton
+
+トグルボタン
+
+## 概要
+
+MUI ToggleButtonコンポーネントは、オン/オフの状態を持つボタンで、ToggleButtonGroupと組み合わせることで、選択肢のセットから1つまたは複数のオプションを選択するUIを作成できます。テキストの配置設定、ビューの切り替え、フィルターオプションの選択など、視覚的な状態表示が必要なシナリオで活用できます。排他的選択（ラジオボタンのような動作）と複数選択（チェックボックスのような動作）の両方をサポートします。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -69,3 +104,48 @@ function TextFormatting() {
 - Supports keyboard operations (Tab, Enter, Space, arrow keys)
 - Indicates the purpose of the entire group using `aria-label` on ToggleButtonGroup
 - Screen readers can understand the current selection state
+</En>
+
+<Ja>
+```tsx
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import { useState } from 'react'
+
+function TextFormatting() {
+  const [formats, setFormats] = useState<string[]>(['bold'])
+
+  const handleFormat = (
+    _: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
+    setFormats(newFormats)
+  }
+
+  return (
+    <ToggleButtonGroup
+      value={formats}
+      onChange={handleFormat}
+      aria-label="テキストフォーマット"
+    >
+      <ToggleButton value="bold" aria-label="太字">
+        <FormatBoldIcon />
+      </ToggleButton>
+      <ToggleButton value="italic" aria-label="斜体">
+        <FormatItalicIcon />
+      </ToggleButton>
+    </ToggleButtonGroup>
+  )
+}
+```
+
+## アクセシビリティ
+
+- 各ToggleButtonに`aria-label`を使用して明確なラベルを提供してください
+- `aria-pressed`属性を使用して選択状態を示します
+- キーボード操作（Tab、Enter、Space、矢印キー）をサポート
+- ToggleButtonGroupの`aria-label`を使用してグループ全体の目的を示します
+- スクリーンリーダーが現在の選択状態を理解できます
+</Ja>

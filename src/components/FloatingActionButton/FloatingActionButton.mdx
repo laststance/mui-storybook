@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as FloatingActionButtonStories from './FloatingActionButton.stories'
 
 <Meta of={FloatingActionButtonStories} />
 
+<En>
 # FloatingActionButton
 
 A Floating Action Button (FAB) is a circular button component that represents the most important action on the screen.
@@ -23,22 +25,60 @@ Common use cases:
 - Transition to edit mode
 - Add to favorites
 - Navigation actions
+</En>
+
+<Ja>
+# FloatingActionButton
+
+Floating Action Button (FAB) は、画面上で最も重要なアクションを表す円形のボタンコンポーネントです。
+
+## 概要
+
+FloatingActionButton は、アプリケーションのプライマリアクションを促進するために使用される特別なボタンです。通常、画面の右下に固定され、ユーザーが最も頻繁に実行するアクションへの即座のアクセスを提供します。
+
+主な機能:
+- **目立つデザイン**: 円形で浮き上がったデザインが他のコンテンツと視覚的に区別されます
+- **アイコン表示**: アクションを表すアイコンを中央に配置します
+- **拡張バリアント**: アイコンとテキストラベルを組み合わせた拡張表示が可能です
+- **カラーバリエーション**: primary、secondary などのテーマカラーをサポート
+- **無効状態**: disabled プロパティで操作を制限できます
+
+一般的な使用例:
+- 新規作成 (メール、投稿、ドキュメントなど)
+- 編集モードへの遷移
+- お気に入りへの追加
+- ナビゲーションアクション
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -68,3 +108,36 @@ import Fab from '@mui/material/Fab'
 - Particularly important for icon-only buttons (for screen reader users)
 - Supports keyboard operation: Tab key to focus, Enter or Space key to execute
 - When disabled, `aria-disabled="true"` is automatically set
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import AddIcon from '@mui/icons-material/Add'
+import Fab from '@mui/material/Fab'
+
+// 基本的な使用
+<Fab color="primary" aria-label="追加">
+  <AddIcon />
+</Fab>
+
+// 拡張バリアント (アイコンとテキスト)
+<Fab variant="extended" color="primary">
+  <NavigationIcon sx={{ mr: 1 }} />
+  ナビゲート
+</Fab>
+
+// 無効状態
+<Fab disabled aria-label="お気に入り">
+  <FavoriteIcon />
+</Fab>
+```
+
+## アクセシビリティ
+
+- 必ず `aria-label` 属性を指定してボタンの目的を明確にしてください
+- アイコンのみのボタンでは特に重要です (スクリーンリーダーユーザーのため)
+- キーボード操作をサポート: Tab キーでフォーカス、Enter または Space キーで実行
+- 無効化された場合、`aria-disabled="true"` が自動的に設定されます
+</Ja>

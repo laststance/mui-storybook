@@ -1,32 +1,77 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as SnackbarStories from './Snackbar.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={SnackbarStories} />
 
 # Snackbar
 
+<En>
 Temporary notification message
+</En>
+<Ja>
+一時的な通知メッセージ
+</Ja>
+
+<En>
 
 ## Overview
 
 MUI's Snackbar component temporarily displays feedback and notifications for user actions at the edge of the screen. It can communicate action success, errors, and information to users non-intrusively. When combined with the Alert component, it can provide clearer and more visual feedback. Display position, auto-hide duration, action buttons, and more are customizable.
 
+</En>
+<Ja>
+
+## 概要
+
+MUIのSnackbarコンポーネントは、画面の端にユーザーアクションに対するフィードバックや通知を一時的に表示します。アクションの成功、エラー、情報などを、ユーザーを邪魔することなく伝えることができます。Alertコンポーネントと組み合わせることで、より明確で視覚的なフィードバックを提供できます。表示位置、自動非表示時間、アクションボタンなどをカスタマイズ可能です。
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールでプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
+<En>
 
 ## All Variants
 
+</En>
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
 
+<En>
+
 ## Usage Example
+
+</En>
+<Ja>
+
+## 使用例
+
+</Ja>
 
 ```tsx
 import Snackbar from '@mui/material/Snackbar'
@@ -55,9 +100,23 @@ function NotificationExample() {
 }
 ```
 
+<En>
+
 ## Accessibility
 
 - Automatically announced to screen readers (`role="alert"`)
 - Set `autoHideDuration` to close automatically
 - Provide accessible label for close button
 - Ensure sufficient display time for important notifications
+
+</En>
+<Ja>
+
+## アクセシビリティ
+
+- スクリーンリーダーに自動的にアナウンスされます（`role="alert"`）
+- `autoHideDuration`を設定して自動的に閉じる
+- 閉じるボタンにアクセス可能なラベルを提供
+- 重要な通知には十分な表示時間を確保
+
+</Ja>

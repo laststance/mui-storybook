@@ -1,8 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
 
 import * as BottomNavigationStories from './BottomNavigation.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={BottomNavigationStories} />
+
+<En>
 
 # BottomNavigation
 
@@ -19,20 +22,65 @@ Key features:
 - Fixed position display support
 - Responsive design
 
+</En>
+
+<Ja>
+
+# BottomNavigation
+
+画面下部のナビゲーション
+
+## 概要
+
+BottomNavigationコンポーネントは、モバイルアプリケーションの下部に配置されるナビゲーションバーを提供します。3〜5つの主要な目的地間での素早い切り替えを可能にします。モバイルファーストデザインに最適で、指での操作がしやすい位置にナビゲーションを配置します。
+
+主な機能:
+- 3〜5つのナビゲーションアクション
+- アイコンとラベルの表示
+- アクティブ状態の視覚的フィードバック
+- 固定位置表示のサポート
+- レスポンシブデザイン
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -89,3 +137,65 @@ function FixedBottomNavigation() {
 - Provide meaningful `label` for each action
 - Keyboard navigation is fully supported
 - Screen readers properly announce action states
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import RestoreIcon from '@mui/icons-material/Restore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import React from 'react'
+
+function MyBottomNavigation() {
+  const [value, setValue] = React.useState(0)
+
+  return (
+    <BottomNavigation
+      showLabels
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue)
+      }}
+    >
+      <BottomNavigationAction label="最近" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="お気に入り" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="近く" icon={<LocationOnIcon />} />
+    </BottomNavigation>
+  )
+}
+
+// 固定位置のBottomNavigation
+function FixedBottomNavigation() {
+  const [value, setValue] = React.useState(0)
+
+  return (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => setValue(newValue)}
+      >
+        <BottomNavigationAction label="ホーム" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="お気に入り" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="近く" icon={<LocationOnIcon />} />
+      </BottomNavigation>
+    </Paper>
+  )
+}
+```
+
+## アクセシビリティ
+
+- 各BottomNavigationActionには`button`ロールが設定されます
+- 現在選択されているアクションには`aria-current="page"`が設定されます
+- 各アクションに意味のある`label`を提供してください
+- キーボードナビゲーションは完全にサポートされています
+- スクリーンリーダーはアクションの状態を適切にアナウンスします
+
+</Ja>

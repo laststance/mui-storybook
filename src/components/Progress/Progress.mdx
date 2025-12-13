@@ -1,11 +1,19 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as ProgressStories from './Progress.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={ProgressStories} />
 
 # Progress
 
+<En>
 A progress indicator component that visually displays processing status with linear or circular progress bars.
+</En>
+<Ja>
+線形または円形のプログレスバーで処理状況を視覚的に表示するプログレスインジケーターコンポーネント。
+</Ja>
+
+<En>
 
 ## Overview
 
@@ -16,22 +24,64 @@ The Progress component wraps Material-UI's LinearProgress and CircularProgress a
 - **Variants**: Indeterminate (`indeterminate`), determinate (`determinate`), buffer (`buffer`)
 - **Colors**: `primary`, `secondary`, `success`, `error`, `warning`, `info`
 
+</En>
+<Ja>
+
+## 概要
+
+ProgressコンポーネントはMaterial-UIのLinearProgressとCircularProgressをラップし、以下の機能を提供します:
+
+- **線形プログレス**: 水平バーのプログレス表示
+- **円形プログレス**: 円形スピナーのプログレス表示
+- **バリアント**: 不確定（`indeterminate`）、確定（`determinate`）、バッファ（`buffer`）
+- **カラー**: `primary`、`secondary`、`success`、`error`、`warning`、`info`
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールでプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
+<En>
 
 ## All Variants
 
+</En>
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
 
+<En>
+
 ## Usage Example
+
+</En>
+<Ja>
+
+## 使用例
+
+</Ja>
 
 ```tsx
 import LinearProgress from '@mui/material/LinearProgress'
@@ -58,9 +108,23 @@ import CircularProgress from '@mui/material/CircularProgress'
 <CircularProgress size={60} />
 ```
 
+<En>
+
 ## Accessibility
 
 - Set appropriate `aria-label` or `aria-labelledby` to communicate progress state to screen readers
 - `aria-valuenow` is automatically set for determinate variant
 - Consider setting `aria-busy` on surrounding content to indicate loading
 - Recommend using textual status display in addition to visual progress
+
+</En>
+<Ja>
+
+## アクセシビリティ
+
+- スクリーンリーダーにプログレス状態を伝えるために、適切な`aria-label`または`aria-labelledby`を設定
+- 確定バリアントでは`aria-valuenow`が自動的に設定されます
+- ローディングを示すために、周囲のコンテンツに`aria-busy`を設定することを検討
+- 視覚的なプログレスに加えて、テキストでのステータス表示の使用を推奨
+
+</Ja>

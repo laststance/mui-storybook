@@ -1,8 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
 
 import * as AppBarStories from './AppBar.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={AppBarStories} />
+
+<En>
 
 # AppBar
 
@@ -19,20 +22,65 @@ Key features:
 - Elevation (shadow) customization
 - Responsive design support
 
+</En>
+
+<Ja>
+
+# AppBar
+
+アプリケーションナビゲーションバー
+
+## 概要
+
+AppBarコンポーネントは、アプリケーションの上部に配置されるナビゲーションバーを提供します。ブランディング、タイトル、ナビゲーション、検索、その他のアクションを含めることができます。通常、Toolbarコンポーネントと組み合わせて使用されます。
+
+主な機能:
+- 複数のポジション設定（static、fixed、absolute、sticky、relative）
+- カラーバリエーション（primary、secondary、default、transparent）
+- ツールバーの密度調整（standard、dense）
+- エレベーション（影）のカスタマイズ
+- レスポンシブデザインサポート
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -81,3 +129,57 @@ function MyAppBar() {
 - Using it with the Toolbar component provides proper navigation structure
 - Icon buttons should have appropriate `aria-label` attributes
 - When using `position="fixed"`, add appropriate padding to main content
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+
+function MyAppBar() {
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="メニュー"
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          マイアプリケーション
+        </Typography>
+
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="検索"
+        >
+          <SearchIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  )
+}
+```
+
+## アクセシビリティ
+
+- AppBarは適切なランドマークロールを持つ`<header>`要素としてレンダリングされます
+- Toolbarコンポーネントと組み合わせることで、適切なナビゲーション構造を提供します
+- アイコンボタンには適切な`aria-label`属性を設定する必要があります
+- `position="fixed"`を使用する場合は、メインコンテンツに適切なパディングを追加してください
+
+</Ja>

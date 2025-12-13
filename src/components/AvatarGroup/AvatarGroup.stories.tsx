@@ -15,7 +15,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Data Display/AvatarGroup',
   component: AvatarGroup,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
   // ═══════════════════════════════════════════════════════════════
   // ArgTypes Configuration
   // ═══════════════════════════════════════════════════════════════

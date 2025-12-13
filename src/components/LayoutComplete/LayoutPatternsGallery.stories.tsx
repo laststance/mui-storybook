@@ -7,7 +7,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Layout Complete/LayoutPatternsGallery',
   component: LayoutPatternsGallery,
-  tags: ['autodocs'],
   parameters: {
     layout: 'padded',
     docs: {

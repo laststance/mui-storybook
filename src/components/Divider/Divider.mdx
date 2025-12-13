@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as DividerStories from './Divider.stories'
 
 <Meta of={DividerStories} />
 
+<En>
 # Divider
 
 A component that displays dividing lines to separate content. Visually divides sections and clarifies hierarchical structure.
@@ -19,20 +21,54 @@ The Divider component wraps Material-UI's Divider and provides the following fea
 - **flexItem**: Configuration for proper behavior in Flex containers
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Divider
+
+コンテンツを分離する区切り線を表示するコンポーネント。視覚的にセクションを分割し、階層構造を明確にします。
+
+## 概要
+
+DividerコンポーネントはMaterial-UIのDividerをラップし、以下の機能を提供します：
+
+- **向き**: `horizontal`、`vertical`
+- **バリアント**: `fullWidth`、`inset`（左インデント）、`middle`（中央寄せ）
+- **テキスト付き**: childrenを渡すことでテキストやアイコンを表示
+- **位置**: textAlignプロパティで`left`、`center`、`right`を選択
+- **ライトバージョン**: lightプロパティで細い線を表示
+- **flexItem**: Flexコンテナ内での適切な動作のための設定
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe divider display:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、区切り線の表示を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -78,3 +114,52 @@ import Typography from '@mui/material/Typography'
 - As a decorative divider, it's typically not announced by screen readers
 - Consider using the `<hr>` element for semantic separation
 - When using Divider with text, ensure the text is meaningful
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Divider from '@/components/Divider'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+
+// 基本的な水平区切り線
+<Box>
+  <Typography>Section 1</Typography>
+  <Divider />
+  <Typography>Section 2</Typography>
+</Box>
+
+// テキスト付き区切り線
+<Divider>OR</Divider>
+
+// テキスト配置付き区切り線
+<Divider textAlign="left">Left</Divider>
+<Divider textAlign="center">Center</Divider>
+<Divider textAlign="right">Right</Divider>
+
+// 垂直区切り線
+<Box sx={{ display: 'flex', alignItems: 'center', height: 100 }}>
+  <Typography>Left</Typography>
+  <Divider orientation="vertical" flexItem />
+  <Typography>Right</Typography>
+</Box>
+
+// インセット区切り線（リスト用）
+<Divider variant="inset" />
+
+// ミドル区切り線
+<Divider variant="middle" />
+
+// ライト区切り線
+<Divider light />
+```
+
+## アクセシビリティ
+
+- Dividerは`role="separator"`として認識されます
+- 装飾的な区切り線として、通常スクリーンリーダーでは読み上げられません
+- セマンティックな区切りには`<hr>`要素の使用を検討してください
+- テキスト付きDividerを使用する場合、テキストが意味のあるものであることを確認してください
+</Ja>

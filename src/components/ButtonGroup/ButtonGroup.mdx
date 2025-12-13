@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ButtonGroupStories from './ButtonGroup.stories'
 
 <Meta of={ButtonGroupStories} />
 
+<En>
 # ButtonGroup
 
 Groups related buttons and displays them as a visually unified component set.
@@ -16,22 +18,53 @@ The ButtonGroup component wraps Material-UI's ButtonGroup and provides the follo
 - **Sizes**: `small`, `medium`, `large`
 - **Colors**: `primary`, `secondary`, `success`, `error`, `info`, `warning`
 - **Grouping**: Visually groups related actions together
+</En>
+
+<Ja>
+# ButtonGroup
+
+関連するボタンをグループ化し、視覚的に統一されたコンポーネントセットとして表示します。
+
+## 概要
+
+ButtonGroup コンポーネントは Material-UI の ButtonGroup をラップし、以下の機能を提供します:
+
+- **バリアント**: 3つのタイプ - `text`, `outlined`, `contained`
+- **向き**: `horizontal` (水平), `vertical` (垂直)
+- **サイズ**: `small`, `medium`, `large`
+- **カラー**: `primary`, `secondary`, `success`, `error`, `info`, `warning`
+- **グルーピング**: 関連するアクションを視覚的にグループ化
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe button group behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、ボタングループの動作を確認できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -64,3 +97,39 @@ import Button from '@/components/Button'
 - Provide clear labels for each button in the group
 - Keyboard navigation (Tab/Shift+Tab) allows access to each button
 - `aria-label` can be used to describe the purpose of the entire group
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import ButtonGroup from '@/components/ButtonGroup'
+import Button from '@/components/Button'
+
+// 基本的な水平グループ
+<ButtonGroup variant="contained" color="primary">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>
+
+// 垂直グループ
+<ButtonGroup orientation="vertical" variant="outlined">
+  <Button>上</Button>
+  <Button>中央</Button>
+  <Button>下</Button>
+</ButtonGroup>
+
+// 無効化されたグループ
+<ButtonGroup disabled>
+  <Button>最初</Button>
+  <Button>2番目</Button>
+</ButtonGroup>
+```
+
+## アクセシビリティ
+
+- グループ内の各ボタンには明確なラベルを提供してください
+- キーボードナビゲーション (Tab/Shift+Tab) で各ボタンにアクセスできます
+- `aria-label` を使用してグループ全体の目的を説明できます
+</Ja>

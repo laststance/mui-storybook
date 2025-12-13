@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as MenuStories from './Menu.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={MenuStories} />
+
+<En>
 
 # Menu
 
@@ -16,20 +19,63 @@ The Menu component wraps Material-UI's Menu and provides the following features:
 - **Positioning**: Flexible placement options
 - **Keyboard navigation**: Supports arrow key operation
 
+</En>
+
+<Ja>
+
+# Menu
+
+一時的に表示されるオプションのリストを提供するドロップダウンメニューコンポーネント。
+
+## 概要
+
+MenuコンポーネントはMaterial-UIのMenuをラップし、以下の機能を提供します:
+
+- **アンカー要素**: ボタンなどの要素に付属して表示
+- **メニュー項目**: テキスト、アイコン、区切り線などカスタマイズ可能な項目
+- **ポジショニング**: 柔軟な配置オプション
+- **キーボードナビゲーション**: 矢印キー操作のサポート
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -67,3 +113,46 @@ function BasicMenu() {
 - Supports keyboard navigation (arrow keys, Enter, Escape)
 - Set `aria-haspopup` and `aria-expanded` attributes on the trigger element
 - Focus management is handled automatically
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Button from '@mui/material/Button'
+
+function BasicMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+
+  return (
+    <>
+      <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+        メニューを開く
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem onClick={() => setAnchorEl(null)}>プロフィール</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>マイアカウント</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>ログアウト</MenuItem>
+      </Menu>
+    </>
+  )
+}
+```
+
+## アクセシビリティ
+
+- メニュー項目には自動的に適切な`role="menuitem"`が設定されます
+- キーボードナビゲーション（矢印キー、Enter、Escape）をサポート
+- トリガー要素に`aria-haspopup`および`aria-expanded`属性を設定
+- フォーカス管理は自動的に処理されます
+
+</Ja>

@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as CheckboxStories from './Checkbox.stories'
 
 <Meta of={CheckboxStories} />
 
+<En>
 # Checkbox
 
 A checkbox input component used for selecting one or more options from multiple choices.
@@ -18,20 +20,53 @@ The Checkbox component wraps Material-UI's Checkbox and provides the following f
 - **Custom Icons**: Customizable via checkedIcon and icon properties
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Checkbox
+
+複数の選択肢から1つまたは複数のオプションを選択するためのチェックボックス入力コンポーネント。
+
+## 概要
+
+CheckboxコンポーネントはMaterial-UIのCheckboxをラップし、以下の機能を提供します：
+
+- **カラー**: `primary`、`secondary`、`success`、`error`、`info`、`warning`、`default`
+- **サイズ**: `small`、`medium`
+- **状態**: チェック済み、未チェック、不確定
+- **無効化**: disabledプロパティで操作を無効化
+- **カスタムアイコン**: checkedIconとiconプロパティでカスタマイズ可能
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe checkbox behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、チェックボックスの動作を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -77,3 +112,52 @@ function ControlledCheckbox() {
 - Use `<FormGroup>` and `<FormLabel>` for grouped checkboxes
 - Toggle the checked state by pressing the spacebar on the keyboard
 - Screen readers will announce the current state (checked/unchecked/indeterminate)
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Checkbox from '@/components/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { useState } from 'react'
+
+// ラベル付きの基本的なチェックボックス
+<FormControlLabel
+  control={<Checkbox />}
+  label="利用規約に同意する"
+/>
+
+// 制御されたチェックボックス
+function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+      color="primary"
+    />
+  )
+}
+
+// 不確定状態
+<Checkbox
+  indeterminate
+  color="secondary"
+/>
+
+// 無効化されたチェックボックス
+<FormControlLabel
+  control={<Checkbox disabled />}
+  label="無効なオプション"
+/>
+```
+
+## アクセシビリティ
+
+- チェックボックスには常に`<FormControlLabel>`を使用してラベルを提供するか、`aria-label`を使用してください
+- グループ化されたチェックボックスには`<FormGroup>`と`<FormLabel>`を使用してください
+- キーボードのスペースバーを押してチェック状態を切り替えます
+- スクリーンリーダーは現在の状態（チェック済み/未チェック/不確定）を読み上げます
+</Ja>

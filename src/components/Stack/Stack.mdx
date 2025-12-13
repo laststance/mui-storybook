@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as StackStories from './Stack.stories'
 
 <Meta of={StackStories} />
 
+<En>
 # Stack
 
 One-dimensional layout component
@@ -10,22 +12,47 @@ One-dimensional layout component
 ## Overview
 
 The MUI Stack component is a one-dimensional layout component for arranging child elements vertically or horizontally. Based on Flexbox, it allows you to concisely configure element spacing, direction, dividers, and more. It supports responsive breakpoints, enabling layout changes based on screen size. It can be utilized in various scenarios including forms, button groups, and lists.
+</En>
+
+<Ja>
+# Stack
+
+1次元レイアウトコンポーネント
+
+## 概要
+
+MUI Stack コンポーネントは、子要素を縦または横に配置するための1次元レイアウトコンポーネントです。Flexbox をベースにしており、要素間のスペーシング、方向、区切り線などを簡潔に設定できます。レスポンシブブレークポイントをサポートしており、画面サイズに応じてレイアウトを変更できます。フォーム、ボタングループ、リストなど、様々な場面で活用できます。
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -54,3 +81,35 @@ function ButtonGroup() {
 - `direction` and `spacing` affect only layout and do not change DOM order
 - Preserves logical content order even with responsive layout changes
 - Screen readers announce content in natural order
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+
+function ButtonGroup() {
+  return (
+    <Stack
+      direction="row"
+      spacing={2}
+      divider={<Divider orientation="vertical" flexItem />}
+    >
+      <Button>ボタン 1</Button>
+      <Button>ボタン 2</Button>
+      <Button>ボタン 3</Button>
+    </Stack>
+  )
+}
+```
+
+## アクセシビリティ
+
+- セマンティックな HTML 構造を維持します
+- `direction` と `spacing` はレイアウトにのみ影響し、DOM の順序は変更しません
+- レスポンシブなレイアウト変更でも論理的なコンテンツ順序を保持します
+- スクリーンリーダーは自然な順序でコンテンツを読み上げます
+</Ja>

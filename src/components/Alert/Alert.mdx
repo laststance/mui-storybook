@@ -1,9 +1,10 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
-
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as AlertStories from './Alert.stories'
 
 <Meta of={AlertStories} />
 
+<En>
 # Alert
 
 Alerts that display important information to users
@@ -21,20 +22,55 @@ Key features:
 - Transition effect support
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Alert
+
+ユーザーに重要な情報を表示するアラート
+
+## 概要
+
+Alertコンポーネントは、成功、情報、警告、またはエラーをユーザーに伝えるフィードバックメッセージを表示します。明確なアイコンと色分けにより、メッセージの重要性と種類を視覚的に区別します。
+
+主な機能：
+- 4つの重要度レベル（success、info、warning、error）
+- 3つのバリアント（standard、filled、outlined）
+- タイトル付きアラート（AlertTitleを使用）
+- 閉じるボタンやカスタムアクションの追加
+- カスタムアイコンの設定
+- トランジションエフェクトのサポート
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -76,3 +112,48 @@ function MyAlerts() {
 - The `severity` prop automatically sets the icon and color
 - Close buttons should have an appropriate `aria-label`
 - `role="alert"` is automatically applied for important information
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Stack from '@mui/material/Stack'
+
+function MyAlerts() {
+  return (
+    <Stack spacing={2}>
+      <Alert severity="success">
+        操作が正常に完了しました。
+      </Alert>
+
+      <Alert severity="info">
+        <AlertTitle>お知らせ</AlertTitle>
+        新機能が利用可能になりました。
+      </Alert>
+
+      <Alert severity="warning">
+        この操作は元に戻せません。
+      </Alert>
+
+      <Alert severity="error" onClose={() => console.log('閉じました')}>
+        エラーが発生しました。もう一度お試しください。
+      </Alert>
+
+      <Alert variant="outlined" severity="info">
+        これはアウトラインスタイルのアラートです。
+      </Alert>
+    </Stack>
+  )
+}
+```
+
+## アクセシビリティ
+
+- アラートには適切なARIAロールがあり、スクリーンリーダーによって読み上げられます
+- `severity`プロパティはアイコンと色を自動的に設定します
+- 閉じるボタンには適切な`aria-label`を設定してください
+- 重要な情報には`role="alert"`が自動的に適用されます
+</Ja>

@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as StepperStories from './Stepper.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={StepperStories} />
+
+<En>
 
 # Stepper
 
@@ -11,20 +14,58 @@ Step-based navigation
 
 The MUI Stepper component visually displays the progress of a process consisting of multiple steps. It clearly presents multi-stage tasks to users, such as form input, checkout processes, and setup wizards. It supports various styles and patterns including horizontal or vertical layouts, alternative label placement, and error state display.
 
+</En>
+
+<Ja>
+
+# Stepper
+
+ステップベースのナビゲーション
+
+## 概要
+
+MUI Stepperコンポーネントは、複数のステップで構成されるプロセスの進捗を視覚的に表示します。フォーム入力、チェックアウトプロセス、セットアップウィザードなど、複数段階のタスクをユーザーに明確に提示します。水平または垂直レイアウト、代替ラベル配置、エラー状態の表示など、さまざまなスタイルとパターンをサポートしています。
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -57,3 +98,41 @@ function SetupWizard() {
 - Provides clear labels for each step
 - Error states are indicated visually and semantically using the `error` property
 - Enables screen readers to understand progress and current position
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import { useState } from 'react'
+
+const steps = ['キャンペーンを選択', '広告グループを作成', '広告を作成']
+
+function SetupWizard() {
+  const [activeStep, setActiveStep] = useState(0)
+
+  return (
+    <Stepper activeStep={activeStep}>
+      {steps.map((label) => (
+        <Step key={label}>
+          <StepLabel>{label}</StepLabel>
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `activeStep`プロパティを使用して現在のステップを明確に示します
+- 各ステップに明確なラベルを提供します
+- エラー状態は`error`プロパティを使用して視覚的および意味的に示されます
+- スクリーンリーダーが進捗と現在位置を理解できるようにします
+
+</Ja>

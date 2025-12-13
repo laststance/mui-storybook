@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as TableStories from './Table.stories'
 
 <Meta of={TableStories} />
 
+<En>
 # Table
 
 Data table
@@ -12,20 +14,47 @@ Data table
 The MUI Table component displays structured data in rows and columns. By combining subcomponents such as TableHead, TableBody, TableRow, and TableCell, you can build accessible and flexible data tables. It can be extended as an advanced data grid by adding features such as sorting, pagination, and selection. Size adjustment and style customization are also possible.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Table
+
+データテーブル
+
+## 概要
+
+MUI Tableコンポーネントは、構造化されたデータを行と列で表示します。TableHead、TableBody、TableRow、TableCellなどのサブコンポーネントを組み合わせることで、アクセシブルで柔軟なデータテーブルを構築できます。ソート、ページネーション、選択などの機能を追加することで、高度なデータグリッドとして拡張できます。サイズ調整やスタイルのカスタマイズも可能です。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -73,3 +102,54 @@ function DataTable() {
 - Use the `scope` attribute to clarify relationships between header cells and data cells
 - Enable screen readers to understand table structure
 - Supports keyboard navigation
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+
+function DataTable() {
+  const rows = [
+    { id: 1, name: 'Item 1', value: 100 },
+    { id: 2, name: 'Item 2', value: 200 },
+  ]
+
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Value</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell align="right">{row.value}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `aria-label`または`aria-labelledby`を使用してテーブルにラベルを提供してください
+- TableHeadを使用してカラムヘッダーを適切にマークアップしてください
+- `scope`属性を使用してヘッダーセルとデータセルの関係を明確にしてください
+- スクリーンリーダーがテーブル構造を理解できるようにしてください
+- キーボードナビゲーションをサポートしています
+</Ja>

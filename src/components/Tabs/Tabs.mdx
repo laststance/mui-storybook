@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as TabsStories from './Tabs.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={TabsStories} />
+
+<En>
 
 # Tabs
 
@@ -11,20 +14,58 @@ Tab navigation
 
 The MUI Tabs component is a navigation component that switches between and displays multiple tabs of related content. It efficiently organizes content for different views or categories while using screen space effectively. It supports various patterns including horizontal/vertical layouts, scrollable tabs, and tabs with icons. Used in combination with the Tab component.
 
+</En>
+
+<Ja>
+
+# Tabs
+
+タブナビゲーション
+
+## 概要
+
+MUI Tabsコンポーネントは、関連するコンテンツの複数のタブを切り替えて表示するナビゲーションコンポーネントです。画面スペースを効率的に使用しながら、異なるビューやカテゴリのコンテンツを効率的に整理します。水平/垂直レイアウト、スクロール可能なタブ、アイコン付きタブなど、さまざまなパターンをサポートしています。Tabコンポーネントと組み合わせて使用します。
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -67,3 +108,51 @@ function BasicTabs() {
 - Selected tabs are indicated with `aria-selected="true"`
 - Tabs and tab panels are associated using `aria-controls` and `id`
 - Screen readers can understand the current tab and available tabs
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Box from '@mui/material/Box'
+import { useState } from 'react'
+
+function TabPanel({ children, value, index }) {
+  return (
+    <div role="tabpanel" hidden={value !== index}>
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  )
+}
+
+function BasicTabs() {
+  const [value, setValue] = useState(0)
+
+  return (
+    <>
+      <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
+        <Tab label="タブ 1" />
+        <Tab label="タブ 2" />
+        <Tab label="タブ 3" />
+      </Tabs>
+      <TabPanel value={value} index={0}>コンテンツ 1</TabPanel>
+      <TabPanel value={value} index={1}>コンテンツ 2</TabPanel>
+      <TabPanel value={value} index={2}>コンテンツ 3</TabPanel>
+    </>
+  )
+}
+```
+
+## アクセシビリティ
+
+- 各タブに`role="tab"`、タブパネルに`role="tabpanel"`を設定
+- キーボード操作（矢印キー、Home、End）をサポート
+- 選択されたタブは`aria-selected="true"`で示されます
+- タブとタブパネルは`aria-controls`と`id`を使用して関連付けられます
+- スクリーンリーダーは現在のタブと利用可能なタブを理解できます
+
+</Ja>

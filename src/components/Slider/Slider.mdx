@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as SliderStories from './Slider.stories'
 
 <Meta of={SliderStories} />
 
+<En>
 # Slider
 
 Slider input
@@ -12,20 +14,47 @@ Slider input
 MUI's Slider component is an interactive input component that allows users to select or adjust values within a range. It supports various patterns such as single value selection, range selection, and discrete value selection with marks. It can be utilized in scenarios where values are visually selected, such as volume adjustment, price range filters, and setting value adjustments.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Slider
+
+スライダー入力
+
+## 概要
+
+MUIのSliderコンポーネントは、範囲内で値を選択または調整できるインタラクティブな入力コンポーネントです。単一値の選択、範囲選択、マーク付きの離散値選択など、さまざまなパターンをサポートします。音量調整、価格帯フィルター、設定値の調整など、視覚的に値を選択するシナリオで活用できます。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -54,3 +83,35 @@ function VolumeControl() {
 - Supports keyboard operations (arrow keys, PageUp/PageDown, Home/End)
 - Screen readers announce current value and range
 - `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` attributes are automatically set
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Slider from '@mui/material/Slider'
+import { useState } from 'react'
+
+function VolumeControl() {
+  const [value, setValue] = useState(30)
+
+  return (
+    <Slider
+      value={value}
+      onChange={(_, newValue) => setValue(newValue as number)}
+      aria-label="音量"
+      valueLabelDisplay="auto"
+      min={0}
+      max={100}
+    />
+  )
+}
+```
+
+## アクセシビリティ
+
+- `aria-label`または`aria-labelledby`でラベルを提供してください
+- キーボード操作（矢印キー、PageUp/PageDown、Home/End）をサポート
+- スクリーンリーダーが現在の値と範囲をアナウンスします
+- `aria-valuenow`、`aria-valuemin`、`aria-valuemax`属性が自動的に設定されます
+</Ja>

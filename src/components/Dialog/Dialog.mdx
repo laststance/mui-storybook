@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as DialogStories from './Dialog.stories'
 
 <Meta of={DialogStories} />
 
+<En>
 # Dialog
 
 A modal dialog component that captures user attention to display important information or prompt actions.
@@ -19,20 +21,54 @@ The Dialog component wraps Material-UI's Dialog and provides the following featu
 - **Animation**: Smooth opening and closing animations
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Dialog
+
+ユーザーの注意を引き、重要な情報を表示したりアクションを促したりするモーダルダイアログコンポーネント。
+
+## 概要
+
+DialogコンポーネントはMaterial-UIのDialogをラップし、以下の機能を提供します：
+
+- **モーダル表示**: 背景オーバーレイ付きで前面に表示
+- **サイズ**: 6段階 - `xs`、`sm`、`md`、`lg`、`xl`、`false`
+- **フルスクリーン**: fullScreenプロパティでフルスクリーン表示
+- **スクロール**: scrollプロパティで`paper`または`body`のスクロール動作を選択
+- **クローズ動作**: onCloseハンドラーで背景クリックやEscキーによるクローズ動作を制御
+- **アニメーション**: スムーズな開閉アニメーション
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe dialog behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、ダイアログの動作を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -99,3 +135,73 @@ function BasicDialog() {
 - `aria-labelledby` and `aria-describedby` are automatically set (when using DialogTitle and DialogContent)
 - Screen readers recognize it as `role="dialog"`
 - Always use the DialogTitle component for the dialog title
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Dialog from '@/components/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import Button from '@/components/Button'
+import { useState } from 'react'
+
+// 基本的なダイアログ
+function BasicDialog() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>ダイアログを開く</Button>
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>ダイアログタイトル</DialogTitle>
+        <DialogContent>
+          これはダイアログの内容です。
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>キャンセル</Button>
+          <Button variant="contained" onClick={() => setOpen(false)}>
+            確認
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  )
+}
+
+// フルスクリーンダイアログ
+<Dialog fullScreen open={open} onClose={handleClose}>
+  <DialogTitle>フルスクリーンダイアログ</DialogTitle>
+  <DialogContent>コンテンツ...</DialogContent>
+</Dialog>
+
+// 異なるサイズ
+<Dialog maxWidth="sm" open={open} onClose={handleClose}>
+  <DialogTitle>小さいダイアログ</DialogTitle>
+  <DialogContent>コンテンツ...</DialogContent>
+</Dialog>
+
+// 背景クリックでの閉じを防止
+<Dialog
+  open={open}
+  onClose={(event, reason) => {
+    if (reason !== 'backdropClick') {
+      handleClose()
+    }
+  }}
+>
+  <DialogContent>ボタンを使って閉じる必要があります</DialogContent>
+</Dialog>
+```
+
+## アクセシビリティ
+
+- ダイアログが開くと、フォーカスは自動的にダイアログ内に移動します
+- ダイアログはEscキーで閉じることができます（disableEscapeKeyDownで無効化可能）
+- フォーカスはダイアログ内にトラップされ、外部の要素にアクセスできません
+- `aria-labelledby`と`aria-describedby`は自動的に設定されます（DialogTitleとDialogContentを使用時）
+- スクリーンリーダーは`role="dialog"`として認識します
+- ダイアログのタイトルには常にDialogTitleコンポーネントを使用してください
+</Ja>

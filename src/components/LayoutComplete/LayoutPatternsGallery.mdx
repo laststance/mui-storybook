@@ -1,0 +1,227 @@
+import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
+import * as LayoutPatternsGalleryStories from './LayoutPatternsGallery.stories'
+
+<Meta of={LayoutPatternsGalleryStories} />
+
+<En>
+# LayoutPatternsGallery
+
+LayoutPatternsGallery provides an interactive gallery showcasing 30 web layout patterns organized by category with visual demos.
+
+## Overview
+
+This component is a comprehensive reference for web layout patterns commonly used in modern web development. Each pattern includes a visual preview, description, and expandable details about use cases and characteristics.
+
+## Features
+
+- **30 Layout Patterns**: Comprehensive coverage from Column-Based to Special layouts
+- **Category Filtering**: Filter by Column-Based, Grid-Based, Scroll/Flow, Container/Flow, Data Display, or Special
+- **Visual Previews**: Mini CSS illustrations for each pattern
+- **Expandable Details**: View use cases and characteristics for each pattern
+- **Responsive Grid**: 1-4 columns based on viewport size
+- **Compact Mode**: Smaller cards for overview display
+- **Dark/Light Theme Support**: Automatically adapts to the current theme
+
+## Primary Demo
+</En>
+
+<Ja>
+# LayoutPatternsGallery
+
+LayoutPatternsGalleryは、カテゴリ別に整理された30のWebレイアウトパターンを視覚的なデモと共にインタラクティブなギャラリーで紹介するコンポーネントです。
+
+## 概要
+
+このコンポーネントは、モダンなWeb開発で一般的に使用されるWebレイアウトパターンの包括的なリファレンスです。各パターンには、視覚的なプレビュー、説明、およびユースケースと特徴に関する展開可能な詳細が含まれています。
+
+## 機能
+
+- **30のレイアウトパターン**: カラムベースから特殊レイアウトまで包括的にカバー
+- **カテゴリフィルタリング**: カラムベース、グリッドベース、スクロール/フロー、コンテナ/フロー、データ表示、特殊でフィルタリング
+- **ビジュアルプレビュー**: 各パターンのミニCSSイラストレーション
+- **展開可能な詳細**: 各パターンのユースケースと特徴を表示
+- **レスポンシブグリッド**: ビューポートサイズに基づいて1〜4列
+- **コンパクトモード**: 概要表示用の小さいカード
+- **ダーク/ライトテーマ対応**: 現在のテーマに自動的に適応
+
+## プライマリデモ
+</Ja>
+
+<Primary />
+
+<En>
+## Interactive Controls
+
+Use the controls below to modify properties and explore layout patterns:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、レイアウトパターンを探索してください：
+</Ja>
+
+<Controls />
+
+<En>
+## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
+
+<Stories />
+
+<En>
+## Categories
+
+### 1. Column-Based (5 patterns)
+- **Single Column**: Vertical content flow, ideal for articles and blogs
+- **2-Column**: Classic two-section layout, often sidebar + main content
+- **3-Column**: Three-section layout for complex content organization
+- **Two-Column (Left-Right)**: Asymmetric split with varying proportions
+- **Multi-Column**: Newspaper-style text columns
+
+### 2. Grid-Based (4 patterns)
+- **Grid Layout**: Regular CSS Grid layout with equal cells
+- **Masonry Layout**: Pinterest-style staggered grid
+- **Broken Grid**: Intentionally offset items for visual interest
+- **Non-Grid**: Organic, free-flowing arrangement
+
+### 3. Scroll/Flow (4 patterns)
+- **Full-Screen**: 100vh sections with scroll-snap
+- **Card-Based**: Content organized in card containers
+- **Infinite Scroll**: Continuously loading content
+- **Parallax**: Multi-layer scroll effects
+
+### 4. Container/Flow (5 patterns)
+- **Stack**: Vertical stacking with consistent gaps
+- **Ribbon**: Horizontal bands of varying heights
+- **Split Screen**: 50/50 or similar fixed splits
+- **Off-Canvas**: Hidden panels that slide in
+- **Liquid/Responsive**: Fluid widths adapting to viewport
+
+### 5. Data Display (6 patterns)
+- **Tabbed**: Content organized by tabs
+- **Multi-Panel**: Dashboard-style multiple panels
+- **Timeline**: Chronological content display
+- **Catalog**: Product/item grid with filtering
+- **Comparison**: Side-by-side feature comparison
+- **Form-Based**: Forms with various input layouts
+
+### 6. Special (6 patterns)
+- **FAB**: Floating action button patterns
+- **Overlay**: Modal and overlay content
+- **Circular**: Radial and circular arrangements
+- **Canvas**: Free-form drawing/placement area
+- **Hierarchical**: Tree-like nested structures
+- **Scattered/Freeform**: Deliberately irregular placement
+
+## Usage Example
+
+```tsx
+import { LayoutPatternsGallery } from './LayoutPatternsGallery'
+
+// Basic usage - shows all patterns with filter
+<LayoutPatternsGallery />
+
+// Filter to specific category by default
+<LayoutPatternsGallery defaultCategory="Grid-Based" />
+
+// Compact mode without filter
+<LayoutPatternsGallery compact showFilter={false} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultCategory` | `string` | - | Default category to filter by |
+| `showFilter` | `boolean` | `true` | Whether to show category filter chips |
+| `compact` | `boolean` | `false` | Whether to render in compact mode |
+
+## Accessibility
+
+- Filter chips are keyboard accessible
+- Cards have proper focus states
+- Expand/collapse buttons have descriptive labels
+- Visual patterns include text descriptions
+</En>
+
+<Ja>
+## カテゴリ
+
+### 1. カラムベース（5パターン）
+- **Single Column（シングルカラム）**: 縦方向のコンテンツフロー、記事やブログに最適
+- **2-Column（2カラム）**: 従来の2セクションレイアウト、サイドバー＋メインコンテンツが多い
+- **3-Column（3カラム）**: 複雑なコンテンツ構成用の3セクションレイアウト
+- **Two-Column (Left-Right)**: さまざまな比率の非対称分割
+- **Multi-Column（マルチカラム）**: 新聞スタイルのテキストカラム
+
+### 2. グリッドベース（4パターン）
+- **Grid Layout（グリッドレイアウト）**: 等しいセルを持つ通常のCSSグリッドレイアウト
+- **Masonry Layout（メイソンリーレイアウト）**: Pinterestスタイルのずらしたグリッド
+- **Broken Grid（ブロークングリッド）**: 視覚的な興味を引くために意図的にオフセットされたアイテム
+- **Non-Grid（ノングリッド）**: 有機的で自由に流れる配置
+
+### 3. スクロール/フロー（4パターン）
+- **Full-Screen（フルスクリーン）**: scroll-snapを持つ100vhセクション
+- **Card-Based（カードベース）**: カードコンテナに整理されたコンテンツ
+- **Infinite Scroll（無限スクロール）**: 継続的に読み込まれるコンテンツ
+- **Parallax（パララックス）**: マルチレイヤーのスクロールエフェクト
+
+### 4. コンテナ/フロー（5パターン）
+- **Stack（スタック）**: 一貫したギャップを持つ垂直スタッキング
+- **Ribbon（リボン）**: さまざまな高さの水平バンド
+- **Split Screen（スプリットスクリーン）**: 50/50または類似の固定分割
+- **Off-Canvas（オフキャンバス）**: スライドインする隠しパネル
+- **Liquid/Responsive（リキッド/レスポンシブ）**: ビューポートに適応する流動的な幅
+
+### 5. データ表示（6パターン）
+- **Tabbed（タブ付き）**: タブで整理されたコンテンツ
+- **Multi-Panel（マルチパネル）**: ダッシュボードスタイルの複数パネル
+- **Timeline（タイムライン）**: 時系列のコンテンツ表示
+- **Catalog（カタログ）**: フィルタリング付きの製品/アイテムグリッド
+- **Comparison（比較）**: 並べた機能比較
+- **Form-Based（フォームベース）**: さまざまな入力レイアウトを持つフォーム
+
+### 6. 特殊（6パターン）
+- **FAB（フローティングアクションボタン）**: フローティングアクションボタンパターン
+- **Overlay（オーバーレイ）**: モーダルとオーバーレイコンテンツ
+- **Circular（サーキュラー）**: 放射状および円形の配置
+- **Canvas（キャンバス）**: 自由形式の描画/配置エリア
+- **Hierarchical（階層）**: ツリーのようなネストされた構造
+- **Scattered/Freeform（散在/フリーフォーム）**: 意図的に不規則な配置
+
+## 使用例
+
+```tsx
+import { LayoutPatternsGallery } from './LayoutPatternsGallery'
+
+// 基本的な使用方法 - フィルター付きで全パターンを表示
+<LayoutPatternsGallery />
+
+// デフォルトで特定のカテゴリにフィルタリング
+<LayoutPatternsGallery defaultCategory="Grid-Based" />
+
+// フィルターなしのコンパクトモード
+<LayoutPatternsGallery compact showFilter={false} />
+```
+
+## Props
+
+| Prop | 型 | デフォルト | 説明 |
+|------|------|---------|-------------|
+| `defaultCategory` | `string` | - | デフォルトでフィルタリングするカテゴリ |
+| `showFilter` | `boolean` | `true` | カテゴリフィルターチップを表示するかどうか |
+| `compact` | `boolean` | `false` | コンパクトモードでレンダリングするかどうか |
+
+## アクセシビリティ
+
+- フィルターチップはキーボードでアクセス可能
+- カードには適切なフォーカス状態があります
+- 展開/折りたたみボタンには説明的なラベルがあります
+- ビジュアルパターンにはテキストの説明が含まれています
+</Ja>

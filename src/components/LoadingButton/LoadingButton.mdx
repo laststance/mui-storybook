@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as LoadingButtonStories from './LoadingButton.stories'
 
 <Meta of={LoadingButtonStories} />
 
+<En>
 # LoadingButton
 
 A button component with loading state that visually indicates the progress of asynchronous operations.
@@ -24,22 +26,67 @@ Loading positions:
 - **end**: Displays indicator on the right side
 
 ## Primary Demo
+</En>
+
+<Ja>
+# LoadingButton
+
+非同期操作の進行状況を視覚的に示すローディング状態を持つボタンコンポーネント。
+
+## 概要
+
+LoadingButtonは、非同期操作（APIリクエストやデータ送信など）中にローディングインジケーターを表示するボタンコンポーネントです。処理が進行中であることをユーザーに明確に伝え、二重送信を防ぎます。
+
+主な機能：
+- **ローディング状態**: loadingプロパティで簡単に切り替え可能
+- **ローディング位置**: 3つの配置オプション：start、center、end
+- **カスタムインジケーター**: loadingIndicatorでカスタマイズ可能な表示
+- **全ボタンバリアント**: text、contained、outlinedをサポート
+- **自動無効化**: ローディング中は自動的に無効状態になります
+
+ローディング位置：
+- **start**: アイコン位置にインジケーターを表示
+- **center**: ボタンの中央にインジケーターを表示（テキストは非表示）
+- **end**: 右側にインジケーターを表示
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import LoadingButton from '@mui/lab/LoadingButton'
 import SaveIcon from '@mui/icons-material/Save'
@@ -113,3 +160,80 @@ function SubmitButton() {
 - Keyboard navigation functions the same as normal buttons
 - When using custom indicators, ensure visually clear display
 - For long loading times, consider displaying progress status or estimated time
+</En>
+
+<Ja>
+```tsx
+import LoadingButton from '@mui/lab/LoadingButton'
+import SaveIcon from '@mui/icons-material/Save'
+import { useState } from 'react'
+
+// 基本的な使用法
+<LoadingButton loading variant="contained">
+  送信中
+</LoadingButton>
+
+// ローディング位置を指定
+<LoadingButton
+  loading
+  loadingPosition="start"
+  startIcon={<SaveIcon />}
+  variant="outlined"
+>
+  保存
+</LoadingButton>
+
+// カスタムローディングインジケーター
+<LoadingButton
+  loading
+  loadingIndicator="読み込み中..."
+  variant="contained"
+>
+  データ取得
+</LoadingButton>
+
+// 実際の使用例
+function SubmitButton() {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = async () => {
+    setLoading(true)
+    try {
+      await fetch('/api/submit', { method: 'POST' })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <LoadingButton
+      loading={loading}
+      variant="contained"
+      onClick={handleClick}
+    >
+      送信
+    </LoadingButton>
+  )
+}
+
+// アイコン付きローディングボタン
+<LoadingButton
+  loading={loading}
+  loadingPosition="end"
+  endIcon={<SendIcon />}
+  variant="contained"
+  onClick={handleSubmit}
+>
+  送信
+</LoadingButton>
+```
+
+## アクセシビリティ
+
+- ローディング中は`aria-busy="true"`が自動的に設定されます
+- 二重送信を防ぐため、ボタンは自動的に無効化されます
+- ローディングインジケーターには適切なARIA属性が設定されます
+- キーボードナビゲーションは通常のボタンと同じように機能します
+- カスタムインジケーターを使用する場合は、視覚的に明確な表示を確保してください
+- 長時間のローディングには、進捗状況や推定時間の表示を検討してください
+</Ja>

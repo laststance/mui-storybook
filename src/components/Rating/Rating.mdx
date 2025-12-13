@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as RatingStories from './Rating.stories'
 
 <Meta of={RatingStories} />
 
+<En>
 # Rating
 
 A star rating component used for users to input ratings or display existing ratings.
@@ -17,22 +19,60 @@ The Rating component wraps Material-UI's Rating and provides the following featu
 - **Read-only**: Display ratings only
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Rating
+
+ユーザーが評価を入力したり、既存の評価を表示したりするための星評価コンポーネント。
+
+## 概要
+
+RatingコンポーネントはMaterial-UIのRatingをラップし、以下の機能を提供します：
+
+- **カスタムアイコン**: 星以外のアイコンを使用可能
+- **精度**: 整数または小数（0.5刻みなど）での評価
+- **サイズ**: `small`、`medium`、`large`
+- **読み取り専用**: 評価の表示のみ
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import Rating from '@mui/material/Rating'
 
@@ -76,3 +116,50 @@ function ControlledRating() {
 - Rating can be changed with keyboard navigation (arrow keys)
 - Each star is automatically set with appropriate `aria-label` (e.g., "3 Stars")
 - When using in forms, clearly indicate whether rating is required
+</En>
+
+<Ja>
+```tsx
+import Rating from '@mui/material/Rating'
+
+// 基本的な評価
+<Rating defaultValue={3} />
+
+// 制御された評価
+function ControlledRating() {
+  const [value, setValue] = React.useState(2)
+
+  return (
+    <Rating
+      value={value}
+      onChange={(event, newValue) => setValue(newValue)}
+    />
+  )
+}
+
+// 読み取り専用評価
+<Rating value={4} readOnly />
+
+// 半星の精度
+<Rating defaultValue={2.5} precision={0.5} />
+
+// カスタムアイコン
+<Rating
+  icon={<FavoriteIcon />}
+  emptyIcon={<FavoriteBorderIcon />}
+/>
+
+// 異なるサイズ
+<Rating size="small" />
+<Rating size="medium" />
+<Rating size="large" />
+```
+
+## アクセシビリティ
+
+- Ratingに適切な`name`属性を設定してください
+- `aria-label`を使用して評価の意味を説明してください
+- キーボードナビゲーション（矢印キー）で評価を変更できます
+- 各星には適切な`aria-label`が自動的に設定されます（例：「3 Stars」）
+- フォームで使用する場合は、評価が必須かどうかを明確に示してください
+</Ja>

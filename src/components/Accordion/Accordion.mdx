@@ -1,9 +1,10 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
-
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as AccordionStories from './Accordion.stories'
 
 <Meta of={AccordionStories} />
 
+<En>
 # Accordion
 
 Collapsible content panels
@@ -20,20 +21,54 @@ Key features:
 - Configure default expanded panels
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Accordion
+
+折りたたみ可能なコンテンツパネル
+
+## 概要
+
+Accordionコンポーネントは、垂直に積み重ねられたコンテンツパネルを提供します。各パネルは展開・折りたたみが可能で、大量の情報を整理して表示するのに最適です。FAQ、設定画面、詳細情報の表示によく使用されます。
+
+主な機能：
+- 複数パネルの独立した展開・折りたたみ
+- 制御されたアコーディオン（一度に1つのパネルのみ展開）
+- カスタマイズ可能なアイコンとスタイル
+- 無効状態のサポート
+- デフォルトで展開するパネルの設定
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -78,3 +113,51 @@ function MyAccordion() {
 - The `aria-expanded` attribute communicates the panel's expansion state to screen readers
 - The `aria-controls` attribute can be used to explicitly associate the summary with its content
 - Panels can be expanded/collapsed using the Enter or Space key
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Typography from '@mui/material/Typography'
+
+function MyAccordion() {
+  return (
+    <div>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>セクション 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            コンテンツがここに入ります。
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>セクション 2</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            複数のアコーディオンを配置できます。
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
+  )
+}
+```
+
+## アクセシビリティ
+
+- AccordionSummaryは自動的に`button`ロールを持ち、キーボード操作をサポートします
+- `aria-expanded`属性がパネルの展開状態をスクリーンリーダーに伝えます
+- `aria-controls`属性を使用してサマリーとコンテンツを明示的に関連付けることができます
+- EnterキーまたはSpaceキーを使用してパネルを展開・折りたたむことができます
+</Ja>

@@ -1,9 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 import * as AvatarStories from './Avatar.stories'
 
 <Meta of={AvatarStories} />
 
+<En>
 # Avatar
 
 Avatars representing users or objects
@@ -20,20 +22,54 @@ Key features:
 - Circular and rounded variants
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Avatar
+
+ユーザーやオブジェクトを表すアバター
+
+## 概要
+
+Avatarコンポーネントは、ユーザープロファイル、連絡先リスト、グループメンバーなどを視覚的に表現するために使用されます。画像、文字、またはアイコンを含めることができ、様々なサイズと色でカスタマイズ可能です。
+
+主な機能：
+- 画像、文字、またはアイコンを表示
+- サイズと色のカスタマイズが可能
+- AvatarGroupで複数のアバターを重ねて表示
+- フォールバック処理（画像読み込み失敗時）
+- 円形および角丸のバリアント
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -91,3 +127,64 @@ function MyAvatarGroup() {
 - The `alt` attribute should be the user's name or descriptive text
 - For decorative avatars, set `alt=""`
 - When using AvatarGroup, consider providing a descriptive label for the entire group
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Avatar from '@mui/material/Avatar'
+import AvatarGroup from '@mui/material/AvatarGroup'
+import Stack from '@mui/material/Stack'
+import FolderIcon from '@mui/icons-material/Folder'
+
+function MyAvatars() {
+  return (
+    <Stack direction="row" spacing={2}>
+      {/* 画像アバター */}
+      <Avatar
+        alt="User name"
+        src="/path/to/image.jpg"
+      />
+
+      {/* 文字アバター */}
+      <Avatar sx={{ bgcolor: 'primary.main' }}>
+        YM
+      </Avatar>
+
+      {/* アイコンアバター */}
+      <Avatar sx={{ bgcolor: 'secondary.main' }}>
+        <FolderIcon />
+      </Avatar>
+
+      {/* サイズ指定 */}
+      <Avatar
+        sx={{ width: 56, height: 56 }}
+        alt="Large avatar"
+        src="/path/to/image.jpg"
+      />
+    </Stack>
+  )
+}
+
+// アバターグループ
+function MyAvatarGroup() {
+  return (
+    <AvatarGroup max={4}>
+      <Avatar alt="User 1" src="/images/avatar1.jpg" />
+      <Avatar alt="User 2" src="/images/avatar2.jpg" />
+      <Avatar alt="User 3" src="/images/avatar3.jpg" />
+      <Avatar alt="User 4" src="/images/avatar4.jpg" />
+      <Avatar alt="User 5" src="/images/avatar5.jpg" />
+    </AvatarGroup>
+  )
+}
+```
+
+## アクセシビリティ
+
+- 画像アバターには必ず`alt`属性を設定してください
+- `alt`属性にはユーザー名または説明的なテキストを設定してください
+- 装飾的なアバターの場合は`alt=""`を設定してください
+- AvatarGroupを使用する場合、グループ全体に説明的なラベルを提供することを検討してください
+</Ja>

@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as TooltipStories from './Tooltip.stories'
 
 <Meta of={TooltipStories} />
 
+<En>
 # Tooltip
 
 Tooltip
@@ -12,20 +14,47 @@ Tooltip
 The MUI Tooltip component is a popup component that displays additional information when hovering or focusing on an element. Used to provide supplementary explanations or descriptive text for buttons, icons, links, and more. Display position, arrow presence, and display delay time can be customized. Designed with accessibility in mind, supporting keyboard operations and screen readers.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Tooltip
+
+ツールチップ
+
+## 概要
+
+MUI Tooltipコンポーネントは、要素にホバーまたはフォーカスした際に追加情報を表示するポップアップコンポーネントです。ボタン、アイコン、リンクなどに補足説明や説明文を提供するために使用されます。表示位置、矢印の有無、表示遅延時間などをカスタマイズできます。アクセシビリティを考慮して設計されており、キーボード操作やスクリーンリーダーをサポートしています。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -51,3 +80,32 @@ function DeleteButton() {
 - Tooltip can be closed with the Escape key
 - Tooltip content is announced by screen readers
 - Important information should be provided in always-visible text, not relying solely on tooltips
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+
+function DeleteButton() {
+  return (
+    <Tooltip title="アイテムを削除" arrow placement="top">
+      <IconButton aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
+    </Tooltip>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `title`プロパティを使用して明確なツールチップテキストを提供してください
+- フォーカスとホバーの両方で表示されます
+- Escapeキーでツールチップを閉じることができます
+- ツールチップの内容はスクリーンリーダーで読み上げられます
+- 重要な情報はツールチップだけに頼らず、常に表示されるテキストで提供してください
+</Ja>

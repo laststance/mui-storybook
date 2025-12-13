@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as RadioButtonStories from './RadioButton.stories'
 
 <Meta of={RadioButtonStories} />
 
+<En>
 # RadioButton
 
 A radio button input component that provides form elements for selecting one option from multiple choices.
@@ -17,22 +19,60 @@ The RadioButton component wraps Material-UI's Radio and RadioGroup and provides 
 - **With labels**: Integration with FormControlLabel
 
 ## Primary Demo
+</En>
+
+<Ja>
+# RadioButton
+
+複数の選択肢から1つのオプションを選択するためのフォーム要素を提供するラジオボタン入力コンポーネント。
+
+## 概要
+
+RadioButtonコンポーネントはMaterial-UIのRadioとRadioGroupをラップし、以下の機能を提供します：
+
+- **グループ化**: RadioGroupによる複数のラジオボタンの管理
+- **カラー**: `primary`、`secondary`、`default`
+- **サイズ**: `small`、`medium`
+- **ラベル付き**: FormControlLabelとの統合
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
@@ -81,3 +121,55 @@ function BasicRadioButtons() {
 - Supports keyboard navigation (arrow keys, Tab)
 - Supports form validation with `required` attribute
 - Recommend having at least one option selected by default in the group
+</En>
+
+<Ja>
+```tsx
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+
+function BasicRadioButtons() {
+  const [value, setValue] = React.useState('option1')
+
+  return (
+    <FormControl>
+      <FormLabel>オプションを選択</FormLabel>
+      <RadioGroup
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      >
+        <FormControlLabel
+          value="option1"
+          control={<Radio />}
+          label="オプション 1"
+        />
+        <FormControlLabel
+          value="option2"
+          control={<Radio />}
+          label="オプション 2"
+        />
+        <FormControlLabel
+          value="option3"
+          control={<Radio />}
+          label="オプション 3"
+        />
+      </RadioGroup>
+    </FormControl>
+  )
+}
+
+// カスタムカラーとサイズ
+<Radio color="secondary" size="small" />
+```
+
+## アクセシビリティ
+
+- RadioGroupには適切な`aria-label`または`FormLabel`を使用してください
+- 各ラジオボタンに説明的なラベルを提供してください
+- キーボードナビゲーション（矢印キー、Tab）をサポート
+- `required`属性によるフォームバリデーションをサポート
+- グループ内で少なくとも1つのオプションをデフォルトで選択することを推奨
+</Ja>

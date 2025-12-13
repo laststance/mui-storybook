@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as PaperStories from './Paper.stories'
 
 <Meta of={PaperStories} />
 
+<En>
 # Paper
 
 A surface component with paper-like background that groups content and expresses visual hierarchy.
@@ -17,20 +19,52 @@ The Paper component wraps Material-UI's Paper and provides the following feature
 - **Background color**: Automatic adjustment based on theme
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Paper
+
+コンテンツをグループ化し、視覚的な階層を表現する紙のような背景を持つサーフェスコンポーネント。
+
+## 概要
+
+PaperコンポーネントはMaterial-UIのPaperをラップし、以下の機能を提供します：
+
+- **エレベーション**: 0から24までのシャドウ深度
+- **バリアント**: `elevation`（デフォルト）と`outlined`
+- **ボーダー半径**: カスタマイズ可能なborder-radius
+- **背景色**: テーマに基づいた自動調整
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -64,3 +98,40 @@ import Paper from '@mui/material/Paper'
 - Paper is not a semantic element, so use appropriate headings and labels for content
 - Pay attention to contrast ratio between background and text
 - Set appropriate role attributes for interactive content
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Paper from '@mui/material/Paper'
+
+// エレベーション付きの基本的なペーパー
+<Paper elevation={3}>
+  <p>コンテンツがここに入ります</p>
+</Paper>
+
+// アウトラインバリアント
+<Paper variant="outlined">
+  <p>アウトラインペーパー</p>
+</Paper>
+
+// カスタムスタイリング
+<Paper
+  elevation={6}
+  sx={{
+    p: 2,
+    borderRadius: 2,
+    backgroundColor: 'background.default',
+  }}
+>
+  <p>カスタムスタイルのペーパー</p>
+</Paper>
+```
+
+## アクセシビリティ
+
+- Paperはセマンティック要素ではないため、コンテンツには適切な見出しとラベルを使用してください
+- 背景とテキストのコントラスト比に注意してください
+- インタラクティブなコンテンツには適切なrole属性を設定してください
+</Ja>

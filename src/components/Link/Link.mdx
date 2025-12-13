@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as LinkStories from './Link.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={LinkStories} />
+
+<En>
 
 # Link
 
@@ -23,20 +26,70 @@ Underline styles:
 - **hover**: Display underline only on hover (default)
 - **none**: No underline
 
+</En>
+
+<Ja>
+
+# Link
+
+ナビゲーションと外部リソースへのアクセスを提供するテキストリンクコンポーネント。
+
+## 概要
+
+Linkコンポーネントは、テキストベースのハイパーリンクを表示するためのものです。テーマと統合されたスタイリングと柔軟なカスタマイズオプションを提供します。
+
+主な機能:
+- **下線スタイル**: 3つのバリエーション - always、hover、none
+- **テーマカラーサポート**: primary、secondaryなどの色を適用可能
+- **ボタン動作**: component="button"でボタンとして機能
+- **タイポグラフィ統合**: テキスト内にシームレスに配置
+- **柔軟なルーティング**: Next.js、React Routerなどと統合可能
+
+下線スタイル:
+- **always**: 常に下線を表示
+- **hover**: ホバー時のみ下線を表示（デフォルト）
+- **none**: 下線なし
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -94,3 +147,66 @@ import NextLink from 'next/link'
 - Supports keyboard operation (Tab key to focus, Enter key to execute)
 - Ensure sufficient contrast ratio and make it visually clear that it's a link
 - Confirm that a visual indicator is displayed when focused
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+
+// 基本的な使用法
+<Link href="https://mui.com">
+  Material-UI
+</Link>
+
+// 下線スタイル
+<Link href="#" underline="always">
+  常に下線付き
+</Link>
+<Link href="#" underline="hover">
+  ホバー時に下線
+</Link>
+<Link href="#" underline="none">
+  下線なし
+</Link>
+
+// 色の指定
+<Link href="#" color="primary">プライマリ</Link>
+<Link href="#" color="secondary">セカンダリ</Link>
+<Link href="#" color="error">エラー</Link>
+
+// ボタンとして使用
+<Link
+  component="button"
+  variant="body2"
+  onClick={() => console.log('clicked')}
+>
+  クリック可能なリンク
+</Link>
+
+// テキスト内での使用
+<Typography>
+  詳細は<Link href="#">こちら</Link>をご覧ください。
+</Typography>
+
+// Next.jsとの統合
+import NextLink from 'next/link'
+
+<Link component={NextLink} href="/about">
+  概要
+</Link>
+```
+
+## アクセシビリティ
+
+- リンクの目的を明確に伝えるテキストを使用してください（「ここ」だけのリンクは避ける）
+- 外部リンクの場合、新しいタブで開くことをユーザーに知らせてください
+- キーボード操作（Tabキーでフォーカス、Enterキーで実行）をサポート
+- 十分なコントラスト比を確保し、リンクであることを視覚的に明確にしてください
+- フォーカス時に視覚的なインジケータが表示されることを確認してください
+
+</Ja>

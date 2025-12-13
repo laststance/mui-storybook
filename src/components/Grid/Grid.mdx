@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as GridStories from './Grid.stories'
 
 <Meta of={GridStories} />
 
+<En>
 # Grid
 
 A responsive grid layout system that enables flexible page layout construction.
@@ -24,22 +26,61 @@ Breakpoints:
 - md: 900px and above
 - lg: 1200px and above
 - xl: 1536px and above
+</En>
+
+<Ja>
+# Grid
+
+柔軟なページレイアウト構築を可能にするレスポンシブグリッドレイアウトシステム。
+
+## 概要
+
+Grid コンポーネントは、CSS Flexbox をベースにしたレスポンシブレイアウトシステムです。12カラムのグリッドシステムを採用し、ブレークポイントに応じて異なるレイアウトを簡単に実現できます。
+
+主な機能:
+- **12 カラムシステム**: 柔軟なカラムベースのレイアウト
+- **レスポンシブサポート**: ブレークポイント (xs, sm, md, lg, xl) に応じた自動調整
+- **柔軟なスペース制御**: spacing プロパティで要素間の間隔を制御
+- **ネストサポート**: Grid をネストして複雑なレイアウトを構築
+- **自動レイアウト**: `size="grow"` で利用可能なスペースを自動的に分配
+
+ブレークポイント:
+- xs: 0px 以上
+- sm: 600px 以上
+- md: 900px 以上
+- lg: 1200px 以上
+- xl: 1536px 以上
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -94,3 +135,61 @@ import Paper from '@mui/material/Paper'
 - By maintaining logical content order, information is properly conveyed to screen reader users
 - Be cautious when visual order differs from DOM order
 - Responsive design improves accessibility on different devices
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+
+// 基本的なグリッドレイアウト
+<Grid container spacing={2}>
+  <Grid size={12}>
+    <Paper>全幅</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>半分</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>半分</Paper>
+  </Grid>
+</Grid>
+
+// レスポンシブレイアウト
+<Grid container spacing={2}>
+  <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+    <Paper>レスポンシブアイテム</Paper>
+  </Grid>
+</Grid>
+
+// 自動レイアウト
+<Grid container spacing={2}>
+  <Grid size="grow">
+    <Paper>自動拡張</Paper>
+  </Grid>
+  <Grid size={6}>
+    <Paper>固定幅</Paper>
+  </Grid>
+</Grid>
+
+// ネストされたグリッド
+<Grid container spacing={2}>
+  <Grid size={9}>
+    <Grid container spacing={2}>
+      <Grid size={6}>
+        <Paper>ネストされたアイテム</Paper>
+      </Grid>
+    </Grid>
+  </Grid>
+</Grid>
+```
+
+## アクセシビリティ
+
+- Grid はレイアウト目的のコンポーネントであり、セマンティックな意味を持ちません
+- 論理的なコンテンツ順序を維持することで、スクリーンリーダーユーザーに適切に情報が伝わります
+- 視覚的な順序と DOM の順序が異なる場合は注意が必要です
+- レスポンシブデザインは異なるデバイスでのアクセシビリティを向上させます
+</Ja>

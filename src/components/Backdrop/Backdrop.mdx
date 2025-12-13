@@ -1,12 +1,20 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
 
 import * as BackdropStories from './Backdrop.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={BackdropStories} />
 
 # Backdrop
 
+<En>
 Overlay positioned on top of content
+</En>
+<Ja>
+コンテンツの上に配置されるオーバーレイ
+</Ja>
+
+<En>
 
 ## Overview
 
@@ -19,22 +27,66 @@ Key features:
 - Click event handling
 - Combination with loading indicators
 
+</En>
+<Ja>
+
+## 概要
+
+Backdropコンポーネントは、画面全体または特定の要素の上に半透明のオーバーレイを表示します。ローディング状態の表示、モーダルダイアログの背景、または特定の要素にユーザーの注意を向けるために使用されます。通常、CircularProgressやメッセージと組み合わせて使用されます。
+
+主な機能:
+- 透明度と色のカスタマイズ
+- z-indexの制御
+- トランジション効果
+- クリックイベントの処理
+- ローディングインジケーターとの組み合わせ
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールでプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
+<En>
 
 ## All Variants
 
+</En>
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
 
+<En>
+
 ## Usage Example
+
+</En>
+<Ja>
+
+## 使用例
+
+</Ja>
 
 ```tsx
 import Backdrop from '@mui/material/Backdrop'
@@ -92,9 +144,23 @@ function CustomBackdrop() {
 }
 ```
 
+<En>
+
 ## Accessibility
 
 - While Backdrop is open, focus should be managed appropriately
 - When indicating loading state, consider using the `aria-busy` attribute
 - For important messages, consider including an element with `role="alert"`
 - For keyboard users, consider implementing functionality to close with the Escape key
+
+</En>
+<Ja>
+
+## アクセシビリティ
+
+- Backdropが開いている間、フォーカスは適切に管理される必要があります
+- ローディング状態を示す場合、`aria-busy`属性の使用を検討してください
+- 重要なメッセージの場合、`role="alert"`を持つ要素を含めることを検討してください
+- キーボードユーザーのために、Escapeキーで閉じる機能の実装を検討してください
+
+</Ja>

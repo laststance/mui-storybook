@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as TypographyStories from './Typography.stories'
 
 <Meta of={TypographyStories} />
 
+<En>
 # Typography
 
 Text display
@@ -12,20 +14,47 @@ Text display
 The MUI Typography component applies consistent text styles. It provides various variants based on Material Design's typography scale, including headings (h1-h6), body text (body1, body2), subtitles, and captions. By working with themes, it uniformly manages font family, size, weight, line height, and more, achieving accessible and readable text display.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Typography
+
+テキスト表示
+
+## 概要
+
+MUI Typographyコンポーネントは一貫したテキストスタイルを適用します。Material Designのタイポグラフィスケールに基づいた様々なバリアントを提供し、見出し（h1-h6）、本文テキスト（body1、body2）、サブタイトル、キャプションなどが含まれます。テーマと連携することで、フォントファミリー、サイズ、ウェイト、行の高さなどを統一的に管理し、アクセシブルで読みやすいテキスト表示を実現します。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -59,3 +88,40 @@ function Article() {
 - Controls visual style and HTML elements independently using the `component` property
 - Uses colors with sufficient contrast ratios
 - Enables screen readers to understand document structure
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Typography from '@mui/material/Typography'
+
+function Article() {
+  return (
+    <>
+      <Typography variant="h1" gutterBottom>
+        メイン見出し
+      </Typography>
+      <Typography variant="h2" gutterBottom>
+        セクション見出し
+      </Typography>
+      <Typography variant="body1" paragraph>
+        これは本文テキストの段落です。body1バリアントを使用しており、
+        ほとんどのテキストコンテンツに適しています。
+      </Typography>
+      <Typography variant="caption" color="text.secondary">
+        追加情報のためのキャプションテキストです
+      </Typography>
+    </>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `variant`プロパティを使用してセマンティックなHTML要素を生成します
+- 見出しレベル（h1-h6）の適切な階層を維持します
+- `component`プロパティを使用して視覚的なスタイルとHTML要素を独立して制御します
+- 十分なコントラスト比の色を使用します
+- スクリーンリーダーがドキュメント構造を理解できるようにします
+</Ja>

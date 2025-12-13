@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ContainerStories from './Container.stories'
 
 <Meta of={ContainerStories} />
 
+<En>
 # Container
 
 A container component that limits content maximum width and centers it. Used as the foundation for responsive layouts.
@@ -16,22 +18,53 @@ The Container component wraps Material-UI's Container and provides the following
 - **Padding**: Automatically adds left and right padding
 - **Centering**: Horizontally centers content
 - **Responsive**: Maximum width changes according to breakpoints
+</En>
+
+<Ja>
+# Container
+
+コンテンツの最大幅を制限し、中央揃えするコンテナコンポーネント。レスポンシブレイアウトの基盤として使用されます。
+
+## 概要
+
+Container コンポーネントは Material-UI の Container をラップし、以下の機能を提供します:
+
+- **最大幅**: 6つのレベル - `xs`, `sm`, `md`, `lg`, `xl`, `false`
+- **固定幅**: fixed プロパティでブレークポイントごとに固定幅を設定
+- **パディング**: 左右のパディングを自動的に追加
+- **中央揃え**: コンテンツを水平方向に中央揃え
+- **レスポンシブ**: ブレークポイントに応じて最大幅が変化
+</Ja>
 
 ## Primary Demo
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe container behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、コンテナの動作を確認できます:
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## すべてのバリエーション
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -74,3 +107,49 @@ import Typography from '@mui/material/Typography'
 - Use in combination with appropriate HTML tags (`<main>`, `<section>`, `<article>`, etc.) for semantic markup
 - Container itself is a layout-purpose component and doesn't require special accessibility attributes
 - Choose an appropriate maxWidth for content readability (sm or md recommended for long text)
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Container from '@/components/Container'
+import Typography from '@mui/material/Typography'
+
+// デフォルトのコンテナ (maxWidth: lg)
+<Container>
+  <Typography>このコンテンツは中央揃えで最大幅が設定されています。</Typography>
+</Container>
+
+// 小さいコンテナ
+<Container maxWidth="sm">
+  <Typography>狭いコンテンツエリア</Typography>
+</Container>
+
+// 特大のコンテナ
+<Container maxWidth="xl">
+  <Typography>広いコンテンツエリア</Typography>
+</Container>
+
+// フルード コンテナ (最大幅なし)
+<Container maxWidth={false}>
+  <Typography>全幅コンテンツ</Typography>
+</Container>
+
+// 固定幅コンテナ
+<Container fixed>
+  <Typography>各ブレークポイントで固定幅</Typography>
+</Container>
+
+// カスタムスタイリングを持つコンテナ
+<Container sx={{ bgcolor: 'background.paper', py: 4 }}>
+  <Typography variant="h4">スタイル付きコンテナ</Typography>
+</Container>
+```
+
+## アクセシビリティ
+
+- 適切な HTML タグ (`<main>`, `<section>`, `<article>` など) と組み合わせてセマンティックなマークアップを行ってください
+- Container 自体はレイアウト目的のコンポーネントであり、特別なアクセシビリティ属性は不要です
+- 長文のコンテンツには適切な maxWidth を選択してください (sm または md を推奨)
+</Ja>

@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as SwitchStories from './Switch.stories'
 
 <Meta of={SwitchStories} />
 
+<En>
 # Switch
 
 Toggle switch
@@ -12,22 +14,55 @@ Toggle switch
 The MUI Switch component is a toggle switch for switching between two states: on and off. While it has similar functionality to a checkbox, it provides a more mobile-friendly and visually clear UI. It is suitable for toggle operations that take effect immediately, such as turning settings on/off and enabling/disabling features. Size, color, and label placement can be customized.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Switch
+
+トグルスイッチ
+
+## 概要
+
+MUI Switchコンポーネントは、オンとオフの2つの状態を切り替えるためのトグルスイッチです。チェックボックスと同様の機能を持ちますが、よりモバイルフレンドリーで視覚的に分かりやすいUIを提供します。設定のオン/オフや機能の有効/無効など、即座に効果が反映されるトグル操作に適しています。サイズ、色、ラベルの配置をカスタマイズできます。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -57,3 +92,36 @@ function SettingsToggle() {
 - Indicates state using the `aria-checked` attribute
 - Clearly associates with labels when combined with FormControlLabel
 - Screen readers properly announce state changes
+</En>
+
+<Ja>
+```tsx
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { useState } from 'react'
+
+function SettingsToggle() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <FormControlLabel
+      control={
+        <Switch
+          checked={checked}
+          onChange={(e) => setChecked(e.target.checked)}
+        />
+      }
+      label="通知を有効にする"
+    />
+  )
+}
+```
+
+## アクセシビリティ
+
+- チェックボックスロール（`role="checkbox"`）を持ちます
+- キーボード操作（Space、Enter）をサポート
+- `aria-checked`属性を使用して状態を示します
+- FormControlLabelと組み合わせることでラベルと明確に関連付けられます
+- スクリーンリーダーが状態変更を適切にアナウンスします
+</Ja>

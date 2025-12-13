@@ -25,7 +25,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Navigation/SwipeableDrawer',
   component: SwipeableDrawer,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
   parameters: {
     layout: 'centered',
   },

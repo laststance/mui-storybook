@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as CardStories from './Card.stories'
 
 <Meta of={CardStories} />
 
+<En>
 # Card
 
 Card-style container component for organizing and displaying information, including text, images, and actions.
@@ -17,20 +19,52 @@ The Card component wraps Material-UI's Card and provides the following features:
 - **Responsive**: Adapts flexibly to screen sizes
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Card
+
+テキスト、画像、アクションを含む情報を整理・表示するためのカードスタイルのコンテナコンポーネント。
+
+## 概要
+
+CardコンポーネントはMaterial-UIのCardをラップし、以下の機能を提供します：
+
+- **エレベーション**: 0から24までのシャドウ深度を設定
+- **バリアント**: `elevation`（デフォルト）、`outlined`（ボーダースタイル）
+- **柔軟なレイアウト**: CardContent、CardActions、CardMediaなどのサブコンポーネントと組み合わせ可能
+- **レスポンシブ**: 画面サイズに柔軟に対応
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe card display:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、カードの表示を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -75,3 +109,51 @@ import Typography from '@mui/material/Typography'
 - Use appropriate heading levels for content within cards
 - Add `role="button"` or appropriate `aria-label` for clickable cards
 - Set `tabIndex` when keyboard operation is required
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Card from '@/components/Card'
+import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
+import Button from '@/components/Button'
+import Typography from '@mui/material/Typography'
+
+// 基本的なカード
+<Card>
+  <CardContent>
+    <Typography variant="h5">カードタイトル</Typography>
+    <Typography variant="body2" color="text.secondary">
+      これはカードの内容と説明です。
+    </Typography>
+  </CardContent>
+</Card>
+
+// アクション付きカード
+<Card variant="outlined">
+  <CardContent>
+    <Typography variant="h6">商品</Typography>
+    <Typography>¥9,999</Typography>
+  </CardContent>
+  <CardActions>
+    <Button size="small">詳細を見る</Button>
+    <Button size="small" variant="contained">購入する</Button>
+  </CardActions>
+</Card>
+
+// 高いエレベーションのカード
+<Card elevation={8}>
+  <CardContent>
+    <Typography>高エレベーションカード</Typography>
+  </CardContent>
+</Card>
+```
+
+## アクセシビリティ
+
+- カード内のコンテンツには適切な見出しレベルを使用してください
+- クリック可能なカードには`role="button"`または適切な`aria-label`を追加してください
+- キーボード操作が必要な場合は`tabIndex`を設定してください
+</Ja>

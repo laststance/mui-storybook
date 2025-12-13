@@ -1,8 +1,11 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
 
 import * as BreadcrumbsStories from './Breadcrumbs.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={BreadcrumbsStories} />
+
+<En>
 
 # Breadcrumbs
 
@@ -19,20 +22,65 @@ Key features:
 - Support for link and non-link items
 - Automatic identification of active item
 
+</En>
+
+<Ja>
+
+# Breadcrumbs
+
+パンくずナビゲーション
+
+## 概要
+
+Breadcrumbsコンポーネントは、ユーザーの現在位置を階層的に表示するナビゲーション要素です。ウェブサイトやアプリケーション内での現在位置を示し、上位階層へのナビゲーションを提供します。また、SEOにも有益で、サイト構造をクローラーに伝えるのに役立ちます。
+
+主な機能:
+- カスタマイズ可能なセパレータ
+- アイコン付きパンくず
+- 最大表示項目数の設定（折りたたみ機能）
+- リンクと非リンク項目のサポート
+- アクティブ項目の自動識別
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -127,3 +175,103 @@ function CollapsedBreadcrumbs() {
 - Placing within a `<nav>` element makes it recognized as a navigation landmark
 - Screen readers automatically announce separators
 - Combining with structured data (JSON-LD) improves SEO
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import HomeIcon from '@mui/icons-material/Home'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+
+function MyBreadcrumbs() {
+  return (
+    <Breadcrumbs aria-label="パンくず">
+      <Link underline="hover" color="inherit" href="/">
+        ホーム
+      </Link>
+      <Link underline="hover" color="inherit" href="/products">
+        商品
+      </Link>
+      <Typography color="text.primary">詳細</Typography>
+    </Breadcrumbs>
+  )
+}
+
+// アイコン付きパンくず
+function IconBreadcrumbs() {
+  return (
+    <Breadcrumbs aria-label="パンくず">
+      <Link
+        underline="hover"
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="inherit"
+        href="/"
+      >
+        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        ホーム
+      </Link>
+      <Typography
+        sx={{ display: 'flex', alignItems: 'center' }}
+        color="text.primary"
+      >
+        商品
+      </Typography>
+    </Breadcrumbs>
+  )
+}
+
+// カスタムセパレータ
+function CustomSeparator() {
+  return (
+    <Breadcrumbs
+      separator={<NavigateNextIcon fontSize="small" />}
+      aria-label="パンくず"
+    >
+      <Link underline="hover" color="inherit" href="/">
+        ホーム
+      </Link>
+      <Link underline="hover" color="inherit" href="/category">
+        カテゴリー
+      </Link>
+      <Typography color="text.primary">商品</Typography>
+    </Breadcrumbs>
+  )
+}
+
+// 折りたたみ機能
+function CollapsedBreadcrumbs() {
+  return (
+    <Breadcrumbs maxItems={3} aria-label="パンくず">
+      <Link underline="hover" color="inherit" href="/">
+        ホーム
+      </Link>
+      <Link underline="hover" color="inherit" href="/category">
+        カテゴリー
+      </Link>
+      <Link underline="hover" color="inherit" href="/subcategory">
+        サブカテゴリー
+      </Link>
+      <Link underline="hover" color="inherit" href="/product">
+        商品
+      </Link>
+      <Typography color="text.primary">詳細</Typography>
+    </Breadcrumbs>
+  )
+}
+```
+
+## アクセシビリティ
+
+- パンくずの目的を説明するために`aria-label`を使用してください
+- 現在のページ（最後の項目）は通常、リンクではなくTypographyとして表示されます
+- `<nav>`要素内に配置すると、ナビゲーションランドマークとして認識されます
+- スクリーンリーダーはセパレータを自動的にアナウンスします
+- 構造化データ（JSON-LD）と組み合わせることでSEOが向上します
+
+</Ja>

@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as DrawerStories from './Drawer.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={DrawerStories} />
+
+<En>
 
 # Drawer
 
@@ -18,20 +21,65 @@ The Drawer component wraps Material-UI's Drawer and provides the following featu
 - **Responsive**: Can toggle display/hide according to breakpoints
 - **Slide Animation**: Smooth opening and closing animations
 
+</En>
+
+<Ja>
+
+# Drawer
+
+画面の端からスライドするナビゲーションコンポーネント。サイドメニューやナビゲーションパネルの実装に使用されます。
+
+## 概要
+
+DrawerコンポーネントはMaterial-UIのDrawerをラップし、以下の機能を提供します:
+
+- **位置**: 4方向 - `left`、`right`、`top`、`bottom`
+- **バリアント**: `temporary`、`persistent`、`permanent`
+- **アンカー**: anchorプロパティでスライド方向を指定
+- **オーバーレイ**: temporaryモードで背景オーバーレイを表示
+- **レスポンシブ**: ブレークポイントに応じて表示/非表示を切り替え可能
+- **スライドアニメーション**: スムーズな開閉アニメーション
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties and observe drawer behavior:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、ドロワーの動作を観察できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -103,3 +151,80 @@ function TemporaryDrawer() {
 - `role="presentation"` is automatically assigned
 - When used for navigation purposes, it's recommended to wrap with a `<nav>` element
 - Appropriately notify screen reader users of drawer open/close state
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Drawer from '@/components/Drawer'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Button from '@/components/Button'
+import { useState } from 'react'
+
+// Temporaryドロワー（デフォルト）
+function TemporaryDrawer() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>ドロワーを開く</Button>
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        anchor="left"
+      >
+        <List sx={{ width: 250 }}>
+          <ListItem button>
+            <ListItemText primary="ホーム" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="について" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="お問い合わせ" />
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
+  )
+}
+
+// Permanentドロワー
+<Drawer variant="permanent" anchor="left">
+  <List sx={{ width: 240 }}>
+    <ListItem button>
+      <ListItemText primary="ダッシュボード" />
+    </ListItem>
+  </List>
+</Drawer>
+
+// 右側ドロワー
+<Drawer anchor="right" open={open} onClose={handleClose}>
+  <Box sx={{ width: 300, p: 2 }}>
+    右からのコンテンツ
+  </Box>
+</Drawer>
+
+// 下部ドロワー
+<Drawer anchor="bottom" open={open} onClose={handleClose}>
+  <Box sx={{ height: 200, p: 2 }}>
+    下からのコンテンツ
+  </Box>
+</Drawer>
+```
+
+## アクセシビリティ
+
+- temporaryバリアントでは、Escキーでドロワーを閉じることができます
+- フォーカスは自動的にドロワー内に移動します
+- ドロワーが開いている間、フォーカストラップにより背景コンテンツにはアクセスできません
+- `role="presentation"`が自動的に割り当てられます
+- ナビゲーション目的で使用する場合は、`<nav>`要素でラップすることが推奨されます
+- ドロワーの開閉状態をスクリーンリーダーユーザーに適切に通知してください
+
+</Ja>

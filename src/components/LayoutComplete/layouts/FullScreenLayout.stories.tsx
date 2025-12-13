@@ -52,7 +52,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Layout Complete/Layouts/FullScreen',
   component: FullScreenLayout,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
   parameters: {
     layout: 'fullscreen',
     docs: {

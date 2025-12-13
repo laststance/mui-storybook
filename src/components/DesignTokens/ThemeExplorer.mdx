@@ -1,0 +1,183 @@
+import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
+import * as ThemeExplorerStories from './ThemeExplorer.stories'
+
+<Meta of={ThemeExplorerStories} />
+
+<En>
+# ThemeExplorer
+
+ThemeExplorer provides an interactive tree view of the entire MUI theme object, similar to MUI's official Default Theme Viewer.
+
+## Overview
+
+The ThemeExplorer component is a powerful tool for exploring and understanding the MUI theme structure. It visualizes the complete theme configuration in an interactive tree format, making it easy to discover available theme properties and their values.
+
+## Features
+
+- **Interactive Tree View**: Expand and collapse nodes to navigate the theme structure
+- **Color Swatches**: Visual preview of color values inline
+- **Search**: Filter properties by name, path, or value
+- **Expand/Collapse All**: Quick controls to expand or collapse the entire tree
+- **Type Indicators**: Color-coded chips showing the type of each value
+- **Dark/Light Theme Support**: Automatically adapts to the current theme
+
+## Primary Demo
+</En>
+
+<Ja>
+# ThemeExplorer
+
+ThemeExplorerは、MUIの公式Default Theme Viewerと同様に、MUIテーマオブジェクト全体をインタラクティブなツリービューで表示するコンポーネントです。
+
+## 概要
+
+ThemeExplorerコンポーネントは、MUIテーマ構造を探索・理解するための強力なツールです。完全なテーマ設定をインタラクティブなツリー形式で視覚化し、利用可能なテーマプロパティとその値を簡単に発見できます。
+
+## 機能
+
+- **インタラクティブツリービュー**: ノードを展開・折りたたんでテーマ構造をナビゲート
+- **カラースウォッチ**: カラー値をインラインで視覚的にプレビュー
+- **検索**: 名前、パス、または値でプロパティをフィルタリング
+- **すべて展開/折りたたむ**: ツリー全体を素早く展開または折りたたむコントロール
+- **タイプインジケーター**: 各値の型を色分けされたチップで表示
+- **ダーク/ライトテーマ対応**: 現在のテーマに自動的に適応
+
+## プライマリデモ
+</Ja>
+
+<Primary />
+
+<En>
+## Interactive Controls
+
+Use the controls below to modify properties and observe ThemeExplorer behavior:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、ThemeExplorerの動作を確認してください：
+</Ja>
+
+<Controls />
+
+<En>
+## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
+
+<Stories />
+
+<En>
+## Usage Example
+
+```tsx
+import ThemeExplorer from './ThemeExplorer'
+
+// Basic usage - displays current theme
+<ThemeExplorer />
+
+// With custom configuration
+<ThemeExplorer
+  defaultExpandedDepth={2}
+  showSearch={true}
+  maxHeight="800px"
+/>
+
+// Minimal view without controls
+<ThemeExplorer
+  showSearch={false}
+  showControls={false}
+  defaultExpandedDepth={0}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultExpandedDepth` | `number` | `1` | Maximum initial depth to expand by default |
+| `showSearch` | `boolean` | `true` | Whether to show the search input |
+| `showControls` | `boolean` | `true` | Whether to show Expand/Collapse All buttons |
+| `maxHeight` | `string` | `'600px'` | Maximum height of the tree container |
+| `customTheme` | `Theme` | - | Optional custom theme object to explore |
+
+## Theme Structure
+
+The explorer displays the following main sections of the MUI theme:
+
+- **palette**: Colors including primary, secondary, error, warning, info, success
+- **typography**: Font families, sizes, weights, and line heights
+- **spacing**: Base spacing unit (default 8px)
+- **breakpoints**: Responsive breakpoint values
+- **shape**: Border radius values
+- **shadows**: Elevation shadow definitions
+- **transitions**: Animation timing and easing functions
+- **zIndex**: Z-index stacking order values
+
+## Accessibility
+
+- Full keyboard navigation support
+- Search input with clear label
+- Expand/collapse buttons with descriptive labels
+- Color swatches include text values for screen readers
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import ThemeExplorer from './ThemeExplorer'
+
+// 基本的な使用方法 - 現在のテーマを表示
+<ThemeExplorer />
+
+// カスタム設定を使用
+<ThemeExplorer
+  defaultExpandedDepth={2}
+  showSearch={true}
+  maxHeight="800px"
+/>
+
+// コントロールなしの最小ビュー
+<ThemeExplorer
+  showSearch={false}
+  showControls={false}
+  defaultExpandedDepth={0}
+/>
+```
+
+## Props
+
+| Prop | 型 | デフォルト | 説明 |
+|------|------|---------|-------------|
+| `defaultExpandedDepth` | `number` | `1` | デフォルトで展開する最大の深さ |
+| `showSearch` | `boolean` | `true` | 検索入力を表示するかどうか |
+| `showControls` | `boolean` | `true` | すべて展開/折りたたむボタンを表示するかどうか |
+| `maxHeight` | `string` | `'600px'` | ツリーコンテナの最大高さ |
+| `customTheme` | `Theme` | - | 探索するオプションのカスタムテーマオブジェクト |
+
+## テーマ構造
+
+エクスプローラーはMUIテーマの以下の主要セクションを表示します：
+
+- **palette**: primary、secondary、error、warning、info、successを含むカラー
+- **typography**: フォントファミリー、サイズ、ウェイト、行の高さ
+- **spacing**: 基本スペーシング単位（デフォルト8px）
+- **breakpoints**: レスポンシブブレークポイント値
+- **shape**: ボーダー半径値
+- **shadows**: エレベーションシャドウ定義
+- **transitions**: アニメーションタイミングとイージング関数
+- **zIndex**: Z-indexスタッキング順序値
+
+## アクセシビリティ
+
+- 完全なキーボードナビゲーションサポート
+- 明確なラベル付きの検索入力
+- 説明的なラベル付きの展開/折りたたみボタン
+- カラースウォッチにはスクリーンリーダー用のテキスト値が含まれます
+</Ja>

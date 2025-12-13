@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ChipStories from './Chip.stories'
 
 <Meta of={ChipStories} />
 
+<En>
 # Chip
 
 A chip component for displaying tags or filters. Used for compact information display and visualizing selection states.
@@ -20,20 +22,55 @@ The Chip component wraps Material-UI's Chip and provides the following features:
 - **Avatar**: Display avatar with avatar property
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Chip
+
+タグやフィルターを表示するチップコンポーネント。コンパクトな情報表示と選択状態の視覚化に使用されます。
+
+## 概要
+
+ChipコンポーネントはMaterial-UIのChipをラップし、以下の機能を提供します：
+
+- **バリアント**: `filled`、`outlined`
+- **カラー**: `default`、`primary`、`secondary`、`success`、`error`、`info`、`warning`
+- **サイズ**: `small`、`medium`
+- **削除機能**: onDeleteハンドラーで削除アイコンを表示
+- **クリック機能**: onClickハンドラーでクリック可能に
+- **アイコン**: iconプロパティで先頭にアイコンを追加
+- **アバター**: avatarプロパティでアバターを表示
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties and observe chip display:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更し、チップの表示を確認してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -83,3 +120,56 @@ import FaceIcon from '@mui/icons-material/Face'
 - Deletable chips automatically have appropriate `aria-label` on the delete button
 - Can be clicked using Enter or spacebar on the keyboard
 - Delete button can be operated with Backspace or Delete key
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Chip from '@/components/Chip'
+import Avatar from '@mui/material/Avatar'
+import FaceIcon from '@mui/icons-material/Face'
+
+// 基本的なチップ
+<Chip label="Tag" />
+
+// バリアント付きカラーチップ
+<Chip label="Primary" color="primary" variant="filled" />
+<Chip label="Success" color="success" variant="outlined" />
+
+// クリック可能なチップ
+<Chip
+  label="Click me"
+  onClick={() => console.log('Chip clicked')}
+  color="primary"
+/>
+
+// 削除可能なチップ
+<Chip
+  label="Deletable"
+  onDelete={() => console.log('Delete clicked')}
+  color="secondary"
+/>
+
+// アイコン付きチップ
+<Chip
+  icon={<FaceIcon />}
+  label="With Icon"
+  color="primary"
+/>
+
+// アバター付きチップ
+<Chip
+  avatar={<Avatar>M</Avatar>}
+  label="User Tag"
+  variant="outlined"
+/>
+```
+
+## アクセシビリティ
+
+- クリック可能なチップは`role="button"`として認識されます
+- 削除可能なチップには削除ボタンに適切な`aria-label`が自動的に設定されます
+- キーボードのEnterキーまたはスペースキーでクリックできます
+- 削除ボタンはBackspaceキーまたはDeleteキーで操作できます
+</Ja>

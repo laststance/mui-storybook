@@ -1,7 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as PaginationStories from './Pagination.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={PaginationStories} />
+
+<En>
 
 # Pagination
 
@@ -16,20 +19,63 @@ The Pagination component wraps Material-UI's Pagination and provides the followi
 - **Sizes**: `small`, `medium`, `large`
 - **Shape**: Default circular or rounded corners with `rounded`
 
+</En>
+
+<Ja>
+
+# Pagination
+
+大量のコンテンツを複数のページに分割し、ナビゲーションを提供するページネーションコンポーネント。
+
+## 概要
+
+PaginationコンポーネントはMaterial-UIのPaginationをラップし、以下の機能を提供します:
+
+- **バリアント**: 2つのタイプ: `text`と`outlined`
+- **カラー**: `primary`、`secondary`、`standard`
+- **サイズ**: `small`、`medium`、`large`
+- **形状**: デフォルトの円形、または`rounded`で角丸
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
 
+<En>
+
 ## All Variants
 
+</En>
+
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
+
+<En>
 
 ## Usage Example
 
@@ -68,3 +114,47 @@ function ControlledPagination() {
 - Supports keyboard navigation (Tab, Enter)
 - Current page is indicated with `aria-current="page"`
 - Disabled buttons are properly marked
+
+</En>
+
+<Ja>
+
+## 使用例
+
+```tsx
+import Pagination from '@mui/material/Pagination'
+
+// 基本的なページネーション
+<Pagination count={10} />
+
+// 制御されたページネーション
+function ControlledPagination() {
+  const [page, setPage] = React.useState(1)
+
+  return (
+    <Pagination
+      count={10}
+      page={page}
+      onChange={(event, value) => setPage(value)}
+    />
+  )
+}
+
+// カスタムスタイリング
+<Pagination
+  count={10}
+  variant="outlined"
+  color="primary"
+  shape="rounded"
+  size="large"
+/>
+```
+
+## アクセシビリティ
+
+- ページ番号ボタンには適切な`aria-label`が自動的に設定されます
+- キーボードナビゲーション（Tab、Enter）をサポート
+- 現在のページは`aria-current="page"`で示されます
+- 無効化されたボタンは適切にマークされます
+
+</Ja>

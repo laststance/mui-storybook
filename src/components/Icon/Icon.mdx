@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as IconStories from './Icon.stories'
 
 <Meta of={IconStories} />
 
+<En>
 # Icon
 
 An icon display component that displays Material Icons and custom icons.
@@ -26,20 +28,61 @@ Icon types:
 - Sharp: Sharp edge style
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Icon
+
+Material Iconsやカスタムアイコンを表示するアイコン表示コンポーネント。
+
+## 概要
+
+IconコンポーネントはMaterial Designのアイコンシステムを実装し、一貫したスタイルで様々なアイコンを表示します。@mui/icons-materialパッケージが提供する2000以上のアイコンが利用可能です。
+
+主な機能：
+- **豊富なアイコンセット**: すべてのMaterial Iconsが利用可能
+- **サイズ調整**: 事前定義されたサイズ（small、medium、large）およびカスタムサイズ指定
+- **テーマカラー対応**: primary、secondaryなどのテーマカラーを適用可能
+- **柔軟な使用方法**: 単体、ボタン内、リスト内など様々な用途をサポート
+- **SVGベース**: スケーラブルで高品質な表示
+
+アイコンの種類：
+- Filled（デフォルト）：塗りつぶしスタイル
+- Outlined：アウトラインスタイル
+- Rounded：角丸スタイル
+- Two-tone：2トーンカラースタイル
+- Sharp：シャープエッジスタイル
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -79,3 +122,46 @@ import IconButton from '@mui/material/IconButton'
 - Consider setting `aria-hidden="true"` for decorative icons
 - Convey meaning through icon shape, not just color
 - Ensure sufficient contrast ratio for visual identification
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import HomeIcon from '@mui/icons-material/Home'
+import SettingsIcon from '@mui/icons-material/Settings'
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+
+// 基本的な使用方法
+<HomeIcon />
+
+// サイズ指定
+<HomeIcon fontSize="small" />
+<HomeIcon fontSize="medium" />
+<HomeIcon fontSize="large" />
+<HomeIcon sx={{ fontSize: 48 }} />
+
+// カラー指定
+<HomeIcon color="primary" />
+<HomeIcon color="secondary" />
+<HomeIcon color="error" />
+
+// ボタンと組み合わせ
+<IconButton aria-label="delete">
+  <DeleteIcon />
+</IconButton>
+
+<IconButton aria-label="settings" color="primary">
+  <SettingsIcon />
+</IconButton>
+```
+
+## アクセシビリティ
+
+- IconButtonと組み合わせる場合、必ず`aria-label`属性を指定してください
+- アイコン単体で意味が伝わらない場合は、補足テキストやツールチップを追加してください
+- 装飾的なアイコンには`aria-hidden="true"`の設定を検討してください
+- 色だけでなくアイコンの形状で意味を伝えてください
+- 視覚的に識別できるよう、十分なコントラスト比を確保してください
+</Ja>

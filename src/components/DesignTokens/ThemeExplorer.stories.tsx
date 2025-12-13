@@ -9,7 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Design Tokens/ThemeExplorer',
   component: ThemeExplorer,
-  tags: ['autodocs'],
   parameters: {
     layout: 'padded',
     docs: {

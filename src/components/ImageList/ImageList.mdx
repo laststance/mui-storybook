@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ImageListStories from './ImageList.stories'
 
 <Meta of={ImageListStories} />
 
+<En>
 # ImageList
 
 A component for displaying images in a grid layout, ideal for photo galleries and product listings.
@@ -25,20 +27,60 @@ Layout variations:
 - **Masonry**: Pinterest-style variable height layout
 
 ## Primary Demo
+</En>
+
+<Ja>
+# ImageList
+
+画像をグリッドレイアウトで表示するコンポーネント。写真ギャラリーや商品一覧に最適です。
+
+## 概要
+
+ImageListコンポーネントは、画像コレクションを美しく整理されたグリッドレイアウトで表示します。様々なレイアウトバリエーションにより、コンテンツに最適な表示方法を選択できます。
+
+主な機能：
+- **複数のレイアウト**: 4つのバリエーション - standard、quilted、woven、masonry
+- **レスポンシブ対応**: カラム数と画像サイズを柔軟に調整
+- **タイトルバー**: 画像にタイトルとアクションボタンを追加可能
+- **遅延読み込み**: loading="lazy"属性によるパフォーマンス最適化
+- **可変サイズ**: 画像ごとに行と列を指定して特別な配置が可能
+
+レイアウトバリエーション：
+- **Standard**: 均一なグリッド配置
+- **Quilted**: 画像が複数の行/列にまたがる可変グリッド
+- **Woven**: 交互の高さを持つレイアウト
+- **Masonry**: Pinterestスタイルの可変高さレイアウト
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -100,3 +142,68 @@ import InfoIcon from '@mui/icons-material/Info'
 - Ensure title bar text provides meaningful information
 - Confirm that keyboard navigation is accessible
 - Consider displaying placeholders or skeletons when image loading takes time
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
+import IconButton from '@mui/material/IconButton'
+import InfoIcon from '@mui/icons-material/Info'
+
+// 基本的な使用方法
+<ImageList cols={3} rowHeight={164}>
+  {itemData.map((item) => (
+    <ImageListItem key={item.img}>
+      <img
+        src={item.img}
+        alt={item.title}
+        loading="lazy"
+      />
+    </ImageListItem>
+  ))}
+</ImageList>
+
+// キルテッドレイアウト（可変サイズ）
+<ImageList variant="quilted" cols={4} rowHeight={121}>
+  {itemData.map((item) => (
+    <ImageListItem
+      key={item.img}
+      cols={item.cols || 1}
+      rows={item.rows || 1}
+    >
+      <img src={item.img} alt={item.title} loading="lazy" />
+    </ImageListItem>
+  ))}
+</ImageList>
+
+// タイトルバー付き
+<ImageList>
+  {itemData.map((item) => (
+    <ImageListItem key={item.img}>
+      <img src={item.img} alt={item.title} loading="lazy" />
+      <ImageListItemBar
+        title={item.title}
+        subtitle={item.author}
+        actionIcon={
+          <IconButton aria-label={`info about ${item.title}`}>
+            <InfoIcon />
+          </IconButton>
+        }
+      />
+    </ImageListItem>
+  ))}
+</ImageList>
+```
+
+## アクセシビリティ
+
+- すべての画像に適切な`alt`属性を指定してください
+- アクションボタンには`aria-label`を設定して機能を明確にしてください
+- タイトルバーのテキストが意味のある情報を提供していることを確認してください
+- キーボードナビゲーションがアクセス可能であることを確認してください
+- 画像の読み込みに時間がかかる場合は、プレースホルダーやスケルトンの表示を検討してください
+</Ja>

@@ -59,7 +59,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 const meta = {
   title: 'Layout Complete/Layouts/MultiPanel',
   component: MultiPanelLayout,
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
   parameters: {
     layout: 'padded',
     docs: {

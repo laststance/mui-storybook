@@ -1,11 +1,19 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as ModalStories from './Modal.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={ModalStories} />
 
 # Modal
 
+<En>
 A modal overlay component that displays temporary content to capture user attention.
+</En>
+<Ja>
+ユーザーの注意を集めるために一時的なコンテンツを表示するモーダルオーバーレイコンポーネント。
+</Ja>
+
+<En>
 
 ## Overview
 
@@ -16,22 +24,64 @@ The Modal component wraps Material-UI's Modal and provides the following feature
 - **Focus management**: Focus trap within modal
 - **Escape key support**: Supports closing with Escape key
 
+</En>
+<Ja>
+
+## 概要
+
+ModalコンポーネントはMaterial-UIのModalをラップし、以下の機能を提供します:
+
+- **オーバーレイ**: 背景をブロックして注意を集中
+- **トランジション**: フェードやスライドなどのアニメーション効果
+- **フォーカス管理**: モーダル内でフォーカストラップ
+- **Escapeキーサポート**: Escapeキーで閉じることが可能
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties:
 
+</En>
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールでプロパティを変更できます:
+
+</Ja>
+
 <Controls />
 
+<En>
 
 ## All Variants
 
+</En>
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
 
+<En>
+
 ## Usage Example
+
+</En>
+<Ja>
+
+## 使用例
+
+</Ja>
 
 ```tsx
 import Modal from '@mui/material/Modal'
@@ -70,9 +120,23 @@ function BasicModal() {
 }
 ```
 
+<En>
+
 ## Accessibility
 
 - Use `aria-labelledby` and `aria-describedby` to describe content
 - Focus automatically moves to and is trapped within the modal
 - Modal can be closed with Escape key
 - After modal closes, focus returns to the original element
+
+</En>
+<Ja>
+
+## アクセシビリティ
+
+- `aria-labelledby`と`aria-describedby`を使用してコンテンツを説明
+- フォーカスは自動的にモーダル内に移動し、トラップされます
+- Escapeキーでモーダルを閉じることができます
+- モーダルが閉じた後、フォーカスは元の要素に戻ります
+
+</Ja>

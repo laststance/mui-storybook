@@ -60,7 +60,7 @@ const meta: Meta = {
     // Disable a11y testing for complex example demos
     a11y: { disable: true },
   },
-  tags: ['autodocs'],
+  tags: [], // autodocs disabled - using custom MDX documentation,
 }
 
 export default meta

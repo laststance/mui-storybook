@@ -1,11 +1,19 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
 import * as CircularProgressStories from './CircularProgress.stories'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 
 <Meta of={CircularProgressStories} />
 
 # CircularProgress
 
+<En>
 A circular progress indicator component that visually represents loading or processing states.
+</En>
+<Ja>
+ローディングまたは処理状態を視覚的に表現する円形プログレスインジケーターコンポーネント。
+</Ja>
+
+<En>
 
 ## Overview
 
@@ -17,22 +25,65 @@ The CircularProgress component wraps Material-UI's CircularProgress and provides
 - **Progress Value**: Display values from 0 to 100 in determinate mode
 - **Thickness**: Adjust circle line thickness with the thickness property
 
+</En>
+<Ja>
+
+## 概要
+
+CircularProgressコンポーネントはMaterial-UIのCircularProgressをラップし、以下の機能を提供します:
+
+- **バリアント**: `indeterminate`、`determinate`
+- **カラー**: `primary`、`secondary`、`success`、`error`、`info`、`warning`、`inherit`
+- **サイズ**: sizeプロパティでピクセル単位のサイズを指定
+- **プログレス値**: 確定モードで0から100までの値を表示
+- **太さ**: thicknessプロパティで円の線の太さを調整
+
+</Ja>
+
 ## Primary Demo
 
 <Primary />
+
+<En>
 
 ## Interactive Controls
 
 Use the controls below to modify properties and observe progress indicator display:
 
+</En>
+<Ja>
+
+## インタラクティブコントロール
+
+以下のコントロールでプロパティを変更し、プログレスインジケーターの表示を確認できます:
+
+</Ja>
+
 <Controls />
 
+<En>
 
 ## All Variants
 
+</En>
+<Ja>
+
+## すべてのバリエーション
+
+</Ja>
+
 <Stories />
 
+<En>
+
 ## Usage Example
+
+</En>
+<Ja>
+
+## 使用例
+
+</Ja>
 
 ```tsx
 import CircularProgress from '@/components/CircularProgress'
@@ -69,9 +120,23 @@ import Box from '@mui/material/Box'
 </Box>
 ```
 
+<En>
+
 ## Accessibility
 
 - `role="progressbar"` is automatically assigned
 - In determinate mode, the current progress value is announced via `aria-valuenow`
 - Screen readers appropriately announce states like "loading"
 - For long-running processes, it's recommended to provide textual descriptions along with visual feedback
+
+</En>
+<Ja>
+
+## アクセシビリティ
+
+- `role="progressbar"`が自動的に割り当てられます
+- 確定モードでは、現在のプログレス値が`aria-valuenow`を介してアナウンスされます
+- スクリーンリーダーは「ローディング中」などの状態を適切にアナウンスします
+- 長時間実行されるプロセスでは、視覚的なフィードバックと共にテキストでの説明を提供することを推奨
+
+</Ja>

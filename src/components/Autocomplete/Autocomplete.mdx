@@ -1,9 +1,10 @@
 import { ArgTypes, Canvas, Controls, Meta, Primary, Stories } from '@storybook/addon-docs/blocks'
-
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as AutocompleteStories from './Autocomplete.stories'
 
 <Meta of={AutocompleteStories} />
 
+<En>
 # Autocomplete
 
 Text input with autocomplete functionality
@@ -22,22 +23,64 @@ Key features:
 - Keyboard navigation
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Autocomplete
+
+オートコンプリート機能付きテキスト入力
+
+## 概要
+
+Autocompleteコンポーネントは、推奨オプションのパネルを表示する拡張テキストボックスです。ユーザーが入力を開始すると、フィルタリングされた候補が表示され、効率的な選択が可能になります。検索フィールド、タグ入力、選択リストなどに使用されます。
+
+主な機能：
+- 単一および複数選択のサポート
+- フリーソロモード（任意の値の入力を許可）
+- カスタムフィルタリングとソート
+- 非同期データ読み込み
+- グループ化されたオプション
+- 制御コンポーネントと非制御コンポーネント
+- キーボードナビゲーション
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
+</En>
 
+<Ja>
+## 使用例
+</Ja>
+
+<En>
 ```tsx
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
@@ -91,3 +134,60 @@ function ControlledAutocomplete() {
   - Escape key: Close popup
 - ARIA attributes are configured for proper screen reader announcement
 - Provide an appropriate label for the TextField in `renderInput`
+</En>
+
+<Ja>
+```tsx
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
+
+interface Movie {
+  label: string
+  year: number
+}
+
+const movies: Movie[] = [
+  { label: 'ショーシャンクの空に', year: 1994 },
+  { label: 'ゴッドファーザー', year: 1972 },
+  { label: 'ダークナイト', year: 2008 },
+]
+
+function MyAutocomplete() {
+  return (
+    <Autocomplete
+      disablePortal
+      options={movies}
+      getOptionLabel={(option) => option.label}
+      sx={{ width: 300 }}
+      renderInput={(params) => (
+        <TextField {...params} label="映画を選択" />
+      )}
+    />
+  )
+}
+
+// 制御されたAutocomplete
+function ControlledAutocomplete() {
+  const [value, setValue] = React.useState<Movie | null>(null)
+
+  return (
+    <Autocomplete
+      value={value}
+      onChange={(event, newValue) => setValue(newValue)}
+      options={movies}
+      renderInput={(params) => <TextField {...params} label="映画" />}
+    />
+  )
+}
+```
+
+## アクセシビリティ
+
+- WAI-ARIA 1.1コンボボックスパターンに準拠
+- 完全なキーボード操作サポート：
+  - ↓/↑キー：オプションをナビゲート
+  - Enterキー：オプションを選択
+  - Escapeキー：ポップアップを閉じる
+- スクリーンリーダーの適切なアナウンスのためにARIA属性が設定されています
+- `renderInput`でTextFieldに適切なラベルを提供してください
+</Ja>

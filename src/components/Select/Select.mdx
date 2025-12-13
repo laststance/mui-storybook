@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as SelectStories from './Select.stories'
 
 <Meta of={SelectStories} />
 
+<En>
 # Select
 
 Select box input
@@ -12,20 +14,47 @@ Select box input
 MUI's Select component is a form input component for selecting options from a dropdown menu. It supports single or multiple selection and provides various style and customization options. When used in combination with the MenuItem component, you can implement accessible selection forms.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Select
+
+セレクトボックス入力
+
+## 概要
+
+MUIのSelectコンポーネントは、ドロップダウンメニューからオプションを選択するためのフォーム入力コンポーネントです。単一選択または複数選択をサポートし、さまざまなスタイルとカスタマイズオプションを提供します。MenuItemコンポーネントと組み合わせて使用することで、アクセシブルな選択フォームを実装できます。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -56,3 +85,37 @@ function MySelect() {
 - Provide visual label with `label` property
 - Supports keyboard operations (arrow keys, Enter, Escape, etc.)
 - Properly recognized by screen readers
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+
+function MySelect() {
+  const [age, setAge] = useState(10)
+
+  return (
+    <Select
+      id="age-select"
+      value={age}
+      label="年齢"
+      onChange={(e) => setAge(e.target.value)}
+    >
+      <MenuItem value={10}>10歳</MenuItem>
+      <MenuItem value={20}>20歳</MenuItem>
+      <MenuItem value={30}>30歳</MenuItem>
+    </Select>
+  )
+}
+```
+
+## アクセシビリティ
+
+- `id`プロパティを指定してラベルと関連付けます
+- `label`プロパティで視覚的なラベルを提供します
+- キーボード操作をサポートしています（矢印キー、Enter、Escapeなど）
+- スクリーンリーダーによって適切に認識されます
+</Ja>

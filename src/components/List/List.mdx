@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as ListStories from './List.stories'
 
 <Meta of={ListStories} />
 
+<En>
 # List
 
 A list display component that arranges items vertically.
@@ -27,20 +29,62 @@ Main subcomponents:
 - **ListItemSecondaryAction**: Secondary action placement area
 
 ## Primary Demo
+</En>
+
+<Ja>
+# List
+
+アイテムを縦に配置するリスト表示コンポーネント。
+
+## 概要
+
+Listコンポーネントは関連するアイテムをグループ化して表示するためのものです。シンプルなテキストリストから、アイコン、アバター、チェックボックスを含む複雑なリストまで、幅広い用途をサポートします。
+
+主な機能：
+- **柔軟な構成**: テキスト、アイコン、アバター、チェックボックスなど様々な要素を組み合わせられます
+- **インタラクティブ**: ListItemButtonでクリック可能なアイテムを作成できます
+- **ネストサポート**: 階層構造のリストを簡単に実装できます
+- **セカンダリアクション**: 各アイテムに追加のアクションボタンを配置できます
+- **区切り線**: Dividerで視覚的な分離を追加できます
+
+主なサブコンポーネント：
+- **ListItem**: リストの各アイテム
+- **ListItemButton**: クリック可能なリストアイテム
+- **ListItemIcon**: アイコン表示領域
+- **ListItemAvatar**: アバター表示領域
+- **ListItemText**: プライマリおよびセカンダリテキスト
+- **ListItemSecondaryAction**: セカンダリアクション配置領域
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -127,3 +171,93 @@ import InboxIcon from '@mui/icons-material/Inbox'
 - Use primary and secondary text hierarchy appropriately
 - For lists with checkboxes, make the selection state clearly visible
 - Express nested list structure with appropriate ARIA attributes
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Avatar from '@mui/material/Avatar'
+import InboxIcon from '@mui/icons-material/Inbox'
+
+// 基本的なリスト
+<List>
+  <ListItem>
+    <ListItemText primary="Item 1" />
+  </ListItem>
+  <ListItem>
+    <ListItemText primary="Item 2" />
+  </ListItem>
+</List>
+
+// アイコン付きリスト
+<List>
+  <ListItem disablePadding>
+    <ListItemButton>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <ListItemText primary="Inbox" />
+    </ListItemButton>
+  </ListItem>
+</List>
+
+// アバター付きリスト
+<List>
+  <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        <FolderIcon />
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText primary="Photos" secondary="Jan 9, 2024" />
+  </ListItem>
+</List>
+
+// ネストされたリスト
+<List>
+  <ListItemButton onClick={handleClick}>
+    <ListItemIcon>
+      <InboxIcon />
+    </ListItemIcon>
+    <ListItemText primary="Inbox" />
+    {open ? <ExpandLess /> : <ExpandMore />}
+  </ListItemButton>
+  <Collapse in={open}>
+    <List component="div" disablePadding>
+      <ListItemButton sx={{ pl: 4 }}>
+        <ListItemText primary="Starred" />
+      </ListItemButton>
+    </List>
+  </Collapse>
+</List>
+
+// セカンダリアクション付き
+<List>
+  <ListItem
+    secondaryAction={
+      <IconButton edge="end" aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
+    }
+  >
+    <ListItemText primary="Item" />
+  </ListItem>
+</List>
+```
+
+## アクセシビリティ
+
+- リストアイテムには適切な`role`属性が自動的に設定されます
+- インタラクティブな要素（ListItemButton）はキーボード操作をサポートします
+- アイコンのみのボタンには必ず`aria-label`を指定してください
+- プライマリテキストとセカンダリテキストの階層を適切に使用してください
+- チェックボックス付きリストでは、選択状態を明確に視覚化してください
+- ネストされたリスト構造を適切なARIA属性で表現してください
+</Ja>

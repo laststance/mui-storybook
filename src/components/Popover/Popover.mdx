@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as PopoverStories from './Popover.stories'
 
 <Meta of={PopoverStories} />
 
+<En>
 # Popover
 
 A popover display component that temporarily shows additional information or options near an anchor element.
@@ -17,20 +19,52 @@ The Popover component wraps Material-UI's Popover and provides the following fea
 - **Event triggers**: Supports various events like click, hover, etc.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Popover
+
+アンカー要素の近くに追加情報やオプションを一時的に表示するポップオーバー表示コンポーネント。
+
+## 概要
+
+PopoverコンポーネントはMaterial-UIのPopoverをラップし、以下の機能を提供します：
+
+- **アンカー位置**: 要素または座標に基づく配置
+- **柔軟な配置**: 垂直方向と水平方向の詳細な位置制御
+- **トランジション**: カスタマイズ可能なアニメーション効果
+- **イベントトリガー**: クリック、ホバーなど様々なイベントをサポート
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -77,3 +111,53 @@ function BasicPopover() {
 - Set `pointerEvents: 'none'` when displaying on hover
 - Supports closing with Escape key for keyboard users
 - Pay attention to focus management and use `disableRestoreFocus` when necessary
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Popover from '@mui/material/Popover'
+import Button from '@mui/material/Button'
+
+function BasicPopover() {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  return (
+    <>
+      <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+        ポップオーバーを開く
+      </Button>
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <div style={{ padding: 16 }}>ポップオーバーのコンテンツ</div>
+      </Popover>
+    </>
+  )
+}
+
+// 位置ベースのポップオーバー
+<Popover
+  open={open}
+  anchorReference="anchorPosition"
+  anchorPosition={{ top: 200, left: 400 }}
+  onClose={handleClose}
+>
+  <div>特定の位置のコンテンツ</div>
+</Popover>
+```
+
+## アクセシビリティ
+
+- トリガー要素とポップオーバーを関連付けるために`aria-describedby`を使用してください
+- ホバー時に表示する場合は`pointerEvents: 'none'`を設定してください
+- キーボードユーザーのためにEscapeキーで閉じることをサポートしています
+- フォーカス管理に注意し、必要に応じて`disableRestoreFocus`を使用してください
+</Ja>

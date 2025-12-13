@@ -1,8 +1,10 @@
 import { Meta, Primary, Controls, Canvas, Stories } from '@storybook/addon-docs/blocks'
+import { En, Ja } from '../../../.storybook/components/LocalizedDoc'
 import * as TimelineStories from './Timeline.stories'
 
 <Meta of={TimelineStories} />
 
+<En>
 # Timeline
 
 Timeline display
@@ -12,20 +14,47 @@ Timeline display
 The MUI Timeline component (@mui/lab) is for visually displaying chronological events or processes. By combining subcomponents such as TimelineItem, TimelineSeparator, TimelineDot, TimelineContent, and TimelineOppositeContent, you can build flexible timelines. Suitable for displaying chronological information such as project progress, history, and step-by-step guides.
 
 ## Primary Demo
+</En>
+
+<Ja>
+# Timeline
+
+タイムライン表示
+
+## 概要
+
+MUI Timelineコンポーネント（@mui/lab）は、時系列のイベントやプロセスを視覚的に表示するためのものです。TimelineItem、TimelineSeparator、TimelineDot、TimelineContent、TimelineOppositeContentなどのサブコンポーネントを組み合わせることで、柔軟なタイムラインを構築できます。プロジェクトの進捗状況、履歴、ステップバイステップガイドなどの時系列情報の表示に適しています。
+
+## プライマリデモ
+</Ja>
 
 <Primary />
 
+<En>
 ## Interactive Controls
 
 Use the controls below to modify properties:
+</En>
+
+<Ja>
+## インタラクティブコントロール
+
+以下のコントロールを使用してプロパティを変更してください：
+</Ja>
 
 <Controls />
 
-
+<En>
 ## All Variants
+</En>
+
+<Ja>
+## 全バリアント
+</Ja>
 
 <Stories />
 
+<En>
 ## Usage Example
 
 ```tsx
@@ -71,3 +100,52 @@ function EventTimeline() {
 - Conveys information through text and icons, not relying on color alone
 - Enables screen readers to understand chronological flow
 - Provides additional information using `aria-label` when necessary
+</En>
+
+<Ja>
+## 使用例
+
+```tsx
+import Timeline from '@mui/lab/Timeline'
+import TimelineItem from '@mui/lab/TimelineItem'
+import TimelineSeparator from '@mui/lab/TimelineSeparator'
+import TimelineConnector from '@mui/lab/TimelineConnector'
+import TimelineContent from '@mui/lab/TimelineContent'
+import TimelineDot from '@mui/lab/TimelineDot'
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
+
+function EventTimeline() {
+  return (
+    <Timeline position="alternate">
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary">
+          9:30 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="primary" />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>イベント開始</TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary">
+          10:00 am
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="success" />
+        </TimelineSeparator>
+        <TimelineContent>イベント完了</TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  )
+}
+```
+
+## アクセシビリティ
+
+- セマンティックなHTML構造を使用します
+- 各TimelineItemに明確なコンテンツを提供します
+- 色だけに頼らず、テキストとアイコンで情報を伝えます
+- スクリーンリーダーが時系列の流れを理解できるようにします
+- 必要に応じて`aria-label`を使用して追加情報を提供します
+</Ja>
