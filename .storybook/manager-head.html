@@ -49,29 +49,29 @@ nav [role="toolbar"] * {
  * Only target elements that explicitly have the sky-blue background color
  * ───────────────────────────────────────────────────────────────────────────── */
 
-/* Elements with inline sky-blue background color (#38bdf8 - Sky-400) */
-[style*="background-color: rgb(56, 189, 248)"],
-[style*="background-color:#38bdf8"],
-[style*="background: rgb(56, 189, 248)"],
-[style*="background:#38bdf8"],
-[style*="background-color: #38bdf8"] {
-  color: #0c4a6e !important; /* Dark text for better contrast on bright blue */
+/* Elements with inline sky-blue background color (#f0f9ff - Sky-50) */
+[style*="background-color: rgb(240, 249, 255)"],
+[style*="background-color:#f0f9ff"],
+[style*="background: rgb(240, 249, 255)"],
+[style*="background:#f0f9ff"],
+[style*="background-color: #f0f9ff"] {
+  color: #0c4a6e !important; /* Dark text for contrast on light background */
 }
 
-/* Children of blue-background elements */
-[style*="background-color: rgb(56, 189, 248)"] *,
-[style*="background-color:#38bdf8"] *,
-[style*="background: rgb(56, 189, 248)"] *,
-[style*="background:#38bdf8"] *,
-[style*="background-color: #38bdf8"] * {
+/* Children of light-background elements */
+[style*="background-color: rgb(240, 249, 255)"] *,
+[style*="background-color:#f0f9ff"] *,
+[style*="background: rgb(240, 249, 255)"] *,
+[style*="background:#f0f9ff"] *,
+[style*="background-color: #f0f9ff"] * {
   color: #0c4a6e !important;
 }
 
-/* SVGs inside blue-background elements */
-[style*="background-color: rgb(56, 189, 248)"] svg,
-[style*="background-color:#38bdf8"] svg,
-[style*="background: rgb(56, 189, 248)"] svg,
-[style*="background:#38bdf8"] svg {
+/* SVGs inside light-background elements */
+[style*="background-color: rgb(240, 249, 255)"] svg,
+[style*="background-color:#f0f9ff"] svg,
+[style*="background: rgb(240, 249, 255)"] svg,
+[style*="background:#f0f9ff"] svg {
   fill: #0c4a6e !important;
   color: #0c4a6e !important;
 }
@@ -99,19 +99,19 @@ button[class*="action"][style*="background"] {
 }
 
 /* Panel buttons with inline background styles */
-#storybook-panel-root button[style*="background-color: rgb(56, 189, 248)"],
-#storybook-panel-root button[style*="background:#38bdf8"],
-#storybook-panel-root button[style*="background-color:#38bdf8"] {
+#storybook-panel-root button[style*="background-color: rgb(240, 249, 255)"],
+#storybook-panel-root button[style*="background:#f0f9ff"],
+#storybook-panel-root button[style*="background-color:#f0f9ff"] {
   color: #0c4a6e !important;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
- * 5. Selected Tab Buttons (if they have blue background)
+ * 5. Selected Tab Buttons (if they have light background)
  * ───────────────────────────────────────────────────────────────────────────── */
 
-/* Only tabs with blue background should have dark text for contrast */
-[role="tablist"] button[aria-selected="true"][style*="background-color: rgb(56, 189, 248)"],
-[role="tablist"] button[aria-selected="true"][style*="background:#38bdf8"] {
+/* Only tabs with light background should have dark text for contrast */
+[role="tablist"] button[aria-selected="true"][style*="background-color: rgb(240, 249, 255)"],
+[role="tablist"] button[aria-selected="true"][style*="background:#f0f9ff"] {
   color: #0c4a6e !important;
 }
 

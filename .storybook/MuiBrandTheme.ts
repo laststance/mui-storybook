@@ -36,8 +36,8 @@ export default create({
   inputTextColor: '#0c4a6e', // Sky-900 - maximum readability
   inputBorderRadius: 8,
 
-  // Button colors - Vibrant and cohesive
-  buttonBg: '#38bdf8', // Sky-400 - brighter, more vibrant primary action
+  // Button colors - Matching app background for cohesive look
+  buttonBg: '#f0f9ff', // Sky-50 - matches appBg for unified appearance
   buttonBorder: '#0ea5e9', // Sky-500 - subtle depth
 
   // Boolean inputs - Clear and modern
