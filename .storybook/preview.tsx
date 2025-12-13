@@ -84,6 +84,9 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
+          // ════════════════════════════════════════════════════════════
+          // 1st: Design System Documentation (MDX)
+          // ════════════════════════════════════════════════════════════
           'Design System',
           [
             'Introduction',
@@ -98,16 +101,23 @@ const preview: Preview = {
             'Layout Complete',
             '*',
           ],
-          // Components
-          'Inputs',
-          'Data Display',
-          'Feedback',
-          'Surfaces',
-          'Navigation',
-          'Layout',
-          'Utils',
-          'Examples',
+          // ════════════════════════════════════════════════════════════
+          // 2nd: Design Tokens (Visual showcases)
+          // ════════════════════════════════════════════════════════════
           'Design Tokens',
+          [
+            'ThemeExplorer',
+            'PaletteVisualizer',
+            'Typography Showcase',
+            'Spacing',
+            'Shadows Elevation',
+            'Breakpoints',
+            'Transitions Demo',
+            '*',
+          ],
+          // ════════════════════════════════════════════════════════════
+          // 3rd: Layout Complete (Layout patterns gallery)
+          // ════════════════════════════════════════════════════════════
           'Layout Complete',
           [
             'LayoutPatternsGallery',
@@ -150,7 +160,28 @@ const preview: Preview = {
               'Hierarchical',
               'Scattered',
             ],
+            '*',
           ],
+          // ════════════════════════════════════════════════════════════
+          // 4th: Examples (Real-world implementations)
+          // ════════════════════════════════════════════════════════════
+          'Examples',
+          [
+            'Dashboard',
+            'Payment Management',
+            'Mobile Landing',
+            '*',
+          ],
+          // ════════════════════════════════════════════════════════════
+          // Components (organized by category)
+          // ════════════════════════════════════════════════════════════
+          'Inputs',
+          'Data Display',
+          'Feedback',
+          'Surfaces',
+          'Navigation',
+          'Layout',
+          'Utils',
           '*',
         ],
       },
